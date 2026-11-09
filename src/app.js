@@ -38,7 +38,16 @@
     c.ok = c.algs.some(x => x.ok);
     c.why = c.ok ? '' : (c.algs[0] && c.algs[0].why) || 'no verified alg';
   }
-  const rebuild = p => cases[p].forEach(c => setAlgs(p, c));
+  // Checking every alg against the simulator is the slowest part of startup (PBL alone is 967 simulations), so each set is
+  // checked when it is first needed, and the others are checked a few cases at a time while the browser is idle.
+  const checked = { mm: 0, sq: 0, csp: 0, pbl: 0 }; // how many cases of each set are checked so far
+  const ensure = p => { const list = cases[p]; while (checked[p] < list.length) setAlgs(p, list[checked[p]++]); };
+  const rebuild = p => { checked[p] = 0; ensure(p); };
+  const idle = window.requestIdleCallback ? f => requestIdleCallback(f, { timeout: 2000 }) : f => setTimeout(() => f(null), 50);
+  function warm(p) {
+    const step = d => { const list = cases[p]; while (checked[p] < list.length && (!d || d.didTimeout || d.timeRemaining() > 2)) { setAlgs(p, list[checked[p]++]); if (!d) break; } if (checked[p] < list.length) idle(step); };
+    idle(step);
+  }
 
   // ---- persistent data: one key per puzzle {sel:{id:0|1}, st:{id:{status,times,att,fails,last}}} ----
   const db = { mm: store.get('at.mm.v1', { sel: {}, st: {} }), sq: store.get('at.sq.v1', { sel: {}, st: {} }), csp: store.get('at.csp.v1', { sel: {}, st: {} }), pbl: store.get('at.pbl.v1', { sel: {}, st: {} }) };
@@ -81,7 +90,6 @@
   }));
   DATA_CSP.forEach(r => { const id = r.name + ' · ' + r.parity; sheet.csp[id] = [r.alg]; const k = { id, name: r.name, n: r.n, key: r.key, parity: r.parity, group: r.section }; cases.csp.push(k); byId.csp[id] = k; });
   DATA_PBL.forEach(r => { sheet.pbl[r.id] = [r.alg]; const k = { id: r.id, top: r.top, bot: r.bot, ct: r.ct, cb: r.cb, slices: r.slices, group: r.slices + ' slicers' }; cases.pbl.push(k); byId.pbl[r.id] = k; });
-  KEYS.forEach(rebuild);
 
   const selected = (p, c) => db[p].sel[c.id] !== 0; // default: selected
   const stat = (p, id) => db[p].st[id] || (db[p].st[id] = { status: 'New', times: [], att: [], fails: 0, last: 0 });
@@ -122,7 +130,8 @@
     return base * slow * fails * stale;
   }
   function nextCase() {
-    const p = dk(), pool = cases[p].filter(c => c.ok && selected(p, c));
+    const p = dk(); ensure(p);
+    const pool = cases[p].filter(c => c.ok && selected(p, c));
     if (!pool.length) return null;
     run.soon.forEach(x => x.left--);
     const due = run.soon.findIndex(x => x.left <= 0);
@@ -153,7 +162,7 @@
 
   // ---- views ----
   function render() {
-    stopRaf();
+    stopRaf(); ensure(dk());
     $('#tab-mm').setAttribute('aria-selected', ui.puzzle === 'mm');
     $('#tab-sq').setAttribute('aria-selected', ui.puzzle === 'sq');
     $('#sets').innerHTML = SETS[ui.puzzle].map(x => `<button class="set" role="tab" data-set="${x.id}" aria-selected="${ui.set[ui.puzzle] === x.id}">${x.label}${x.ready ? '' : '<i>soon</i>'}</button>`).join('');
@@ -165,7 +174,6 @@
     document.body.classList.toggle('lock', ui.screen === 'cases' && !!ui.edit);
     if (main.dataset.key === key) window.scrollTo(0, y); else window.scrollTo(0, 0);
     main.dataset.key = key;
-    setTopH();
     if (!soon) updateTimer();
   }
 
@@ -472,11 +480,10 @@
   function wireCases() {
     const on = (id, ev, fn) => { const e = $(id); if (e) e.addEventListener(ev, fn); };
     const p = dk();
-    const chips = $('.chips'); if (chips) chips.scrollLeft = ui.chipScroll || 0;
+    const chips = $('.chips'); if (chips && ui.chipScroll) chips.scrollLeft = ui.chipScroll; // reading or setting scrollLeft forces a layout: skip it when there is nothing to restore
     $$('[data-f]').forEach(b => b.addEventListener('click', () => { const [k, v] = b.dataset.f.split('::'); ui.chipScroll = (b.closest('.chips') || {}).scrollLeft || 0; ui[k] = v; ui.limit = 90; render(); }));
     ['pblTop', 'pblBot'].forEach(k => { const e = $('#' + k); if (e) e.addEventListener('change', () => { ui[k] = e.value; ui.limit = 90; render(); }); });
     on('#more', 'click', () => { ui.limit += 90; render(); });
-    $$('[data-edit]').forEach(b => b.addEventListener('click', () => { ui.edit = b.dataset.edit; render(); const t = $('#edtxt'); if (t) t.focus(); }));
     const edit = ui.edit && byId[p][ui.edit];
     if (edit) {
       on('#edtxt', 'input', e => { $('#edprev').innerHTML = previewHtml(p, e.target.value); });
@@ -499,18 +506,26 @@
     on('#selNotLearned', 'click', () => setSel(c => stat(p, c.id).status !== 'Learned'));
     // the whole card is the button: a click anywhere on it (except its own buttons) toggles the case
     const grid = $('.tiles');
-    if (grid) grid.addEventListener('click', e => {
-      if (e.target.closest('button, a, input, select, textarea')) return;
-      const tile = e.target.closest('.tile'), box = tile && tile.querySelector('input[data-sel]');
-      if (box && !box.disabled) box.click();
-    });
-    $$('input[data-sel]').forEach(i => i.addEventListener('change', e => {
-      const box = e.target;
-      db[p].sel[box.dataset.sel] = box.checked ? 1 : 0; run.queue = []; run.cur = null; save(p);
-      box.closest('.tile').classList.toggle('is-on', box.checked);
-      const cn = $('.count'); if (cn) cn.textContent = countText(p);
-    }));
-    $$('[data-chip]').forEach(b => b.addEventListener('click', () => { const s = stat(p, b.dataset.chip); s.status = { New: 'Learning', Learning: 'Learned', Learned: 'New' }[s.status]; save(p); render(); }));
+    if (grid) {
+      grid.addEventListener('click', e => {
+        const ed = e.target.closest('[data-edit]');
+        if (ed) { ui.edit = ed.dataset.edit; render(); const t = $('#edtxt'); if (t) t.focus(); return; }
+        const ch = e.target.closest('[data-chip]');
+        if (ch) { // a status change only touches its own card
+          const c = byId[p][ch.dataset.chip], s = stat(p, c.id); s.status = { New: 'Learning', Learning: 'Learned', Learned: 'New' }[s.status]; save(p);
+          ch.closest('.tile').outerHTML = tileHtml(p, c); return;
+        }
+        if (e.target.closest('button, a, input, select, textarea')) return;
+        const tile = e.target.closest('.tile'), box = tile && tile.querySelector('input[data-sel]');
+        if (box && !box.disabled) box.click();
+      });
+      grid.addEventListener('change', e => {
+        const box = e.target.closest('input[data-sel]'); if (!box) return;
+        db[p].sel[box.dataset.sel] = box.checked ? 1 : 0; run.queue = []; run.cur = null; save(p);
+        box.closest('.tile').classList.toggle('is-on', box.checked);
+        const cn = $('.count'); if (cn) cn.textContent = countText(p);
+      });
+    }
   }
 
   // ---- Settings screen ----
@@ -565,7 +580,7 @@
       f.text().then(t => {
         const o = JSON.parse(t);
         if (o.app !== 'alg-trainer' || !o.mm || !o.sq) throw new Error('not an alg-trainer export');
-        db.mm = o.mm; db.sq = o.sq; if (o.csp) db.csp = o.csp; if (o.pbl) db.pbl = o.pbl; KEYS.forEach(q => { db[q].alg = db[q].alg || {}; save(q); rebuild(q); });
+        db.mm = o.mm; db.sq = o.sq; if (o.csp) db.csp = o.csp; if (o.pbl) db.pbl = o.pbl; KEYS.forEach(q => { db[q].alg = db[q].alg || {}; save(q); checked[q] = 0; });
         if (o.settings) { Object.assign(settings, o.settings); saveSettings(); applyTheme(); }
         if (Array.isArray(o.colors) && o.colors.length === 12) { colors = o.colors; store.set('at.colors', colors); }
         run.cur = null; msg('Imported.');
@@ -586,13 +601,16 @@
   $('#tab-mm').addEventListener('click', () => go('mm', ui.screen));
   $('#tab-sq').addEventListener('click', () => go('sq', ui.screen));
   $$('.sub').forEach(b => b.addEventListener('click', () => go(ui.puzzle, b.dataset.s)));
-  const setTopH = () => document.documentElement.style.setProperty('--top-h', $('.top').getBoundingClientRect().height + 'px');
-  window.addEventListener('resize', setTopH); setTopH();
-  // the header's height changes when fonts load or the chips wrap: keep the sticky offsets exact so no content shows through a gap
-  if (window.ResizeObserver) new ResizeObserver(setTopH).observe($('.top'));
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(setTopH);
-  // the bottom nav on a phone: make room for its real height
-  const setNavH = () => { const n = $('.nav'); document.documentElement.style.setProperty('--nav-h', getComputedStyle(n).position === 'fixed' ? n.getBoundingClientRect().height + 'px' : '0px'); };
-  if (window.ResizeObserver) new ResizeObserver(setNavH).observe($('.nav')); window.addEventListener('resize', setNavH); setNavH();
+  // Sticky offsets follow the real header and bottom-nav heights (they change when fonts load, chips wrap or the window resizes).
+  // A ResizeObserver reports the sizes without forcing a layout on every render.
+  const rootVar = (k, v) => document.documentElement.style.setProperty(k, v);
+  const setTopH = h => rootVar('--top-h', (h == null ? $('.top').getBoundingClientRect().height : h) + 'px');
+  const setNavH = h => { const n = $('.nav'); rootVar('--nav-h', getComputedStyle(n).position === 'fixed' ? (h == null ? n.getBoundingClientRect().height : h) + 'px' : '0px'); };
+  const boxH = e => (e.borderBoxSize && e.borderBoxSize[0] ? e.borderBoxSize[0].blockSize : e.target.getBoundingClientRect().height);
+  if (window.ResizeObserver) {
+    new ResizeObserver(es => setTopH(boxH(es[es.length - 1]))).observe($('.top'));
+    new ResizeObserver(es => setNavH(boxH(es[es.length - 1]))).observe($('.nav'));
+  } else { window.addEventListener('resize', () => { setTopH(); setNavH(); }); setTopH(); setNavH(); }
   newRound(); render();
+  KEYS.forEach(warm);
 })();

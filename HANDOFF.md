@@ -150,3 +150,15 @@ live diagram preview), Settings (theme, show diagram, Megaminx sticker colours, 
   buttons -> last-solve row -> peeked case -> session. After "show answer" it becomes time -> answer -> Next (sticky above the nav bar) -> session.
 - Session panel: Solved, Forgot, Mean, Best, Ao5, Ao12 (`aoText` in `app.js`: drop best and worst, a forgotten case counts as the worst, two or more forgotten = DNF).
 - Square-1 scrambles use a smaller font (`.scramble.sq`) so they fit in fewer lines.
+
+## Performance notes
+
+- Startup checks only the set on screen (`ensure(dk())` in `render`/`nextCase`); the other sets are checked a few cases at a time in idle time
+  (`warm`, `requestIdleCallback`). `checked[p]` counts how far each set is; import resets it to 0.
+- Cases cards use `content-visibility:auto` so off-screen cards are not laid out or painted. Card clicks (select, status, Edit) go through one
+  delegated listener on `.tiles`; a status change replaces only that card's HTML.
+- `--top-h` / `--nav-h` come from ResizeObservers (no forced layout on render). Avoid reading layout (getBoundingClientRect, scrollLeft) in render.
+- Fonts are subset to ASCII plus a few symbols (copyright sign, middle dot, dashes, curly quotes) with
+  `pyftsubset <font> --unicodes="U+0020-007E,U+00A9,U+00B7,U+2013,U+2014,U+2019,U+201C,U+201D" --layout-features='*' --flavor=woff2`.
+  If new UI text uses another non-ASCII character, add it there and re-subset from the original Google Fonts files.
+- build.js drops unused data fields and embeds each set as `JSON.parse('...')`.
