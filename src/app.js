@@ -161,12 +161,19 @@
 
   const scrambleHtml = t => esc(t).replace(/\//g, '<span class="sl">/</span>');
 
+  // average of the last n solves of this visit: drop the best and the worst, a forgotten case counts as the worst; two or more forgotten = no average
+  function aoText(ss, n) {
+    if (ss.length < n) return '–';
+    const v = ss.slice(-n).map(x => (x.time == null ? Infinity : x.time)).sort((a, b) => a - b);
+    if (v[n - 2] === Infinity) return 'DNF';
+    return fmt(mean(v.slice(1, n - 1)));
+  }
   function sessionHtml(p) {
     const ss = sess[p], times = ss.filter(x => x.time != null).map(x => x.time);
     if (!ss.length) return `<section class="panel session"><h2>This session</h2><p class="note">Your solves from this visit are listed here with their case.</p></section>`;
     const rows = ss.slice(-8).reverse().map(x => `<li class="${x.time == null ? 'miss' : ''}">${sticker((byId[p][x.id] || {}).group)}<span class="nm">${esc(x.id)}</span><span class="tm">${x.time == null ? 'Forgot' : fmt(x.time)}</span></li>`).join('');
     return `<section class="panel session"><h2>This session</h2>
-      <dl class="stats"><div><dd>${times.length}</dd><dt>Solved</dt></div><div><dd>${ss.length - times.length}</dd><dt>Forgot</dt></div><div><dd>${fmtN(times.length ? mean(times) : null)}</dd><dt>Mean</dt></div></dl>
+      <dl class="stats"><div><dd>${times.length}</dd><dt>Solved</dt></div><div><dd>${ss.length - times.length}</dd><dt>Forgot</dt></div><div><dd>${fmtN(times.length ? mean(times) : null)}</dd><dt>Mean</dt></div><div><dd>${fmtN(times.length ? Math.min(...times) : null)}</dd><dt>Best</dt></div><div><dd>${aoText(ss, 5)}</dd><dt>Ao5</dt></div><div><dd>${aoText(ss, 12)}</dd><dt>Ao12</dt></div></dl>
       <ul class="solves">${rows}</ul></section>`;
   }
 
@@ -189,20 +196,21 @@
         ${c.note ? `<p class="note">${esc(c.note)}</p>` : ''}
         <dl class="stats"><div><dd>${fmtN(s.times.length ? Math.min(...s.times) : null)}</dd><dt>Best</dt></div><div><dd>${fmtN(avgOf(s.times, 5))}</dd><dt>Average of 5</dt></div><div><dd>${s.fails}</dd><dt>Forgot</dt></div></dl>
       </section>` : '';
-    const forgotLabel = run.phase === 'idle' || run.phase === 'hold' || run.phase === 'armed' ? 'Show answer' : 'Forgot';
-    const actions = `<div class="actions">
-        <button class="btn primary" id="next" ${shown ? '' : 'disabled'}>Next <kbd>Space</kbd></button>
-        <button class="btn" id="forgot" title="Counts as forgotten">${forgotLabel} <kbd>F</kbd></button>
-        <button class="btn" id="soon" ${shown ? '' : 'disabled'}>Again soon</button>
+    const actions = shown
+      ? `<div class="actions">
+        <button class="btn primary" id="next">Next <kbd>Space</kbd></button>
+        <button class="btn" id="soon">Again soon</button>
+        <button class="btn" id="forgot" ${run.lastRec ? '' : 'disabled'} title="Count this solve as forgotten">Forgot <kbd>F</kbd></button>
         <button class="btn" id="undo" ${s.times.length && run.lastRec ? '' : 'disabled'}>Delete last <kbd>⌫</kbd></button>
-      </div>`;
+      </div>`
+      : `<div class="actions pre"><button class="btn" id="forgot">I forgot it: show answer <kbd>F</kbd></button></div>`;
     return `<div class="train ${shown ? 'revealed' : ''}">
       <div class="stage">
         <div class="stage-bar">
           <select id="mode" aria-label="Mode"><option value="random" ${run.mode === 'random' ? 'selected' : ''}>Weighted random</option><option value="recap" ${run.mode === 'recap' ? 'selected' : ''}>Recap, each case once</option></select>
           <span class="note">${prog}</span>
         </div>
-        <div class="scramble" id="scr" role="button" tabindex="0" title="Copy the scramble">${scrambleHtml(run.scramble)}</div>
+        <div class="scramble ${p === 'mm' ? '' : 'sq'}" id="scr" role="button" tabindex="0" title="Copy the scramble">${scrambleHtml(run.scramble)}</div>
         <div id="timer" class="pad" role="timer" aria-live="off"><span id="digits" class="digits">0:00.00</span><span id="hint" class="hint"></span></div>
         ${actions}
       </div>

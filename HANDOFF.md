@@ -108,7 +108,7 @@ live diagram preview), Settings (theme, show diagram, Megaminx sticker colours, 
 1. User will send the **OLL** (Megaminx) and **OBL** (Square-1) algorithms. Build each set (see above).
    The CSP data came from the user's "Squanmate cube shape + parity" PDF (text pulled with `pdftotext -bbox-layout`, algs assigned to case and
    even/odd by their column position; the sheet's tips and notes are not included).
-2. On phones the revealed answer for Square-1 sits below the timer and needs a scroll.
+2. (Fixed) On phones the revealed answer now sits right under a compact timer, with Next pinned above the nav bar.
 3. Square-1 colours are not customisable yet.
 4. No automated tests for the UI; verification is by the scripts in `tools/` and Playwright screenshots.
 
@@ -130,3 +130,12 @@ live diagram preview), Settings (theme, show diagram, Megaminx sticker colours, 
   layer, class matches the stored `ct`/`cb`, 44 names <-> 44 classes per layer one to one, and scramble + alg solves the cube.
 - The Cases screen shows PBL 90 tiles at a time ("Show more") because drawing 967 diagrams at once is slow; filters are slice-count chips plus
   Top / Bottom name selects. Scrambles use `X.cspSetup` (random whole-cube spin, then the reversed alg), so the user has to AUF/DUF into the alg.
+
+## Train screen layout (as of the last pass)
+
+- Before the solve there is a single quiet button, "I forgot it: show answer" (F); Next / Again soon / Forgot / Delete last only exist after the
+  answer is shown (Forgot is then only enabled right after a timed solve, to mark it as forgotten).
+- Desktop: the timer box is about 190-340px tall; the answer is in the right-hand column. Phone (<= 860px) after a solve: `.train.revealed` becomes a
+  flex column (`display:contents` on `.stage` and `.rail`) ordered time -> answer -> Next (sticky above the nav bar) -> session.
+- Session panel: Solved, Forgot, Mean, Best, Ao5, Ao12 (`aoText` in `app.js`: drop best and worst, a forgotten case counts as the worst, two or more forgotten = DNF).
+- Square-1 scrambles use a smaller font (`.scramble.sq`) so they fit in fewer lines.
