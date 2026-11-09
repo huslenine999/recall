@@ -206,7 +206,7 @@
   // ---- trigger marks: the alg split into chunks you can learn as one motion ----
   const TRIGS = [ // Megaminx; U? matches U2 or U2'
     ['sune', "R U R' U R U? R'"], ['antisune', "R U? R' U' R U' R'"],
-    ['sexy', "R U R' U'"], ['sledge', "R' F R F'"], ['hedgeslammer', "F R' F' R"]
+    ['sexy', "R U R' U'"], ["reverse sexy", "U R U' R'"], ['half sune', "R U R' U"], ['sledge', "R' F R F'"], ['hedgeslammer', "F R' F' R"]
   ].map(([name, t]) => ({ name, t: t.split(' ') })).sort((a, b) => b.t.length - a.t.length);
   const tokEq = (pat, tok) => (pat === 'U?' ? /^U2'?$/.test(tok) : pat === tok);
   function chunks(p, a) { // [{t:'R U R\' U\'', name}] ; name is '' for an unnamed chunk, null for plain moves
