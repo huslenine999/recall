@@ -167,7 +167,8 @@ body[data-phase="running"] .top,body[data-phase="running"] .nav,body[data-phase=
 .menu-pop button{border:0;background:none;text-align:left;padding:12px 14px;border-radius:10px;font-weight:600}
 .menu-pop button:hover{background:var(--raise)}
 .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(236px,1fr));gap:14px}
-.tiles.sq,.tiles.csp{grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+.tiles.sq,.tiles.csp,.tiles.pbl{grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+.more{display:grid;justify-items:center;gap:10px;margin:22px 0 8px}
 .tile{display:flex;flex-direction:column;gap:10px;background:var(--panel);border-radius:16px;padding:12px;box-shadow:inset 0 0 0 2px transparent;cursor:pointer;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
 .tile.is-on{box-shadow:inset 0 0 0 2px var(--set)}
 .tile:not(.is-on){opacity:.62}
@@ -267,7 +268,7 @@ body[data-phase="running"] .top,body[data-phase="running"] .nav,body[data-phase=
   .actions .primary{font-size:18px}
   .tools .count{flex:1 0 100%}
   .tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  .tiles.sq,.tiles.csp{grid-template-columns:1fr}
+  .tiles.sq,.tiles.csp,.tiles.pbl{grid-template-columns:1fr}
   .tile{padding:10px}
   .tile-h h3{font-size:17px}
   .status span{display:none}

@@ -9,16 +9,23 @@
   };
 
   // ---- sticker colors: each alg set / parity group gets one, used as a marker everywhere ----
-  const SET_COLORS = { 'Star': '#FFC93C', 'Square': '#4C8DF0', 'Kite': '#E86AA6', 'Barrel': '#F08A1A', 'Scallop': '#2DB89F', 'Shield': '#A56AD8', 'Mushroom': '#9BD43A', 'Left pawn': '#4FC3F7', 'Right pawn': '#F0617A', 'Fists': '#C79A3B', 'Paired edges': '#3FA7A0', 'Perpendicular edges': '#8E7CF0', 'Parallel edges': '#6FB04A', 'even': '#4C8DF0', 'odd': '#F08A1A', 'CPLL': '#FFC93C', 'EPLL': '#4C8DF0', '3x1 Line': '#A56AD8', '2x2 Block': '#F08A1A', 'R Block': '#4FC3F7', '2x1s touching': '#E86AA6', '2x1s not touching': '#9BD43A', '2x1': '#8E8BB0', 'No blocks': '#2DB89F', 'parity': '#F08A1A', 'no parity': '#4C8DF0' };
+  const SET_COLORS = { 'Star': '#FFC93C', 'Square': '#4C8DF0', 'Kite': '#E86AA6', 'Barrel': '#F08A1A', 'Scallop': '#2DB89F', 'Shield': '#A56AD8', 'Mushroom': '#9BD43A', 'Left pawn': '#4FC3F7', 'Right pawn': '#F0617A', 'Fists': '#C79A3B', 'Paired edges': '#3FA7A0', 'Perpendicular edges': '#8E7CF0', 'Parallel edges': '#6FB04A', '3 slicers': '#4FC3F7', '4 slicers': '#2DB89F', '5 slicers': '#9BD43A', '6 slicers': '#FFC93C', '7 slicers': '#F08A1A', '8 slicers': '#E86AA6', '9 slicers': '#A56AD8', 'even': '#4C8DF0', 'odd': '#F08A1A', 'CPLL': '#FFC93C', 'EPLL': '#4C8DF0', '3x1 Line': '#A56AD8', '2x2 Block': '#F08A1A', 'R Block': '#4FC3F7', '2x1s touching': '#E86AA6', '2x1s not touching': '#9BD43A', '2x1': '#8E8BB0', 'No blocks': '#2DB89F', 'parity': '#F08A1A', 'no parity': '#4C8DF0' };
   const setColor = g => SET_COLORS[g] || '#8E8BB0';
   const sticker = g => `<span class="sticker" style="--set:${setColor(g)}"></span>`;
 
   // ---- case lists (same shape for both puzzles); algs come from the sheet or from the user's override ----
-  const KEYS = ['mm', 'sq', 'csp']; // data keys: Megaminx PLL, Square-1 EP, Square-1 CSP
-  const cases = { mm: [], sq: [], csp: [] }, sheet = { mm: {}, sq: {}, csp: {} }, byId = { mm: {}, sq: {}, csp: {} };
+  const KEYS = ['mm', 'sq', 'csp', 'pbl']; // data keys: Megaminx PLL, Square-1 EP, CSP and PBL
+  const CUBE_SHAPE = 'CCECCECCECCE/CCECCECCECCE';
+  const cases = { mm: [], sq: [], csp: [], pbl: [] }, sheet = { mm: {}, sq: {}, csp: {}, pbl: {} }, byId = { mm: {}, sq: {}, csp: {}, pbl: {} };
   function verifyAlg(p, a, c) {
     const flip = c.flip;
     try {
+      if (p === 'pbl') {
+        const st = S.cspState(a, CUBE_SHAPE), cl = st && S.pblClass(st);
+        if (!cl) return { ok: false, why: 'This alg does not start from a cube shape with every piece in its own layer' };
+        const same = cl.top === c.ct && cl.bot === c.cb;
+        return { ok: same, why: same ? '' : 'This alg solves a different PBL than ' + c.id };
+      }
       if (p === 'csp') { const st = S.cspState(a, c.key); return { ok: !!st, why: st ? '' : 'This alg does not start from the ' + c.name + ' shape' }; }
       if (p === 'mm') { const r = M.analyze(M.run(M.invert(a), D.MM_CFG)); return { ok: r.ok, why: r.reason || '' }; }
       const st = S.run(a), an = S.analyze(st);
@@ -34,13 +41,13 @@
   const rebuild = p => cases[p].forEach(c => setAlgs(p, c));
 
   // ---- persistent data: one key per puzzle {sel:{id:0|1}, st:{id:{status,times,att,fails,last}}} ----
-  const db = { mm: store.get('at.mm.v1', { sel: {}, st: {} }), sq: store.get('at.sq.v1', { sel: {}, st: {} }), csp: store.get('at.csp.v1', { sel: {}, st: {} }) };
+  const db = { mm: store.get('at.mm.v1', { sel: {}, st: {} }), sq: store.get('at.sq.v1', { sel: {}, st: {} }), csp: store.get('at.csp.v1', { sel: {}, st: {} }), pbl: store.get('at.pbl.v1', { sel: {}, st: {} }) };
   const save = p => store.set('at.' + p + '.v1', db[p]);
-  const settings = Object.assign({ showDiagram: { mm: true, sq: true, csp: true }, preview: false, mmArrows: false, theme: 'system' }, store.get('at.settings.v1', {}));
+  const settings = Object.assign({ showDiagram: { mm: true, sq: true, csp: true, pbl: true }, preview: false, mmArrows: false, theme: 'system' }, store.get('at.settings.v1', {}));
   const saveSettings = () => store.set('at.settings.v1', settings);
   const applyTheme = () => { const r = document.documentElement; if (settings.theme === 'light' || settings.theme === 'dark') r.setAttribute('data-theme', settings.theme); else r.removeAttribute('data-theme'); };
   if (!settings.showDiagram || typeof settings.showDiagram !== 'object') settings.showDiagram = { mm: true, sq: true, csp: true };
-  if (settings.showDiagram.csp === undefined) settings.showDiagram.csp = settings.showDiagram.sq !== false;
+  ['csp', 'pbl'].forEach(q => { if (settings.showDiagram[q] === undefined) settings.showDiagram[q] = settings.showDiagram.sq !== false; });
   applyTheme();
   let colors = store.get('at.colors', D.MM_DEFAULT_COLORS.slice());
   if (!Array.isArray(colors) || colors.length !== 12) colors = D.MM_DEFAULT_COLORS.slice();
@@ -53,6 +60,7 @@
     sheet.sq[id] = list; const k = { id, group: r.parity ? 'parity' : 'no parity', parity: r.parity, flip, note: r.note }; cases.sq.push(k); byId.sq[id] = k;
   }));
   DATA_CSP.forEach(r => { const id = r.name + ' · ' + r.parity; sheet.csp[id] = [r.alg]; const k = { id, name: r.name, n: r.n, key: r.key, parity: r.parity, group: r.section }; cases.csp.push(k); byId.csp[id] = k; });
+  DATA_PBL.forEach(r => { sheet.pbl[r.id] = [r.alg]; const k = { id: r.id, top: r.top, bot: r.bot, ct: r.ct, cb: r.cb, slices: r.slices, group: r.slices + ' slicers' }; cases.pbl.push(k); byId.pbl[r.id] = k; });
   KEYS.forEach(rebuild);
 
   const selected = (p, c) => db[p].sel[c.id] !== 0; // default: selected
@@ -68,20 +76,20 @@
   // each puzzle has several alg sets; only the ones with algs behind them are ready (data key = 'mm' or 'sq')
   const SETS = {
     mm: [{ id: 'pll', label: 'PLL', ready: true }, { id: 'oll', label: 'OLL', ready: false }],
-    sq: [{ id: 'ep', label: 'EP', ready: true }, { id: 'pbl', label: 'PBL', ready: false }, { id: 'obl', label: 'OBL', ready: false }, { id: 'csp', label: 'CSP', ready: true }]
+    sq: [{ id: 'ep', label: 'EP', ready: true }, { id: 'pbl', label: 'PBL', ready: true }, { id: 'obl', label: 'OBL', ready: false }, { id: 'csp', label: 'CSP', ready: true }]
   };
   const PUZZLE_NAME = { mm: 'Megaminx', sq: 'Square-1' };
-  const DK_NAME = { mm: 'Megaminx PLL', sq: 'Square-1 EP', csp: 'Square-1 CSP' };
-  const ui = { puzzle: 'mm', screen: 'train', mmSet: 'all', sqParity: 'all', sqCol: 'both', cspSec: 'all', cspPar: 'both', sort: 'name', edit: null, chipScroll: 0 };
+  const DK_NAME = { mm: 'Megaminx PLL', sq: 'Square-1 EP', csp: 'Square-1 CSP', pbl: 'Square-1 PBL' };
+  const ui = { puzzle: 'mm', screen: 'train', mmSet: 'all', sqParity: 'all', sqCol: 'both', cspSec: 'all', cspPar: 'both', pblSec: 'all', pblTop: 'any', pblBot: 'any', limit: 90, sort: 'name', edit: null, chipScroll: 0 };
   if (location.hash === '#sq') ui.puzzle = 'sq';
   ui.set = Object.assign({ mm: 'pll', sq: 'ep' }, store.get('at.sets.v1', {}));
   ['mm', 'sq'].forEach(q => { if (!SETS[q].some(x => x.id === ui.set[q])) ui.set[q] = SETS[q][0].id; });
   const curSet = () => SETS[ui.puzzle].find(x => x.id === ui.set[ui.puzzle]);
   const ready = () => curSet().ready;
-  const dk = () => (ui.puzzle === 'sq' && ui.set.sq === 'csp' ? 'csp' : ui.puzzle); // key of the data behind what is on screen
+  const dk = () => (ui.puzzle === 'sq' && (ui.set.sq === 'csp' || ui.set.sq === 'pbl') ? ui.set.sq : ui.puzzle); // key of the data behind what is on screen
   const run = { mode: 'random', cur: null, last: null, queue: [], soon: [], phase: 'idle', t0: 0, time: null, scramble: '', revealed: false, lastRec: false };
   // phase: idle (scramble shown, ready) | hold | armed | running | stopped
-  const sess = { mm: [], sq: [], csp: [] }; // this visit's solves per puzzle: {id, time|null}
+  const sess = { mm: [], sq: [], csp: [], pbl: [] }; // this visit's solves per puzzle: {id, time|null}
   const isTouch = () => !!(window.matchMedia && matchMedia('(pointer: coarse)').matches);
 
   // ---- weighting ----
@@ -115,7 +123,7 @@
     if (!c) { run.scramble = ''; return; }
     run.last = c.id;
     const good = c.algs.filter(x => x.ok), alg = good[Math.floor(Math.random() * good.length)].a;
-    run.scramble = ui.puzzle === 'mm' ? X.mmSetup(alg) : dk() === 'csp' ? X.cspSetup(alg, c.key) : X.sqSetup(alg);
+    run.scramble = ui.puzzle === 'mm' ? X.mmSetup(alg) : dk() === 'csp' ? X.cspSetup(alg, c.key) : dk() === 'pbl' ? X.cspSetup(alg, CUBE_SHAPE) : X.sqSetup(alg);
   }
 
   // ---- icons ----
@@ -145,7 +153,7 @@
   function diagSvg(p, c) {
     const good = c.algs.find(x => x.ok); if (!good) return '';
     const key = p + '|' + c.id + '|' + good.a + (p === 'mm' ? '|' + colors.join('') + '|' + settings.mmArrows : '');
-    if (!dcache.has(key)) dcache.set(key, (p === 'mm' ? D.megaminxDiagram(good.a, colors, { label: c.id, arrows: settings.mmArrows }) : p === 'csp' ? D.cspDiagram(good.a, c.key, { label: c.id }) : D.square1Diagram(good.a, null, { label: c.id })) || '');
+    if (!dcache.has(key)) dcache.set(key, (p === 'mm' ? D.megaminxDiagram(good.a, colors, { label: c.id, arrows: settings.mmArrows }) : p === 'csp' ? D.cspDiagram(good.a, c.key, { label: c.id }) : p === 'pbl' ? D.pblDiagram(good.a, null, { label: c.id }) : D.square1Diagram(good.a, null, { label: c.id })) || '');
     return dcache.get(key);
   }
   const matFor = (p, c) => { const s = diagSvg(p, c); return s ? `<div class="mat">${s}</div>` : ''; };
@@ -322,6 +330,7 @@
     const p = dk();
     let list = cases[p];
     if (p === 'mm') list = list.filter(c => ui.mmSet === 'all' || c.group === ui.mmSet);
+    else if (p === 'pbl') list = list.filter(c => (ui.pblSec === 'all' || c.group === ui.pblSec) && (ui.pblTop === 'any' || c.top === ui.pblTop) && (ui.pblBot === 'any' || c.bot === ui.pblBot));
     else if (p === 'csp') list = list.filter(c => (ui.cspSec === 'all' || c.group === ui.cspSec) && (ui.cspPar === 'both' || c.parity === ui.cspPar));
     else list = list.filter(c => (ui.sqParity === 'all' || (ui.sqParity === 'yes') === c.parity) && (ui.sqCol === 'both' || (ui.sqCol === 'flip') === c.flip));
     const val = c => { const t = stat(p, c.id).times; return t.length ? mean(t) : -1; };
@@ -330,12 +339,18 @@
     ui.shown = list;
     const chips = p === 'mm'
       ? `<div class="chips" role="group" aria-label="Alg set">${chip('mmSet', 'all', ui.mmSet === 'all', 'All', cases.mm.length)}${[...new Set(cases.mm.map(c => c.group))].map(s => chip('mmSet', s, ui.mmSet === s, s, cases.mm.filter(c => c.group === s).length, s)).join('')}</div>`
+      : p === 'pbl'
+      ? `<div class="chips" role="group" aria-label="Slices">${chip('pblSec', 'all', ui.pblSec === 'all', 'All', cases.pbl.length)}${[...new Set(cases.pbl.map(c => c.group))].sort().map(g => chip('pblSec', g, ui.pblSec === g, g, cases.pbl.filter(c => c.group === g).length, g)).join('')}</div>`
       : p === 'csp'
       ? `<div class="chips" role="group" aria-label="Shape group and parity">${chip('cspSec', 'all', ui.cspSec === 'all', 'All', cases.csp.length)}${[...new Set(cases.csp.map(c => c.group))].map(s => chip('cspSec', s, ui.cspSec === s, s, cases.csp.filter(c => c.group === s).length, s)).join('')}<span class="div" aria-hidden="true"></span>${[['both', 'Even and odd'], ['even', 'Even'], ['odd', 'Odd']].map(([v, l]) => chip('cspPar', v, ui.cspPar === v, l, null, v === 'both' ? null : v)).join('')}</div>`
       : `<div class="chips" role="group" aria-label="Parity and flip">${[['all', 'All'], ['yes', 'Parity'], ['no', 'No parity']].map(([v, l]) => chip('sqParity', v, ui.sqParity === v, l, null, v === 'yes' ? 'parity' : v === 'no' ? 'no parity' : null)).join('')}<span class="div" aria-hidden="true"></span>${[['both', 'Both algs'], ['noflip', 'Without flip'], ['flip', 'With flip']].map(([v, l]) => chip('sqCol', v, ui.sqCol === v, l)).join('')}</div>`;
-    const tiles = list.length ? `<div class="tiles ${p}">${list.map(c => tileHtml(p, c)).join('')}</div>` : `<p class="none muted">No cases match these filters.</p>`;
+    const vis = p === 'pbl' ? list.slice(0, ui.limit) : list; // 967 PBL diagrams at once would be slow to draw
+    const more = list.length > vis.length ? `<div class="more"><p class="note">Showing ${vis.length} of ${list.length}</p><button class="btn" id="more">Show ${Math.min(90, list.length - vis.length)} more</button></div>` : '';
+    const tiles = list.length ? `<div class="tiles ${p}">${vis.map(c => tileHtml(p, c)).join('')}</div>${more}` : `<p class="none muted">No cases match these filters.</p>`;
+    const layerSel = (id, label, key, names) => `<select id="${id}" aria-label="${label}"><option value="any">${label}: any</option>${names.map(n => `<option value="${esc(n)}" ${ui[key] === n ? 'selected' : ''}>${label}: ${esc(n)}</option>`).join('')}</select>`;
+    const pblSel = p === 'pbl' ? layerSel('pblTop', 'Top', 'pblTop', [...new Set(cases.pbl.map(c => c.top))]) + layerSel('pblBot', 'Bottom', 'pblBot', [...new Set(cases.pbl.map(c => c.bot))].sort()) : '';
     return `<div class="cases-top">${chips}
-      <div class="tools"><span class="count">${countText(p)}</span>
+      <div class="tools"><span class="count">${countText(p)}</span>${pblSel}
         <details class="menu"><summary class="btn">Select cases <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1.5l5 5 5-5"/></svg></summary>
           <div class="menu-pop"><button id="selAll">Select all shown</button><button id="selNone">Deselect all shown</button><button id="selLearning">Only the ones I am learning</button><button id="selNotLearned">Only the ones not learned yet</button></div></details>
         <select id="sort" aria-label="Sort">${[['name', 'Sheet order'], ['mean', 'Slowest first'], ['fails', 'Most forgotten']].map(([v, l]) => `<option value="${v}" ${v === ui.sort ? 'selected' : ''}>${l}</option>`).join('')}</select>
@@ -356,6 +371,12 @@
         const inv = M.invert(a), an = M.analyze(M.run(inv, D.MM_CFG));
         const st = an.ok ? `<div>Edges: ${cyc(an.ep, i => M.FACES[M.ring[i]])}</div><div>Corners: ${cyc(an.cp, i => M.FACES[M.ring[i]] + '/' + M.FACES[M.ring[(i + 1) % 5]])}</div><div class="note">x→y means the piece at x belongs at y.</div>` : `<div class="bad">Not a PLL: ${esc(an.reason)}</div>`;
         return { inv, st, svg: an.ok ? D.megaminxDiagram(a, colors, { arrows: settings.mmArrows }) : null };
+      }
+      if (p === 'pbl') {
+        const inv = S.invert(a), c = byId.pbl[ui.edit], st = S.cspState(a, CUBE_SHAPE), cl = st && S.pblClass(st);
+        if (!cl) return { inv, st: `<div class="bad">Not a PBL alg: it has to start from a cube shape and keep every piece in its own layer.</div>`, svg: null };
+        const same = c && cl.top === c.ct && cl.bot === c.cb;
+        return { inv, st: same ? `<div>This alg solves <b>${esc(c.id)}</b>.</div>` : `<div class="bad">This alg solves a different PBL than ${esc(c ? c.id : '')}.</div>`, svg: D.pblDiagram(a) };
       }
       if (p === 'csp') {
         const inv = S.invert(a), c = byId.csp[ui.edit], st = S.cspState(a, c && c.key);
@@ -387,7 +408,9 @@
     const on = (id, ev, fn) => { const e = $(id); if (e) e.addEventListener(ev, fn); };
     const p = dk();
     const chips = $('.chips'); if (chips) chips.scrollLeft = ui.chipScroll || 0;
-    $$('[data-f]').forEach(b => b.addEventListener('click', () => { const [k, v] = b.dataset.f.split('::'); ui.chipScroll = (b.closest('.chips') || {}).scrollLeft || 0; ui[k] = v; render(); }));
+    $$('[data-f]').forEach(b => b.addEventListener('click', () => { const [k, v] = b.dataset.f.split('::'); ui.chipScroll = (b.closest('.chips') || {}).scrollLeft || 0; ui[k] = v; ui.limit = 90; render(); }));
+    ['pblTop', 'pblBot'].forEach(k => { const e = $('#' + k); if (e) e.addEventListener('change', () => { ui[k] = e.value; ui.limit = 90; render(); }); });
+    on('#more', 'click', () => { ui.limit += 90; render(); });
     $$('[data-edit]').forEach(b => b.addEventListener('click', () => { ui.edit = b.dataset.edit; render(); const t = $('#edtxt'); if (t) t.focus(); }));
     const edit = ui.edit && byId[p][ui.edit];
     if (edit) {
@@ -456,7 +479,7 @@
     on('#resetCol', 'click', () => { colors = D.MM_DEFAULT_COLORS.slice(); store.set('at.colors', colors); render(); });
     $$('input[data-col]').forEach(i => i.addEventListener('change', e => { colors[+e.target.dataset.col] = e.target.value; store.set('at.colors', colors); }));
     on('#export', 'click', () => {
-      const blob = new Blob([JSON.stringify({ app: 'alg-trainer', v: 1, mm: db.mm, sq: db.sq, csp: db.csp, settings, colors }, null, 1)], { type: 'application/json' });
+      const blob = new Blob([JSON.stringify({ app: 'alg-trainer', v: 1, mm: db.mm, sq: db.sq, csp: db.csp, pbl: db.pbl, settings, colors }, null, 1)], { type: 'application/json' });
       const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'alg-trainer-progress.json'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
     });
     on('#import', 'change', e => {
@@ -464,7 +487,7 @@
       f.text().then(t => {
         const o = JSON.parse(t);
         if (o.app !== 'alg-trainer' || !o.mm || !o.sq) throw new Error('not an alg-trainer export');
-        db.mm = o.mm; db.sq = o.sq; if (o.csp) db.csp = o.csp; KEYS.forEach(q => { db[q].alg = db[q].alg || {}; save(q); rebuild(q); });
+        db.mm = o.mm; db.sq = o.sq; if (o.csp) db.csp = o.csp; if (o.pbl) db.pbl = o.pbl; KEYS.forEach(q => { db[q].alg = db[q].alg || {}; save(q); rebuild(q); });
         if (o.settings) { Object.assign(settings, o.settings); saveSettings(); applyTheme(); }
         if (Array.isArray(o.colors) && o.colors.length === 12) { colors = o.colors; store.set('at.colors', colors); }
         run.cur = null; msg('Imported.');

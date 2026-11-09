@@ -152,32 +152,36 @@
   const sharp = (P, fill, sw) => `<polygon points="${P.map(p => f1(p[0]) + ',' + f1(p[1])).join(' ')}" fill="${fill}" stroke="${INK}" stroke-width="${sw}" stroke-linejoin="miter" stroke-miterlimit="4"/>`;
   const markerO = (id, ink) => `<marker id="${id}" viewBox="0 0 10 10" refX="7.5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8.5" markerHeight="8.5" orient="auto-start-reverse"><path d="M0,0.5 L10,5 L0,9.5 z" fill="${ink}" stroke="${INK}" stroke-width="1.3" stroke-linejoin="round"/></marker>`;
 
-  function sqLayer(L, cx, cy, colors, markerId, ink) {
-    const A = SQ_A, T = SQ_T, C = [cx, cy];
-    // distance from the centre to the square's outline in direction th (corners sit at 30, 120, 210, 300 degrees)
-    const rimR = th => { let d = (((th - 75) % 90) + 90) % 90; if (d > 45) d -= 90; return A / Math.cos(rad(d)); };
-    const rim = a => sqPt(cx, cy, rimR(a), a);
+  // One layer. Pieces sit on boundary points at radius SH_RE; a corner's tip reaches SH_RC. For a square layer this is the
+  // familiar square; other layers (CSP shapes) come out with kites and wedges. opt.neutral = {fill, sticker} draws a
+  // colourless layer; opt.arrows === false leaves out the misplaced-edge arrows.
+  const SH_RE = SQ_A / Math.cos(rad(15)), SH_RC = 84;
+  function sqLayer(L, cx, cy, colors, markerId, ink, opt) {
+    opt = opt || {};
+    const T = SQ_T, C = [cx, cy];
+    const rim = a => sqPt(cx, cy, SH_RE, a);
     const V = [], col = [];
     let pieces = '';
     for (let i = 0; i < 12; i++) {
       const id = L[i], a0 = i * 30, k = id % 4, isU = id < 4 || (id >= 8 && id < 12);
-      const fill = isU ? colors.face : colors.faceD;
+      const fill = opt.neutral ? opt.neutral.fill : isU ? colors.face : colors.faceD;
       if (id >= 8) { // edge: one wedge, one sticker
-        V.push(rim(a0)); col.push(colors.sides[k]);
+        V.push(rim(a0)); col.push(opt.neutral ? opt.neutral.sticker : colors.sides[k]);
         pieces += sharp([C, rim(a0), rim(a0 + 30)], fill, 2.2);
       } else if (L[(i + 11) % 12] !== id) { // first slot of a corner: kite wedge, two stickers
-        const tip = sqPt(cx, cy, rimR(a0 + 30), a0 + 30);
-        V.push(rim(a0), tip); col.push(colors.sides[(k + 3) % 4], colors.sides[k]);
+        const tip = sqPt(cx, cy, SH_RC, a0 + 30);
+        V.push(rim(a0), tip); col.push(...(opt.neutral ? [opt.neutral.sticker, opt.neutral.sticker] : [colors.sides[(k + 3) % 4], colors.sides[k]]));
         pieces += sharp([C, rim(a0), tip, rim(a0 + 60)], fill, 2.2);
       }
     }
     const O = ringOffset(V, T, C);
     let tiles = '';
     V.forEach((v, j) => { const q = (j + 1) % V.length; tiles += sharp([v, V[q], O[q], O[j]], col[j], 2.2); });
+    if (opt.arrows === false || opt.neutral) return tiles + pieces;
     // arrows for misplaced edges (current slot -> home slot)
     const where = {}; for (let i = 0; i < 12; i++) if (L[i] >= 8) where[L[i]] = i;
     const moves = {}; Object.keys(where).forEach(id => { const h = 3 * (id % 4) + 2; if (h !== where[id]) moves[where[id]] = h; });
-    const pos = sl => { const a = sl * 30 + 15; return sqPt(cx, cy, 0.6 * rimR(a), a); };
+    const pos = sl => { const a = sl * 30 + 15; return sqPt(cx, cy, 0.6 * SQ_A, a); };
     let ar = '';
     for (const p of Object.keys(moves).map(Number)) {
       const q = moves[p], swap = moves[q] === p;
@@ -187,15 +191,15 @@
     return tiles + pieces + ar;
   }
 
-  // The two layers side by side with the red slice line, the U / D headings and the middle-layer pill.
-  // U is drawn as seen from above, D as seen from below (mirrored), the usual way to show a Square-1 state.
+  // The two layers side by side. U is drawn as seen from above, D as seen from below (mirrored), the usual way to show a Square-1
+  // state. The slice is marked by a thin line behind the pieces, so it only shows above and below each layer. flipped === null: no badge.
   const CY = 128, CXU = 100, CXD = 300;
   function sqFrame(gU, gD, flipped, label, cls, defs) {
-    const slice = cx => `<line x1="${cx}" y1="${CY - 90}" x2="${cx}" y2="${CY + 90}" stroke="#e0323b" stroke-width="3.4" stroke-linecap="round"/>`;
+    const slice = cx => `<line x1="${cx}" y1="${CY - 91}" x2="${cx}" y2="${CY + 91}" stroke="#e0323b" stroke-width="2.2" stroke-linecap="round" opacity=".7"/>`;
     const head = (cx, letter, word) => `<text x="${cx}" y="30" text-anchor="middle" fill="currentColor"><tspan font-size="30" font-weight="800">${letter}</tspan><tspan dx="8" font-size="15" font-weight="600" opacity=".75">${word}</tspan></text>`;
     const g = gU + `<g transform="translate(0 ${2 * CY}) scale(1 -1)">${gD}</g>`;
-    const pillW = 130, pill = `<rect x="${200 - pillW / 2}" y="236" width="${pillW}" height="26" rx="13" fill="${flipped ? '#c9373f' : '#2f8a4f'}"/><text x="200" y="254" text-anchor="middle" font-size="14" font-weight="650" fill="#fff">middle ${flipped ? 'flipped' : 'square'}</text>`;
-    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 270" class="diagram sq ${cls || ''}" role="img" aria-label="${label}"><defs>${defs || ''}</defs>${g}${slice(CXU)}${slice(CXD)}${head(CXU, 'U', 'top layer')}${head(CXD, 'D', 'bottom layer')}${pill}</svg>`;
+    const pillW = 130, pill = flipped === null ? '' : `<rect x="${200 - pillW / 2}" y="236" width="${pillW}" height="26" rx="13" fill="${flipped ? '#c9373f' : '#2f8a4f'}"/><text x="200" y="254" text-anchor="middle" font-size="14" font-weight="650" fill="#fff">middle ${flipped ? 'flipped' : 'square'}</text>`;
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 270" class="diagram sq ${cls || ''}" role="img" aria-label="${label}"><defs>${defs || ''}</defs>${slice(CXU)}${slice(CXD)}${g}${head(CXU, 'U', 'top layer')}${head(CXD, 'D', 'bottom layer')}${pill}</svg>`;
   }
 
   // alg: an alg that solves the case; the middle layer state comes from the simulation
@@ -209,28 +213,39 @@
     return sqFrame(sqLayer(top, CXU, CY, colors, id, ink), sqLayer(bot, CXD, CY, colors, id, ink), !!st.flip, opts.label || 'Square-1 EP case', '', markerO(id, ink));
   }
 
-  // CSP cases are about shape only, so the pieces are plain grey. Edge: a 30 degree wedge, corner: a 60 degree kite.
-  const SH_RE = SQ_A / Math.cos(rad(15)), SH_RC = 84;   // radius of the piece boundaries / of a corner tip (same numbers as a square layer)
-  const SH_FILL = { U: '#8b8b96', D: '#cdcdd6' };
-  function shapeLayer(L, cx, cy, fill) {
-    const C = [cx, cy], rim = a => sqPt(cx, cy, SH_RE, a);
-    let out = '';
-    for (let i = 0; i < 12; i++) {
-      const id = L[i], a0 = i * 30;
-      if (id >= 8) out += sharp([C, rim(a0), rim(a0 + 30)], fill, 2.2);
-      else if (L[(i + 11) % 12] !== id) out += sharp([C, rim(a0), sqPt(cx, cy, SH_RC, a0 + 30), rim(a0 + 60)], fill, 2.2);
-    }
-    return out;
-  }
+  // CSP cases are about shape only: neutral pieces and stickers, drawn in the positions the reversed alg gives
+  const CSP_LOOK = { U: { fill: '#2c2c31', sticker: '#8f8fa0' }, D: { fill: '#f2f2f6', sticker: '#a9a9b8' } };
   // alg: the CSP alg (shape -> cube shape); key: the case's shape key, so an alg that fits two shapes draws the labelled one
   function cspDiagram(alg, key, opts) {
     opts = opts || {};
     let st;
     try { st = S.cspState(alg, key); } catch (e) { return null; }
     if (!st) return null;
-    return sqFrame(shapeLayer(st.top, CXU, CY, SH_FILL.U), shapeLayer(st.bot, CXD, CY, SH_FILL.D), !!st.flip, opts.label || 'Square-1 CSP case', 'csp');
+    return sqFrame(sqLayer(st.top, CXU, CY, null, '', '', { neutral: CSP_LOOK.U }), sqLayer(st.bot, CXD, CY, null, '', '', { neutral: CSP_LOOK.D }), !!st.flip, opts.label || 'Square-1 CSP case', 'csp');
   }
 
-  const api = { megaminxDiagram, square1Diagram, cspDiagram, MM_DEFAULT_COLORS, SQ_COLORS, MM_CFG };
+  // PBL: cube shape, every piece coloured. The layers are turned to whichever of their four positions leaves the most pieces at home
+  // (the case is the same after turning either layer).
+  function bestTurn(L, cb, eb) {
+    let s = -1;
+    for (let i = 0; i < 12; i++) if (L[i] === L[(i + 1) % 12] && L[(i + 11) % 12] !== L[i] && L[i] < 8) { s = i; break; }
+    if (s < 0) return L;
+    let best = null, bestScore = -1;
+    for (let r = 0; r < 4; r++) {
+      const R = L.map((_, i) => L[(i + s + 3 * r) % 12]);
+      let sc = 0; for (let k = 0; k < 4; k++) { if (R[3 * k] === cb + k) sc++; if (R[3 * k + 2] === eb + k) sc++; }
+      if (sc > bestScore) { bestScore = sc; best = R; }
+    }
+    return best;
+  }
+  function pblDiagram(alg, colors, opts) {
+    colors = Object.assign({}, SQ_COLORS, colors || {}); opts = opts || {};
+    let st;
+    try { st = S.cspState(alg); } catch (e) { return null; }
+    if (!st) return null;
+    return sqFrame(sqLayer(bestTurn(st.top, 0, 8), CXU, CY, colors, '', '', { arrows: false }), sqLayer(bestTurn(st.bot, 4, 12), CXD, CY, colors, '', '', { arrows: false }), null, opts.label || 'Square-1 PBL case', 'pbl');
+  }
+
+  const api = { megaminxDiagram, square1Diagram, cspDiagram, pblDiagram, MM_DEFAULT_COLORS, SQ_COLORS, MM_CFG };
   if (typeof module !== 'undefined') module.exports = api; else root.Diagram = api;
 })(typeof window !== 'undefined' ? window : globalThis);

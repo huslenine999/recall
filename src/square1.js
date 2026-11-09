@@ -115,6 +115,22 @@
     }
     return null;
   }
-  const api = { cspState, shapeKey, caseState, invert, solved, parse, step, run, analyze, classOf, parity, invPerm, sliceCount, endTurns, CONV };
+
+  // ---- PBL (permute both layers): classes of the two layers' piece permutations, up to turning each layer before and after ----
+  // st: a cube-shape state (from cspState). Returns null when a piece sits in the wrong layer or slot type.
+  function ring8(L, cb, eb) { // the 8 pieces of one layer in order, each as its home index in the solved ring (corner k -> 2k, edge k -> 2k+1)
+    let start = -1;
+    for (let i = 0; i < 12; i++) if (L[i] === L[(i + 1) % 12] && L[(i + 11) % 12] !== L[i] && L[i] < 8) { start = i; break; }
+    if (start < 0) return null;
+    const out = [];
+    for (let i = start; i < start + 12;) { const v = L[i % 12]; if (v < 8) { out.push(2 * (v - cb)); i += 2; } else { out.push(2 * (v - eb) + 1); i++; } }
+    return out.length === 8 && out.every((v, i) => v >= 0 && v < 8 && v % 2 === i % 2) ? out : null;
+  }
+  const canon8 = r => { let best = null; for (let a = 0; a < 8; a += 2) for (let b = 0; b < 8; b += 2) { const q = r.map((_, i) => (r[(i + a) % 8] + b) % 8).join(''); if (best === null || q < best) best = q; } return best; };
+  function pblClass(st) {
+    const t = ring8(st.top, 0, 8), b = ring8(st.bot, 4, 12);
+    return t && b ? { top: canon8(t), bot: canon8(b) } : null;
+  }
+  const api = { cspState, shapeKey, pblClass, caseState, invert, solved, parse, step, run, analyze, classOf, parity, invPerm, sliceCount, endTurns, CONV };
   if (typeof module !== 'undefined') module.exports = api; else root.Square1 = api;
 })(typeof window !== 'undefined' ? window : globalThis);
