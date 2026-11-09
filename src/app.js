@@ -45,7 +45,27 @@
   const save = p => store.set('at.' + p + '.v1', db[p]);
   const settings = Object.assign({ showDiagram: { mm: true, sq: true, csp: true, pbl: true }, showCase: true, mmArrows: false, theme: 'system' }, store.get('at.settings.v1', {}));
   const saveSettings = () => store.set('at.settings.v1', settings);
-  const applyTheme = () => { const r = document.documentElement; if (settings.theme === 'light' || settings.theme === 'dark') r.setAttribute('data-theme', settings.theme); else r.removeAttribute('data-theme'); };
+  // A chosen palette (settings.palette = its name) sets the color tokens inline, which beats the stylesheet's light/dark blocks.
+  const PAL_VARS = ['--bg', '--text', '--mute', '--pri-bg', '--pri-fg', '--focus', '--bad', '--ok', '--warn', '--panel', '--raise', '--line', '--scrim'];
+  const palLum = h => { const c = [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16) / 255).map(v => v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4)); return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]; };
+  const palContrast = (x, y) => { const a = palLum(x), b = palLum(y); return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05); };
+  const metaOrig = $$('meta[name="theme-color"]').map(m => m.content);
+  const applyTheme = () => {
+    const r = document.documentElement, pal = PALETTES.find(x => x[0] === settings.palette);
+    PAL_VARS.forEach(k => r.style.removeProperty(k)); r.style.colorScheme = '';
+    if (pal) {
+      const [, bg, main, sub0, text, err] = pal, dark = palLum(bg) < 0.4;
+      // faint muted colors are fine on a sample card but unreadable as UI text: pull them toward the text color until they reach 4.5:1
+      const blend = (x, y, t) => '#' + [1, 3, 5].map(i => Math.round(parseInt(x.slice(i, i + 2), 16) * (1 - t) + parseInt(y.slice(i, i + 2), 16) * t).toString(16).padStart(2, '0')).join('');
+      let sub = sub0; for (let t = 0.1; palContrast(sub, bg) < 4.5 && t <= 1; t += 0.1) sub = blend(sub0, text, t);
+      const onMain = [bg, '#000000', '#ffffff'].find(c => palContrast(c, main) >= 4.5) || (palContrast('#000000', main) > palContrast('#ffffff', main) ? '#000000' : '#ffffff');
+      const mix = n => `color-mix(in srgb, ${bg} ${n}%, ${text})`;
+      const v = { '--bg': bg, '--text': text, '--mute': sub, '--pri-bg': main, '--pri-fg': onMain, '--focus': main, '--bad': err, '--ok': dark ? '#5FD99A' : '#0F7A45', '--warn': dark ? '#FFC93C' : '#946400', '--panel': mix(92), '--raise': mix(84), '--line': mix(76), '--scrim': dark ? 'rgba(0,0,0,.65)' : 'rgba(10,10,12,.5)' };
+      Object.keys(v).forEach(k => r.style.setProperty(k, v[k]));
+      r.style.colorScheme = dark ? 'dark' : 'light'; r.setAttribute('data-theme', dark ? 'dark' : 'light');
+    } else if (settings.theme === 'light' || settings.theme === 'dark') r.setAttribute('data-theme', settings.theme); else r.removeAttribute('data-theme');
+    $$('meta[name="theme-color"]').forEach((m, i) => { m.content = pal ? pal[1] : metaOrig[i]; });
+  };
   if (!settings.showDiagram || typeof settings.showDiagram !== 'object') settings.showDiagram = { mm: true, sq: true, csp: true };
   ['csp', 'pbl'].forEach(q => { if (settings.showDiagram[q] === undefined) settings.showDiagram[q] = settings.showDiagram.sq !== false; });
   applyTheme();
@@ -496,6 +516,7 @@
   // ---- Settings screen ----
   function viewSettings() {
     const p = dk(), name = DK_NAME[p];
+    const palBtn = x => x ? `<button class="pal" data-pal="${x[0]}" aria-pressed="${settings.palette === x[0]}" style="--b:${x[1]};--m:${x[2]};--s:${x[3]};--t:${x[4]}"><b>${x[0]}</b><i></i></button>` : `<button class="pal pal-def" data-pal="" aria-pressed="${!settings.palette || !PALETTES.some(y => y[0] === settings.palette)}"><b>Default</b><i></i></button>`;
     const swatch = M.FACES.map((f, i) => `<label>${f}<input type="color" data-col="${i}" value="${colors[i]}"></label>`).join('');
     return `<div class="settings">
       <section class="group"><h2>Training</h2>
@@ -514,7 +535,8 @@
         </ul>
       </section>
       <section class="group"><h2>Appearance</h2>
-        <div class="line"><span>Theme</span><div class="seg" role="group" aria-label="Theme">${[['system', 'System'], ['light', 'Light'], ['dark', 'Dark']].map(([v, l]) => `<button data-theme="${v}" aria-pressed="${settings.theme === v}">${l}</button>`).join('')}</div></div>
+        ${settings.palette && PALETTES.some(x => x[0] === settings.palette) ? '' : `<div class="line"><span>Theme</span><div class="seg" role="group" aria-label="Theme">${[['system', 'System'], ['light', 'Light'], ['dark', 'Dark']].map(([v, l]) => `<button data-theme="${v}" aria-pressed="${settings.theme === v}">${l}</button>`).join('')}</div></div>`}
+        <div class="line" style="display:block;cursor:default"><span>Color palette<small>Pick a look for the whole site. Default uses the System, Light or Dark theme.</small></span><div class="pals">${palBtn(null)}${PALETTES.map(palBtn).join('')}</div></div>
         ${p === 'mm' ? `<div class="line" style="display:block;cursor:default"><span>Megaminx face colors<small>Used by the case diagrams. Match them to your puzzle.</small></span><div class="swatches">${swatch}</div><button class="btn" id="resetCol">Reset colors</button></div>` : ''}
       </section>
       <section class="group"><h2>Progress</h2>
@@ -530,7 +552,8 @@
     on('#showDiag', 'change', e => { settings.showDiagram[p] = e.target.checked; saveSettings(); });
     on('#mmArrows', 'change', e => { settings.mmArrows = e.target.checked; saveSettings(); });
     on('#showCase', 'change', e => { settings.showCase = e.target.checked; saveSettings(); });
-    $$('[data-theme]').forEach(b => b.addEventListener('click', () => { settings.theme = b.dataset.theme; saveSettings(); applyTheme(); render(); }));
+    $$('[data-pal]').forEach(b => b.addEventListener('click', () => { settings.palette = b.dataset.pal; saveSettings(); applyTheme(); const y = scrollY; render(); scrollTo(0, y); }));
+    $$('.seg [data-theme]').forEach(b => b.addEventListener('click', () => { settings.theme = b.dataset.theme; saveSettings(); applyTheme(); render(); }));
     on('#resetCol', 'click', () => { colors = D.MM_DEFAULT_COLORS.slice(); store.set('at.colors', colors); render(); });
     $$('input[data-col]').forEach(i => i.addEventListener('change', e => { colors[+e.target.dataset.col] = e.target.value; store.set('at.colors', colors); }));
     on('#export', 'click', () => {
