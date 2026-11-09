@@ -7,7 +7,7 @@ let html = read('src/index.template.html');
 const font = (fam, file, weight, stretch) => `@font-face{font-family:"${fam}";src:url(data:font/woff2;base64,${fs.readFileSync('src/fonts/' + file).toString('base64')}) format("woff2");font-weight:${weight};font-stretch:${stretch};font-style:normal;font-display:swap}`;
 const fonts = font('Bricolage', 'bricolage-grotesque-latin-wght-normal.woff2', '200 800', '100%') + font('Martian', 'martian-mono-latin-standard-normal.woff2', '100 800', '75% 112.5%');
 const data = `const DATA_MM=${JSON.stringify(JSON.parse(read('data/megaminx.json')))};\nconst DATA_SQ=${JSON.stringify(JSON.parse(read('data/square1_ep.json')))};\nconst DATA_CSP=${JSON.stringify(JSON.parse(read('data/square1_csp.json')))};\nconst DATA_PBL=${JSON.stringify(JSON.parse(read('data/square1_pbl.json')))};`;
-const engines = ['src/megaminx.js', 'src/square1.js', 'src/diagram.js', 'src/scramble.js'].map(read).join('\n');
+const engines = ['src/palettes.js', 'src/megaminx.js', 'src/square1.js', 'src/diagram.js', 'src/scramble.js'].map(read).join('\n');
 // replacer functions: avoid '$' patterns in code being interpreted
 html = html.replace('/*__FONTS__*/', () => fonts).replace('/*__DATA__*/', () => wrap(data)).replace('/*__ENGINES__*/', () => wrap(engines)).replace('/*__APP__*/', () => wrap(read('src/app.js')));
 fs.mkdirSync('dist', { recursive: true });
