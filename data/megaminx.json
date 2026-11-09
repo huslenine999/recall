@@ -1,0 +1,912 @@
+[
+ {
+  "id": "K1+",
+  "set": "CPLL",
+  "alg": "R2' U2 R2 U R2' U' R2 U R2' U' R2 U R2' U2 R2",
+  "fixes": []
+ },
+ {
+  "id": "K1-",
+  "set": "CPLL",
+  "alg": "R2 U2' R2' U' R2 U R2' U' R2 U R2' U' R2 U2' R2'",
+  "fixes": []
+ },
+ {
+  "id": "H1+",
+  "set": "CPLL",
+  "alg": "U' F R U2 R' U' R U' R' F' R' y' R' U' R U' R' U2 R bR",
+  "fixes": []
+ },
+ {
+  "id": "H1-",
+  "set": "CPLL",
+  "alg": "U R U R' U R' U' R2 U' R' U R' U R U R U R' U R' U' R2 U' R' U R' U R",
+  "fixes": [
+   "expanded (..)x2"
+  ]
+ },
+ {
+  "id": "K2+",
+  "set": "CPLL",
+  "alg": "R U R' U2' R U R' U2' R U' R' U2' R U2 R' U' R U2 R'",
+  "fixes": []
+ },
+ {
+  "id": "K2-",
+  "set": "CPLL",
+  "alg": "R2 U2' R2' U' R2 U2' R' U R' U' R' F R2 U' R' U' R U R' F'",
+  "fixes": []
+ },
+ {
+  "id": "H2+",
+  "set": "CPLL",
+  "alg": "R2 U2 R2' U' R2 U' R2' y' R2' U' R2 U' R2' U2 R2 U'",
+  "fixes": []
+ },
+ {
+  "id": "H2-",
+  "set": "CPLL",
+  "alg": "R2' U2' R2 U R2' U R2 y R2 U R2' U R2 U2' R2' U",
+  "fixes": []
+ },
+ {
+  "id": "A1-",
+  "set": "CPLL",
+  "alg": "L- R2' D' R U2 R' D R U2' R2",
+  "fixes": []
+ },
+ {
+  "id": "E1",
+  "set": "CPLL",
+  "alg": "R U R' U R' U' R F' R U R' U' R' F R2 U' R2' U R U'",
+  "fixes": []
+ },
+ {
+  "id": "E2",
+  "set": "CPLL",
+  "alg": "R2 U R' U' y R U R' U' R U R' U' R U R' y' R U' R2'",
+  "fixes": [
+   "expanded inline (..)x2"
+  ]
+ },
+ {
+  "id": "A2-",
+  "set": "CPLL",
+  "alg": "R' U2 R' F' R U R U' R' F R U R' U2 R",
+  "fixes": []
+ },
+ {
+  "id": "E3",
+  "set": "CPLL",
+  "alg": "L' R U2 R' U' R U R' U' R U R' U' R U' R' L",
+  "fixes": []
+ },
+ {
+  "id": "A1+",
+  "set": "CPLL",
+  "alg": "L- R' U2 R' D' R U2' R' D R3",
+  "fixes": []
+ },
+ {
+  "id": "A2+",
+  "set": "CPLL",
+  "alg": "R' U2' R U' R' F' R U R' U' R' F R U2' R",
+  "fixes": []
+ },
+ {
+  "id": "U1+",
+  "set": "EPLL",
+  "alg": "R' U' R U' R U R2' U R U' R U' R' U2",
+  "fixes": []
+ },
+ {
+  "id": "U1-",
+  "set": "EPLL",
+  "alg": "U2' R U R' U R' U' R2 U' R' U R' U R",
+  "fixes": []
+ },
+ {
+  "id": "Z1",
+  "set": "EPLL",
+  "alg": "R U2 R2' F R F' R U2' y R U' R' U' R U R' F' U2",
+  "fixes": []
+ },
+ {
+  "id": "Z2",
+  "set": "EPLL",
+  "alg": "F U2' F' L' R' U2 L U R y L R U2' R' U L'",
+  "fixes": []
+ },
+ {
+  "id": "U2+",
+  "set": "EPLL",
+  "alg": "R' U2' R U' R U R2' U R U' R U' R' U2 R' U R",
+  "fixes": []
+ },
+ {
+  "id": "U2-",
+  "set": "EPLL",
+  "alg": "R U2 R' U R' U' R2 U' R' U R' U R U2' R U' R'",
+  "fixes": []
+ },
+ {
+  "id": "Z3",
+  "set": "EPLL",
+  "alg": "L' R' U2 L U R y L R U2' R' U' L'",
+  "fixes": []
+ },
+ {
+  "id": "Q1+",
+  "set": "EPLL",
+  "alg": "R2' U2 R2 U R2' U2 R2 U' R2' U2 R2 U R2' U2 R2 U'",
+  "fixes": []
+ },
+ {
+  "id": "Q1-",
+  "set": "EPLL",
+  "alg": "R2 U2' R2' U' R2 U2' R2' U R2 U2' R2' U' R2 U2' R2' U",
+  "fixes": []
+ },
+ {
+  "id": "Q2+",
+  "set": "EPLL",
+  "alg": "R' U2' R U' R' U2' R2 U2' R' U' R U2' R' U2'",
+  "fixes": []
+ },
+ {
+  "id": "Q2-",
+  "set": "EPLL",
+  "alg": "R U2' R' U' R U2' R' U2' R' U2' R U' R' U2' R",
+  "fixes": []
+ },
+ {
+  "id": "J1+",
+  "set": "3x1 Line",
+  "alg": "R U R' F' R U R' U' R' F R2 U' R'",
+  "fixes": []
+ },
+ {
+  "id": "J1-",
+  "set": "3x1 Line",
+  "alg": "F U' R' F R2 U' R' U' R U R' F' R U R' F'",
+  "fixes": []
+ },
+ {
+  "id": "F1+",
+  "set": "3x1 Line",
+  "alg": "R2' U2 R2 U R2' U2 R2",
+  "fixes": []
+ },
+ {
+  "id": "F1-",
+  "set": "3x1 Line",
+  "alg": "R2 U2' R2' U' R2 U2' R2'",
+  "fixes": []
+ },
+ {
+  "id": "J2-",
+  "set": "3x1 Line",
+  "alg": "R U2 R' U2' R U' R' U' R' U2' R U R' U R2 U R'",
+  "fixes": []
+ },
+ {
+  "id": "F2+",
+  "set": "3x1 Line",
+  "alg": "R U R' U2 R' U2' R2 U' R' U R' U2 R",
+  "fixes": []
+ },
+ {
+  "id": "J2+",
+  "set": "3x1 Line",
+  "alg": "U2 R' U' R U' R U R2' U R U' F' R U R' U' R' F R2 U' R'",
+  "fixes": []
+ },
+ {
+  "id": "F2-",
+  "set": "3x1 Line",
+  "alg": "U2' R' U' R U2' R U2 R2' U R U' R U2' R'",
+  "fixes": []
+ },
+ {
+  "id": "J3+",
+  "set": "3x1 Line",
+  "alg": "R U R2' F' R U R U' R' F U R' U' R2 U' R' U R' U R U2'",
+  "fixes": []
+ },
+ {
+  "id": "J3-",
+  "set": "3x1 Line",
+  "alg": "R U' R2' U' R U' R' U2 R U R U R' U2 R U2' R'",
+  "fixes": []
+ },
+ {
+  "id": "F3+",
+  "set": "3x1 Line",
+  "alg": "U2' R' U2' R U' R U R2' U2 R U2' R U' R'",
+  "fixes": []
+ },
+ {
+  "id": "F3-",
+  "set": "3x1 Line",
+  "alg": "R U2 R' U R' U' R2 U2' R' U2 R' U R",
+  "fixes": []
+ },
+ {
+  "id": "D+",
+  "set": "3x1 Line",
+  "alg": "R U2 R' U' R U R' U R U2' R' U2 R U2 R'",
+  "fixes": []
+ },
+ {
+  "id": "D-",
+  "set": "3x1 Line",
+  "alg": "R' U2' R U R' U' R U' R' U2 R U2' R' U2' R",
+  "fixes": []
+ },
+ {
+  "id": "F4+",
+  "set": "3x1 Line",
+  "alg": "R U R' U R2 U2' R2' U2' R U2 R U2 R' U2' R'",
+  "fixes": []
+ },
+ {
+  "id": "F4-",
+  "set": "3x1 Line",
+  "alg": "R' U' R U' R2' U2 R2 U2 R' U2' R' U2' R U2 R",
+  "fixes": []
+ },
+ {
+  "id": "M",
+  "set": "3x1 Line",
+  "alg": "R U R' U' R U R' U2' R U R2' U' R U' R' U2 R U2 R U' R'",
+  "fixes": []
+ },
+ {
+  "id": "F5+",
+  "set": "3x1 Line",
+  "alg": "R U2 R U2' R' U2' R' U2 R2 U2 R2' U' R U' R'",
+  "fixes": []
+ },
+ {
+  "id": "F5-",
+  "set": "3x1 Line",
+  "alg": "R' U2' R' U2 R U2 R U2' R2' U2' R2 U R' U R",
+  "fixes": []
+ },
+ {
+  "id": "Y1+",
+  "set": "2x2 Block",
+  "alg": "F R U' R' U' R U R' F' R U R' U' R' F R F'",
+  "fixes": []
+ },
+ {
+  "id": "Y1-",
+  "set": "2x2 Block",
+  "alg": "F R' F' R U R U' R' F R U' R' U R U R' F'",
+  "fixes": []
+ },
+ {
+  "id": "V1+",
+  "set": "2x2 Block",
+  "alg": "R' U2 R' dR' R U' R' dR R U R U' R' U' R",
+  "fixes": []
+ },
+ {
+  "id": "V1-",
+  "set": "2x2 Block",
+  "alg": "R U2 R2' F R F' R U' R' F' U F R U' R'",
+  "fixes": []
+ },
+ {
+  "id": "Y2+",
+  "set": "2x2 Block",
+  "alg": "U' R2 U2' R2' U2 R2 U' R2' U2 R2 U2' R2'",
+  "fixes": []
+ },
+ {
+  "id": "Y2-",
+  "set": "2x2 Block",
+  "alg": "R2' U2 R2 U2' R2' U R2 U2' R2' U2 R2",
+  "fixes": []
+ },
+ {
+  "id": "V2+",
+  "set": "2x2 Block",
+  "alg": "R' U R U R' U' R' dR' R U R' dR R U2' R",
+  "fixes": []
+ },
+ {
+  "id": "V2-",
+  "set": "2x2 Block",
+  "alg": "U2 R U' R' F U R U' R' F' R U R' F' U' F R U R'",
+  "fixes": []
+ },
+ {
+  "id": "Y3+",
+  "set": "2x2 Block",
+  "alg": "U2' R2 U R2' U R2 U2' R2' U2 R2 U R2' U R2 U2' R2'",
+  "fixes": []
+ },
+ {
+  "id": "Y3-",
+  "set": "2x2 Block",
+  "alg": "U R2' U' R2 U' R2' U2 R2 U2' R2' U' R2 U' R2' U2 R2",
+  "fixes": []
+ },
+ {
+  "id": "V3+",
+  "set": "2x2 Block",
+  "alg": "R U R2 U' R' U' R U R' U' R' U R2' U R U' R",
+  "fixes": []
+ },
+ {
+  "id": "V3-",
+  "set": "2x2 Block",
+  "alg": "R' U' R2' U R U R' U' R U R U' R2 U' R' U R'",
+  "fixes": []
+ },
+ {
+  "id": "W",
+  "set": "2x2 Block",
+  "alg": "R' U' R U2' R2' U2' R2 U R' U2' R' U2' R U2 R",
+  "fixes": []
+ },
+ {
+  "id": "V4+",
+  "set": "2x2 Block",
+  "alg": "R' U R' U' R2 U' R U R U' R' U R U R2' U' R'",
+  "fixes": []
+ },
+ {
+  "id": "V4-",
+  "set": "2x2 Block",
+  "alg": "R U' R U R2' U R' U' R' U R U' R' U' R2 U R",
+  "fixes": []
+ },
+ {
+  "id": "B1+",
+  "set": "R Block",
+  "alg": "R U R' U' R' U2' R U R U' R2' U2 R",
+  "fixes": []
+ },
+ {
+  "id": "B1-",
+  "set": "R Block",
+  "alg": "R' U' R U R U2 R' U' R' U R2 U2' R'",
+  "fixes": []
+ },
+ {
+  "id": "B2+",
+  "set": "R Block",
+  "alg": "R2 U R2' U2 R U2' R U R' U' R U' R2' U2 R U R'",
+  "fixes": []
+ },
+ {
+  "id": "B2-",
+  "set": "R Block",
+  "alg": "R2' U' R2 U2' R' U2 R' U' R U R' U R2 U2' R' U' R",
+  "fixes": []
+ },
+ {
+  "id": "R1+",
+  "set": "R Block",
+  "alg": "R' U2 R U' R2' U2 R2 U R' U' R' U2' R U' R",
+  "fixes": []
+ },
+ {
+  "id": "R1-",
+  "set": "R Block",
+  "alg": "U2' R U2' R' U R2 U2' R2' U' R U R U2 R' U R'",
+  "fixes": []
+ },
+ {
+  "id": "P1+",
+  "set": "R Block",
+  "alg": "L F R' F' L' F R2 U R' U R U2' R' F'",
+  "fixes": []
+ },
+ {
+  "id": "P1-",
+  "set": "R Block",
+  "alg": "R' U' R' F R U R U' R' y' R2' U' R U' R' U2 R bR",
+  "fixes": []
+ },
+ {
+  "id": "R2+",
+  "set": "R Block",
+  "alg": "R' U R' U2 R U R U' R2' U2' R2 U R' U2' R",
+  "fixes": []
+ },
+ {
+  "id": "R2-",
+  "set": "R Block",
+  "alg": "U2' R U' R U2' R' U' R' U R2 U2 R2' U' R U2 R'",
+  "fixes": []
+ },
+ {
+  "id": "P2+",
+  "set": "R Block",
+  "alg": "F R U2 R' U' R U' R2' F' L F R F' L'",
+  "fixes": []
+ },
+ {
+  "id": "P2-",
+  "set": "R Block",
+  "alg": "U2' bR' R' U2' R U R' U R2 y R U R' U' R' F' R U R",
+  "fixes": []
+ },
+ {
+  "id": "R3+",
+  "set": "R Block",
+  "alg": "U2' R U R2' U R U R U' R' U' R U' R2' U' R U' R' U R",
+  "fixes": []
+ },
+ {
+  "id": "R3-",
+  "set": "R Block",
+  "alg": "R' U' R2 U' R' U' R' U R U R' U R2 U R' U R U' R'",
+  "fixes": []
+ },
+ {
+  "id": "P3+",
+  "set": "R Block",
+  "alg": "U2' R U R2' U R2 U2' R' U' R' U2 R' U' R2 U' R2' U2 R2",
+  "fixes": []
+ },
+ {
+  "id": "P3-",
+  "set": "R Block",
+  "alg": "R' U' R2 U' R2' U2 R U R U2' R U R2' U R2 U2' R2'",
+  "fixes": []
+ },
+ {
+  "id": "R4+",
+  "set": "R Block",
+  "alg": "U R' U' R U R' U R2 U R' U R U R' U' R' U' R2 U' R'",
+  "fixes": []
+ },
+ {
+  "id": "R4-",
+  "set": "R Block",
+  "alg": "U2 R U R' U' R U' R2' U' R U' R' U' R U R U R2' U R",
+  "fixes": []
+ },
+ {
+  "id": "P4+",
+  "set": "R Block",
+  "alg": "U2' R2' U2' R2 U R2' U R U2' R U R U2 R2' U' R2 U' R'",
+  "fixes": []
+ },
+ {
+  "id": "P4-",
+  "set": "R Block",
+  "alg": "R2 U2 R2' U' R2 U' R' U2 R' U' R' U2' R2 U R2' U R",
+  "fixes": []
+ },
+ {
+  "id": "C1-",
+  "set": "2x1s touching",
+  "alg": "U' R' U2' R U2' R U2 R2' U R U' R U2' R' U2' R' U R",
+  "fixes": []
+ },
+ {
+  "id": "C3-",
+  "set": "2x1s touching",
+  "alg": "U2 R2 U2' R2' U' R2 U R2' U2 R2 U R2' U2' R2 U2 R2'",
+  "fixes": []
+ },
+ {
+  "id": "C5-",
+  "set": "2x1s touching",
+  "alg": "U' R U2 R' bR' U R U R' U' bR U' R U2' R'",
+  "fixes": []
+ },
+ {
+  "id": "N1+",
+  "set": "2x1s touching",
+  "alg": "R U2 R' F' R U R' U' R' F R2 U2' R'",
+  "fixes": []
+ },
+ {
+  "id": "N1-",
+  "set": "2x1s touching",
+  "alg": "R' U2 R' U2' R U' R' U2' R U2 R U'",
+  "fixes": []
+ },
+ {
+  "id": "N2+",
+  "set": "2x1s touching",
+  "alg": "R L U2 L' U R' L U' R U2 L' U2 R' U'",
+  "fixes": []
+ },
+ {
+  "id": "N2-",
+  "set": "2x1s touching",
+  "alg": "L' U2 R' U2 L U' R L' U R' U2 R L U",
+  "fixes": []
+ },
+ {
+  "id": "C1+",
+  "set": "2x1s touching",
+  "alg": "U2' R U R' U2' R' U2' R U' R U R2' U2 R U2' R U2' R'",
+  "fixes": []
+ },
+ {
+  "id": "C2-",
+  "set": "2x1s touching",
+  "alg": "U' R U R' U R' U2' R2 U R2' U R2 U2 R' U' R U2' R'",
+  "fixes": []
+ },
+ {
+  "id": "C3+",
+  "set": "2x1s touching",
+  "alg": "U R2' U2 R2 U R2' U' R2 U2' R2' U' R2 U2 R2' U2' R2",
+  "fixes": []
+ },
+ {
+  "id": "C4-",
+  "set": "2x1s touching",
+  "alg": "U2 R2' U2 R2 U R2' U2 R2 U R2' U2' R2 U' R2' U2' R2",
+  "fixes": []
+ },
+ {
+  "id": "C5+",
+  "set": "2x1s touching",
+  "alg": "R U2 R' U2 R U2 R U2 R' U R' U' R2 U2' R' U' R'",
+  "fixes": []
+ },
+ {
+  "id": "C6-",
+  "set": "2x1s touching",
+  "alg": "U' R' U R U2' R2' U' R U2' R' U R U R' U R U R",
+  "fixes": []
+ },
+ {
+  "id": "C4+",
+  "set": "2x1s touching",
+  "alg": "U R2' U2' R2 U' R2' U2' R2 U' R2 U2 R2' U R2 U2 R2'",
+  "fixes": []
+ },
+ {
+  "id": "C6+",
+  "set": "2x1s touching",
+  "alg": "U' R U' R' U2 R2 U R' U2 R U' R' U' R U' R' U' R'",
+  "fixes": []
+ },
+ {
+  "id": "C2+",
+  "set": "2x1s touching",
+  "alg": "U R' U2' R U' R' U2 R2 U R2' U R2 U2' R' U R' U R",
+  "fixes": []
+ },
+ {
+  "id": "T1",
+  "set": "2x1s not touching",
+  "alg": "R U R' U' R' F R2 U' R' U' R U R' F'",
+  "fixes": []
+ },
+ {
+  "id": "T2+",
+  "set": "2x1s not touching",
+  "alg": "R' U2' R U2 R' F R U R' U' R' F' R2",
+  "fixes": []
+ },
+ {
+  "id": "T3+",
+  "set": "2x1s not touching",
+  "alg": "U2' R2' U2 R2 U R2' U' R2 U R2' U2 R2",
+  "fixes": []
+ },
+ {
+  "id": "T4+",
+  "set": "2x1s not touching",
+  "alg": "R U R' F' R U R' U' R' F R U' R' F R2 U' R' U' R U R' F'",
+  "fixes": []
+ },
+ {
+  "id": "T2-",
+  "set": "2x1s not touching",
+  "alg": "U2 R2' F R U R U' R' F' R U2' R' U2 R",
+  "fixes": []
+ },
+ {
+  "id": "T3-",
+  "set": "2x1s not touching",
+  "alg": "R2 U2' R2' U' R2 U R2' U' R2 U2' R2'",
+  "fixes": []
+ },
+ {
+  "id": "T4-",
+  "set": "2x1s not touching",
+  "alg": "R' U' R U' R2' U2 R2 U R2' U2 R2 U2 R' U R",
+  "fixes": []
+ },
+ {
+  "id": "S1+",
+  "set": "2x1s not touching",
+  "alg": "U2' R U R' U2 R U2 R' U' R' U' R U' R' U2 R",
+  "fixes": []
+ },
+ {
+  "id": "S1-",
+  "set": "2x1s not touching",
+  "alg": "R' U' R U2' R' U2' R U R U R' U R U2' R'",
+  "fixes": []
+ },
+ {
+  "id": "S2+",
+  "set": "2x1s not touching",
+  "alg": "R2 U2' R2' U2' R2 U' R' U2 R' U' R' U2' R2 U R2' U R",
+  "fixes": []
+ },
+ {
+  "id": "S2-",
+  "set": "2x1s not touching",
+  "alg": "R U2' R' U2 R U2 R2' U2 R2 U R' U R U' R' U' R' U2' R",
+  "fixes": []
+ },
+ {
+  "id": "S3+",
+  "set": "2x1s not touching",
+  "alg": "R' U' R2 U' R2' U2 R U R U2' R U R2' U2 R2 U2 R2'",
+  "fixes": []
+ },
+ {
+  "id": "S3-",
+  "set": "2x1s not touching",
+  "alg": "U2' R U R2' U R2 U2' R' U' R' U2 R' U' R2 U2' R2' U2' R2",
+  "fixes": []
+ },
+ {
+  "id": "S4+",
+  "set": "2x1s not touching",
+  "alg": "U' R2' U2' R2 U' R2' U2' R2 U R2' U2 R2 U R2' U2 R2",
+  "fixes": []
+ },
+ {
+  "id": "S4-",
+  "set": "2x1s not touching",
+  "alg": "U' R2' U2 R2 U R2' U2 R2 U' R2' U2' R2 U' R2' U2' R2",
+  "fixes": []
+ },
+ {
+  "id": "S5+",
+  "set": "2x1s not touching",
+  "alg": "U R' U2' R L U2' R' U R U2 L' U' R' U2 R",
+  "fixes": []
+ },
+ {
+  "id": "S5-",
+  "set": "2x1s not touching",
+  "alg": "U R' U' R' U2' R2 U' R' U R' U2 R U2 R U2 R' U2 R",
+  "fixes": []
+ },
+ {
+  "id": "S6+",
+  "set": "2x1s not touching",
+  "alg": "U R U R U R' U R U R' U2' R U' R2' U2' R U R'",
+  "fixes": []
+ },
+ {
+  "id": "S6-",
+  "set": "2x1s not touching",
+  "alg": "U2 R' U' R' U' R U' R' U' R U2 R' U R2 U2 R' U' R",
+  "fixes": []
+ },
+ {
+  "id": "G1+",
+  "set": "2x1",
+  "alg": "R' U2 R2 U2' R' U2 R' U R U2 R' U R2 U2 R2' U2' R",
+  "fixes": []
+ },
+ {
+  "id": "G1-",
+  "set": "2x1",
+  "alg": "U R U2' R2' U2 R U2' R U' R' U2' R U' R2' U2' R2 U2 R'",
+  "fixes": []
+ },
+ {
+  "id": "G2+",
+  "set": "2x1",
+  "alg": "R U2' R' U' R U2' R2' U2 L U' R U L' R' U2' R",
+  "fixes": []
+ },
+ {
+  "id": "G2-",
+  "set": "2x1",
+  "alg": "F U2' R' U' R F' R' U' R F U' R' U2' R U2 F'",
+  "fixes": []
+ },
+ {
+  "id": "I1+",
+  "set": "2x1",
+  "alg": "R2' U2 R2 U R2' F2 U' R2 U R2' U F2' U R2",
+  "fixes": []
+ },
+ {
+  "id": "I1-",
+  "set": "2x1",
+  "alg": "U' R' U' R' U2' R U R' U R bR U2 R U2 R' U bR' U R",
+  "fixes": []
+ },
+ {
+  "id": "I2+",
+  "set": "2x1",
+  "alg": "R2' U' F2 U' R2 U' R2' U F2' R2 U' R2' U2' R2",
+  "fixes": []
+ },
+ {
+  "id": "I2-",
+  "set": "2x1",
+  "alg": "U2' R' U' bR U' R U2' R' U2' bR' R' U' R U' R' U2 R U R U",
+  "fixes": []
+ },
+ {
+  "id": "I3+",
+  "set": "2x1",
+  "alg": "U R2 U R2' U R2 U2' R2' U2 y' R2' U' R2 U2' R2' U2' R2",
+  "fixes": []
+ },
+ {
+  "id": "I3-",
+  "set": "2x1",
+  "alg": "U' R2 U2' R2' U2' R2 U' R2' U2 y' R2' U2' R2 U R2' U R2",
+  "fixes": []
+ },
+ {
+  "id": "I4+",
+  "set": "2x1",
+  "alg": "U2 R' U' R' U2' F' R U R U' R' F R' U2 R U R",
+  "fixes": []
+ },
+ {
+  "id": "I4-",
+  "set": "2x1",
+  "alg": "U2 R' U2 R U R' U R' U2' R U R' U R2 U' R' U2 R",
+  "fixes": []
+ },
+ {
+  "id": "I5+",
+  "set": "2x1",
+  "alg": "U2 R' U' R' U2' R F' R U R' U' R' F U2 R U R",
+  "fixes": []
+ },
+ {
+  "id": "I5-",
+  "set": "2x1",
+  "alg": "U R' U2' R U R2' U' R U' R' U2 R U' R U' R' U2' R",
+  "fixes": []
+ },
+ {
+  "id": "I6+",
+  "set": "2x1",
+  "alg": "U' R U2' R2 U2' R' U2' R U' R2' U' R' U' R U' R' U' R2 U R2'",
+  "fixes": []
+ },
+ {
+  "id": "I6-",
+  "set": "2x1",
+  "alg": "U R2' U R2 U' R' U' R U' R' U' R2' U' R U2' R' U2' R2 U2' R",
+  "fixes": []
+ },
+ {
+  "id": "L1",
+  "set": "No blocks",
+  "alg": "R' U2 R U R' U R U' R' U2 R U' R U R' U R U2' R'",
+  "fixes": []
+ },
+ {
+  "id": "L2",
+  "set": "No blocks",
+  "alg": "R U2 R' U R U' R' U' R U' R2' U' R U' R' U' R U R' U2 R",
+  "fixes": []
+ },
+ {
+  "id": "X1",
+  "set": "No blocks",
+  "alg": "F U2 R U2' R' U R U R' U2' F' R' U' R U2' R' U2' R",
+  "fixes": []
+ },
+ {
+  "id": "X2",
+  "set": "No blocks",
+  "alg": "F R U R' F U R' U' F' U R2 U2' R' F'",
+  "fixes": []
+ },
+ {
+  "id": "L3-",
+  "set": "No blocks",
+  "alg": "U2 R' U2 R U2 y' R' bR' R U R' bR U2 R U R' U2 R",
+  "fixes": []
+ },
+ {
+  "id": "X3",
+  "set": "No blocks",
+  "alg": "R' U' R U' R' U2 R2 U R' U2 R' U2' R2 U' R' U2 R' U R",
+  "fixes": []
+ },
+ {
+  "id": "X4",
+  "set": "No blocks",
+  "alg": "R' U' R2 U' R' U R U' R2' U' R2 U R' U' R U R2' U2 R",
+  "fixes": []
+ },
+ {
+  "id": "L4-",
+  "set": "No blocks",
+  "alg": "U' R U2' R' U R U2 R U2 R' U R' U' R U' R U' R' U' R'",
+  "fixes": []
+ },
+ {
+  "id": "X5+",
+  "set": "No blocks",
+  "alg": "R' U R U2 R' U2 R U R2' U' R U' R' U' R U2 R' U R2",
+  "fixes": []
+ },
+ {
+  "id": "X5-",
+  "set": "No blocks",
+  "alg": "R2' U' R U2' R' U R U R' U R2 U' R' U2' R U2' R' U' R",
+  "fixes": []
+ },
+ {
+  "id": "L5-",
+  "set": "No blocks",
+  "alg": "U2' R U2 R' U' R U' R2' U2 R U R' U' R U2 R' U R",
+  "fixes": []
+ },
+ {
+  "id": "X6+",
+  "set": "No blocks",
+  "alg": "U2' R' U2 R' U' R2 U' R' U' R U R' U R' U R2 U' R' U2' R",
+  "fixes": []
+ },
+ {
+  "id": "X6-",
+  "set": "No blocks",
+  "alg": "R U2' R U R2' U R U R' U' R U' R U' R2' U R U2 R'",
+  "fixes": []
+ },
+ {
+  "id": "L6-",
+  "set": "No blocks",
+  "alg": "U' R' U' R U2' R' U R U' R' U2' R2 U R' U R U2' R'",
+  "fixes": []
+ },
+ {
+  "id": "L3+",
+  "set": "No blocks",
+  "alg": "U R U2 R' U R U2 F R' U R F' R' U2 F U2 F'",
+  "fixes": []
+ },
+ {
+  "id": "L4+",
+  "set": "No blocks",
+  "alg": "U R U R U R' U R' U R U' R U2' R' U2' R' U' R U2 R'",
+  "fixes": []
+ },
+ {
+  "id": "L5+",
+  "set": "No blocks",
+  "alg": "U' R' U2' R U R' U R2 U2' R' U' R U R' U2' R U' R'",
+  "fixes": []
+ },
+ {
+  "id": "L6+",
+  "set": "No blocks",
+  "alg": "U2' R U R' U2 R U' R' U R U2 R2' U' R U' R' U2 R",
+  "fixes": []
+ },
+ {
+  "id": "X7+",
+  "set": "No blocks",
+  "alg": "R U R' y R2 U2' R2' U' R2 U2 R2' F U' F' U R2 U R2'",
+  "fixes": []
+ },
+ {
+  "id": "X7-",
+  "set": "No blocks",
+  "alg": "bR' U' bR R2' U2 R2 U R2' U2' R2 bR' U bR U' R2' U' R2",
+  "fixes": []
+ }
+]
