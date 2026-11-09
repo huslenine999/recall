@@ -45,7 +45,7 @@ live diagram preview), Settings (theme, show diagram, Megaminx sticker colours, 
 
 - Megaminx: U face as on Macdiarmid's sheet: rounded pentagon centre, 5 edge pieces (narrow at the rim, wide at the
   centre), 5 kite corners on a black body, a seamless mitred ring of side stickers (edge sticker wide on the outside),
-  thin yellow arrows (double-headed = swap, curved = 3-cycle). The coloured "petals" outside the ring were removed on
+  optional thin yellow arrows (double-headed = swap, curved = 3-cycle); **arrows are off by default** (Settings > "Show arrows on Megaminx cases", `settings.mmArrows`) because the user found them confusing. The coloured "petals" outside the ring were removed on
   request (the sheet's E3 picture has them, so they may be wanted back). Default sticker colours are sampled from the
   sheet (soft/pastel); the user can change them in Settings, and saved colours override defaults.
 - Square-1: two square layers **side by side**, U on the left (dark pieces), D on the right drawn as seen from below

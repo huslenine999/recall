@@ -129,7 +129,7 @@
         arrows += arrow(pos[p], pos[q], swap, id, ink, 5);
       }
     };
-    draw(an.ep, edgeCen); draw(an.cp, cornerCen);
+    if (opts.arrows !== false) { draw(an.ep, edgeCen); draw(an.cp, cornerCen); }
     const vb = mmGeom.vb;
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb.join(' ')}" class="diagram mm" role="img" aria-label="${opts.label || 'PLL case'}"><defs>${marker(id, ink)}</defs>${g}${arrows}</svg>`;
   }

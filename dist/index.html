@@ -697,7 +697,7 @@ const DATA_SQ=[{"u":"cw U","d":"-","parity":false,"algsNoFlip":["/ 3,0 / 1,0 / 0
         arrows += arrow(pos[p], pos[q], swap, id, ink, 5);
       }
     };
-    draw(an.ep, edgeCen); draw(an.cp, cornerCen);
+    if (opts.arrows !== false) { draw(an.ep, edgeCen); draw(an.cp, cornerCen); }
     const vb = mmGeom.vb;
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb.join(' ')}" class="diagram mm" role="img" aria-label="${opts.label || 'PLL case'}"><defs>${marker(id, ink)}</defs>${g}${arrows}</svg>`;
   }
@@ -876,7 +876,7 @@ const DATA_SQ=[{"u":"cw U","d":"-","parity":false,"algsNoFlip":["/ 3,0 / 1,0 / 0
   // ---- persistent data: one key per puzzle {sel:{id:0|1}, st:{id:{status,times,att,fails,last}}} ----
   const db = { mm: store.get('at.mm.v1', { sel: {}, st: {} }), sq: store.get('at.sq.v1', { sel: {}, st: {} }) };
   const save = p => store.set('at.' + p + '.v1', db[p]);
-  const settings = Object.assign({ showDiagram: { mm: true, sq: true }, preview: false, theme: 'system' }, store.get('at.settings.v1', {}));
+  const settings = Object.assign({ showDiagram: { mm: true, sq: true }, preview: false, mmArrows: false, theme: 'system' }, store.get('at.settings.v1', {}));
   const saveSettings = () => store.set('at.settings.v1', settings);
   const applyTheme = () => { const r = document.documentElement; if (settings.theme === 'light' || settings.theme === 'dark') r.setAttribute('data-theme', settings.theme); else r.removeAttribute('data-theme'); };
   applyTheme();
@@ -979,8 +979,8 @@ const DATA_SQ=[{"u":"cw U","d":"-","parity":false,"algsNoFlip":["/ 3,0 / 1,0 / 0
   const dcache = new Map();
   function diagSvg(p, c) {
     const good = c.algs.find(x => x.ok); if (!good) return '';
-    const key = p + '|' + c.id + '|' + good.a + (p === 'mm' ? '|' + colors.join('') : '');
-    if (!dcache.has(key)) dcache.set(key, (p === 'mm' ? D.megaminxDiagram(good.a, colors, { label: c.id }) : D.square1Diagram(good.a, null, { label: c.id })) || '');
+    const key = p + '|' + c.id + '|' + good.a + (p === 'mm' ? '|' + colors.join('') + '|' + settings.mmArrows : '');
+    if (!dcache.has(key)) dcache.set(key, (p === 'mm' ? D.megaminxDiagram(good.a, colors, { label: c.id, arrows: settings.mmArrows }) : D.square1Diagram(good.a, null, { label: c.id })) || '');
     return dcache.get(key);
   }
   const matFor = (p, c) => { const s = diagSvg(p, c); return s ? `<div class="mat">${s}</div>` : ''; };
@@ -1187,7 +1187,7 @@ const DATA_SQ=[{"u":"cw U","d":"-","parity":false,"algsNoFlip":["/ 3,0 / 1,0 / 0
         M.parse(a, D.MM_CFG); // throws on a bad token of the alg itself
         const inv = M.invert(a), an = M.analyze(M.run(inv, D.MM_CFG));
         const st = an.ok ? `<div>Edges: ${cyc(an.ep, i => M.FACES[M.ring[i]])}</div><div>Corners: ${cyc(an.cp, i => M.FACES[M.ring[i]] + '/' + M.FACES[M.ring[(i + 1) % 5]])}</div><div class="note">x→y means the piece at x belongs at y.</div>` : `<div class="bad">Not a PLL: ${esc(an.reason)}</div>`;
-        return { inv, st, svg: an.ok ? D.megaminxDiagram(a, colors) : null };
+        return { inv, st, svg: an.ok ? D.megaminxDiagram(a, colors, { arrows: settings.mmArrows }) : null };
       }
       const inv = S.invert(a), t = S.run(a), an = S.analyze(t);
       if (!an.ok) return { inv, st: `<div class="bad">Not an EP alg: ${esc(an.reason)}</div>`, svg: null };
@@ -1259,6 +1259,7 @@ const DATA_SQ=[{"u":"cw U","d":"-","parity":false,"algsNoFlip":["/ 3,0 / 1,0 / 0
     return `<div class="settings">
       <section class="group"><h2>Training</h2>
         <label class="line"><span>Show the case diagram after each solve<small>${name} only. Cases always show their diagram.</small></span><input type="checkbox" class="switch" id="showDiag" ${settings.showDiagram[p] ? 'checked' : ''}></label>
+        ${p === 'mm' ? `<label class="line"><span>Show arrows on Megaminx cases<small>Arrows mark where each piece goes. Off by default: the sticker colours already show the case.</small></span><input type="checkbox" class="switch" id="mmArrows" ${settings.mmArrows ? 'checked' : ''}></label>` : ''}
         <label class="line"><span>Show the diagram before the solve<small>Study mode. Needs diagrams on.</small></span><input type="checkbox" class="switch" id="preview" ${settings.preview ? 'checked' : ''}></label>
       </section>
       <section class="group"><h2>Appearance</h2>
@@ -1276,6 +1277,7 @@ const DATA_SQ=[{"u":"cw U","d":"-","parity":false,"algsNoFlip":["/ 3,0 / 1,0 / 0
     const on = (id, ev, fn) => { const e = $(id); if (e) e.addEventListener(ev, fn); };
     const p = ui.puzzle, msg = t => { $('#msg').textContent = t; };
     on('#showDiag', 'change', e => { settings.showDiagram[p] = e.target.checked; saveSettings(); });
+    on('#mmArrows', 'change', e => { settings.mmArrows = e.target.checked; saveSettings(); });
     on('#preview', 'change', e => { settings.preview = e.target.checked; saveSettings(); });
     $$('[data-theme]').forEach(b => b.addEventListener('click', () => { settings.theme = b.dataset.theme; saveSettings(); applyTheme(); render(); }));
     on('#resetCol', 'click', () => { colors = D.MM_DEFAULT_COLORS.slice(); store.set('at.colors', colors); render(); });
