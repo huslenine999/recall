@@ -186,7 +186,9 @@ body[data-phase="running"] .top,body[data-phase="running"] .nav,body[data-phase=
 .tiles.sq,.tiles.csp,.tiles.pbl{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 @media (min-width:1000px){.tiles.sq,.tiles.csp,.tiles.pbl{grid-template-columns:repeat(4,minmax(0,1fr))}}
 .tiles.sq .tile,.tiles.csp .tile,.tiles.pbl .tile{padding:10px;gap:8px}
-.tiles.sq .tile-h h3,.tiles.csp .tile-h h3,.tiles.pbl .tile-h h3{font-size:17px}
+.tiles.sq .tile-h h3,.tiles.csp .tile-h h3,.tiles.pbl .tile-h h3{font-size:22px;font-weight:800;letter-spacing:-.01em;line-height:1.1}
+.tile-h h3 .sl{color:var(--mute);font-weight:500;padding:0 .22em}
+.tiles.sq .tile-h,.tiles.csp .tile-h,.tiles.pbl .tile-h{padding-bottom:8px;border-bottom:1px solid var(--line)}
 .tiles.sq .alg,.tiles.csp .alg,.tiles.pbl .alg{font-size:13.5px;line-height:1.5}
 .tiles.sq .tile-f .st,.tiles.csp .tile-f .st,.tiles.pbl .tile-f .st{font-size:13px;gap:2px 10px}
 .tiles.sq .tile-f .st b,.tiles.csp .tile-f .st b,.tiles.pbl .tile-f .st b{font-size:13px}
@@ -1341,7 +1343,7 @@ const DATA_PBL=[{"id":"- / Aa","top":"-","bot":"Aa","layers":"even","slices":7,"
       <input type="checkbox" class="pick" data-sel="${esc(c.id)}" ${on ? 'checked' : ''} ${c.ok ? '' : 'disabled'} aria-label="Train ${esc(c.id)}">
       <div class="tile-h">
         <span class="tick" aria-hidden="true"></span>
-        <h3>${esc(c.id)}</h3>
+        <h3>${p === 'mm' ? esc(c.id) : esc(c.id).replace(/ \/ /g, '<span class="sl">/</span>')}</h3>
         <button type="button" class="status s-${s.status}" data-chip="${esc(c.id)}" title="Change status" aria-label="${esc(c.id)} status: ${s.status}. Change status">${statusGlyph(s.status)}<span>${s.status}</span></button>
       </div>
       ${c.ok ? matFor(p, c) : `<div class="warn">${esc(c.why || 'No alg on this case passes the check.')}</div>`}

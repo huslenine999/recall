@@ -361,7 +361,7 @@
       <input type="checkbox" class="pick" data-sel="${esc(c.id)}" ${on ? 'checked' : ''} ${c.ok ? '' : 'disabled'} aria-label="Train ${esc(c.id)}">
       <div class="tile-h">
         <span class="tick" aria-hidden="true"></span>
-        <h3>${esc(c.id)}</h3>
+        <h3>${p === 'mm' ? esc(c.id) : esc(c.id).replace(/ \/ /g, '<span class="sl">/</span>')}</h3>
         <button type="button" class="status s-${s.status}" data-chip="${esc(c.id)}" title="Change status" aria-label="${esc(c.id)} status: ${s.status}. Change status">${statusGlyph(s.status)}<span>${s.status}</span></button>
       </div>
       ${c.ok ? matFor(p, c) : `<div class="warn">${esc(c.why || 'No alg on this case passes the check.')}</div>`}
