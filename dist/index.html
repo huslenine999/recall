@@ -159,6 +159,12 @@ body[data-phase="running"] .top,body[data-phase="running"] .nav,body[data-phase=
 .mat svg.sq{max-height:340px}
 .reveal .mat{max-width:420px}
 .algs{display:flex;flex-direction:column;gap:8px}
+.trg{display:inline-block;white-space:nowrap;margin:1px 2px;vertical-align:top;text-align:center}
+.trg.boxes{background:color-mix(in srgb,var(--set,#8E8BB0) 22%,transparent);border-radius:6px;padding:0 6px}
+.trg.brackets{padding:0 2px}
+.trg .tn{display:block;font:600 10px/1.1 var(--sans,system-ui);font-style:normal;color:var(--mute);letter-spacing:0;padding-bottom:2px}
+.seg{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.seg .btn[aria-pressed="true"]{background:var(--pri-bg);color:var(--pri-fg)}
 .algrow{display:flex;align-items:flex-start;gap:4px}
 .algrow .alg{flex:1;min-width:0}
 .starb{flex:none;width:34px;height:34px;margin:-3px 0 -3px -9px;display:grid;place-items:center;border:0;background:none;border-radius:9px;color:var(--mute);cursor:pointer}
@@ -1176,7 +1182,7 @@ const PALETTES = [
   // ---- persistent data: one key per puzzle {sel:{id:0|1}, st:{id:{status,times,att,fails,last}}} ----
   const db = { mm: store.get('at.mm.v1', { sel: {}, st: {} }), oll: store.get('at.oll.v1', { sel: {}, st: {} }), sq: store.get('at.sq.v1', { sel: {}, st: {} }), csp: store.get('at.csp.v1', { sel: {}, st: {} }), pbl: store.get('at.pbl.v1', { sel: {}, st: {} }) };
   const save = p => store.set('at.' + p + '.v1', db[p]);
-  const settings = Object.assign({ showDiagram: { mm: true, oll: true, sq: true, csp: true, pbl: true }, showCase: true, mmArrows: false, theme: 'system' }, store.get('at.settings.v1', {}));
+  const settings = Object.assign({ showDiagram: { mm: true, oll: true, sq: true, csp: true, pbl: true }, showCase: true, mmArrows: false, triggers: 'boxes', trigNames: true, theme: 'system' }, store.get('at.settings.v1', {}));
   const saveSettings = () => store.set('at.settings.v1', settings);
   // A chosen palette (settings.palette = its name) sets the color tokens inline, which beats the stylesheet's light/dark blocks.
   const PAL_VARS = ['--bg', '--text', '--mute', '--pri-bg', '--pri-fg', '--focus', '--bad', '--ok', '--warn', '--panel', '--raise', '--line', '--scrim'];
@@ -1320,10 +1326,36 @@ const PALETTES = [
   const diagramFor = (p, c) => (settings.showDiagram[p] ? matFor(p, c) : '');
 
   const STAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.7 6.6 19.7l1.2-6-4.5-4.2 6.1-.7z"/></svg>';
+  // ---- trigger marks: the alg split into chunks you can learn as one motion ----
+  const TRIGS = [ // Megaminx; U? matches U2 or U2'
+    ['sune', "R U R' U R U? R'"], ['antisune', "R U? R' U' R U' R'"],
+    ['sexy', "R U R' U'"], ['sledge', "R' F R F'"], ['hedgeslammer', "F R' F' R"]
+  ].map(([name, t]) => ({ name, t: t.split(' ') })).sort((a, b) => b.t.length - a.t.length);
+  const tokEq = (pat, tok) => (pat === 'U?' ? /^U2'?$/.test(tok) : pat === tok);
+  function chunks(p, a) { // [{t:'R U R\' U\'', name}] ; name is '' for an unnamed chunk, null for plain moves
+    if (p === 'sq' || p === 'csp' || p === 'pbl') return a.split('/').map(x => x.trim()).filter(Boolean).map(t => ({ t, name: '', slash: true }));
+    const toks = a.split(/\s+/).filter(Boolean), out = [];
+    for (let i = 0; i < toks.length;) {
+      const m = TRIGS.find(g => g.t.every((q, k) => toks[i + k] !== undefined && tokEq(q, toks[i + k])));
+      if (m) { out.push({ t: toks.slice(i, i + m.t.length).join(' '), name: m.name }); i += m.t.length; } else { out.push({ t: toks[i], name: null }); i++; }
+    }
+    return out;
+  }
+  function algText(p, a) {
+    const mode = settings.triggers;
+    if (mode === 'off' || !mode) return esc(a);
+    const parts = chunks(p, a), names = settings.trigNames !== false;
+    return parts.map((c, i) => {
+      if (c.slash) return `<span class="trg ${mode}">${esc(c.t)}</span>${i < parts.length - 1 ? '<span class="sl">/</span>' : ''}`;
+      if (c.name === null) return esc(c.t) + ' ';
+      const nm = names ? `<i class="tn">${esc(c.name)}</i>` : '';
+      return `<span class="trg ${mode}">${mode === 'brackets' ? '[' : ''}${esc(c.t)}${mode === 'brackets' ? ']' : ''}${nm}</span> `;
+    }).join('');
+  }
   function algsHtml(p, c) { // your alg first; the star only appears when there is a choice to make
     const mine = prefAlg(p, c), multi = c.algs.filter(x => x.ok).length > 1;
     const rows = c.algs.map((x, i) => ({ x, i })); if (mine) rows.sort((a, b) => (b.x === mine) - (a.x === mine));
-    return `<div class="algs">${rows.map(({ x, i }) => `<div class="algrow ${x === mine ? 'mine' : mine ? 'other' : ''}">${multi && x.ok ? `<button type="button" class="starb" data-pref="${esc(c.id)}" data-i="${i}" aria-pressed="${x === mine}" title="${x === mine ? 'Your alg. Tap to clear it' : 'Use this alg'}" aria-label="${x === mine ? 'This is your alg. Tap to clear it' : 'Use this alg'}">${STAR}</button>` : ''}<div class="alg ${x.ok ? '' : 'bad'}">${x.ok ? '' : '<span class="tag-check">check</span>'}${esc(x.a)}</div></div>`).join('')}</div>`;
+    return `<div class="algs">${rows.map(({ x, i }) => `<div class="algrow ${x === mine ? 'mine' : mine ? 'other' : ''}">${multi && x.ok ? `<button type="button" class="starb" data-pref="${esc(c.id)}" data-i="${i}" aria-pressed="${x === mine}" title="${x === mine ? 'Your alg. Tap to clear it' : 'Use this alg'}" aria-label="${x === mine ? 'This is your alg. Tap to clear it' : 'Use this alg'}">${STAR}</button>` : ''}<div class="alg ${x.ok ? '' : 'bad'}">${x.ok ? '' : '<span class="tag-check">check</span>'}${algText(p, x.a)}</div></div>`).join('')}</div>`;
   }
   function togglePref(p, id, i) {
     const c = byId[p][id], x = c && c.algs[i]; if (!x || !x.ok) return false;
@@ -1702,6 +1734,8 @@ const PALETTES = [
     return `<div class="settings">
       <section class="group"><h2>Training</h2>
         <label class="line"><span>Show the diagram in the answer<small>${name} only. The answer opens when you tap I forgot it. Cases always show their diagram.</small></span><input type="checkbox" class="switch" id="showDiag" ${settings.showDiagram[p] ? 'checked' : ''}></label>
+        <div class="line" style="display:block;cursor:default"><span>Trigger marks<small>Groups moves you can learn as one motion, like sune or sledge. Megaminx marks the common ones; Square-1 marks each turn between slashes.</small></span><div class="seg" role="group" aria-label="Trigger marks">${[['boxes', 'Boxes'], ['brackets', 'Brackets'], ['off', 'Off']].map(([v, l]) => `<button type="button" class="btn" data-trg="${v}" aria-pressed="${settings.triggers === v}">${l}</button>`).join('')}</div></div>
+        <label class="line"><span>Show trigger names<small>The name under each marked group, such as sune.</small></span><input type="checkbox" class="switch" id="trigNames" ${settings.trigNames !== false ? 'checked' : ''}></label>
         ${p === 'mm' ? `<label class="line"><span>Show arrows on Megaminx cases<small>Arrows mark where each piece goes. Off by default: the sticker colours already show the case.</small></span><input type="checkbox" class="switch" id="mmArrows" ${settings.mmArrows ? 'checked' : ''}></label>` : ''}
         <label class="line"><span>Show the case picture while solving<small>The case you are about to solve, without its algorithm. Turn off to solve from the scramble alone.</small></span><input type="checkbox" class="switch" id="showCase" ${settings.showCase ? 'checked' : ''}></label>
       </section>
@@ -1736,6 +1770,8 @@ const PALETTES = [
     const on = (id, ev, fn) => { const e = $(id); if (e) e.addEventListener(ev, fn); };
     const p = dk(), msg = t => { $('#msg').textContent = t; };
     on('#showDiag', 'change', e => { settings.showDiagram[p] = e.target.checked; saveSettings(); });
+    $$('[data-trg]').forEach(b => b.addEventListener('click', () => { settings.triggers = b.dataset.trg; saveSettings(); render(); }));
+    on('#trigNames', 'change', e => { settings.trigNames = e.target.checked; saveSettings(); });
     on('#mmArrows', 'change', e => { settings.mmArrows = e.target.checked; saveSettings(); });
     on('#showCase', 'change', e => { settings.showCase = e.target.checked; saveSettings(); });
     $$('[data-pal]').forEach(b => b.addEventListener('click', () => { settings.palette = b.dataset.pal; saveSettings(); applyTheme(); const y = scrollY; render(); scrollTo(0, y); }));

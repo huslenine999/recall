@@ -181,3 +181,8 @@ live diagram preview), Settings (theme, show diagram, Megaminx sticker colours, 
 - Diagram: `Diagram.megaminxOllDiagram` (yellow = U colour, dark = not).
 - Left out because the PDF text was garbled: 2B third alg, 10B- second alg (lowercase f).
 - Alg AUFs were re-aligned (68 algs) so every alg of a case starts from the same picture.
+
+## Trigger marks
+- Settings: Trigger marks (Boxes / Brackets / Off, default Boxes) and Show trigger names. `chunks()` and `algText()` in app.js.
+- Megaminx: dictionary TRIGS (sune, antisune, sexy, sledge, hedgeslammer), longest match first, other moves left plain. Square-1: each turn between slashes.
+- Not done: typing your own brackets in the Edit drawer; per-move fingertrick notes; the PDF's own trigger groups (its box layout is too garbled to read reliably).
