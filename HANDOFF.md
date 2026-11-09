@@ -1,8 +1,11 @@
-# CubeTrainer: handoff (as of 2026-11-09)
+# Recall (CubeTrainer): handoff (as of 2026-11-09)
 
 A local, offline alg trainer for **Megaminx** and **Square-1** (PLL, EP, CSP and PBL so far), built because SpeedCubeDB's trainer is broken.
 One self-contained HTML file, works on laptop and phone. Owner: hu$lenine (Megaminx sub-50, learning full PLL from
 Raul Low Beattie's sheet; trains Square-1 EP).
+
+Name: the site is called **Recall** (title, footer, export file `recall-progress.json`). The folder and repo keep the old name.
+**Edit `src/`, never `dist/`:** `dist/index.html` is rebuilt from `src/` on every build, so changes made there are lost.
 
 ## Hosting
 
