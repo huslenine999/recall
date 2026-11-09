@@ -11,6 +11,7 @@ const pick = (file, keys) => JSON.parse(read(file)).map(r => Object.fromEntries(
 const embed = (name, rows) => `const ${name}=JSON.parse(${JSON.stringify(JSON.stringify(rows))});`;
 const data = [
   embed('DATA_MM', pick('data/megaminx.json', ['id', 'set', 'alg'])),
+  embed('DATA_OLL', pick('data/megaminx_oll.json', ['id', 'set', 'algs', 'cls'])),
   embed('DATA_SQ', pick('data/square1_ep.json', ['u', 'd', 'parity', 'algsNoFlip', 'algsFlip', 'note'])),
   embed('DATA_CSP', pick('data/square1_csp.json', ['n', 'name', 'section', 'parity', 'alg', 'key'])),
   embed('DATA_PBL', pick('data/square1_pbl.json', ['id', 'top', 'bot', 'slices', 'alg', 'ct', 'cb']))

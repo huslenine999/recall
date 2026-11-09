@@ -145,6 +145,27 @@
   function rel(st) { const cc = CENTER.map(i => st[i]); return st.map(c => cc.indexOf(c)); }
   const slotOf = (pi, f) => slots.findIndex(s => s.piece === pi && s.face === f);
 
-  const api = { rel, slotOf, ring, llEdges, llCorners, FACES, normals, pieces, slots, solved, apply, parse, expand, SHEET_CFG, run, invert, analyze, canon, parity, invPerm, turnPerm, CENTER };
+
+  // ---- OLL: a case is where the U-coloured stickers sit on the last layer (F2L solved, permutation ignored) ----
+  // pat[k] = 5 flags for ring position k: edge U sticker, edge side sticker, corner U sticker, corner side sticker on face k, corner side sticker on face k+1.
+  // cls is the same pattern turned to its smallest form, so every AUF of a case gives the same cls.
+  function ollPattern(st) {
+    const cc = CENTER.map(i => st[i]);
+    if (new Set(cc).size !== 12) return { ok: false, reason: 'centers not distinct' };
+    const r = st.map(c => cc.indexOf(c));
+    for (let i = 0; i < slots.length; i++) {
+      if (llSet.has(slots[i].piece)) continue;
+      if (r[i] !== slots[i].face) return { ok: false, reason: 'F2L is not solved by this alg (slot ' + FACES[slots[i].face] + ' of piece ' + pieces[slots[i].piece].faces.map(f => FACES[f]).join('') + ')' };
+    }
+    const pat = ring.map((f, k) => {
+      const e = llEdges[k], c = llCorners[k], g = ring[(k + 1) % 5];
+      return [r[slotOf(e, 0)], r[slotOf(e, f)], r[slotOf(c, 0)], r[slotOf(c, f)], r[slotOf(c, g)]].map(v => (v === 0 ? 1 : 0)).join('');
+    });
+    let cls = null;
+    for (let k = 0; k < 5; k++) { const key = pat.map((_, i) => pat[(i + k) % 5]).join(''); if (cls === null || key < cls) cls = key; }
+    return { ok: true, pat, cls };
+  }
+
+  const api = { ollPattern, rel, slotOf, ring, llEdges, llCorners, FACES, normals, pieces, slots, solved, apply, parse, expand, SHEET_CFG, run, invert, analyze, canon, parity, invPerm, turnPerm, CENTER };
   if (typeof module !== 'undefined') module.exports = api; else root.Megaminx = api;
 })(typeof window !== 'undefined' ? window : globalThis);

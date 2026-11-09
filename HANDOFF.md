@@ -174,3 +174,10 @@ live diagram preview), Settings (theme, show diagram, Megaminx sticker colours, 
 - **Preferred alg.** `db[p].pref[caseId] = alg text`. `prefAlg(p, c)` returns it while it is still one of the case's checked algs. It is used for the scramble
   (`newRound`), the diagram, and the order of the alg lists (`algsHtml`: starred first, others dimmed). The star only shows when a case has two or more checked algs;
   clicking it again clears the choice. Stored with each puzzle's data, so it is exported too.
+
+## Megaminx OLL
+- Data: `data/megaminx_oll.json` (257 cases, 649 algs, from SpeedcubeQuest's PDF). `cls` is the case's sticker pattern (up to AUF), computed by `Megaminx.ollPattern`.
+- Data key `oll`. An alg passes when F2L is solved by it and its case class equals the case's `cls`.
+- Diagram: `Diagram.megaminxOllDiagram` (yellow = U colour, dark = not).
+- Left out because the PDF text was garbled: 2B third alg, 10B- second alg (lowercase f).
+- Alg AUFs were re-aligned (68 algs) so every alg of a case starts from the same picture.

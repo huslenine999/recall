@@ -134,6 +134,25 @@
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb.join(' ')}" class="diagram mm" role="img" aria-label="${opts.label || 'PLL case'}"><defs>${marker(id, ink)}</defs>${g}${arrows}</svg>`;
   }
 
+
+  // OLL: the same last layer, drawn the way OLL sheets do: yellow where a sticker has the U colour, dark where it does not (no arrows).
+  const OLL_ON = '#f4d83a', OLL_OFF = '#2e2e36';
+  function megaminxOllDiagram(alg, opts) {
+    opts = opts || {};
+    let st; try { st = M.run(M.invert(alg), MM_CFG); } catch (e) { return null; }
+    const o = M.ollPattern(st); if (!o.ok) return null;
+    const rel = M.rel(st);
+    const col = (pi, f) => (rel[M.slotOf(pi, f)] === 0 ? OLL_ON : OLL_OFF);
+    const piece = (i, j) => (j === 0 ? M.llCorners[mod5(i - 1)] : j === 1 ? M.llEdges[i] : M.llCorners[i]);
+    let g = '';
+    mmGeom.tiles.forEach(t => { g += shape(t.poly, col(piece(t.i, t.j), M.ring[t.i]), 3, 2.4); });
+    g += shape([0, 1, 2, 3, 4].map(vert), INK, 3, 2.6);
+    for (let i = 0; i < 5; i++) g += shape(mmEdgeP(i), col(M.llEdges[i], 0), 6, 2.4);
+    for (let k = 0; k < 5; k++) g += shape(mmCornerP(k), col(M.llCorners[k], 0), 6, 2.4);
+    g += shape(mmCenter, OLL_ON, 9, 2.4);
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${mmGeom.vb.join(' ')}" class="diagram mm" role="img" aria-label="${opts.label || 'OLL case'}">${g}</svg>`;
+  }
+
   // ---------- Square-1 ----------
   // Two square layers (U above, D below) with the slice drawn as a red line through both, like the reference picture.
   // Dark pieces carry the U colour, white pieces the D colour, so an edge sitting in the wrong layer shows up at once.
@@ -246,6 +265,6 @@
     return sqFrame(sqLayer(bestTurn(st.top, 0, 8), CXU, CY, colors, '', '', { arrows: false }), sqLayer(bestTurn(st.bot, 4, 12), CXD, CY, colors, '', '', { arrows: false }), null, opts.label || 'Square-1 PBL case', 'pbl');
   }
 
-  const api = { megaminxDiagram, square1Diagram, cspDiagram, pblDiagram, MM_DEFAULT_COLORS, SQ_COLORS, MM_CFG };
+  const api = { megaminxDiagram, megaminxOllDiagram, square1Diagram, cspDiagram, pblDiagram, MM_DEFAULT_COLORS, SQ_COLORS, MM_CFG };
   if (typeof module !== 'undefined') module.exports = api; else root.Diagram = api;
 })(typeof window !== 'undefined' ? window : globalThis);
