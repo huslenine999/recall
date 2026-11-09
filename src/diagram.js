@@ -187,23 +187,50 @@
     return tiles + pieces + ar;
   }
 
+  // The two layers side by side with the red slice line, the U / D headings and the middle-layer pill.
+  // U is drawn as seen from above, D as seen from below (mirrored), the usual way to show a Square-1 state.
+  const CY = 128, CXU = 100, CXD = 300;
+  function sqFrame(gU, gD, flipped, label, cls, defs) {
+    const slice = cx => `<line x1="${cx}" y1="${CY - 90}" x2="${cx}" y2="${CY + 90}" stroke="#e0323b" stroke-width="3.4" stroke-linecap="round"/>`;
+    const head = (cx, letter, word) => `<text x="${cx}" y="30" text-anchor="middle" fill="currentColor"><tspan font-size="30" font-weight="800">${letter}</tspan><tspan dx="8" font-size="15" font-weight="600" opacity=".75">${word}</tspan></text>`;
+    const g = gU + `<g transform="translate(0 ${2 * CY}) scale(1 -1)">${gD}</g>`;
+    const pillW = 130, pill = `<rect x="${200 - pillW / 2}" y="236" width="${pillW}" height="26" rx="13" fill="${flipped ? '#c9373f' : '#2f8a4f'}"/><text x="200" y="254" text-anchor="middle" font-size="14" font-weight="650" fill="#fff">middle ${flipped ? 'flipped' : 'square'}</text>`;
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 270" class="diagram sq ${cls || ''}" role="img" aria-label="${label}"><defs>${defs || ''}</defs>${g}${slice(CXU)}${slice(CXD)}${head(CXU, 'U', 'top layer')}${head(CXD, 'D', 'bottom layer')}${pill}</svg>`;
+  }
+
   // alg: an alg that solves the case; the middle layer state comes from the simulation
-  // U and D sit side by side; D is drawn as seen from below (mirrored), the usual way to show a Square-1 state
   function square1Diagram(alg, colors, opts) {
     colors = Object.assign({}, SQ_COLORS, colors || {}); opts = opts || {};
     let st;
     try { st = S.caseState(alg); } catch (e) { return null; }
     const id = 'sq' + (uid++);
     const top = alignLayer(st.top, 0), bot = alignLayer(st.bot, 4);
-    const ink = '#ffe94d', cy = 128, cxU = 100, cxD = 300;
-    const flipped = !!st.flip;
-    const slice = cx => `<line x1="${cx}" y1="${cy - 90}" x2="${cx}" y2="${cy + 90}" stroke="#e0323b" stroke-width="3.4" stroke-linecap="round"/>`;
-    const head = (cx, letter, word) => `<text x="${cx}" y="30" text-anchor="middle" fill="currentColor"><tspan font-size="30" font-weight="800">${letter}</tspan><tspan dx="8" font-size="15" font-weight="600" opacity=".75">${word}</tspan></text>`;
-    const g = sqLayer(top, cxU, cy, colors, id, ink) + `<g transform="translate(0 ${2 * cy}) scale(1 -1)">${sqLayer(bot, cxD, cy, colors, id, ink)}</g>`;
-    const pillW = 130, pill = `<rect x="${200 - pillW / 2}" y="236" width="${pillW}" height="26" rx="13" fill="${flipped ? '#c9373f' : '#2f8a4f'}"/><text x="200" y="254" text-anchor="middle" font-size="14" font-weight="650" fill="#fff">middle ${flipped ? 'flipped' : 'square'}</text>`;
-    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 270" class="diagram sq" role="img" aria-label="${opts.label || 'Square-1 EP case'}"><defs>${markerO(id, ink)}</defs>${g}${slice(cxU)}${slice(cxD)}${head(cxU, 'U', 'top layer')}${head(cxD, 'D', 'bottom layer')}${pill}</svg>`;
+    const ink = '#ffe94d';
+    return sqFrame(sqLayer(top, CXU, CY, colors, id, ink), sqLayer(bot, CXD, CY, colors, id, ink), !!st.flip, opts.label || 'Square-1 EP case', '', markerO(id, ink));
   }
 
-  const api = { megaminxDiagram, square1Diagram, MM_DEFAULT_COLORS, SQ_COLORS, MM_CFG };
+  // CSP cases are about shape only, so the pieces are plain grey. Edge: a 30 degree wedge, corner: a 60 degree kite.
+  const SH_RE = SQ_A / Math.cos(rad(15)), SH_RC = 84;   // radius of the piece boundaries / of a corner tip (same numbers as a square layer)
+  const SH_FILL = { U: '#8b8b96', D: '#cdcdd6' };
+  function shapeLayer(L, cx, cy, fill) {
+    const C = [cx, cy], rim = a => sqPt(cx, cy, SH_RE, a);
+    let out = '';
+    for (let i = 0; i < 12; i++) {
+      const id = L[i], a0 = i * 30;
+      if (id >= 8) out += sharp([C, rim(a0), rim(a0 + 30)], fill, 2.2);
+      else if (L[(i + 11) % 12] !== id) out += sharp([C, rim(a0), sqPt(cx, cy, SH_RC, a0 + 30), rim(a0 + 60)], fill, 2.2);
+    }
+    return out;
+  }
+  // alg: the CSP alg (shape -> cube shape); key: the case's shape key, so an alg that fits two shapes draws the labelled one
+  function cspDiagram(alg, key, opts) {
+    opts = opts || {};
+    let st;
+    try { st = S.cspState(alg, key); } catch (e) { return null; }
+    if (!st) return null;
+    return sqFrame(shapeLayer(st.top, CXU, CY, SH_FILL.U), shapeLayer(st.bot, CXD, CY, SH_FILL.D), !!st.flip, opts.label || 'Square-1 CSP case', 'csp');
+  }
+
+  const api = { megaminxDiagram, square1Diagram, cspDiagram, MM_DEFAULT_COLORS, SQ_COLORS, MM_CFG };
   if (typeof module !== 'undefined') module.exports = api; else root.Diagram = api;
 })(typeof window !== 'undefined' ? window : globalThis);

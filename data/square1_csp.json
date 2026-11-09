@@ -1,0 +1,1434 @@
+[
+ {
+  "n": 1,
+  "name": "8 star",
+  "section": "Star",
+  "parity": "even",
+  "alg": "/ 2,4 / 1,2 / -3,-3 /",
+  "key": "CCCCEEEEEEEE/CCCCCCCCCCCC"
+ },
+ {
+  "n": 1,
+  "name": "8 star",
+  "section": "Star",
+  "parity": "odd",
+  "alg": "0,2 / 2,4 / 1,2 / -3,-3 /",
+  "key": "CCCCEEEEEEEE/CCCCCCCCCCCC"
+ },
+ {
+  "n": 2,
+  "name": "4-4 star",
+  "section": "Star",
+  "parity": "even",
+  "alg": "/ 2,2 / 0,-1 / 3,3 /",
+  "key": "CCEEEECCEEEE/CCCCCCCCCCCC"
+ },
+ {
+  "n": 2,
+  "name": "4-4 star",
+  "section": "Star",
+  "parity": "odd",
+  "alg": "0,2 / 2,2 / 0,-1 / 3,3 /",
+  "key": "CCEEEECCEEEE/CCCCCCCCCCCC"
+ },
+ {
+  "n": 3,
+  "name": "6-2 star",
+  "section": "Star",
+  "parity": "even",
+  "alg": "/ -4,-2 / -1,4 / -3,0 /",
+  "key": "CCEECCEEEEEE/CCCCCCCCCCCC"
+ },
+ {
+  "n": 3,
+  "name": "6-2 star",
+  "section": "Star",
+  "parity": "odd",
+  "alg": "0,2 / -4,-2 / -1,4 / -3,0 /",
+  "key": "CCEECCEEEEEE/CCCCCCCCCCCC"
+ },
+ {
+  "n": 4,
+  "name": "5-3 star",
+  "section": "Star",
+  "parity": "even",
+  "alg": "/ 4,0 / 1,2 / 3,-2 / 2,1 / 0,3 /",
+  "key": "CCEEECCEEEEE/CCCCCCCCCCCC"
+ },
+ {
+  "n": 4,
+  "name": "5-3 star",
+  "section": "Star",
+  "parity": "odd",
+  "alg": "0,2 / 4,0 / 1,2 / 3,-2 / 2,1 / 0,3 /",
+  "key": "CCEEECCEEEEE/CCCCCCCCCCCC"
+ },
+ {
+  "n": 5,
+  "name": "7-1 star",
+  "section": "Star",
+  "parity": "even",
+  "alg": "-1,0 / 2,0 / 1,2 / 3,-2 / 2,1 / 0,3 /",
+  "key": "CCECCEEEEEEE/CCCCCCCCCCCC"
+ },
+ {
+  "n": 5,
+  "name": "7-1 star",
+  "section": "Star",
+  "parity": "odd",
+  "alg": "0,2 -1,0 / 2,0 / 1,2 / 3,-2 / 2,1 / 0,3 /",
+  "key": "CCECCEEEEEEE/CCCCCCCCCCCC"
+ },
+ {
+  "n": 6,
+  "name": "square square",
+  "section": "Square",
+  "parity": "odd",
+  "alg": "-1,0 / -3,0 / 4,-1 / 2,-2 / -2,2 / -1,4 / 0,-3 /",
+  "key": "CCECCECCECCE/CCECCECCECCE"
+ },
+ {
+  "n": 7,
+  "name": "shield square",
+  "section": "Square",
+  "parity": "even",
+  "alg": "/ -1,0 / -3,0 /",
+  "key": "CCCCCCEECCEE/CCECCECCECCE"
+ },
+ {
+  "n": 7,
+  "name": "shield square",
+  "section": "Square",
+  "parity": "odd",
+  "alg": "/ 0,-4 / -2,2 / -2,2 / 4,-1 / 0,-3 /",
+  "key": "CCCCCCEECCEE/CCECCECCECCE"
+ },
+ {
+  "n": 8,
+  "name": "mushroom square",
+  "section": "Square",
+  "parity": "even",
+  "alg": "/ 2,0 / 3,0 /",
+  "key": "CCCCECCCCEEE/CCECCECCECCE"
+ },
+ {
+  "n": 8,
+  "name": "mushroom square",
+  "section": "Square",
+  "parity": "odd",
+  "alg": "/ 6,-1 / 2,-2 / -2,2 / -4,1 / 3,0 /",
+  "key": "CCCCECCCCEEE/CCECCECCECCE"
+ },
+ {
+  "n": 9,
+  "name": "scallop square",
+  "section": "Square",
+  "parity": "even",
+  "alg": "/ -2,0 / 2,0 / -1,-2 / -3,0 /",
+  "key": "CCCCCCCCEEEE/CCECCECCECCE"
+ },
+ {
+  "n": 9,
+  "name": "scallop square",
+  "section": "Square",
+  "parity": "odd",
+  "alg": "0,1 / 2,0 / -4,0 / 1,2 / 3,0 /",
+  "key": "CCCCCCCCEEEE/CCECCECCECCE"
+ },
+ {
+  "n": 10,
+  "name": "right pawn square",
+  "section": "Square",
+  "parity": "even",
+  "alg": "/ 2,-3 / -2,0 / -2,-1 / -3,0 /",
+  "key": "CCCCCCECCEEE/CCECCECCECCE"
+ },
+ {
+  "n": 10,
+  "name": "right pawn square",
+  "section": "Square",
+  "parity": "odd",
+  "alg": "/ 0,-1 / 2,0 / -1,-2 / -3,0 /",
+  "key": "CCCCCCECCEEE/CCECCECCECCE"
+ },
+ {
+  "n": 11,
+  "name": "left pawn square",
+  "section": "Square",
+  "parity": "even",
+  "alg": "/ 3,-2 / 2,0 / -2,-1 / -3,0 / -1,1",
+  "key": "CCCCCCEEECCE/CCECCECCECCE"
+ },
+ {
+  "n": 11,
+  "name": "left pawn square",
+  "section": "Square",
+  "parity": "odd",
+  "alg": "6,0 / 0,1 / -2,0 / -2,-1 / -3,0 /",
+  "key": "CCCCCCEEECCE/CCECCECCECCE"
+ },
+ {
+  "n": 12,
+  "name": "barrel square",
+  "section": "Square",
+  "parity": "even",
+  "alg": "/ 2,2 / -2,-1 / 2,2 / -1,0 / -3,-3 /",
+  "key": "CCCCEECCCCEE/CCECCECCECCE"
+ },
+ {
+  "n": 12,
+  "name": "barrel square",
+  "section": "Square",
+  "parity": "odd",
+  "alg": "/ 2,2 / 0,-1 / 2,2 / -1,0 / -3,-3 /",
+  "key": "CCCCEECCCCEE/CCECCECCECCE"
+ },
+ {
+  "n": 13,
+  "name": "right fist square",
+  "section": "Square",
+  "parity": "even",
+  "alg": "/ -4,0 / 1,2 / -2,0 / 2,1 / 3,0 /",
+  "key": "CCCCEECCECCE/CCECCECCECCE"
+ },
+ {
+  "n": 13,
+  "name": "right fist square",
+  "section": "Square",
+  "parity": "odd",
+  "alg": "/ 2,0 / 0,-1 / -2,0 / 1,0 / 3,0 / -1,1",
+  "key": "CCCCEECCECCE/CCECCECCECCE"
+ },
+ {
+  "n": 14,
+  "name": "left fist square",
+  "section": "Square",
+  "parity": "even",
+  "alg": "-5,0 / -2,0 / 0,1 / 2,0 / -1,0 / -3,0 /",
+  "key": "CCCCECCECCEE/CCECCECCECCE"
+ },
+ {
+  "n": 14,
+  "name": "left fist square",
+  "section": "Square",
+  "parity": "odd",
+  "alg": "/ 0,1 / 4,0 / -2,-1 / 2,0 / -1,-2 / -3,0 /",
+  "key": "CCCCECCECCEE/CCECCECCECCE"
+ },
+ {
+  "n": 15,
+  "name": "kite square",
+  "section": "Square",
+  "parity": "even",
+  "alg": "/ -1,0 / 2,0 / -2,0 / 2,0 / -1,0 / -3,0 /",
+  "key": "CCCCECCEECCE/CCECCECCECCE"
+ },
+ {
+  "n": 15,
+  "name": "kite square",
+  "section": "Square",
+  "parity": "odd",
+  "alg": "0,-1 / 1,0 / -2,0 / 2,0 / -2,0 / 1,0 / 3,0 /",
+  "key": "CCCCECCEECCE/CCECCECCECCE"
+ },
+ {
+  "n": 16,
+  "name": "kite kite",
+  "section": "Kite",
+  "parity": "even",
+  "alg": "3,0 / 1,-4 / -2,2 / -2,2 / 1,-4 / 3,0 /",
+  "key": "CCCCECCEECCE/CCCCECCEECCE"
+ },
+ {
+  "n": 16,
+  "name": "kite kite",
+  "section": "Kite",
+  "parity": "odd",
+  "alg": "/",
+  "key": "CCCCECCEECCE/CCCCECCEECCE"
+ },
+ {
+  "n": 17,
+  "name": "scallop kite",
+  "section": "Kite",
+  "parity": "even",
+  "alg": "2,0 / 2,-2 / 2,0 / -2,-1 / -3,0 /",
+  "key": "CCCCCCCCEEEE/CCCCECCEECCE"
+ },
+ {
+  "n": 17,
+  "name": "scallop kite",
+  "section": "Kite",
+  "parity": "odd",
+  "alg": "/ -1,-2 / -3,0 /",
+  "key": "CCCCCCCCEEEE/CCCCECCEECCE"
+ },
+ {
+  "n": 18,
+  "name": "barrel kite",
+  "section": "Kite",
+  "parity": "even",
+  "alg": "/ 4,2 / 2,-2 / -2,2 / -1,4 / 0,-3 /",
+  "key": "CCCCEECCCCEE/CCCCECCEECCE"
+ },
+ {
+  "n": 18,
+  "name": "barrel kite",
+  "section": "Kite",
+  "parity": "odd",
+  "alg": "/ -3,0 / -3,0 /",
+  "key": "CCCCEECCCCEE/CCCCECCEECCE"
+ },
+ {
+  "n": 19,
+  "name": "shield kite",
+  "section": "Kite",
+  "parity": "even",
+  "alg": "0,6 / 2,0 / 2,1 / -1,0 / -3,0 /",
+  "key": "CCCCCCEECCEE/CCCCECCEECCE"
+ },
+ {
+  "n": 19,
+  "name": "shield kite",
+  "section": "Kite",
+  "parity": "odd",
+  "alg": "/ -2,0 / 2,0 / -1,0 / -3,0 /",
+  "key": "CCCCCCEECCEE/CCCCECCEECCE"
+ },
+ {
+  "n": 20,
+  "name": "left pawn kite",
+  "section": "Kite",
+  "parity": "even",
+  "alg": "6,0 / 0,-1 / 2,1 / -1,0 / -3,0 /",
+  "key": "CCCCCCEEECCE/CCCCECCEECCE"
+ },
+ {
+  "n": 20,
+  "name": "left pawn kite",
+  "section": "Kite",
+  "parity": "odd",
+  "alg": "/ 1,2 / -2,0 / -1,-2 / -3,0 /",
+  "key": "CCCCCCEEECCE/CCCCECCEECCE"
+ },
+ {
+  "n": 21,
+  "name": "right pawn kite",
+  "section": "Kite",
+  "parity": "even",
+  "alg": "/ 0,1 / 2,0 / -1,0 / -3,0 /",
+  "key": "CCCCCCECCEEE/CCCCECCEECCE"
+ },
+ {
+  "n": 21,
+  "name": "right pawn kite",
+  "section": "Kite",
+  "parity": "odd",
+  "alg": "6,0 / -1,-2 / 2,0 / -2,-1 / -3,0 /",
+  "key": "CCCCCCECCEEE/CCCCECCEECCE"
+ },
+ {
+  "n": 22,
+  "name": "mushroom kite",
+  "section": "Kite",
+  "parity": "even",
+  "alg": "/ 2,3 / 2,0 / -2,0 / 1,0 / -3,-3 /",
+  "key": "CCCCECCCCEEE/CCCCECCEECCE"
+ },
+ {
+  "n": 22,
+  "name": "mushroom kite",
+  "section": "Kite",
+  "parity": "odd",
+  "alg": "/ 2,3 / -2,0 / 2,0 / -1,0 / -3,-3 /",
+  "key": "CCCCECCCCEEE/CCCCECCEECCE"
+ },
+ {
+  "n": 23,
+  "name": "left fist kite",
+  "section": "Kite",
+  "parity": "even",
+  "alg": "/ -2,0 / 0,-1 / 2,0 / -1,-2 / -3,0 /",
+  "key": "CCCCECCECCEE/CCCCECCEECCE"
+ },
+ {
+  "n": 23,
+  "name": "left fist kite",
+  "section": "Kite",
+  "parity": "odd",
+  "alg": "/ -2,0 / 2,-3 / -2,0 / 1,2 / 3,0 / -1,1",
+  "key": "CCCCECCECCEE/CCCCECCEECCE"
+ },
+ {
+  "n": 24,
+  "name": "right fist kite",
+  "section": "Kite",
+  "parity": "even",
+  "alg": "/ -4,0 / 1,0 / -2,0 / -1,-2 / -3,0 /",
+  "key": "CCCCEECCECCE/CCCCECCEECCE"
+ },
+ {
+  "n": 24,
+  "name": "right fist kite",
+  "section": "Kite",
+  "parity": "odd",
+  "alg": "/ -4,0 / 3,-2 / 2,0 / -2,-1 / -3,0 /",
+  "key": "CCCCEECCECCE/CCCCECCEECCE"
+ },
+ {
+  "n": 25,
+  "name": "barrel barrel",
+  "section": "Barrel",
+  "parity": "even",
+  "alg": "-2,-1 / 2,-2 / -2,2 / 2,1 / 3,3 /",
+  "key": "CCCCEECCCCEE/CCCCEECCCCEE"
+ },
+ {
+  "n": 25,
+  "name": "barrel barrel",
+  "section": "Barrel",
+  "parity": "odd",
+  "alg": "/ 3,3 /",
+  "key": "CCCCEECCCCEE/CCCCEECCCCEE"
+ },
+ {
+  "n": 26,
+  "name": "scallop barrel",
+  "section": "Barrel",
+  "parity": "even",
+  "alg": "/ 2,4 / -2,4 / 1,0 / -3,-3 /",
+  "key": "CCCCCCCCEEEE/CCCCEECCCCEE"
+ },
+ {
+  "n": 26,
+  "name": "scallop barrel",
+  "section": "Barrel",
+  "parity": "odd",
+  "alg": "/ 4,0 / -1,0 / -3,-3 /",
+  "key": "CCCCCCCCEEEE/CCCCEECCCCEE"
+ },
+ {
+  "n": 27,
+  "name": "shield barrel",
+  "section": "Barrel",
+  "parity": "even",
+  "alg": "/ 2,0 / -2,0 / 1,0 / -3,-3 /",
+  "key": "CCCCCCEECCEE/CCCCEECCCCEE"
+ },
+ {
+  "n": 27,
+  "name": "shield barrel",
+  "section": "Barrel",
+  "parity": "odd",
+  "alg": "/ -2,0 / 2,0 / -1,0 / -3,-3 /",
+  "key": "CCCCCCEECCEE/CCCCEECCCCEE"
+ },
+ {
+  "n": 28,
+  "name": "left pawn barrel",
+  "section": "Barrel",
+  "parity": "even",
+  "alg": "0,2 / -1,-2 / -2,0 / 3,2 / 1,2 / 0,3 /",
+  "key": "CCCCCCEEECCE/CCCCEECCCCEE"
+ },
+ {
+  "n": 28,
+  "name": "left pawn barrel",
+  "section": "Barrel",
+  "parity": "odd",
+  "alg": "/ 1,-2 / 4,-3 / -2,-1 / -3,0 /",
+  "key": "CCCCCCEEECCE/CCCCEECCCCEE"
+ },
+ {
+  "n": 29,
+  "name": "right pawn barrel",
+  "section": "Barrel",
+  "parity": "even",
+  "alg": "0,-2 / -4,1 / -2,0 / 0,3 / 1,2 / 3,0 /",
+  "key": "CCCCCCECCEEE/CCCCEECCCCEE"
+ },
+ {
+  "n": 29,
+  "name": "right pawn barrel",
+  "section": "Barrel",
+  "parity": "odd",
+  "alg": "/ 2,-1 / -4,3 / -2,-1 / -3,0 /",
+  "key": "CCCCCCECCEEE/CCCCEECCCCEE"
+ },
+ {
+  "n": 30,
+  "name": "mushroom barrel",
+  "section": "Barrel",
+  "parity": "even",
+  "alg": "/ 2,3 / 2,0 / -2,0 / 1,0 / 3,0 /",
+  "key": "CCCCECCCCEEE/CCCCEECCCCEE"
+ },
+ {
+  "n": 30,
+  "name": "mushroom barrel",
+  "section": "Barrel",
+  "parity": "odd",
+  "alg": "/ 2,-3 / -2,0 / 2,0 / -1,0 / -3,0 /",
+  "key": "CCCCECCCCEEE/CCCCEECCCCEE"
+ },
+ {
+  "n": 31,
+  "name": "left fist barrel",
+  "section": "Barrel",
+  "parity": "even",
+  "alg": "/ -2,0 / -1,0 / 2,0 / 1,2 / -3,-3 /",
+  "key": "CCCCECCECCEE/CCCCEECCCCEE"
+ },
+ {
+  "n": 31,
+  "name": "left fist barrel",
+  "section": "Barrel",
+  "parity": "odd",
+  "alg": "/ -2,0 / -1,0 / 0,2 / 2,-2 / 1,2 / -3,-3 /",
+  "key": "CCCCECCECCEE/CCCCEECCCCEE"
+ },
+ {
+  "n": 32,
+  "name": "right fist barrel",
+  "section": "Barrel",
+  "parity": "even",
+  "alg": "/ 2,0 / 1,0 / -2,0 / -1,-2 / -3,-3 /",
+  "key": "CCCCEECCECCE/CCCCEECCCCEE"
+ },
+ {
+  "n": 32,
+  "name": "right fist barrel",
+  "section": "Barrel",
+  "parity": "odd",
+  "alg": "/ 2,0 / 1,0 / 0,-2 / -2,2 / -1,-2 / -3,-3 /",
+  "key": "CCCCEECCECCE/CCCCEECCCCEE"
+ },
+ {
+  "n": 33,
+  "name": "scallop scallop",
+  "section": "Scallop",
+  "parity": "even",
+  "alg": "-2,2 / 2,-2 / 1,2 / -3,-3 /",
+  "key": "CCCCCCCCEEEE/CCCCCCCCEEEE"
+ },
+ {
+  "n": 33,
+  "name": "scallop scallop",
+  "section": "Scallop",
+  "parity": "odd",
+  "alg": "/ 1,2 / -3,-3 /",
+  "key": "CCCCCCCCEEEE/CCCCCCCCEEEE"
+ },
+ {
+  "n": 34,
+  "name": "shield scallop",
+  "section": "Scallop",
+  "parity": "even",
+  "alg": "/ 0,2 / 0,-4 / -1,-2 / -3,-3 /",
+  "key": "CCCCCCEECCEE/CCCCCCCCEEEE"
+ },
+ {
+  "n": 34,
+  "name": "shield scallop",
+  "section": "Scallop",
+  "parity": "odd",
+  "alg": "/ 0,-2 / 0,4 / 1,2 / -3,-3 /",
+  "key": "CCCCCCEECCEE/CCCCCCCCEEEE"
+ },
+ {
+  "n": 35,
+  "name": "left pawn scallop",
+  "section": "Scallop",
+  "parity": "even",
+  "alg": "/ -3,-2 / -3,4 / 1,2 / 0,3 /",
+  "key": "CCCCCCEEECCE/CCCCCCCCEEEE"
+ },
+ {
+  "n": 35,
+  "name": "left pawn scallop",
+  "section": "Scallop",
+  "parity": "odd",
+  "alg": "2,2 / 1,2 / 4,-3 / -2,-1 / -3,0 /",
+  "key": "CCCCCCEEECCE/CCCCCCCCEEEE"
+ },
+ {
+  "n": 36,
+  "name": "right pawn scallop",
+  "section": "Scallop",
+  "parity": "even",
+  "alg": "/ -1,-2 / 2,-3 / -2,-1 / -3,0 /",
+  "key": "CCCCCCECCEEE/CCCCCCCCEEEE"
+ },
+ {
+  "n": 36,
+  "name": "right pawn scallop",
+  "section": "Scallop",
+  "parity": "odd",
+  "alg": "2,2 / 3,2 / -3,2 / 1,2 / 0,3 /",
+  "key": "CCCCCCECCEEE/CCCCCCCCEEEE"
+ },
+ {
+  "n": 37,
+  "name": "left fist scallop",
+  "section": "Scallop",
+  "parity": "even",
+  "alg": "/ -3,2 / -3,4 / 1,2 / 0,3 /",
+  "key": "CCCCECCECCEE/CCCCCCCCEEEE"
+ },
+ {
+  "n": 37,
+  "name": "left fist scallop",
+  "section": "Scallop",
+  "parity": "odd",
+  "alg": "2,-2 / 3,0 / -3,2 / 1,2 / 0,3 /",
+  "key": "CCCCECCECCEE/CCCCCCCCEEEE"
+ },
+ {
+  "n": 38,
+  "name": "right fist scallop",
+  "section": "Scallop",
+  "parity": "even",
+  "alg": "/ -3,0 / -3,4 / 1,2 / 0,3 /",
+  "key": "CCCCEECCECCE/CCCCCCCCEEEE"
+ },
+ {
+  "n": 38,
+  "name": "right fist scallop",
+  "section": "Scallop",
+  "parity": "odd",
+  "alg": "2,-2 / 3,-2 / -3,2 / 1,2 / 0,3 /",
+  "key": "CCCCEECCECCE/CCCCCCCCEEEE"
+ },
+ {
+  "n": 39,
+  "name": "mushroom scallop",
+  "section": "Scallop",
+  "parity": "even",
+  "alg": "1,0 / 0,2 / -3,4 / 1,2 / 0,3 /",
+  "key": "CCCCECCCCEEE/CCCCCCCCEEEE"
+ },
+ {
+  "n": 39,
+  "name": "mushroom scallop",
+  "section": "Scallop",
+  "parity": "odd",
+  "alg": "6,0 / 0,-2 / -3,4 / 1,2 / 0,3 /",
+  "key": "CCCCECCCCEEE/CCCCCCCCEEEE"
+ },
+ {
+  "n": 40,
+  "name": "shield shield",
+  "section": "Shield",
+  "parity": "even",
+  "alg": "-2,4 / 1,0 / -3,-3 /",
+  "key": "CCCCCCEECCEE/CCCCCCEECCEE"
+ },
+ {
+  "n": 40,
+  "name": "shield shield",
+  "section": "Shield",
+  "parity": "odd",
+  "alg": "/ -2,4 / 1,0 / -3,-3 /",
+  "key": "CCCCCCEECCEE/CCCCCCEECCEE"
+ },
+ {
+  "n": 41,
+  "name": "mushroom shield",
+  "section": "Shield",
+  "parity": "even",
+  "alg": "/ 2,-3 / -2,2 / 2,0 / -1,-2 / -3,0 /",
+  "key": "CCCCECCCCEEE/CCCCCCEECCEE"
+ },
+ {
+  "n": 41,
+  "name": "mushroom shield",
+  "section": "Shield",
+  "parity": "odd",
+  "alg": "/ 0,-3 / -2,-1 / -3,0 /",
+  "key": "CCCCECCCCEEE/CCCCCCEECCEE"
+ },
+ {
+  "n": 42,
+  "name": "left fist shield",
+  "section": "Shield",
+  "parity": "even",
+  "alg": "-1,0 / -1,-2 / 0,2 / 1,-4 / 3,0 /",
+  "key": "CCCCECCECCEE/CCCCCCEECCEE"
+ },
+ {
+  "n": 42,
+  "name": "left fist shield",
+  "section": "Shield",
+  "parity": "odd",
+  "alg": "-1,0 / 1,0 / 0,-2 / -1,4 / -3,0 /",
+  "key": "CCCCECCECCEE/CCCCCCEECCEE"
+ },
+ {
+  "n": 43,
+  "name": "right fist shield",
+  "section": "Shield",
+  "parity": "even",
+  "alg": "1,0 / -1,0 / 0,2 / 1,-4 / 3,0 / -1,1",
+  "key": "CCCCEECCECCE/CCCCCCEECCEE"
+ },
+ {
+  "n": 43,
+  "name": "right fist shield",
+  "section": "Shield",
+  "parity": "odd",
+  "alg": "1,0 / 1,2 / 0,-2 / -1,4 / -3,0 /",
+  "key": "CCCCEECCECCE/CCCCCCEECCEE"
+ },
+ {
+  "n": 44,
+  "name": "left pawn shield",
+  "section": "Shield",
+  "parity": "even",
+  "alg": "0,2 / 0,-2 / 1,0 / -2,3 / -1,-2 / -3,0 /",
+  "key": "CCCCCCEEECCE/CCCCCCEECCEE"
+ },
+ {
+  "n": 44,
+  "name": "left pawn shield",
+  "section": "Shield",
+  "parity": "odd",
+  "alg": "/ 1,0 / -2,3 / -1,-2 / -3,0 /",
+  "key": "CCCCCCEEECCE/CCCCCCEECCEE"
+ },
+ {
+  "n": 45,
+  "name": "right pawn shield",
+  "section": "Shield",
+  "parity": "even",
+  "alg": "/ -1,0 / -4,3 / -1,-2 / -3,0 /",
+  "key": "CCCCCCECCEEE/CCCCCCEECCEE"
+ },
+ {
+  "n": 45,
+  "name": "right pawn shield",
+  "section": "Shield",
+  "parity": "odd",
+  "alg": "0,-2 / 0,2 / -1,0 / -4,3 / -1,-2 / -3,0 /",
+  "key": "CCCCCCECCEEE/CCCCCCEECCEE"
+ },
+ {
+  "n": 46,
+  "name": "mushroom mushroom",
+  "section": "Mushroom",
+  "parity": "even",
+  "alg": "/ -2,0 / 3,3 /",
+  "key": "CCCCECCCCEEE/CCCCECCCCEEE"
+ },
+ {
+  "n": 46,
+  "name": "mushroom mushroom",
+  "section": "Mushroom",
+  "parity": "odd",
+  "alg": "/ 0,1 / -2,2 / 2,-2 / 1,2 / -3,-3 /",
+  "key": "CCCCECCCCEEE/CCCCECCCCEEE"
+ },
+ {
+  "n": 47,
+  "name": "left pawn mushroom",
+  "section": "Mushroom",
+  "parity": "even",
+  "alg": "/ 1,0 / 0,-2 / -2,2 / -1,-2 / -3,-3 /",
+  "key": "CCCCCCEEECCE/CCCCECCCCEEE"
+ },
+ {
+  "n": 47,
+  "name": "left pawn mushroom",
+  "section": "Mushroom",
+  "parity": "odd",
+  "alg": "/ 1,0 / -2,0 / 2,1 / 3,3 /",
+  "key": "CCCCCCEEECCE/CCCCECCCCEEE"
+ },
+ {
+  "n": 48,
+  "name": "right pawn mushroom",
+  "section": "Mushroom",
+  "parity": "even",
+  "alg": "/ -1,0 / 2,0 / -2,-1 / 3,3 /",
+  "key": "CCCCCCECCEEE/CCCCECCCCEEE"
+ },
+ {
+  "n": 48,
+  "name": "right pawn mushroom",
+  "section": "Mushroom",
+  "parity": "odd",
+  "alg": "/ -1,0 / 0,2 / 2,-2 / 1,2 / -3,-3 /",
+  "key": "CCCCCCECCEEE/CCCCECCCCEEE"
+ },
+ {
+  "n": 49,
+  "name": "left fist mushroom",
+  "section": "Mushroom",
+  "parity": "even",
+  "alg": "/ 0,4 / -2,-1 / 0,2 / -4,1 / 3,0 /",
+  "key": "CCCCECCECCEE/CCCCECCCCEEE"
+ },
+ {
+  "n": 49,
+  "name": "left fist mushroom",
+  "section": "Mushroom",
+  "parity": "odd",
+  "alg": "/ 0,4 / 0,1 / 0,-2 / 4,-1 / -3,0 /",
+  "key": "CCCCECCECCEE/CCCCECCCCEEE"
+ },
+ {
+  "n": 50,
+  "name": "right fist mushroom",
+  "section": "Mushroom",
+  "parity": "even",
+  "alg": "/ 0,-4 / 2,1 / 0,-2 / 4,-1 / -3,0 /",
+  "key": "CCCCEECCECCE/CCCCECCCCEEE"
+ },
+ {
+  "n": 50,
+  "name": "right fist mushroom",
+  "section": "Mushroom",
+  "parity": "odd",
+  "alg": "/ 0,-4 / 0,-1 / 0,2 / -4,1 / 3,0 /",
+  "key": "CCCCEECCECCE/CCCCECCCCEEE"
+ },
+ {
+  "n": 51,
+  "name": "right pawn left pawn",
+  "section": "Left pawn",
+  "parity": "even",
+  "alg": "-2,2 / -2,2 / 4,-1 / 0,-3 /",
+  "key": "CCCCCCECCEEE/CCCCCCECCEEE"
+ },
+ {
+  "n": 51,
+  "name": "right pawn left pawn",
+  "section": "Left pawn",
+  "parity": "odd",
+  "alg": "/ -1,4 / -3,0 /",
+  "key": "CCCCCCECCEEE/CCCCCCECCEEE"
+ },
+ {
+  "n": 52,
+  "name": "right fist left pawn",
+  "section": "Left pawn",
+  "parity": "even",
+  "alg": "2,2 / -4,0 / 0,4 / -1,4 / -3,0 /",
+  "key": "CCCCEECCECCE/CCCCCCECCEEE"
+ },
+ {
+  "n": 52,
+  "name": "right fist left pawn",
+  "section": "Left pawn",
+  "parity": "odd",
+  "alg": "/ -2,0 / -1,0 / -3,0 /",
+  "key": "CCCCEECCECCE/CCCCCCECCEEE"
+ },
+ {
+  "n": 53,
+  "name": "left fist left pawn",
+  "section": "Left pawn",
+  "parity": "even",
+  "alg": "4,0 / 0,2 / 0,-2 / -4,1 / 0,3 /",
+  "key": "CCCCECCECCEE/CCCCCCECCEEE"
+ },
+ {
+  "n": 53,
+  "name": "left fist left pawn",
+  "section": "Left pawn",
+  "parity": "odd",
+  "alg": "/ 0,-2 / 0,4 / 4,-1 / -3,0 /",
+  "key": "CCCCECCECCEE/CCCCCCECCEEE"
+ },
+ {
+  "n": 54,
+  "name": "left pawn left pawn",
+  "section": "Left pawn",
+  "parity": "even",
+  "alg": "2,-4 / -1,2 / 2,2 / 0,-1 / 3,3 /",
+  "key": "CCCCCCEEECCE/CCCCCCECCEEE"
+ },
+ {
+  "n": 54,
+  "name": "left pawn left pawn",
+  "section": "Left pawn",
+  "parity": "odd",
+  "alg": "2,-4 / -1,0 / 2,2 / 0,-1 / 3,3 /",
+  "key": "CCCCCCEEECCE/CCCCCCECCEEE"
+ },
+ {
+  "n": 55,
+  "name": "left fist right pawn",
+  "section": "Right pawn",
+  "parity": "even",
+  "alg": "/ -4,0 / 4,0 / -2,2 / 1,-4 / 3,0 /",
+  "key": "CCCCECCECCEE/CCCCCCEEECCE"
+ },
+ {
+  "n": 55,
+  "name": "left fist right pawn",
+  "section": "Right pawn",
+  "parity": "odd",
+  "alg": "-4,-4 / 0,1 / 0,-1 / -3,0 /",
+  "key": "CCCCECCECCEE/CCCCCCEEECCE"
+ },
+ {
+  "n": 56,
+  "name": "right fist right pawn",
+  "section": "Right pawn",
+  "parity": "even",
+  "alg": "/ 0,-2 / 0,2 / 4,-1 / 0,-3 /",
+  "key": "CCCCEECCECCE/CCCCCCEEECCE"
+ },
+ {
+  "n": 56,
+  "name": "right fist right pawn",
+  "section": "Right pawn",
+  "parity": "odd",
+  "alg": "4,0 / 0,2 / 0,-4 / -4,1 / 3,0 /",
+  "key": "CCCCEECCECCE/CCCCCCEEECCE"
+ },
+ {
+  "n": 57,
+  "name": "right pawn right pawn",
+  "section": "Right pawn",
+  "parity": "even",
+  "alg": "4,-2 / 1,2 / 2,2 / 0,-1 / 3,3 /",
+  "key": "CCCCCCECCEEE/CCCCCCEEECCE"
+ },
+ {
+  "n": 57,
+  "name": "right pawn right pawn",
+  "section": "Right pawn",
+  "parity": "odd",
+  "alg": "4,-2 / 1,0 / 2,2 / 0,-1 / 3,3 /",
+  "key": "CCCCCCECCEEE/CCCCCCEEECCE"
+ },
+ {
+  "n": 58,
+  "name": "left fist right fist",
+  "section": "Fists",
+  "parity": "even",
+  "alg": "/ 2,-2 / -2,2 / -4,1 / 3,0 /",
+  "key": "CCCCECCECCEE/CCCCECCECCEE"
+ },
+ {
+  "n": 58,
+  "name": "left fist right fist",
+  "section": "Fists",
+  "parity": "odd",
+  "alg": "/ 3,0 /",
+  "key": "CCCCECCECCEE/CCCCECCECCEE"
+ },
+ {
+  "n": 59,
+  "name": "left fist left fist",
+  "section": "Fists",
+  "parity": "even",
+  "alg": "0,-2 / 4,6 / 2,0 / -2,0 / 1,0 / 3,0 /",
+  "key": "CCCCECCECCEE/CCCCEECCECCE"
+ },
+ {
+  "n": 59,
+  "name": "left fist left fist",
+  "section": "Fists",
+  "parity": "odd",
+  "alg": "0,-2 / 4,0 / -2,0 / 2,0 / -1,0 / -3,0 /",
+  "key": "CCCCECCECCEE/CCCCEECCECCE"
+ },
+ {
+  "n": 60,
+  "name": "right fist right fist",
+  "section": "Fists",
+  "parity": "even",
+  "alg": "-4,0 / 2,0 / -2,0 / 2,0 / -1,0 / -3,0 /",
+  "key": "CCCCEECCECCE/CCCCECCECCEE"
+ },
+ {
+  "n": 60,
+  "name": "right fist right fist",
+  "section": "Fists",
+  "parity": "odd",
+  "alg": "-4,0 / 2,6 / 2,0 / -2,0 / 1,0 / 3,0 /",
+  "key": "CCCCEECCECCE/CCCCECCECCEE"
+ },
+ {
+  "n": 61,
+  "name": "6 paired edges",
+  "section": "Paired edges",
+  "parity": "even",
+  "alg": "/ -4,0 / -1,-2 / 3,3 /",
+  "key": "CCCCCCEEEEEE/CCCCCCCCCCEE"
+ },
+ {
+  "n": 61,
+  "name": "6 paired edges",
+  "section": "Paired edges",
+  "parity": "odd",
+  "alg": "2,2 / 0,4 / 1,2 / -3,-3 /",
+  "key": "CCCCCCEEEEEE/CCCCCCCCCCEE"
+ },
+ {
+  "n": 62,
+  "name": "left 4-2 paired edges",
+  "section": "Paired edges",
+  "parity": "even",
+  "alg": "/ 4,0 / 1,0 / -3,-3 /",
+  "key": "CCCCEEEECCEE/CCCCCCCCCCEE"
+ },
+ {
+  "n": 62,
+  "name": "left 4-2 paired edges",
+  "section": "Paired edges",
+  "parity": "odd",
+  "alg": "-4,-4 / 0,-2 / -1,-2 / -3,-3 /",
+  "key": "CCCCEEEECCEE/CCCCCCCCCCEE"
+ },
+ {
+  "n": 63,
+  "name": "right 4-2 paired edges",
+  "section": "Paired edges",
+  "parity": "even",
+  "alg": "/ 0,2 / 1,2 / -3,-3 /",
+  "key": "CCCCEECCEEEE/CCCCCCCCCCEE"
+ },
+ {
+  "n": 63,
+  "name": "right 4-2 paired edges",
+  "section": "Paired edges",
+  "parity": "odd",
+  "alg": "-4,-4 / -2,2 / 0,1 / 3,3 /",
+  "key": "CCCCEECCEEEE/CCCCCCCCCCEE"
+ },
+ {
+  "n": 64,
+  "name": "2-2-2 paired edges",
+  "section": "Paired edges",
+  "parity": "even",
+  "alg": "/ -2,0 / 0,1 / 3,3 /",
+  "key": "CCEECCEECCEE/CCCCCCCCCCEE"
+ },
+ {
+  "n": 64,
+  "name": "2-2-2 paired edges",
+  "section": "Paired edges",
+  "parity": "odd",
+  "alg": "0,-4 / 2,0 / 0,-1 / 3,3 /",
+  "key": "CCEECCEECCEE/CCCCCCCCCCEE"
+ },
+ {
+  "n": 65,
+  "name": "4-1-1 paired edges",
+  "section": "Paired edges",
+  "parity": "even",
+  "alg": "/ -4,0 / -1,4 / -3,0 /",
+  "key": "CCECCECCEEEE/CCCCCCCCCCEE"
+ },
+ {
+  "n": 65,
+  "name": "4-1-1 paired edges",
+  "section": "Paired edges",
+  "parity": "odd",
+  "alg": "2,2 / 0,4 / 1,-4 / 0,3 /",
+  "key": "CCECCECCEEEE/CCCCCCCCCCEE"
+ },
+ {
+  "n": 66,
+  "name": "left 5-1 paired edges",
+  "section": "Paired edges",
+  "parity": "even",
+  "alg": "/ 0,-4 / 3,2 / 2,1 / 0,3 /",
+  "key": "CCCCEEEEECCE/CCCCCCCCCCEE"
+ },
+ {
+  "n": 66,
+  "name": "left 5-1 paired edges",
+  "section": "Paired edges",
+  "parity": "odd",
+  "alg": "/ 3,-2 / 2,1 / 0,3 /",
+  "key": "CCCCEEEEECCE/CCCCCCCCCCEE"
+ },
+ {
+  "n": 67,
+  "name": "right 5-1 paired edges",
+  "section": "Paired edges",
+  "parity": "even",
+  "alg": "/ -3,2 / 1,2 / 0,3 /",
+  "key": "CCCCECCEEEEE/CCCCCCCCCCEE"
+ },
+ {
+  "n": 67,
+  "name": "right 5-1 paired edges",
+  "section": "Paired edges",
+  "parity": "odd",
+  "alg": "0,-4 / 0,4 / -3,-2 / 1,2 / 0,3 /",
+  "key": "CCCCECCEEEEE/CCCCCCCCCCEE"
+ },
+ {
+  "n": 68,
+  "name": "3-3 paired edges",
+  "section": "Paired edges",
+  "parity": "even",
+  "alg": "/ 0,-2 / -3,-2 / 0,3 / 0,3 /",
+  "key": "CCCCEEECCEEE/CCCCCCCCCCEE"
+ },
+ {
+  "n": 68,
+  "name": "3-3 paired edges",
+  "section": "Paired edges",
+  "parity": "odd",
+  "alg": "/ 0,-2 / -3,-2 / 0,3 / 0,3 /",
+  "key": "CCCCEEECCEEE/CCCCCCCCCCEE"
+ },
+ {
+  "n": 69,
+  "name": "3-2-1 paired edges",
+  "section": "Paired edges",
+  "parity": "even",
+  "alg": "/ -2,2 / 0,-4 / 2,1 / 0,3 /",
+  "key": "CCECCEEECCEE/CCCCCCCCCCEE"
+ },
+ {
+  "n": 69,
+  "name": "3-2-1 paired edges",
+  "section": "Paired edges",
+  "parity": "odd",
+  "alg": "0,-2 / -2,0 / -1,-2 / 0,1 / 0,3 /",
+  "key": "CCECCEEECCEE/CCCCCCCCCCEE"
+ },
+ {
+  "n": 70,
+  "name": "3-1-2 paired edges",
+  "section": "Paired edges",
+  "parity": "even",
+  "alg": "/ 2,0 / 0,-2 / 0,1 / 0,3 /",
+  "key": "CCECCEECCEEE/CCCCCCCCCCEE"
+ },
+ {
+  "n": 70,
+  "name": "3-1-2 paired edges",
+  "section": "Paired edges",
+  "parity": "odd",
+  "alg": "0,-2 / 2,-2 / 0,4 / 1,2 / 0,3 /",
+  "key": "CCECCEECCEEE/CCCCCCCCCCEE"
+ },
+ {
+  "n": 71,
+  "name": "6 perpendicular edges",
+  "section": "Perpendicular edges",
+  "parity": "even",
+  "alg": "/ 3,2 / -3,4 / 1,2 / 0,3 /",
+  "key": "CCCCCCEEEEEE/CCCCCCCCECCE"
+ },
+ {
+  "n": 71,
+  "name": "6 perpendicular edges",
+  "section": "Perpendicular edges",
+  "parity": "odd",
+  "alg": "-4,2 / -3,-2 / -3,2 / 1,2 / 0,3 /",
+  "key": "CCCCCCEEEEEE/CCCCCCCCECCE"
+ },
+ {
+  "n": 72,
+  "name": "left 4-2 perpendicular edges",
+  "section": "Perpendicular edges",
+  "parity": "even",
+  "alg": "/ 3,0 / -3,4 / 1,2 / 0,3 /",
+  "key": "CCCCEEEECCEE/CCCCCCCCECCE"
+ },
+ {
+  "n": 72,
+  "name": "left 4-2 perpendicular edges",
+  "section": "Perpendicular edges",
+  "parity": "odd",
+  "alg": "-2,2 / 3,-4 / 2,-3 / 1,2 / 3,0 /",
+  "key": "CCCCEEEECCEE/CCCCCCCCECCE"
+ },
+ {
+  "n": 73,
+  "name": "right 4-2 perpendicular edges",
+  "section": "Perpendicular edges",
+  "parity": "even",
+  "alg": "2,-2 / 3,-2 / 3,-2 / 2,1 / 0,3 /",
+  "key": "CCCCEECCEEEE/CCCCCCCCECCE"
+ },
+ {
+  "n": 73,
+  "name": "right 4-2 perpendicular edges",
+  "section": "Perpendicular edges",
+  "parity": "odd",
+  "alg": "/ -3,0 / -3,2 / 1,2 / 0,3 /",
+  "key": "CCCCEECCEEEE/CCCCCCCCECCE"
+ },
+ {
+  "n": 74,
+  "name": "2-2-2 perpendicular edges",
+  "section": "Perpendicular edges",
+  "parity": "even",
+  "alg": "0,2 / 1,0 / -2,0 / -1,-2 / 0,1 / 0,3 /",
+  "key": "CCEECCEECCEE/CCCCCCCCECCE"
+ },
+ {
+  "n": 74,
+  "name": "2-2-2 perpendicular edges",
+  "section": "Perpendicular edges",
+  "parity": "odd",
+  "alg": "/ -1,0 / 2,0 / 0,-2 / 0,1 / 0,3 /",
+  "key": "CCEECCEECCEE/CCCCCCCCECCE"
+ },
+ {
+  "n": 75,
+  "name": "4-1-1 perpendicular edges",
+  "section": "Perpendicular edges",
+  "parity": "even",
+  "alg": "2,-2 / 0,2 / 1,2 / 0,3 /",
+  "key": "CCECCECCEEEE/CCCCCCCCECCE"
+ },
+ {
+  "n": 75,
+  "name": "4-1-1 perpendicular edges",
+  "section": "Perpendicular edges",
+  "parity": "odd",
+  "alg": "/ 0,-2 / 2,1 / 0,3 /",
+  "key": "CCECCECCEEEE/CCCCCCCCECCE"
+ },
+ {
+  "n": 76,
+  "name": "left 5-1 perpendicular edges",
+  "section": "Perpendicular edges",
+  "parity": "even",
+  "alg": "/ 0,-4 / 2,1 / 0,3 /",
+  "key": "CCCCEEEEECCE/CCCCCCCCECCE"
+ },
+ {
+  "n": 76,
+  "name": "left 5-1 perpendicular edges",
+  "section": "Perpendicular edges",
+  "parity": "odd",
+  "alg": "6,0 / 4,2 / 0,-2 / 2,1 / 0,3 /",
+  "key": "CCCCEEEEECCE/CCCCCCCCECCE"
+ },
+ {
+  "n": 77,
+  "name": "right 5-1 perpendicular edges",
+  "section": "Perpendicular edges",
+  "parity": "even",
+  "alg": "6,0 / -4,-2 / 0,2 / 1,2 / 0,3 /",
+  "key": "CCCCECCEEEEE/CCCCCCCCECCE"
+ },
+ {
+  "n": 77,
+  "name": "right 5-1 perpendicular edges",
+  "section": "Perpendicular edges",
+  "parity": "odd",
+  "alg": "/ 0,4 / 1,2 / 0,3 / -1,1",
+  "key": "CCCCECCEEEEE/CCCCCCCCECCE"
+ },
+ {
+  "n": 78,
+  "name": "3-3 perpendicular edges",
+  "section": "Perpendicular edges",
+  "parity": "even",
+  "alg": "-2,-2 / 0,2 / 4,-1 / 0,-3 /",
+  "key": "CCCCEEECCEEE/CCCCCCCCECCE"
+ },
+ {
+  "n": 78,
+  "name": "3-3 perpendicular edges",
+  "section": "Perpendicular edges",
+  "parity": "odd",
+  "alg": "/ 0,-2 / -1,4 / -3,0 /",
+  "key": "CCCCEEECCEEE/CCCCCCCCECCE"
+ },
+ {
+  "n": 79,
+  "name": "3-2-1 perpendicular edges",
+  "section": "Perpendicular edges",
+  "parity": "even",
+  "alg": "/ 4,0 / 1,0 / 3,0 /",
+  "key": "CCECCEEECCEE/CCCCCCCCECCE"
+ },
+ {
+  "n": 79,
+  "name": "3-2-1 perpendicular edges",
+  "section": "Perpendicular edges",
+  "parity": "odd",
+  "alg": "4,4 / 2,-2 / 0,4 / 1,-4 / 0,3 /",
+  "key": "CCECCEEECCEE/CCCCCCCCECCE"
+ },
+ {
+  "n": 80,
+  "name": "3-1-2 perpendicular edges",
+  "section": "Perpendicular edges",
+  "parity": "even",
+  "alg": "-4,-4 / -2,2 / 0,-4 / -1,4 / 0,-3 /",
+  "key": "CCECCEECCEEE/CCCCCCCCECCE"
+ },
+ {
+  "n": 80,
+  "name": "3-1-2 perpendicular edges",
+  "section": "Perpendicular edges",
+  "parity": "odd",
+  "alg": "/ -4,0 / -1,0 / -3,0 /",
+  "key": "CCECCEECCEEE/CCCCCCCCECCE"
+ },
+ {
+  "n": 81,
+  "name": "6 parallel edges",
+  "section": "Parallel edges",
+  "parity": "even",
+  "alg": "/ 3,2 / 2,4 / 1,2 / -3,-3 /",
+  "key": "CCCCCCEEEEEE/CCCCCCECCCCE"
+ },
+ {
+  "n": 81,
+  "name": "6 parallel edges",
+  "section": "Parallel edges",
+  "parity": "odd",
+  "alg": "/ 3,0 / 2,4 / 1,2 / -3,-3 /",
+  "key": "CCCCCCEEEEEE/CCCCCCECCCCE"
+ },
+ {
+  "n": 82,
+  "name": "left 4-2 parallel edges",
+  "section": "Parallel edges",
+  "parity": "even",
+  "alg": "/ 2,3 / -2,-1 / -3,0 /",
+  "key": "CCCCEEEECCEE/CCCCCCECCCCE"
+ },
+ {
+  "n": 82,
+  "name": "left 4-2 parallel edges",
+  "section": "Parallel edges",
+  "parity": "odd",
+  "alg": "-2,6 / 0,-4 / -2,3 / -1,-2 / -3,0 /",
+  "key": "CCCCEEEECCEE/CCCCCCECCCCE"
+ },
+ {
+  "n": 83,
+  "name": "right 4-2 parallel edges",
+  "section": "Parallel edges",
+  "parity": "even",
+  "alg": "2,6 / 0,4 / 2,-3 / 1,2 / 3,0 /",
+  "key": "CCCCEECCEEEE/CCCCCCECCCCE"
+ },
+ {
+  "n": 83,
+  "name": "right 4-2 parallel edges",
+  "section": "Parallel edges",
+  "parity": "odd",
+  "alg": "/ -2,-3 / -1,-2 / -3,0 /",
+  "key": "CCCCEECCEEEE/CCCCCCECCCCE"
+ },
+ {
+  "n": 84,
+  "name": "2-2-2 parallel edges",
+  "section": "Parallel edges",
+  "parity": "even",
+  "alg": "-2,6 / 6,-3 / 2,0 / -2,0 / 1,0 / 3,0 /",
+  "key": "CCEECCEECCEE/CCCCCCECCCCE"
+ },
+ {
+  "n": 84,
+  "name": "2-2-2 parallel edges",
+  "section": "Parallel edges",
+  "parity": "odd",
+  "alg": "-2,6 / 6,3 / -2,0 / 2,0 / -1,0 / -3,0 /",
+  "key": "CCEECCEECCEE/CCCCCCECCCCE"
+ },
+ {
+  "n": 85,
+  "name": "4-1-1 parallel edges",
+  "section": "Parallel edges",
+  "parity": "even",
+  "alg": "2,0 / 3,-2 / 0,4 / 1,2 / 0,3 /",
+  "key": "CCECCECCEEEE/CCCCCCECCCCE"
+ },
+ {
+  "n": 85,
+  "name": "4-1-1 parallel edges",
+  "section": "Parallel edges",
+  "parity": "odd",
+  "alg": "/ -3,2 / 0,-4 / -1,-2 / 0,-3 /",
+  "key": "CCECCECCEEEE/CCCCCCECCCCE"
+ },
+ {
+  "n": 86,
+  "name": "left 5-1 parallel edges",
+  "section": "Parallel edges",
+  "parity": "even",
+  "alg": "/ 3,0 / 0,4 / 1,2 / 0,3 /",
+  "key": "CCCCEEEEECCE/CCCCCCECCCCE"
+ },
+ {
+  "n": 86,
+  "name": "left 5-1 parallel edges",
+  "section": "Parallel edges",
+  "parity": "odd",
+  "alg": "-4,0 / -1,4 / 4,0 / 1,0 / -3,-3 /",
+  "key": "CCCCEEEEECCE/CCCCCCECCCCE"
+ },
+ {
+  "n": 87,
+  "name": "right 5-1 parallel edges",
+  "section": "Parallel edges",
+  "parity": "even",
+  "alg": "4,0 / 1,-4 / -4,0 / -1,0 / -3,-3 /",
+  "key": "CCCCECCEEEEE/CCCCCCECCCCE"
+ },
+ {
+  "n": 87,
+  "name": "right 5-1 parallel edges",
+  "section": "Parallel edges",
+  "parity": "odd",
+  "alg": "/ -3,0 / 0,-4 / 2,1 / 0,3 /",
+  "key": "CCCCECCEEEEE/CCCCCCECCCCE"
+ },
+ {
+  "n": 88,
+  "name": "3-3 parallel edges",
+  "section": "Parallel edges",
+  "parity": "even",
+  "alg": "2,0 / 1,-2 / -2,0 / -1,-2 / -3,-3 /",
+  "key": "CCCCEEECCEEE/CCCCCCECCCCE"
+ },
+ {
+  "n": 88,
+  "name": "3-3 parallel edges",
+  "section": "Parallel edges",
+  "parity": "odd",
+  "alg": "/ -1,2 / 2,0 / 1,2 / -3,-3 /",
+  "key": "CCCCEEECCEEE/CCCCCCECCCCE"
+ },
+ {
+  "n": 89,
+  "name": "3-2-1 parallel edges",
+  "section": "Parallel edges",
+  "parity": "even",
+  "alg": "-3,0 / 4,-1 / 2,0 / -1,-2 / -3,-3 /",
+  "key": "CCECCEEECCEE/CCCCCCECCCCE"
+ },
+ {
+  "n": 89,
+  "name": "3-2-1 parallel edges",
+  "section": "Parallel edges",
+  "parity": "odd",
+  "alg": "/ -2,0 / -1,0 / -2,0 / 0,-3 /",
+  "key": "CCECCEEECCEE/CCCCCCECCCCE"
+ },
+ {
+  "n": 90,
+  "name": "3-1-2 parallel edges",
+  "section": "Parallel edges",
+  "parity": "even",
+  "alg": "/ 2,0 / 1,0 / 2,0 / 0,3 /",
+  "key": "CCECCEECCEEE/CCCCCCECCCCE"
+ },
+ {
+  "n": 90,
+  "name": "3-1-2 parallel edges",
+  "section": "Parallel edges",
+  "parity": "odd",
+  "alg": "3,0 / -4,1 / -2,0 / 1,2 / -3,-3 /",
+  "key": "CCECCEECCEEE/CCCCCCECCCCE"
+ }
+]

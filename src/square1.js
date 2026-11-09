@@ -97,6 +97,24 @@
     return [start(T.top, 0) * CONV.sT, start(T.bot, 4) * CONV.sB];
   }
   const invert = alg => parse(alg).reverse().map(o => (o.slice ? '/' : (-o.a || 0) + ',' + (-o.b || 0))).join(' ');
-  const api = { caseState, invert, solved, parse, step, run, analyze, classOf, parity, invPerm, sliceCount, endTurns, CONV };
+
+  // ---- CSP (cube shape + parity) ----
+  // A CSP alg turns a cube shape's "case shape" into a plain cube shape (square layers). Colours do not matter, so the case is
+  // read off the reversed alg: run inverse(alg) from a solved cube (with a layer pre-turn that keeps every slice legal).
+  const layerKey = L => { const s = L.map(v => (v < 8 ? 'C' : 'E')).join(''); let best = s; for (let r = 1; r < 12; r++) { const t = s.slice(r) + s.slice(0, r); if (t < best) best = t; } return best; };
+  const shapeKey = st => layerKey(st.top) + '/' + layerKey(st.bot);
+  function cspState(alg, key) {
+    const ops = parse(invert(alg));
+    for (let a = 0; a < 12; a++) for (let b = 0; b < 12; b++) {
+      const s0 = solved();
+      let s = { top: rot(s0.top, a), bot: rot(s0.bot, b), flip: false };
+      try { for (const op of ops) s = step(s, op); } catch (e) { continue; }
+      const k = shapeKey(s);
+      if (key && k !== key) continue;
+      return { top: s.top, bot: s.bot, flip: s.flip, pre: [a, b], key: k };
+    }
+    return null;
+  }
+  const api = { cspState, shapeKey, caseState, invert, solved, parse, step, run, analyze, classOf, parity, invPerm, sliceCount, endTurns, CONV };
   if (typeof module !== 'undefined') module.exports = api; else root.Square1 = api;
 })(typeof window !== 'undefined' ? window : globalThis);

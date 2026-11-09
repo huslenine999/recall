@@ -9,14 +9,17 @@
   };
 
   // ---- sticker colors: each alg set / parity group gets one, used as a marker everywhere ----
-  const SET_COLORS = { 'CPLL': '#FFC93C', 'EPLL': '#4C8DF0', '3x1 Line': '#A56AD8', '2x2 Block': '#F08A1A', 'R Block': '#4FC3F7', '2x1s touching': '#E86AA6', '2x1s not touching': '#9BD43A', '2x1': '#8E8BB0', 'No blocks': '#2DB89F', 'parity': '#F08A1A', 'no parity': '#4C8DF0' };
+  const SET_COLORS = { 'Star': '#FFC93C', 'Square': '#4C8DF0', 'Kite': '#E86AA6', 'Barrel': '#F08A1A', 'Scallop': '#2DB89F', 'Shield': '#A56AD8', 'Mushroom': '#9BD43A', 'Left pawn': '#4FC3F7', 'Right pawn': '#F0617A', 'Fists': '#C79A3B', 'Paired edges': '#3FA7A0', 'Perpendicular edges': '#8E7CF0', 'Parallel edges': '#6FB04A', 'even': '#4C8DF0', 'odd': '#F08A1A', 'CPLL': '#FFC93C', 'EPLL': '#4C8DF0', '3x1 Line': '#A56AD8', '2x2 Block': '#F08A1A', 'R Block': '#4FC3F7', '2x1s touching': '#E86AA6', '2x1s not touching': '#9BD43A', '2x1': '#8E8BB0', 'No blocks': '#2DB89F', 'parity': '#F08A1A', 'no parity': '#4C8DF0' };
   const setColor = g => SET_COLORS[g] || '#8E8BB0';
   const sticker = g => `<span class="sticker" style="--set:${setColor(g)}"></span>`;
 
   // ---- case lists (same shape for both puzzles); algs come from the sheet or from the user's override ----
-  const cases = { mm: [], sq: [] }, sheet = { mm: {}, sq: {} }, byId = { mm: {}, sq: {} };
-  function verifyAlg(p, a, flip) {
+  const KEYS = ['mm', 'sq', 'csp']; // data keys: Megaminx PLL, Square-1 EP, Square-1 CSP
+  const cases = { mm: [], sq: [], csp: [] }, sheet = { mm: {}, sq: {}, csp: {} }, byId = { mm: {}, sq: {}, csp: {} };
+  function verifyAlg(p, a, c) {
+    const flip = c.flip;
     try {
+      if (p === 'csp') { const st = S.cspState(a, c.key); return { ok: !!st, why: st ? '' : 'This alg does not start from the ' + c.name + ' shape' }; }
       if (p === 'mm') { const r = M.analyze(M.run(M.invert(a), D.MM_CFG)); return { ok: r.ok, why: r.reason || '' }; }
       const st = S.run(a), an = S.analyze(st);
       return { ok: an.ok && st.flip === flip, why: !an.ok ? an.reason : st.flip !== flip ? 'middle layer ends ' + (st.flip ? 'flipped' : 'square') + ' but this case is ' + (flip ? 'flipped' : 'square') : '' };
@@ -24,30 +27,33 @@
   }
   function setAlgs(p, c) {
     const list = (db[p].alg && db[p].alg[c.id]) || sheet[p][c.id];
-    c.algs = list.map(a => Object.assign({ a }, verifyAlg(p, a, c.flip)));
+    c.algs = list.map(a => Object.assign({ a }, verifyAlg(p, a, c)));
     c.ok = c.algs.some(x => x.ok);
     c.why = c.ok ? '' : (c.algs[0] && c.algs[0].why) || 'no verified alg';
   }
   const rebuild = p => cases[p].forEach(c => setAlgs(p, c));
 
   // ---- persistent data: one key per puzzle {sel:{id:0|1}, st:{id:{status,times,att,fails,last}}} ----
-  const db = { mm: store.get('at.mm.v1', { sel: {}, st: {} }), sq: store.get('at.sq.v1', { sel: {}, st: {} }) };
+  const db = { mm: store.get('at.mm.v1', { sel: {}, st: {} }), sq: store.get('at.sq.v1', { sel: {}, st: {} }), csp: store.get('at.csp.v1', { sel: {}, st: {} }) };
   const save = p => store.set('at.' + p + '.v1', db[p]);
-  const settings = Object.assign({ showDiagram: { mm: true, sq: true }, preview: false, mmArrows: false, theme: 'system' }, store.get('at.settings.v1', {}));
+  const settings = Object.assign({ showDiagram: { mm: true, sq: true, csp: true }, preview: false, mmArrows: false, theme: 'system' }, store.get('at.settings.v1', {}));
   const saveSettings = () => store.set('at.settings.v1', settings);
   const applyTheme = () => { const r = document.documentElement; if (settings.theme === 'light' || settings.theme === 'dark') r.setAttribute('data-theme', settings.theme); else r.removeAttribute('data-theme'); };
+  if (!settings.showDiagram || typeof settings.showDiagram !== 'object') settings.showDiagram = { mm: true, sq: true, csp: true };
+  if (settings.showDiagram.csp === undefined) settings.showDiagram.csp = settings.showDiagram.sq !== false;
   applyTheme();
   let colors = store.get('at.colors', D.MM_DEFAULT_COLORS.slice());
   if (!Array.isArray(colors) || colors.length !== 12) colors = D.MM_DEFAULT_COLORS.slice();
 
-  ['mm', 'sq'].forEach(p => { db[p].alg = db[p].alg || {}; });
+  KEYS.forEach(p => { db[p].alg = db[p].alg || {}; });
   DATA_MM.forEach(c => { sheet.mm[c.id] = [c.alg]; const k = { id: c.id, group: c.set }; cases.mm.push(k); byId.mm[c.id] = k; });
   DATA_SQ.forEach(r => [['nf', r.algsNoFlip, false], ['f', r.algsFlip, true]].forEach(([col, list, flip]) => {
     if (!list.length) return;
     const id = r.u + ' / ' + r.d + (flip ? ' (flip)' : '');
     sheet.sq[id] = list; const k = { id, group: r.parity ? 'parity' : 'no parity', parity: r.parity, flip, note: r.note }; cases.sq.push(k); byId.sq[id] = k;
   }));
-  rebuild('mm'); rebuild('sq');
+  DATA_CSP.forEach(r => { const id = r.name + ' · ' + r.parity; sheet.csp[id] = [r.alg]; const k = { id, name: r.name, n: r.n, key: r.key, parity: r.parity, group: r.section }; cases.csp.push(k); byId.csp[id] = k; });
+  KEYS.forEach(rebuild);
 
   const selected = (p, c) => db[p].sel[c.id] !== 0; // default: selected
   const stat = (p, id) => db[p].st[id] || (db[p].st[id] = { status: 'New', times: [], att: [], fails: 0, last: 0 });
@@ -62,18 +68,20 @@
   // each puzzle has several alg sets; only the ones with algs behind them are ready (data key = 'mm' or 'sq')
   const SETS = {
     mm: [{ id: 'pll', label: 'PLL', ready: true }, { id: 'oll', label: 'OLL', ready: false }],
-    sq: [{ id: 'ep', label: 'EP', ready: true }, { id: 'pbl', label: 'PBL', ready: false }, { id: 'obl', label: 'OBL', ready: false }, { id: 'csp', label: 'CSP', ready: false }]
+    sq: [{ id: 'ep', label: 'EP', ready: true }, { id: 'pbl', label: 'PBL', ready: false }, { id: 'obl', label: 'OBL', ready: false }, { id: 'csp', label: 'CSP', ready: true }]
   };
   const PUZZLE_NAME = { mm: 'Megaminx', sq: 'Square-1' };
-  const ui = { puzzle: 'mm', screen: 'train', mmSet: 'all', sqParity: 'all', sqCol: 'both', sort: 'name', edit: null, chipScroll: 0 };
+  const DK_NAME = { mm: 'Megaminx PLL', sq: 'Square-1 EP', csp: 'Square-1 CSP' };
+  const ui = { puzzle: 'mm', screen: 'train', mmSet: 'all', sqParity: 'all', sqCol: 'both', cspSec: 'all', cspPar: 'both', sort: 'name', edit: null, chipScroll: 0 };
   if (location.hash === '#sq') ui.puzzle = 'sq';
   ui.set = Object.assign({ mm: 'pll', sq: 'ep' }, store.get('at.sets.v1', {}));
   ['mm', 'sq'].forEach(q => { if (!SETS[q].some(x => x.id === ui.set[q])) ui.set[q] = SETS[q][0].id; });
   const curSet = () => SETS[ui.puzzle].find(x => x.id === ui.set[ui.puzzle]);
   const ready = () => curSet().ready;
+  const dk = () => (ui.puzzle === 'sq' && ui.set.sq === 'csp' ? 'csp' : ui.puzzle); // key of the data behind what is on screen
   const run = { mode: 'random', cur: null, last: null, queue: [], soon: [], phase: 'idle', t0: 0, time: null, scramble: '', revealed: false, lastRec: false };
   // phase: idle (scramble shown, ready) | hold | armed | running | stopped
-  const sess = { mm: [], sq: [] }; // this visit's solves per puzzle: {id, time|null}
+  const sess = { mm: [], sq: [], csp: [] }; // this visit's solves per puzzle: {id, time|null}
   const isTouch = () => !!(window.matchMedia && matchMedia('(pointer: coarse)').matches);
 
   // ---- weighting ----
@@ -85,7 +93,7 @@
     return base * slow * fails * stale;
   }
   function nextCase() {
-    const p = ui.puzzle, pool = cases[p].filter(c => c.ok && selected(p, c));
+    const p = dk(), pool = cases[p].filter(c => c.ok && selected(p, c));
     if (!pool.length) return null;
     run.soon.forEach(x => x.left--);
     const due = run.soon.findIndex(x => x.left <= 0);
@@ -107,7 +115,7 @@
     if (!c) { run.scramble = ''; return; }
     run.last = c.id;
     const good = c.algs.filter(x => x.ok), alg = good[Math.floor(Math.random() * good.length)].a;
-    run.scramble = ui.puzzle === 'mm' ? X.mmSetup(alg) : X.sqSetup(alg);
+    run.scramble = ui.puzzle === 'mm' ? X.mmSetup(alg) : dk() === 'csp' ? X.cspSetup(alg, c.key) : X.sqSetup(alg);
   }
 
   // ---- icons ----
@@ -137,7 +145,7 @@
   function diagSvg(p, c) {
     const good = c.algs.find(x => x.ok); if (!good) return '';
     const key = p + '|' + c.id + '|' + good.a + (p === 'mm' ? '|' + colors.join('') + '|' + settings.mmArrows : '');
-    if (!dcache.has(key)) dcache.set(key, (p === 'mm' ? D.megaminxDiagram(good.a, colors, { label: c.id, arrows: settings.mmArrows }) : D.square1Diagram(good.a, null, { label: c.id })) || '');
+    if (!dcache.has(key)) dcache.set(key, (p === 'mm' ? D.megaminxDiagram(good.a, colors, { label: c.id, arrows: settings.mmArrows }) : p === 'csp' ? D.cspDiagram(good.a, c.key, { label: c.id }) : D.square1Diagram(good.a, null, { label: c.id })) || '');
     return dcache.get(key);
   }
   const matFor = (p, c) => { const s = diagSvg(p, c); return s ? `<div class="mat">${s}</div>` : ''; };
@@ -160,7 +168,7 @@
   }
 
   function viewTrain() {
-    const p = ui.puzzle, c = run.cur;
+    const p = dk(), c = run.cur;
     if (!c) return `<div class="empty"><h2>No cases selected</h2><p class="muted">Choose the cases you want to drill, then come back to train.</p><button class="btn primary" id="toCases">Choose cases</button></div>`;
     const nSel = cases[p].filter(x => x.ok && selected(p, x)).length;
     const prog = run.mode === 'recap' ? `${run.total - run.queue.length} of ${run.total}` : `${nSel} ${nSel === 1 ? 'case' : 'cases'}`;
@@ -241,16 +249,16 @@
   }
   function stopTimer() {
     run.time = performance.now() - run.t0; run.phase = 'stopped'; run.revealed = true;
-    const s = stat(ui.puzzle, run.cur.id); s.times.push(run.time); if (s.times.length > 50) s.times.shift();
+    const s = stat(dk(), run.cur.id); s.times.push(run.time); if (s.times.length > 50) s.times.shift();
     s.att.push(0); if (s.att.length > 10) s.att.shift(); s.last = Date.now(); if (s.status === 'New') s.status = 'Learning';
-    sess[ui.puzzle].push({ id: run.cur.id, time: run.time });
-    run.lastRec = true; save(ui.puzzle); render();
+    sess[dk()].push({ id: run.cur.id, time: run.time });
+    run.lastRec = true; save(dk()); render();
   }
   function doNext() { if (!run.revealed) return; newRound(); render(); }
   function doForgot() {
     if (!run.cur || run.phase === 'running') return;
     if (run.revealed && !run.lastRec) return; // already marked as forgotten
-    const p = ui.puzzle, s = stat(p, run.cur.id);
+    const p = dk(), s = stat(p, run.cur.id);
     if (run.lastRec && run.phase === 'stopped') { s.times.pop(); s.att.pop(); sess[p].pop(); }  // replace the timed attempt with a fail
     s.att.push(1); if (s.att.length > 10) s.att.shift(); s.fails++; s.last = Date.now(); if (s.status === 'New') s.status = 'Learning';
     sess[p].push({ id: run.cur.id, time: null });
@@ -258,7 +266,7 @@
   }
   function doUndo() {
     if (!run.lastRec) return;
-    const s = stat(ui.puzzle, run.cur.id); s.times.pop(); s.att.pop(); sess[ui.puzzle].pop(); run.lastRec = false; run.time = null; save(ui.puzzle); render();
+    const p = dk(), s = stat(p, run.cur.id); s.times.pop(); s.att.pop(); sess[p].pop(); run.lastRec = false; run.time = null; save(p); render();
   }
   let wl = null;
   async function wakeLock() { try { if (navigator.wakeLock && !wl) { wl = await navigator.wakeLock.request('screen'); wl.addEventListener('release', () => { wl = null; }); } } catch (e) { /* not supported or denied */ } }
@@ -311,9 +319,10 @@
   }
   const countText = p => `${cases[p].filter(c => c.ok && selected(p, c)).length} of ${cases[p].length} selected for training`;
   function viewCases() {
-    const p = ui.puzzle;
+    const p = dk();
     let list = cases[p];
     if (p === 'mm') list = list.filter(c => ui.mmSet === 'all' || c.group === ui.mmSet);
+    else if (p === 'csp') list = list.filter(c => (ui.cspSec === 'all' || c.group === ui.cspSec) && (ui.cspPar === 'both' || c.parity === ui.cspPar));
     else list = list.filter(c => (ui.sqParity === 'all' || (ui.sqParity === 'yes') === c.parity) && (ui.sqCol === 'both' || (ui.sqCol === 'flip') === c.flip));
     const val = c => { const t = stat(p, c.id).times; return t.length ? mean(t) : -1; };
     if (ui.sort === 'mean') list = list.slice().sort((a, b) => val(b) - val(a));
@@ -321,6 +330,8 @@
     ui.shown = list;
     const chips = p === 'mm'
       ? `<div class="chips" role="group" aria-label="Alg set">${chip('mmSet', 'all', ui.mmSet === 'all', 'All', cases.mm.length)}${[...new Set(cases.mm.map(c => c.group))].map(s => chip('mmSet', s, ui.mmSet === s, s, cases.mm.filter(c => c.group === s).length, s)).join('')}</div>`
+      : p === 'csp'
+      ? `<div class="chips" role="group" aria-label="Shape group and parity">${chip('cspSec', 'all', ui.cspSec === 'all', 'All', cases.csp.length)}${[...new Set(cases.csp.map(c => c.group))].map(s => chip('cspSec', s, ui.cspSec === s, s, cases.csp.filter(c => c.group === s).length, s)).join('')}<span class="div" aria-hidden="true"></span>${[['both', 'Even and odd'], ['even', 'Even'], ['odd', 'Odd']].map(([v, l]) => chip('cspPar', v, ui.cspPar === v, l, null, v === 'both' ? null : v)).join('')}</div>`
       : `<div class="chips" role="group" aria-label="Parity and flip">${[['all', 'All'], ['yes', 'Parity'], ['no', 'No parity']].map(([v, l]) => chip('sqParity', v, ui.sqParity === v, l, null, v === 'yes' ? 'parity' : v === 'no' ? 'no parity' : null)).join('')}<span class="div" aria-hidden="true"></span>${[['both', 'Both algs'], ['noflip', 'Without flip'], ['flip', 'With flip']].map(([v, l]) => chip('sqCol', v, ui.sqCol === v, l)).join('')}</div>`;
     const tiles = list.length ? `<div class="tiles ${p}">${list.map(c => tileHtml(p, c)).join('')}</div>` : `<p class="none muted">No cases match these filters.</p>`;
     return `<div class="cases-top">${chips}
@@ -346,6 +357,11 @@
         const st = an.ok ? `<div>Edges: ${cyc(an.ep, i => M.FACES[M.ring[i]])}</div><div>Corners: ${cyc(an.cp, i => M.FACES[M.ring[i]] + '/' + M.FACES[M.ring[(i + 1) % 5]])}</div><div class="note">x→y means the piece at x belongs at y.</div>` : `<div class="bad">Not a PLL: ${esc(an.reason)}</div>`;
         return { inv, st, svg: an.ok ? D.megaminxDiagram(a, colors, { arrows: settings.mmArrows }) : null };
       }
+      if (p === 'csp') {
+        const inv = S.invert(a), c = byId.csp[ui.edit], st = S.cspState(a, c && c.key);
+        if (!st) return { inv, st: `<div class="bad">This alg does not start from the ${esc(c ? c.name : '')} shape.</div>`, svg: null };
+        return { inv, st: `<div>Starts from the <b>${esc(c.name)}</b> shape, middle layer <b>${st.flip ? 'flipped' : 'square'}</b>.</div>`, svg: D.cspDiagram(a, c.key) };
+      }
       const inv = S.invert(a), t = S.run(a), an = S.analyze(t);
       if (!an.ok) return { inv, st: `<div class="bad">Not an EP alg: ${esc(an.reason)}</div>`, svg: null };
       const u = SHEET_U[S.classOf(an.topPerm)], d = SHEET_D[S.classOf(an.botPerm)];
@@ -369,7 +385,7 @@
   }
   function wireCases() {
     const on = (id, ev, fn) => { const e = $(id); if (e) e.addEventListener(ev, fn); };
-    const p = ui.puzzle;
+    const p = dk();
     const chips = $('.chips'); if (chips) chips.scrollLeft = ui.chipScroll || 0;
     $$('[data-f]').forEach(b => b.addEventListener('click', () => { const [k, v] = b.dataset.f.split('::'); ui.chipScroll = (b.closest('.chips') || {}).scrollLeft || 0; ui[k] = v; render(); }));
     $$('[data-edit]').forEach(b => b.addEventListener('click', () => { ui.edit = b.dataset.edit; render(); const t = $('#edtxt'); if (t) t.focus(); }));
@@ -411,7 +427,7 @@
 
   // ---- Settings screen ----
   function viewSettings() {
-    const p = ui.puzzle, name = p === 'mm' ? 'Megaminx' : 'Square-1';
+    const p = dk(), name = DK_NAME[p];
     const swatch = M.FACES.map((f, i) => `<label>${f}<input type="color" data-col="${i}" value="${colors[i]}"></label>`).join('');
     return `<div class="settings">
       <section class="group"><h2>Training</h2>
@@ -432,7 +448,7 @@
   }
   function wireSettings() {
     const on = (id, ev, fn) => { const e = $(id); if (e) e.addEventListener(ev, fn); };
-    const p = ui.puzzle, msg = t => { $('#msg').textContent = t; };
+    const p = dk(), msg = t => { $('#msg').textContent = t; };
     on('#showDiag', 'change', e => { settings.showDiagram[p] = e.target.checked; saveSettings(); });
     on('#mmArrows', 'change', e => { settings.mmArrows = e.target.checked; saveSettings(); });
     on('#preview', 'change', e => { settings.preview = e.target.checked; saveSettings(); });
@@ -440,7 +456,7 @@
     on('#resetCol', 'click', () => { colors = D.MM_DEFAULT_COLORS.slice(); store.set('at.colors', colors); render(); });
     $$('input[data-col]').forEach(i => i.addEventListener('change', e => { colors[+e.target.dataset.col] = e.target.value; store.set('at.colors', colors); }));
     on('#export', 'click', () => {
-      const blob = new Blob([JSON.stringify({ app: 'alg-trainer', v: 1, mm: db.mm, sq: db.sq, settings, colors }, null, 1)], { type: 'application/json' });
+      const blob = new Blob([JSON.stringify({ app: 'alg-trainer', v: 1, mm: db.mm, sq: db.sq, csp: db.csp, settings, colors }, null, 1)], { type: 'application/json' });
       const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'alg-trainer-progress.json'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
     });
     on('#import', 'change', e => {
@@ -448,7 +464,7 @@
       f.text().then(t => {
         const o = JSON.parse(t);
         if (o.app !== 'alg-trainer' || !o.mm || !o.sq) throw new Error('not an alg-trainer export');
-        db.mm = o.mm; db.sq = o.sq; ['mm', 'sq'].forEach(q => { db[q].alg = db[q].alg || {}; save(q); rebuild(q); });
+        db.mm = o.mm; db.sq = o.sq; if (o.csp) db.csp = o.csp; KEYS.forEach(q => { db[q].alg = db[q].alg || {}; save(q); rebuild(q); });
         if (o.settings) { Object.assign(settings, o.settings); saveSettings(); applyTheme(); }
         if (Array.isArray(o.colors) && o.colors.length === 12) { colors = o.colors; store.set('at.colors', colors); }
         run.cur = null; msg('Imported.');

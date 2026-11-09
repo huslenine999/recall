@@ -57,6 +57,22 @@
     return out.join(' ');
   }
 
-  const api = { mmSetup, sqSetup, U_TURNS, SQ_WRAP };
+
+  // CSP: the case is the shape the alg starts from, so the scramble is the reversed alg run from a cube shape.
+  // Only a random whole-cube spin goes in front of it (turns of 3 slots keep every slice legal); anything after it
+  // would change the start position the alg expects.
+  function cspSetup(alg, key, rng) {
+    rng = rng || Math.random;
+    const st = S.cspState(alg, key); if (!st) throw new Error('alg does not start from the case shape');
+    const w = [pick(SQ_WRAP, rng), pick(SQ_WRAP, rng)];
+    const toks = [{ a: st.pre[0] * S.CONV.sT + w[0], b: st.pre[1] * S.CONV.sB + w[1] }].concat(S.parse(S.invert(alg)));
+    const out = []; let A = 0, B = 0;
+    const flush = () => { A = n12(A); B = n12(B); if (A || B) out.push(A + ',' + B); A = B = 0; };
+    for (const t of toks) { if (t.slice) { flush(); out.push('/'); } else { A += t.a; B += t.b; } }
+    flush();
+    return out.join(' ');
+  }
+
+  const api = { mmSetup, sqSetup, cspSetup, U_TURNS, SQ_WRAP };
   if (typeof module !== 'undefined') module.exports = api; else root.Scramble = api;
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -1,6 +1,6 @@
 # CubeTrainer: handoff (as of 2026-11-09)
 
-A local, offline alg trainer for **Megaminx** and **Square-1**, built because SpeedCubeDB's trainer is broken.
+A local, offline alg trainer for **Megaminx** and **Square-1** (PLL, EP and CSP so far), built because SpeedCubeDB's trainer is broken.
 One self-contained HTML file, works on laptop and phone. Owner: hu$lenine (Megaminx sub-50, learning full PLL from
 Raul Low Beattie's sheet; trains Square-1 EP).
 
@@ -27,6 +27,7 @@ Progress is stored in each browser's localStorage, so laptop and phone do not sy
 | `src/scramble.js` | Builds the setup scramble from an alg (`mmSetup`, `sqSetup`) |
 | `src/fonts/` | Bricolage Grotesque + Martian Mono (woff2, licences included) |
 | `data/megaminx.json` | 151 PLL cases: `{id, set, alg, fixes}` |
+| `data/square1_csp.json` | 179 CSP cases (90 cube shapes x even/odd): `{n, name, section, parity, alg, key}`; `key` is the shape (corner/edge pattern of both layers) the alg starts from |
 | `data/square1_ep.json` | 99 EP rows: `{u, d, parity, algsNoFlip, algsFlip, prob, count, note}` (becomes 146 cases: no-flip + flip) |
 | `data/verification_report.md`, `tools/` | Scripts used to parse the PDFs and verify every alg against the simulators |
 | `backup-before-redesign/` | The original Sonnet build, before the redesign (reference only) |
@@ -37,7 +38,7 @@ Progress is stored in each browser's localStorage, so laptop and phone do not sy
 **Sections** (top tabs "Megaminx" / "Square-1", plus a row of sets under them, defined by `SETS` in `app.js`):
 
 - Megaminx: **PLL** (ready, 151 cases), **OLL** (empty, "soon")
-- Square-1: **EP** (ready, 146 cases), **PBL**, **OBL**, **CSP** (all empty, "soon")
+- Square-1: **EP** (ready, 146 cases), **CSP** (ready, 179 cases), **PBL**, **OBL** (empty, "soon")
 
 Empty sets show a "No <puzzle> <set> algs yet" screen; keyboard shortcuts are disabled there. Settings works on every set.
 The last chosen set per puzzle is remembered.
@@ -60,17 +61,29 @@ live diagram preview), Settings (theme, show diagram, Megaminx sticker colours, 
   (with a dark outline) mark misplaced edges. Square-1 colours are fixed (not in Settings).
 - Case images have a **transparent background** (they sit on the card), text uses the theme colour.
 
-**Storage (localStorage keys):** `at.mm.v1`, `at.sq.v1` (selection, status, times, alg edits), `at.settings.v1`,
-`at.colors`, `at.sets.v1` (last set per puzzle). Export/import in Settings covers mm, sq and settings.
+- Square-1 CSP: the same two-layer frame as EP, but the pieces are plain grey (CSP is about shape, not colour): U dark grey, D light grey,
+  edges are 30 degree wedges, corners 60 degree kites (`shapeLayer`/`cspDiagram` in `diagram.js`). The badge shows whether the middle layer is flipped.
+  Even and odd of one shape look the same apart from that badge; the case title says which one it is.
+
+**Storage (localStorage keys):** `at.mm.v1`, `at.sq.v1`, `at.csp.v1` (selection, status, times, alg edits), `at.settings.v1`,
+`at.colors`, `at.sets.v1` (last set per puzzle). Export/import in Settings covers mm, sq, csp and settings (older exports without csp still import).
 
 ## Internals worth knowing
 
-- Internally the data key is `'mm'` (= Megaminx PLL) and `'sq'` (= Square-1 EP). `ui.puzzle` is that key; `ui.set[...]`
-  only decides which *view* is shown. `ready()` is true only for PLL and EP.
-- **Adding OLL / PBL / OBL / CSP is more than adding data.** It needs per-set case lists, db keys and stats, a
-  setup/scramble function, an analyzer, and diagram support. In particular `sqLayer` in `diagram.js` assumes cube
-  shape (4 corners + 4 edges forming a square), so PBL/OBL/CSP with other shapes need a generalised rim, and OLL needs
-  a Megaminx orientation diagram (PLL diagrams show permutation arrows).
+- Internally there are three data keys: `'mm'` (Megaminx PLL), `'sq'` (Square-1 EP) and `'csp'` (Square-1 CSP). `ui.puzzle` is the tab
+  (`'mm'` or `'sq'`); `dk()` in `app.js` gives the data key for what is on screen (`'csp'` when Square-1 is on the CSP set). Everything that
+  touches cases, stats, diagrams or scrambles goes through `dk()`. `ready()` is true for PLL, EP and CSP.
+- **Adding OLL / PBL / OBL is more than adding data.** It needs per-set case lists, db keys and stats (follow what CSP did: a new data
+  key in `KEYS`, `DATA_*` in `build.js`, a branch in `verifyAlg`, `diagSvg`, `viewCases`, `previewOne`, and a setup function in
+  `scramble.js`). `sqLayer` (EP diagram) still assumes square layers; `shapeLayer` draws any layer shape (use it as the base for PBL/OBL), and
+  OLL needs a Megaminx orientation diagram (PLL diagrams show permutation arrows).
+- **CSP specifics.** The sheet's algs go from a shape to a cube shape, so the case is read off the *reversed* alg: `S.cspState(alg, key)` runs
+  `invert(alg)` from a solved cube with a layer pre-turn that keeps every slice legal (turns of 3 slots, or offset by 1 for odd cases), and
+  `S.shapeKey` gives the corner/edge pattern of both layers. Some algs fit two shapes from different pre-turns, so the stored `key` picks the
+  labelled one. `X.cspSetup` builds the scramble (random whole-cube spin, then the reversed alg; no wrapper after it, since a turn there would
+  change the start position the alg expects). In the sheet's names the bottom layer is seen from below, so left/right of pawns and fists are
+  swapped for the second word. Star odd algs are `0,2` + the even alg; "square square" has only an odd alg; "kite kite" odd is a single slice.
+  Run `node tools/verify_csp.js` after any change to the data or the simulator (checks all 179 cases and 20 scrambles each).
 - Per-set data should follow the existing pattern: parse the sheet, verify every alg against the simulator
   (`tools/verify_*.js`), then build the cases.
 - A tile click is handled in `wireCases()` (delegated on `.tiles`); the visually hidden checkbox keeps it keyboard
@@ -86,7 +99,9 @@ live diagram preview), Settings (theme, show diagram, Megaminx sticker colours, 
 
 ## Known gaps / next steps
 
-1. User will send the **OLL** (Megaminx) and **PBL, OBL, CSP** (Square-1) algorithms. Build each set (see above).
+1. User will send the **OLL** (Megaminx) and **PBL, OBL** (Square-1) algorithms. Build each set (see above).
+   The CSP data came from the user's "Squanmate cube shape + parity" PDF (text pulled with `pdftotext -bbox-layout`, algs assigned to case and
+   even/odd by their column position; the sheet's tips and notes are not included).
 2. On phones the revealed answer for Square-1 sits below the timer and needs a scroll.
 3. Square-1 colours are not customisable yet.
 4. No automated tests for the UI; verification is by the scripts in `tools/` and Playwright screenshots.
