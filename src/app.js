@@ -43,7 +43,7 @@
   // ---- persistent data: one key per puzzle {sel:{id:0|1}, st:{id:{status,times,att,fails,last}}} ----
   const db = { mm: store.get('at.mm.v1', { sel: {}, st: {} }), sq: store.get('at.sq.v1', { sel: {}, st: {} }), csp: store.get('at.csp.v1', { sel: {}, st: {} }), pbl: store.get('at.pbl.v1', { sel: {}, st: {} }) };
   const save = p => store.set('at.' + p + '.v1', db[p]);
-  const settings = Object.assign({ showDiagram: { mm: true, sq: true, csp: true, pbl: true }, preview: false, mmArrows: false, theme: 'system' }, store.get('at.settings.v1', {}));
+  const settings = Object.assign({ showDiagram: { mm: true, sq: true, csp: true, pbl: true }, showCase: true, mmArrows: false, theme: 'system' }, store.get('at.settings.v1', {}));
   const saveSettings = () => store.set('at.settings.v1', settings);
   const applyTheme = () => { const r = document.documentElement; if (settings.theme === 'light' || settings.theme === 'dark') r.setAttribute('data-theme', settings.theme); else r.removeAttribute('data-theme'); };
   if (!settings.showDiagram || typeof settings.showDiagram !== 'object') settings.showDiagram = { mm: true, sq: true, csp: true };
@@ -90,6 +90,7 @@
   const run = { mode: 'random', cur: null, last: null, queue: [], soon: [], phase: 'idle', t0: 0, time: null, scramble: '', revealed: false, lastRec: false };
   // phase: idle (scramble shown, ready) | hold | armed | running | stopped
   const sess = { mm: [], sq: [], csp: [], pbl: [] }; // this visit's solves per puzzle: {id, time|null}
+  const MOD = /Mac|iPhone|iPad|iPod/.test(navigator.platform || navigator.userAgent || '') ? '⌥' : 'Alt+'; // cstimer-style shortcuts
   const isTouch = () => !!(window.matchMedia && matchMedia('(pointer: coarse)').matches);
 
   // ---- weighting ----
@@ -182,28 +183,38 @@
     return `<div class="empty"><h2>No ${PUZZLE_NAME[ui.puzzle]} ${lab} algs yet</h2><p class="muted">Its cases will show up in Train and Cases once the algorithms are added.</p></div>`;
   }
 
+  function revealPanel(p, c, label) {
+    const s = stat(p, c.id);
+    return `<section class="panel reveal" aria-label="${label}">
+        <div class="reveal-h"><h2>${esc(c.id)}</h2><span class="gtag">${sticker(c.group)}${esc(c.group)}</span>${label === 'Last case' ? '<span class="note">Last case</span>' : ''}</div>
+        ${diagramFor(p, c)}
+        <div class="algs">${c.algs.map(x => `<div class="alg ${x.ok ? '' : 'bad'}">${esc(x.a)}</div>`).join('')}</div>
+        ${c.note ? `<p class="note">${esc(c.note)}</p>` : ''}
+        <dl class="stats"><div><dd>${fmtN(s.times.length ? Math.min(...s.times) : null)}</dd><dt>Best</dt></div><div><dd>${fmtN(avgOf(s.times, 5))}</dd><dt>Average of 5</dt></div><div><dd>${s.fails}</dd><dt>Forgot</dt></div></dl>
+      </section>`;
+  }
   function viewTrain() {
     const p = dk(), c = run.cur;
     if (!c) return `<div class="empty"><h2>No cases selected</h2><p class="muted">Choose the cases you want to drill, then come back to train.</p><button class="btn primary" id="toCases">Choose cases</button></div>`;
     const nSel = cases[p].filter(x => x.ok && selected(p, x)).length;
     const prog = run.mode === 'recap' ? `${run.total - run.queue.length} of ${run.total}` : `${nSel} ${nSel === 1 ? 'case' : 'cases'}`;
-    const s = stat(p, c.id), shown = run.revealed;
-    const pre = settings.preview && !shown ? `<section class="panel"><div class="pv-hd"><h2>Case preview</h2></div><div style="margin-top:14px">${matFor(p, c)}</div></section>` : '';
-    const reveal = shown ? `<section class="panel reveal" aria-label="Case answer">
-        <div class="reveal-h"><h2>${esc(c.id)}</h2><span class="gtag">${sticker(c.group)}${esc(c.group)}</span></div>
-        ${diagramFor(p, c)}
-        <div class="algs">${c.algs.map(x => `<div class="alg ${x.ok ? '' : 'bad'}">${esc(x.a)}</div>`).join('')}</div>
-        ${c.note ? `<p class="note">${esc(c.note)}</p>` : ''}
-        <dl class="stats"><div><dd>${fmtN(s.times.length ? Math.min(...s.times) : null)}</dd><dt>Best</dt></div><div><dd>${fmtN(avgOf(s.times, 5))}</dd><dt>Average of 5</dt></div><div><dd>${s.fails}</dd><dt>Forgot</dt></div></dl>
-      </section>` : '';
+    const shown = run.revealed, ss = sess[p], lr = ss[ss.length - 1], pc = lr && byId[p][lr.id];
+    // the case being solved: its picture only. The answer appears only when you ask for it.
+    const caseCard = settings.showCase && !shown && matFor(p, c) ? `<section class="panel casecard" aria-label="Case"><h2>Case</h2>${matFor(p, c)}</section>` : '';
+    const peek = !shown && ui.peek && pc ? revealPanel(p, pc, 'Last case') : '';
+    const rail = shown ? revealPanel(p, c, 'Case answer') : peek + caseCard;
+    const last = !shown && lr ? `<div class="last">
+        <div class="lt"><b>${esc(lr.id)}</b><span class="lv ${lr.time == null ? 'miss' : ''}">${lr.time == null ? 'Forgot' : fmt(lr.time)}</span></div>
+        <div class="lb"><button class="btn sm" id="peek" ${pc ? '' : 'disabled'}>${ui.peek ? 'Hide alg' : 'Show alg'}</button><button class="btn sm" id="lsoon">Again soon</button><button class="btn sm" id="undo" title="Delete the last solve">Delete <kbd>${MOD}Z</kbd></button></div>
+      </div>` : '';
     const actions = shown
       ? `<div class="actions">
         <button class="btn primary" id="next">Next <kbd>Space</kbd></button>
         <button class="btn" id="soon">Again soon</button>
-        <button class="btn" id="forgot" ${run.lastRec ? '' : 'disabled'} title="Count this solve as forgotten">Forgot <kbd>F</kbd></button>
-        <button class="btn" id="undo" ${s.times.length && run.lastRec ? '' : 'disabled'}>Delete last <kbd>⌫</kbd></button>
+        <button class="btn" id="undo" title="Take back the forgot mark and try this case again">Undo forgot <kbd>⌫</kbd></button>
       </div>`
       : `<div class="actions pre"><button class="btn" id="forgot">I forgot it: show answer <kbd>F</kbd></button></div>`;
+    const keys = `<div class="keys"><span><kbd>Space</kbd> Solve</span><span><kbd>F</kbd> Show answer</span><span><kbd>${MOD}Z</kbd> Delete last</span><span><kbd>${MOD}D</kbd> Reset session</span></div>`;
     return `<div class="train ${shown ? 'revealed' : ''}">
       <div class="stage">
         <div class="stage-bar">
@@ -212,9 +223,9 @@
         </div>
         <div class="scramble ${p === 'mm' ? '' : 'sq'}" id="scr" role="button" tabindex="0" title="Copy the scramble">${scrambleHtml(run.scramble)}</div>
         <div id="timer" class="pad" role="timer" aria-live="off"><span id="digits" class="digits">0:00.00</span><span id="hint" class="hint"></span></div>
-        ${actions}
+        ${actions}${last}${keys}
       </div>
-      <div class="rail">${pre}${reveal}${sessionHtml(p)}</div>
+      <div class="rail">${rail}${sessionHtml(p)}</div>
     </div>`;
   }
 
@@ -223,11 +234,13 @@
     on('#toCases', 'click', () => go(ui.puzzle, 'cases'));
     on('#mode', 'change', e => { run.mode = e.target.value; run.queue = []; newRound(); render(); });
     on('#next', 'click', doNext); on('#forgot', 'click', doForgot); on('#undo', 'click', doUndo);
+    on('#peek', 'click', () => { ui.peek = !ui.peek; render(); });
+    on('#lsoon', 'click', () => { const l = sess[dk()].slice(-1)[0]; if (l) { run.soon.push({ id: l.id, left: 3 + Math.floor(Math.random() * 3) }); toast('Queued: ' + l.id + ' returns within 3 to 5 solves'); } });
     on('#soon', 'click', () => { run.soon.push({ id: run.cur.id, left: 3 + Math.floor(Math.random() * 3) }); toast('Queued: this case returns within 3 to 5 solves'); });
     const copy = () => { if (!navigator.clipboard) { toast('Copying is not available in this browser'); return; } navigator.clipboard.writeText(run.scramble).then(() => toast('Scramble copied'), () => toast('Copying is not available in this browser')); };
     on('#scr', 'click', copy);
     on('#scr', 'keydown', e => { if (e.key === 'Enter') { e.preventDefault(); copy(); } });
-    const t = $('#timer'); if (t) { t.addEventListener('pointerdown', e => { e.preventDefault(); press(); }); t.addEventListener('pointerup', e => { e.preventDefault(); release(); }); t.addEventListener('pointercancel', release); }
+    const t = $('#timer'); if (t) { t.addEventListener('pointerdown', e => { e.preventDefault(); if (!ptrStopped) press(); }); t.addEventListener('pointerup', e => { e.preventDefault(); release(); }); t.addEventListener('pointercancel', release); }
   }
   let toastT = 0;
   function toast(msg) { const n = $('#toast'); if (!n) return; n.textContent = msg; n.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => n.classList.remove('show'), 1800); }
@@ -240,7 +253,7 @@
     if (run.phase === 'hold') return 'Keep holding';
     if (run.phase === 'armed') return 'Let go to start';
     if (run.phase === 'running') return touch ? 'Tap to stop' : 'Press any key to stop';
-    if (run.phase === 'stopped' || run.revealed) return touch ? 'Tap Next for the next case' : 'Press Space for the next case';
+    if (run.revealed) return touch ? 'Tap Next for the next case' : 'Press Space for the next case';
     return touch ? 'Hold the timer until it turns green' : 'Hold Space until it turns green';
   }
   function updateTimer() {
@@ -249,9 +262,8 @@
     t.className = 'pad ' + run.phase;
     const d = $('#digits'), h = $('#hint'); if (h) h.textContent = hintText();
     if (run.phase === 'running') { d.textContent = fmt(performance.now() - run.t0); stopRaf(); raf = requestAnimationFrame(updateTimer); }
-    else if (run.phase === 'stopped') d.textContent = run.time == null ? '—' : fmt(run.time);
-    else if (run.phase === 'idle' && run.revealed) d.textContent = '—';
-    else if (run.phase === 'idle') d.textContent = '0:00.00';
+    else if (run.phase !== 'idle') d.textContent = '0:00.00';
+    else d.textContent = run.revealed ? '—' : run.time != null ? fmt(run.time) : '0:00.00'; // idle: the last solve's time stays until the next one starts
   }
   function press() { // hold start (Space down / pointer down on timer)
     if (run.phase !== 'idle' || run.revealed || !run.cur) return;
@@ -263,26 +275,45 @@
     if (run.phase === 'armed') { run.phase = 'running'; run.t0 = performance.now(); wakeLock(); updateTimer(); }
     else if (run.phase === 'hold') { run.phase = 'idle'; updateTimer(); }
   }
+  // Stopping records the solve and moves straight on: the next case is already on screen, the last one is not.
   function stopTimer() {
-    run.time = performance.now() - run.t0; run.phase = 'stopped'; run.revealed = true;
-    const s = stat(dk(), run.cur.id); s.times.push(run.time); if (s.times.length > 50) s.times.shift();
+    const p = dk(), t = performance.now() - run.t0, s = stat(p, run.cur.id);
+    s.times.push(t); if (s.times.length > 50) s.times.shift();
     s.att.push(0); if (s.att.length > 10) s.att.shift(); s.last = Date.now(); if (s.status === 'New') s.status = 'Learning';
-    sess[dk()].push({ id: run.cur.id, time: run.time });
-    run.lastRec = true; save(dk()); render();
+    sess[p].push({ id: run.cur.id, time: t });
+    save(p); ui.peek = false; newRound(); run.time = t; render();
   }
   function doNext() { if (!run.revealed) return; newRound(); render(); }
-  function doForgot() {
-    if (!run.cur || run.phase === 'running') return;
-    if (run.revealed && !run.lastRec) return; // already marked as forgotten
+  function doForgot() { // "I forgot it": count a fail and show the answer
+    if (!run.cur || run.revealed || run.phase === 'running') return;
+    clearTimeout(holdT);
     const p = dk(), s = stat(p, run.cur.id);
-    if (run.lastRec && run.phase === 'stopped') { s.times.pop(); s.att.pop(); sess[p].pop(); }  // replace the timed attempt with a fail
     s.att.push(1); if (s.att.length > 10) s.att.shift(); s.fails++; s.last = Date.now(); if (s.status === 'New') s.status = 'Learning';
     sess[p].push({ id: run.cur.id, time: null });
-    clearTimeout(holdT); run.phase = 'stopped'; run.time = null; run.revealed = true; run.lastRec = false; save(p); render();
+    run.phase = 'idle'; run.time = null; run.revealed = true; ui.peek = false; save(p); render();
   }
-  function doUndo() {
-    if (!run.lastRec) return;
-    const p = dk(), s = stat(p, run.cur.id); s.times.pop(); s.att.pop(); sess[p].pop(); run.lastRec = false; run.time = null; save(p); render();
+  function lastTime() { const l = sess[dk()].slice(-1)[0]; return l && l.time != null ? l.time : null; }
+  function doUndo() { // delete the last solve (cstimer: Alt+Z). Taking back a forgot mark also lets you try that case again.
+    if (run.phase === 'running') return;
+    const p = dk(), e = sess[p].pop();
+    if (!e) { toast('No solves to delete'); return; }
+    const s = stat(p, e.id);
+    if (e.time == null) { s.att.pop(); s.fails = Math.max(0, s.fails - 1); } else { s.times.pop(); s.att.pop(); }
+    clearTimeout(holdT); run.phase = 'idle'; run.revealed = false; ui.peek = false; run.time = lastTime();
+    save(p); toast(`Deleted ${e.id}: ${e.time == null ? 'Forgot' : fmt(e.time)}`); render();
+  }
+  function resetSession() { // cstimer: Alt+D. Clears this visit's list; each case's saved stats stay.
+    if (run.phase === 'running') return;
+    const p = dk(), n = sess[p].length;
+    if (!n) { toast('The session is already empty'); return; }
+    sess[p].length = 0; run.time = null; ui.peek = false; clearTimeout(holdT); run.phase = 'idle';
+    toast(`Session reset: ${n} ${n === 1 ? 'solve' : 'solves'} cleared`); render();
+  }
+  function markLastForgot() { // cstimer: Alt+3 (DNF)
+    const p = dk(), e = sess[p].slice(-1)[0];
+    if (run.phase === 'running' || run.revealed || !e || e.time == null) return;
+    const s = stat(p, e.id); s.times.pop(); s.att.pop(); s.att.push(1); s.fails++;
+    e.time = null; run.time = null; save(p); toast(`${e.id} marked as forgot`); render();
   }
   let wl = null;
   async function wakeLock() { try { if (navigator.wakeLock && !wl) { wl = await navigator.wakeLock.request('screen'); wl.addEventListener('release', () => { wl = null; }); } } catch (e) { /* not supported or denied */ } }
@@ -296,6 +327,10 @@
     if (ui.screen !== 'train' || !ready()) return;
     const tag = (e.target.tagName || '').toLowerCase();
     if (tag === 'input' || tag === 'select' || tag === 'textarea') return;
+    if (e.altKey && !e.ctrlKey && !e.metaKey && run.phase !== 'running') { // Option/Alt shortcuts, by key position (Option+Z types a symbol on a Mac)
+      const act = { KeyZ: doUndo, KeyD: resetSession, Digit3: markLastForgot }[e.code];
+      if (act) { e.preventDefault(); if (!e.repeat && run.phase === 'idle') act(); return; }
+    }
     if (e.ctrlKey || e.metaKey || e.altKey) return;
     if (run.phase === 'running') { e.preventDefault(); if (!e.repeat) { ignoreUp = e.code === 'Space'; stopTimer(); } return; }
     if (e.code === 'Space') {
@@ -311,7 +346,9 @@
     if (spaceDown) { spaceDown = false; release(); }
   });
   // tap anywhere stops a running timer
-  document.addEventListener('pointerdown', e => { if (run.phase === 'running') { e.preventDefault(); stopTimer(); } }, true);
+  let ptrStopped = false;
+  document.addEventListener('pointerdown', e => { if (run.phase === 'running') { e.preventDefault(); ptrStopped = true; stopTimer(); } }, true);
+  ['pointerup', 'pointercancel'].forEach(ev => document.addEventListener(ev, () => setTimeout(() => { ptrStopped = false; }, 0), true));
   window.addEventListener('blur', () => { if (run.phase === 'hold' || run.phase === 'armed') { clearTimeout(holdT); run.phase = 'idle'; updateTimer(); } });
 
   // ---- Cases screen ----
@@ -462,9 +499,19 @@
     const swatch = M.FACES.map((f, i) => `<label>${f}<input type="color" data-col="${i}" value="${colors[i]}"></label>`).join('');
     return `<div class="settings">
       <section class="group"><h2>Training</h2>
-        <label class="line"><span>Show the case diagram after each solve<small>${name} only. Cases always show their diagram.</small></span><input type="checkbox" class="switch" id="showDiag" ${settings.showDiagram[p] ? 'checked' : ''}></label>
+        <label class="line"><span>Show the diagram in the answer<small>${name} only. The answer opens when you tap I forgot it. Cases always show their diagram.</small></span><input type="checkbox" class="switch" id="showDiag" ${settings.showDiagram[p] ? 'checked' : ''}></label>
         ${p === 'mm' ? `<label class="line"><span>Show arrows on Megaminx cases<small>Arrows mark where each piece goes. Off by default: the sticker colours already show the case.</small></span><input type="checkbox" class="switch" id="mmArrows" ${settings.mmArrows ? 'checked' : ''}></label>` : ''}
-        <label class="line"><span>Show the diagram before the solve<small>Study mode. Needs diagrams on.</small></span><input type="checkbox" class="switch" id="preview" ${settings.preview ? 'checked' : ''}></label>
+        <label class="line"><span>Show the case picture while solving<small>The case you are about to solve, without its algorithm. Turn off to solve from the scramble alone.</small></span><input type="checkbox" class="switch" id="showCase" ${settings.showCase ? 'checked' : ''}></label>
+      </section>
+      <section class="group kbd-group"><h2>Keyboard shortcuts</h2>
+        <ul class="klist">
+          <li><span>Hold, then let go to start. Any key stops</span><span><kbd>Space</kbd></span></li>
+          <li><span>I forgot it: show the answer</span><span><kbd>F</kbd></span></li>
+          <li><span>Next case after the answer</span><span><kbd>Space</kbd></span></li>
+          <li><span>Delete the last solve</span><span><kbd>${MOD}Z</kbd> <kbd>⌫</kbd></span></li>
+          <li><span>Reset the session</span><span><kbd>${MOD}D</kbd></span></li>
+          <li><span>Mark the last solve as forgot</span><span><kbd>${MOD}3</kbd></span></li>
+        </ul>
       </section>
       <section class="group"><h2>Appearance</h2>
         <div class="line"><span>Theme</span><div class="seg" role="group" aria-label="Theme">${[['system', 'System'], ['light', 'Light'], ['dark', 'Dark']].map(([v, l]) => `<button data-theme="${v}" aria-pressed="${settings.theme === v}">${l}</button>`).join('')}</div></div>
@@ -482,7 +529,7 @@
     const p = dk(), msg = t => { $('#msg').textContent = t; };
     on('#showDiag', 'change', e => { settings.showDiagram[p] = e.target.checked; saveSettings(); });
     on('#mmArrows', 'change', e => { settings.mmArrows = e.target.checked; saveSettings(); });
-    on('#preview', 'change', e => { settings.preview = e.target.checked; saveSettings(); });
+    on('#showCase', 'change', e => { settings.showCase = e.target.checked; saveSettings(); });
     $$('[data-theme]').forEach(b => b.addEventListener('click', () => { settings.theme = b.dataset.theme; saveSettings(); applyTheme(); render(); }));
     on('#resetCol', 'click', () => { colors = D.MM_DEFAULT_COLORS.slice(); store.set('at.colors', colors); render(); });
     $$('input[data-col]').forEach(i => i.addEventListener('change', e => { colors[+e.target.dataset.col] = e.target.value; store.set('at.colors', colors); }));
@@ -505,7 +552,7 @@
   }
 
   // ---- navigation ----
-  const go = (puzzle, screen) => { clearTimeout(holdT); ui.edit = null; if (puzzle !== ui.puzzle) { run.cur = null; run.queue = []; run.soon = []; run.last = null; } ui.puzzle = puzzle; ui.screen = screen; if (screen === 'train' && ready() && !run.cur) newRound(); render(); };
+  const go = (puzzle, screen) => { clearTimeout(holdT); ui.peek = false; ui.edit = null; if (puzzle !== ui.puzzle) { run.cur = null; run.queue = []; run.soon = []; run.last = null; } ui.puzzle = puzzle; ui.screen = screen; if (screen === 'train' && ready() && !run.cur) newRound(); render(); };
   $('#sets').addEventListener('click', e => {
     const b = e.target.closest('[data-set]'); if (!b || b.dataset.set === ui.set[ui.puzzle]) return;
     clearTimeout(holdT); ui.edit = null; ui.set[ui.puzzle] = b.dataset.set; store.set('at.sets.v1', ui.set);

@@ -112,12 +112,25 @@ select{appearance:none;border:0;border-radius:12px;background:var(--raise) url("
 .pad.hold .hint,.pad.armed .hint{color:inherit}
 .pad.running .hint{opacity:.55}
 .pad.stopped{box-shadow:inset 0 0 0 3px var(--pri-bg)}
-body[data-phase="running"] .top,body[data-phase="running"] .nav,body[data-phase="running"] .stage-bar,body[data-phase="running"] .scramble,body[data-phase="running"] .rail,body[data-phase="running"] .actions{opacity:0;pointer-events:none;transition:opacity .2s}
-.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+body[data-phase="running"] .top,body[data-phase="running"] .nav,body[data-phase="running"] .stage-bar,body[data-phase="running"] .scramble,body[data-phase="running"] .rail,body[data-phase="running"] .actions,body[data-phase="running"] .last,body[data-phase="running"] .keys{opacity:0;pointer-events:none;transition:opacity .2s}
+.actions{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 .actions .primary{grid-column:1/-1;min-height:56px;font-size:18px}
 .actions.pre{grid-template-columns:1fr}
 .actions .btn{white-space:nowrap}
 .rail{display:flex;flex-direction:column;gap:16px;min-width:0}
+.btn.sm{min-height:36px;padding:6px 11px;font-size:14px;border-radius:10px}
+.last{display:flex;align-items:center;justify-content:space-between;gap:8px 12px;flex-wrap:wrap;padding:8px 8px 8px 16px;border-radius:16px;background:var(--panel)}
+.last .lt{display:flex;align-items:baseline;gap:10px;min-width:0}
+.last .lt b{font-weight:650;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.last .lv{font:600 15px/1 var(--mono);font-stretch:80%;font-variant-numeric:tabular-nums;color:var(--mute)}
+.last .lv.miss{color:var(--bad);font-family:var(--ui);font-stretch:100%;font-weight:650}
+.last .lb{display:flex;gap:6px;flex-wrap:wrap}
+.keys{display:flex;flex-wrap:wrap;gap:6px 20px;font-size:13.5px;color:var(--mute);padding:2px 4px}
+.casecard{display:flex;flex-direction:column;gap:6px}
+.casecard .mat{max-width:420px;align-self:center;width:100%}
+.klist li{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;border-top:1px solid var(--line);font-size:15px}
+.klist kbd{font-size:12px;padding:4px 7px}
+@media (hover:none),(pointer:coarse){.keys,.kbd-group{display:none}}
 .panel{background:var(--panel);border-radius:22px;padding:20px}
 .panel h2{font-size:20px;line-height:1.2;font-weight:700}
 .reveal{display:flex;flex-direction:column;gap:16px;animation:rise .28s ease-out}
@@ -246,10 +259,21 @@ body[data-phase="running"] .top,body[data-phase="running"] .nav,body[data-phase=
 
 /* ---------- phone ---------- */
 @media (max-width:860px){
-  .train{grid-template-columns:1fr;gap:20px}
-  /* after a solve on a phone: the time, then the answer, with Next pinned above the nav bar */
-  .train.revealed{display:flex;flex-direction:column;gap:14px}
-  .train.revealed .stage,.train.revealed .rail{display:contents}
+  /* one column on a phone, in solving order: scramble, timer, the case picture, then the buttons */
+  .train{display:flex;flex-direction:column;align-items:stretch;gap:14px}
+  .train .stage,.train .rail{display:contents}
+  .train .stage-bar{order:1}
+  .train .scramble{order:2;font-size:clamp(22px,5.8vw,32px)}
+  .train .scramble.sq{font-size:clamp(17px,4.4vw,26px)}
+  .train .pad{order:3}
+  .train .digits{font-size:clamp(64px,16.5vw,110px)}
+  .train .casecard{order:4}
+  .train .actions{order:5}
+  .train .last{order:6}
+  .train .keys{order:7}
+  .train:not(.revealed) .reveal{order:6}
+  .train .session{order:9}
+  /* after a solve that was forgotten: the time, then the answer, with Next pinned above the nav bar */
   .train.revealed .scramble,.train.revealed .stage-bar{display:none}
   .train.revealed .pad{order:1;min-height:clamp(96px,15dvh,130px)}
   .train.revealed .digits{font-size:clamp(44px,12.5vw,70px)}
@@ -270,9 +294,10 @@ body[data-phase="running"] .top,body[data-phase="running"] .nav,body[data-phase=
   .sub[aria-selected="true"]{background:none;color:var(--text)}
   .sub[aria-selected="true"]::before{content:"";position:absolute;top:-6px;left:50%;width:34px;height:3px;margin-left:-17px;border-radius:0 0 3px 3px;background:var(--pri-bg)}
   main{padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom) + 24px)}
-  .stage{min-height:calc(100dvh - var(--top-h,72px) - var(--nav-h) - env(safe-area-inset-bottom) - 24px)}
-  .pad{flex:1;min-height:clamp(200px,34dvh,480px);border-radius:26px}
-  .train.revealed .pad{flex:none}
+  .pad{flex:none;min-height:clamp(130px,20dvh,200px);border-radius:26px}
+  .casecard{padding:12px 14px}
+  .casecard h2{display:none}
+  .casecard .mat svg{max-height:200px}
   .scramble{padding:12px 16px}
   .actions .btn{padding:10px 6px;font-size:15px}
   .actions .primary{font-size:18px}

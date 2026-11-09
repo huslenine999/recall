@@ -131,11 +131,19 @@ live diagram preview), Settings (theme, show diagram, Megaminx sticker colours, 
 - The Cases screen shows PBL 90 tiles at a time ("Show more") because drawing 967 diagrams at once is slow; filters are slice-count chips plus
   Top / Bottom name selects. Scrambles use `X.cspSetup` (random whole-cube spin, then the reversed alg), so the user has to AUF/DUF into the alg.
 
-## Train screen layout (as of the last pass)
+## Train flow (continuous, cstimer-style)
 
-- Before the solve there is a single quiet button, "I forgot it: show answer" (F); Next / Again soon / Forgot / Delete last only exist after the
-  answer is shown (Forgot is then only enabled right after a timed solve, to mark it as forgotten).
-- Desktop: the timer box is about 190-340px tall; the answer is in the right-hand column. Phone (<= 860px) after a solve: `.train.revealed` becomes a
-  flex column (`display:contents` on `.stage` and `.rail`) ordered time -> answer -> Next (sticky above the nav bar) -> session.
+- Hold Space (or the timer on a phone), let go to start, any key / tap stops. Stopping records the solve and the **next case is shown at once**;
+  the previous case, its algs and stats are hidden. The timer keeps the last time until the next solve starts (`run.time`).
+- The rail shows only the case picture of what is being solved (`settings.showCase`, default on; replaces the old `settings.preview` study mode).
+- "I forgot it: show answer" (F) records a fail and opens the answer panel; Space / Next goes on. "Undo forgot" lets you try that case again.
+- Under the buttons a "last solve" row shows the previous case's name and time with Show alg (`ui.peek` toggles a panel for it), Again soon and Delete.
+- Shortcuts, matched by `e.code` (Option+Z types a symbol on a Mac): Alt/Option+Z delete last solve (`doUndo`; also Backspace), Alt/Option+D reset the
+  session (`resetSession`; clears only this visit's list, each case's saved stats stay), Alt/Option+3 mark the last solve as forgot (cstimer's DNF key).
+  The label is the Option sign on Apple platforms and `Alt+` elsewhere (`MOD`). They are listed in Settings and under the Train buttons (hidden on touch).
+- `sess[dk()]` is the single source for the last solve and for undo: each entry is `{id, time|null}`; deleting pops the entry and reverses the case stat.
+- A tap that stops the timer must not start the next hold: `ptrStopped` guards the `#timer` pointerdown.
+- Phone (<= 860px): `.train` is a flex column (`display:contents` on `.stage`/`.rail`), ordered stage bar -> scramble -> timer -> case picture ->
+  buttons -> last-solve row -> peeked case -> session. After "show answer" it becomes time -> answer -> Next (sticky above the nav bar) -> session.
 - Session panel: Solved, Forgot, Mean, Best, Ao5, Ao12 (`aoText` in `app.js`: drop best and worst, a forgotten case counts as the worst, two or more forgotten = DNF).
 - Square-1 scrambles use a smaller font (`.scramble.sq`) so they fit in fewer lines.
