@@ -8,6 +8,11 @@
 <title>Recall: Algorithm Trainer</title>
 <meta name="application-name" content="Recall">
 <meta name="apple-mobile-web-app-title" content="Recall">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="description" content="Recall: an alg trainer for Megaminx PLL and Square-1 EP, CSP and PBL, with a cstimer-style timer.">
 <style>
 /*__FONTS__*/
@@ -154,6 +159,16 @@ body[data-phase="running"] .top,body[data-phase="running"] .nav,body[data-phase=
 .mat svg.sq{max-height:340px}
 .reveal .mat{max-width:420px}
 .algs{display:flex;flex-direction:column;gap:8px}
+.algrow{display:flex;align-items:flex-start;gap:4px}
+.algrow .alg{flex:1;min-width:0}
+.starb{flex:none;width:34px;height:34px;margin:-3px 0 -3px -9px;display:grid;place-items:center;border:0;background:none;border-radius:9px;color:var(--mute);cursor:pointer}
+.starb svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}
+.starb:hover{background:var(--raise);color:var(--text)}
+.starb[aria-pressed="true"]{color:var(--warn)}
+.starb[aria-pressed="true"] svg{fill:currentColor}
+.algrow.other .alg{opacity:.55}
+.algrow.mine .alg{font-weight:700}
+.tile .starb{width:30px;height:30px;margin:-3px 0 -3px -8px}
 .alg{font:500 18px/1.7 var(--mono);font-stretch:92%;overflow-wrap:anywhere}
 .alg.bad{color:var(--bad)}
 .stats{display:flex;gap:28px;flex-wrap:wrap}

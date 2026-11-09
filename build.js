@@ -20,4 +20,14 @@ const engines = ['src/palettes.js', 'src/megaminx.js', 'src/square1.js', 'src/di
 html = html.replace('/*__FONTS__*/', () => fonts).replace('/*__DATA__*/', () => wrap(data)).replace('/*__ENGINES__*/', () => wrap(engines)).replace('/*__APP__*/', () => wrap(read('src/app.js')));
 fs.mkdirSync('dist', { recursive: true });
 fs.writeFileSync('dist/index.html', html);
+// installable + offline: manifest, icons and a service worker whose cache name changes with every build
+const buildId = require('crypto').createHash('sha1').update(html).digest('hex').slice(0, 10);
+const manifest = {
+  id: './', name: 'Recall: Algorithm Trainer', short_name: 'Recall', description: 'Alg trainer for Megaminx and Square-1.',
+  start_url: './', scope: './', display: 'standalone', background_color: '#1B1A2B', theme_color: '#1B1A2B',
+  icons: [{ src: 'icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' }, { src: 'icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' }, { src: 'icon-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' }]
+};
+fs.writeFileSync('dist/manifest.webmanifest', JSON.stringify(manifest, null, 1));
+fs.writeFileSync('dist/sw.js', read('src/sw.js').replace('__BUILD__', buildId));
+fs.readdirSync('src/icons').forEach(f => fs.copyFileSync('src/icons/' + f, 'dist/' + f));
 console.log('dist/index.html', (html.length / 1024).toFixed(0) + ' KB');

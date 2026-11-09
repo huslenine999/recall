@@ -42,6 +42,8 @@
   // checked when it is first needed, and the others are checked a few cases at a time while the browser is idle.
   const checked = { mm: 0, sq: 0, csp: 0, pbl: 0 }; // how many cases of each set are checked so far
   const ensure = p => { const list = cases[p]; while (checked[p] < list.length) setAlgs(p, list[checked[p]++]); };
+  // The alg you use: when a case has several algs, the one marked with the star is the one scrambles are built from and shown first.
+  const prefAlg = (p, c) => { const a = db[p].pref && db[p].pref[c.id]; return (a && c.algs.find(x => x.ok && x.a === a)) || null; };
   const rebuild = p => { checked[p] = 0; ensure(p); };
   const idle = window.requestIdleCallback ? f => requestIdleCallback(f, { timeout: 2000 }) : f => setTimeout(() => f(null), 50);
   function warm(p) {
@@ -81,7 +83,12 @@
   let colors = store.get('at.colors', D.MM_DEFAULT_COLORS.slice());
   if (!Array.isArray(colors) || colors.length !== 12) colors = D.MM_DEFAULT_COLORS.slice();
 
-  KEYS.forEach(p => { db[p].alg = db[p].alg || {}; });
+  // Square-1 colours: the top and bottom piece colours and the four side colours (clockwise from above, starting on the right)
+  const sqDefault = () => ({ face: D.SQ_COLORS.face, faceD: D.SQ_COLORS.faceD, sides: D.SQ_COLORS.sides.slice() });
+  const isHex = v => typeof v === 'string' && /^#[0-9a-fA-F]{6}$/.test(v);
+  const cleanSq = o => (o && isHex(o.face) && isHex(o.faceD) && Array.isArray(o.sides) && o.sides.length === 4 && o.sides.every(isHex) ? { face: o.face, faceD: o.faceD, sides: o.sides.slice() } : null);
+  let sqColors = cleanSq(store.get('at.sqcolors', null)) || sqDefault();
+  KEYS.forEach(p => { db[p].alg = db[p].alg || {}; db[p].pref = db[p].pref || {}; });
   DATA_MM.forEach(c => { sheet.mm[c.id] = [c.alg]; const k = { id: c.id, group: c.set }; cases.mm.push(k); byId.mm[c.id] = k; });
   DATA_SQ.forEach(r => [['nf', r.algsNoFlip, false], ['f', r.algsFlip, true]].forEach(([col, list, flip]) => {
     if (!list.length) return;
@@ -152,7 +159,7 @@
     const c = ready() ? nextCase() : null; run.cur = c; run.phase = 'idle'; run.revealed = false; run.time = null; run.lastRec = false;
     if (!c) { run.scramble = ''; return; }
     run.last = c.id;
-    const good = c.algs.filter(x => x.ok), alg = good[Math.floor(Math.random() * good.length)].a;
+    const good = c.algs.filter(x => x.ok), mine = prefAlg(dk(), c), alg = mine ? mine.a : good[Math.floor(Math.random() * good.length)].a;
     run.scramble = ui.puzzle === 'mm' ? X.mmSetup(alg) : dk() === 'csp' ? X.cspSetup(alg, c.key) : dk() === 'pbl' ? X.cspSetup(alg, CUBE_SHAPE) : X.sqSetup(alg);
   }
 
@@ -180,14 +187,25 @@
   // diagrams are cached: the Cases screen draws every case
   const dcache = new Map();
   function diagSvg(p, c) {
-    const good = c.algs.find(x => x.ok); if (!good) return '';
-    const key = p + '|' + c.id + '|' + good.a + (p === 'mm' ? '|' + colors.join('') + '|' + settings.mmArrows : '');
-    if (!dcache.has(key)) dcache.set(key, (p === 'mm' ? D.megaminxDiagram(good.a, colors, { label: c.id, arrows: settings.mmArrows }) : p === 'csp' ? D.cspDiagram(good.a, c.key, { label: c.id }) : p === 'pbl' ? D.pblDiagram(good.a, null, { label: c.id }) : D.square1Diagram(good.a, null, { label: c.id })) || '');
+    const good = prefAlg(p, c) || c.algs.find(x => x.ok); if (!good) return '';
+    const key = p + '|' + c.id + '|' + good.a + (p === 'mm' ? '|' + colors.join('') + '|' + settings.mmArrows : p === 'csp' ? '' : '|' + sqColors.face + sqColors.faceD + sqColors.sides.join(''));
+    if (!dcache.has(key)) dcache.set(key, (p === 'mm' ? D.megaminxDiagram(good.a, colors, { label: c.id, arrows: settings.mmArrows }) : p === 'csp' ? D.cspDiagram(good.a, c.key, { label: c.id }) : p === 'pbl' ? D.pblDiagram(good.a, sqColors, { label: c.id }) : D.square1Diagram(good.a, sqColors, { label: c.id })) || '');
     return dcache.get(key);
   }
   const matFor = (p, c) => { const s = diagSvg(p, c); return s ? `<div class="mat">${s}</div>` : ''; };
   const diagramFor = (p, c) => (settings.showDiagram[p] ? matFor(p, c) : '');
 
+  const STAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.7 6.6 19.7l1.2-6-4.5-4.2 6.1-.7z"/></svg>';
+  function algsHtml(p, c) { // your alg first; the star only appears when there is a choice to make
+    const mine = prefAlg(p, c), multi = c.algs.filter(x => x.ok).length > 1;
+    const rows = c.algs.map((x, i) => ({ x, i })); if (mine) rows.sort((a, b) => (b.x === mine) - (a.x === mine));
+    return `<div class="algs">${rows.map(({ x, i }) => `<div class="algrow ${x === mine ? 'mine' : mine ? 'other' : ''}">${multi && x.ok ? `<button type="button" class="starb" data-pref="${esc(c.id)}" data-i="${i}" aria-pressed="${x === mine}" title="${x === mine ? 'Your alg. Tap to clear it' : 'Use this alg'}" aria-label="${x === mine ? 'This is your alg. Tap to clear it' : 'Use this alg'}">${STAR}</button>` : ''}<div class="alg ${x.ok ? '' : 'bad'}">${x.ok ? '' : '<span class="tag-check">check</span>'}${esc(x.a)}</div></div>`).join('')}</div>`;
+  }
+  function togglePref(p, id, i) {
+    const c = byId[p][id], x = c && c.algs[i]; if (!x || !x.ok) return false;
+    if (db[p].pref[id] === x.a) delete db[p].pref[id]; else db[p].pref[id] = x.a;
+    save(p); return true;
+  }
   const scrambleHtml = t => esc(t).replace(/\//g, '<span class="sl">/</span>');
 
   // average of the last n solves of this visit: drop the best and the worst, a forgotten case counts as the worst; two or more forgotten = no average
@@ -216,7 +234,7 @@
     return `<section class="panel reveal" aria-label="${label}">
         <div class="reveal-h"><h2>${esc(c.id)}</h2><span class="gtag">${sticker(c.group)}${esc(c.group)}</span>${label === 'Last case' ? '<span class="note">Last case</span>' : ''}</div>
         ${diagramFor(p, c)}
-        <div class="algs">${c.algs.map(x => `<div class="alg ${x.ok ? '' : 'bad'}">${esc(x.a)}</div>`).join('')}</div>
+        ${algsHtml(p, c)}
         ${c.note ? `<p class="note">${esc(c.note)}</p>` : ''}
         <dl class="stats"><div><dd>${fmtN(s.times.length ? Math.min(...s.times) : null)}</dd><dt>Best</dt></div><div><dd>${fmtN(avgOf(s.times, 5))}</dd><dt>Average of 5</dt></div><div><dd>${s.fails}</dd><dt>Forgot</dt></div></dl>
       </section>`;
@@ -262,6 +280,7 @@
     on('#toCases', 'click', () => go(ui.puzzle, 'cases'));
     on('#mode', 'change', e => { run.mode = e.target.value; run.queue = []; newRound(); render(); });
     on('#next', 'click', doNext); on('#forgot', 'click', doForgot); on('#undo', 'click', doUndo);
+    const rail = $('.rail'); if (rail) rail.addEventListener('click', e => { const st = e.target.closest('[data-pref]'); if (st && togglePref(dk(), st.dataset.pref, +st.dataset.i)) { const cur = run.cur; render(); if (cur && cur.id === st.dataset.pref) toast(db[dk()].pref[cur.id] ? 'Saved: scrambles for this case now use this alg' : 'Cleared: this case uses any of its algs again'); } });
     on('#peek', 'click', () => { ui.peek = !ui.peek; render(); });
     on('#lsoon', 'click', () => { const l = sess[dk()].slice(-1)[0]; if (l) { run.soon.push({ id: l.id, left: 3 + Math.floor(Math.random() * 3) }); toast('Queued: ' + l.id + ' returns within 3 to 5 solves'); } });
     on('#soon', 'click', () => { run.soon.push({ id: run.cur.id, left: 3 + Math.floor(Math.random() * 3) }); toast('Queued: this case returns within 3 to 5 solves'); });
@@ -383,7 +402,6 @@
   const chip = (key, val, on, label, n, group) => `<button class="fchip" data-f="${key}::${esc(val)}" aria-pressed="${on}">${group ? sticker(group) : ''}${esc(label)}${n != null ? ` <span class="n">${n}</span>` : ''}</button>`;
   function tileHtml(p, c) {
     const s = stat(p, c.id), t = s.times, on = selected(p, c) && c.ok;
-    const algs = c.algs.map(x => `<div class="alg ${x.ok ? '' : 'bad'}">${x.ok ? '' : '<span class="tag-check">check</span>'}${esc(x.a)}</div>`).join('');
     const stats = t.length ? `<span><b>${fmt(mean(t))}</b>mean</span><span><b>${fmt(Math.min(...t))}</b>best</span>${s.fails ? `<span><b>${s.fails}</b>forgot</span>` : ''}` : `<span>No times yet</span>${s.fails ? `<span><b>${s.fails}</b>forgot</span>` : ''}`;
     return `<article class="tile ${on ? 'is-on' : ''} ${c.ok ? '' : 'is-bad'}" style="--set:${setColor(c.group)}">
       <input type="checkbox" class="pick" data-sel="${esc(c.id)}" ${on ? 'checked' : ''} ${c.ok ? '' : 'disabled'} aria-label="Train ${esc(c.id)}">
@@ -393,7 +411,7 @@
         <button type="button" class="status s-${s.status}" data-chip="${esc(c.id)}" title="Change status" aria-label="${esc(c.id)} status: ${s.status}. Change status">${statusGlyph(s.status)}<span>${s.status}</span></button>
       </div>
       ${c.ok ? matFor(p, c) : `<div class="warn">${esc(c.why || 'No alg on this case passes the check.')}</div>`}
-      <div class="algs">${algs}</div>
+      ${algsHtml(p, c)}
       ${c.note ? `<p class="note">${esc(c.note)}</p>` : ''}
       <div class="tile-f"><div class="st">${stats}</div><button type="button" class="btn quiet" data-edit="${esc(c.id)}">Edit</button></div>
     </article>`;
@@ -449,7 +467,7 @@
         const inv = S.invert(a), c = byId.pbl[ui.edit], st = S.cspState(a, CUBE_SHAPE), cl = st && S.pblClass(st);
         if (!cl) return { inv, st: `<div class="bad">Not a PBL alg: it has to start from a cube shape and keep every piece in its own layer.</div>`, svg: null };
         const same = c && cl.top === c.ct && cl.bot === c.cb;
-        return { inv, st: same ? `<div>This alg solves <b>${esc(c.id)}</b>.</div>` : `<div class="bad">This alg solves a different PBL than ${esc(c ? c.id : '')}.</div>`, svg: D.pblDiagram(a) };
+        return { inv, st: same ? `<div>This alg solves <b>${esc(c.id)}</b>.</div>` : `<div class="bad">This alg solves a different PBL than ${esc(c ? c.id : '')}.</div>`, svg: D.pblDiagram(a, sqColors) };
       }
       if (p === 'csp') {
         const inv = S.invert(a), c = byId.csp[ui.edit], st = S.cspState(a, c && c.key);
@@ -459,7 +477,7 @@
       const inv = S.invert(a), t = S.run(a), an = S.analyze(t);
       if (!an.ok) return { inv, st: `<div class="bad">Not an EP alg: ${esc(an.reason)}</div>`, svg: null };
       const u = SHEET_U[S.classOf(an.topPerm)], d = SHEET_D[S.classOf(an.botPerm)];
-      return { inv, st: `<div>Row <b>${u} / ${d}</b>, middle layer <b>${t.flip ? 'flipped' : 'square'}</b>, parity ${S.parity(an.topPerm) || S.parity(an.botPerm) ? 'yes' : 'no'}</div>`, svg: D.square1Diagram(a, null) };
+      return { inv, st: `<div>Row <b>${u} / ${d}</b>, middle layer <b>${t.flip ? 'flipped' : 'square'}</b>, parity ${S.parity(an.topPerm) || S.parity(an.botPerm) ? 'yes' : 'no'}</div>`, svg: D.square1Diagram(a, sqColors) };
     } catch (e) { return { inv: '', st: `<div class="bad">${esc(e.message)}</div>`, svg: null }; }
   }
   function previewHtml(p, text) {
@@ -508,6 +526,8 @@
     const grid = $('.tiles');
     if (grid) {
       grid.addEventListener('click', e => {
+        const st = e.target.closest('[data-pref]');
+        if (st) { if (togglePref(p, st.dataset.pref, +st.dataset.i)) st.closest('.tile').outerHTML = tileHtml(p, byId[p][st.dataset.pref]); return; }
         const ed = e.target.closest('[data-edit]');
         if (ed) { ui.edit = ed.dataset.edit; render(); const t = $('#edtxt'); if (t) t.focus(); return; }
         const ch = e.target.closest('[data-chip]');
@@ -529,9 +549,19 @@
   }
 
   // ---- Settings screen ----
+  let installEv = null; // Chrome and Android offer an install prompt; iPhone installs through Share > Add to Home Screen
+  window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); installEv = e; if (ui.screen === 'settings') render(); });
+  window.addEventListener('appinstalled', () => { installEv = null; if (ui.screen === 'settings') render(); });
+  const offlineText = () => {
+    if (!('serviceWorker' in navigator) || !/^https?:$/.test(location.protocol)) return 'Offline use needs the hosted site. This copy is a file on your device and already works without a connection.';
+    return navigator.serviceWorker.controller
+      ? 'Recall is saved on this device and opens with no connection. To put it on your home screen: in Safari tap Share, then Add to Home Screen. In Chrome open the menu and tap Install app.'
+      : 'Saving Recall for offline use. Reload once while online and it will open with no connection.';
+  };
   function viewSettings() {
     const p = dk(), name = DK_NAME[p];
     const palBtn = x => x ? `<button class="pal" data-pal="${x[0]}" aria-pressed="${settings.palette === x[0]}" style="--b:${x[1]};--m:${x[2]};--s:${x[3]};--t:${x[4]}"><b>${x[0]}</b><i></i></button>` : `<button class="pal pal-def" data-pal="" aria-pressed="${!settings.palette || !PALETTES.some(y => y[0] === settings.palette)}"><b>Default</b><i></i></button>`;
+    const sqSw = [['face', 'Top (U)'], ['faceD', 'Bottom (D)']].map(([k, l]) => `<label>${l}<input type="color" data-sq="${k}" value="${sqColors[k]}"></label>`).join('') + sqColors.sides.map((v, i) => `<label>Side ${i + 1}<input type="color" data-sq="${i}" value="${v}"></label>`).join('');
     const swatch = M.FACES.map((f, i) => `<label>${f}<input type="color" data-col="${i}" value="${colors[i]}"></label>`).join('');
     return `<div class="settings">
       <section class="group"><h2>Training</h2>
@@ -552,7 +582,12 @@
       <section class="group"><h2>Appearance</h2>
         ${settings.palette && PALETTES.some(x => x[0] === settings.palette) ? '' : `<div class="line"><span>Theme</span><div class="seg" role="group" aria-label="Theme">${[['system', 'System'], ['light', 'Light'], ['dark', 'Dark']].map(([v, l]) => `<button data-theme="${v}" aria-pressed="${settings.theme === v}">${l}</button>`).join('')}</div></div>`}
         <div class="line" style="display:block;cursor:default"><span>Color palette<small>Pick a look for the whole site. Default uses the System, Light or Dark theme.</small></span><div class="pals">${palBtn(null)}${PALETTES.map(palBtn).join('')}</div></div>
+        ${p !== 'mm' ? `<div class="line" style="display:block;cursor:default"><span>Square-1 colors<small>Used by the EP and PBL diagrams. Sides 1 to 4 go clockwise seen from above, starting on the right. ${p === 'csp' ? 'CSP cases are about shape only, so they are drawn without colors.' : 'Match them to your puzzle.'}</small></span><div class="swatches">${sqSw}</div><button class="btn" id="resetSqCol">Reset colors</button></div>` : ''}
         ${p === 'mm' ? `<div class="line" style="display:block;cursor:default"><span>Megaminx face colors<small>Used by the case diagrams. Match them to your puzzle.</small></span><div class="swatches">${swatch}</div><button class="btn" id="resetCol">Reset colors</button></div>` : ''}
+      </section>
+      <section class="group"><h2>Offline</h2>
+        <p class="note" id="offlineMsg">${offlineText()}</p>
+        <div class="row-btns">${installEv ? '<button class="btn primary" id="install">Install Recall</button>' : ''}</div>
       </section>
       <section class="group"><h2>Progress</h2>
         <p class="note" style="margin-bottom:10px">Progress is stored in this browser only. Export it to move it to another device.</p>
@@ -569,10 +604,13 @@
     on('#showCase', 'change', e => { settings.showCase = e.target.checked; saveSettings(); });
     $$('[data-pal]').forEach(b => b.addEventListener('click', () => { settings.palette = b.dataset.pal; saveSettings(); applyTheme(); const y = scrollY; render(); scrollTo(0, y); }));
     $$('.seg [data-theme]').forEach(b => b.addEventListener('click', () => { settings.theme = b.dataset.theme; saveSettings(); applyTheme(); render(); }));
+    on('#install', 'click', () => { if (installEv) { installEv.prompt(); installEv = null; } });
+    on('#resetSqCol', 'click', () => { sqColors = sqDefault(); store.set('at.sqcolors', sqColors); render(); });
+    $$('input[data-sq]').forEach(i => i.addEventListener('change', e => { const k = e.target.dataset.sq; if (k === 'face' || k === 'faceD') sqColors[k] = e.target.value; else sqColors.sides[+k] = e.target.value; store.set('at.sqcolors', sqColors); }));
     on('#resetCol', 'click', () => { colors = D.MM_DEFAULT_COLORS.slice(); store.set('at.colors', colors); render(); });
     $$('input[data-col]').forEach(i => i.addEventListener('change', e => { colors[+e.target.dataset.col] = e.target.value; store.set('at.colors', colors); }));
     on('#export', 'click', () => {
-      const blob = new Blob([JSON.stringify({ app: 'alg-trainer', v: 1, mm: db.mm, sq: db.sq, csp: db.csp, pbl: db.pbl, settings, colors }, null, 1)], { type: 'application/json' });
+      const blob = new Blob([JSON.stringify({ app: 'alg-trainer', v: 1, mm: db.mm, sq: db.sq, csp: db.csp, pbl: db.pbl, settings, colors, sqColors }, null, 1)], { type: 'application/json' });
       const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'recall-progress.json'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
     });
     on('#import', 'change', e => {
@@ -580,9 +618,10 @@
       f.text().then(t => {
         const o = JSON.parse(t);
         if (o.app !== 'alg-trainer' || !o.mm || !o.sq) throw new Error('not an alg-trainer export');
-        db.mm = o.mm; db.sq = o.sq; if (o.csp) db.csp = o.csp; if (o.pbl) db.pbl = o.pbl; KEYS.forEach(q => { db[q].alg = db[q].alg || {}; save(q); checked[q] = 0; });
+        db.mm = o.mm; db.sq = o.sq; if (o.csp) db.csp = o.csp; if (o.pbl) db.pbl = o.pbl; KEYS.forEach(q => { db[q].alg = db[q].alg || {}; db[q].pref = db[q].pref || {}; save(q); checked[q] = 0; });
         if (o.settings) { Object.assign(settings, o.settings); saveSettings(); applyTheme(); }
         if (Array.isArray(o.colors) && o.colors.length === 12) { colors = o.colors; store.set('at.colors', colors); }
+        if (cleanSq(o.sqColors)) { sqColors = cleanSq(o.sqColors); store.set('at.sqcolors', sqColors); }
         run.cur = null; msg('Imported.');
       }).catch(err => msg('Import failed: ' + err.message));
     });
@@ -613,4 +652,10 @@
   } else { window.addEventListener('resize', () => { setTopH(); setNavH(); }); setTopH(); setNavH(); }
   newRound(); render();
   KEYS.forEach(warm);
+  // offline: the service worker keeps the app on the device; a new version shows up on the next open
+  if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+    const had = !!navigator.serviceWorker.controller;
+    navigator.serviceWorker.addEventListener('controllerchange', () => { if (had) toast('A new version of Recall is ready. Reload to use it.'); else if (ui.screen === 'settings') { const m = $('#offlineMsg'); if (m) m.textContent = offlineText(); } });
+    window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => { /* private mode or blocked: the site still works online */ }));
+  }
 })();
