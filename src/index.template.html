@@ -79,6 +79,14 @@ svg{display:block}
 .sub[aria-selected="true"]{background:var(--raise);color:var(--text)}
 .tab:hover:not([aria-selected="true"]),.sub:hover:not([aria-selected="true"]){color:var(--text)}
 main.shell{padding-block:8px 48px}
+.foot{margin-top:24px;border-top:1px solid var(--line);padding:22px 0 calc(var(--nav-h) + env(safe-area-inset-bottom) + 28px);font-size:13.5px;line-height:1.55;color:var(--mute)}
+.foot p+p,.foot details{margin-top:6px}
+.foot .who b{color:var(--text);font-weight:650;margin-right:10px}
+.foot a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.foot a:hover{color:var(--text)}
+.foot summary{cursor:pointer;width:max-content;max-width:100%}
+.foot ul{margin-top:6px;display:flex;flex-direction:column;gap:4px;max-width:70ch}
+.foot li b{color:var(--text);font-weight:600}
 
 /* ---------- buttons, chips, fields ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;border:0;border-radius:12px;padding:10px 16px;background:var(--raise);color:var(--text);font-weight:650}
@@ -308,7 +316,7 @@ body[data-phase="running"] .top,body[data-phase="running"] .nav,body[data-phase=
   .sub{position:relative;flex-direction:column;gap:3px;font-size:12.5px;padding:8px 4px}
   .sub[aria-selected="true"]{background:none;color:var(--text)}
   .sub[aria-selected="true"]::before{content:"";position:absolute;top:-6px;left:50%;width:34px;height:3px;margin-left:-17px;border-radius:0 0 3px 3px;background:var(--pri-bg)}
-  main.shell{padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom) + 24px)}
+  main.shell{padding-bottom:16px}
   .pad{flex:none;min-height:clamp(130px,20dvh,200px);border-radius:26px}
   .casecard{padding:12px 14px}
   .casecard h2{display:none}
@@ -357,6 +365,15 @@ body[data-phase="running"] .top,body[data-phase="running"] .nav,body[data-phase=
   <div class="shell sets-row"><div class="sets" id="sets" role="tablist" aria-label="Alg set"></div></div>
 </header>
 <main id="main" class="shell"></main>
+<footer class="foot"><div class="shell">
+  <p class="who"><b>&copy; 2026 Khuslen Gan-Ochir</b> <a href="mailto:huslenine@gmail.com">huslenine@gmail.com</a></p>
+  <p>The app, its case diagrams and its design are mine. The algorithms come from the cubing community; where from is listed below.</p>
+  <details class="credits"><summary>Algorithm sources</summary><ul>
+    <li><b>Megaminx PLL</b> &ndash; the full PLL sheet by Raul Low Beattie, using James Macdiarmid&rsquo;s case system.</li>
+    <li><b>Square-1 PBL</b> &ndash; Daniel&rsquo;s Public PBL Doc.</li>
+    <li><b>Square-1 CSP</b> &ndash; the &ldquo;Squanmate cube shape + parity&rdquo; sheet.</li>
+  </ul></details>
+</div></footer>
 <div id="toast" role="status" aria-live="polite"></div>
 <script>
 /*__DATA__*/
