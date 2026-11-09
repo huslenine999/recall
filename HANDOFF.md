@@ -91,5 +91,5 @@ live diagram preview), Settings (theme, show diagram, Megaminx sticker colours, 
 - Edit in a scratch copy, `node build.js`, test with Playwright, then copy to the project folder and rebuild there.
 - When copying files to the user's machine via the file-staging tool, wait a few seconds after the copy and compare
   checksums (`md5sum`) of the source and the destination, because an early commit once wrote stale content.
-- Git: this folder was not a repository before this handoff. It has been initialised with one commit and **no remote**.
-  Add a remote and push: `git remote add origin <url> && git push -u origin main`.
+- Git: local repo on `main`, remote `origin` = https://github.com/huslenine999/algtrainer.git. The first push has NOT happened yet:
+  the cloud session had no GitHub credentials. Push from a terminal in this folder: `git push -u origin main`.
