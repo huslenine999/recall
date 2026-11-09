@@ -4,6 +4,11 @@ A local, offline alg trainer for **Megaminx** and **Square-1**, built because Sp
 One self-contained HTML file, works on laptop and phone. Owner: hu$lenine (Megaminx sub-50, learning full PLL from
 Raul Low Beattie's sheet; trains Square-1 EP).
 
+## Hosting
+
+Deployed on Vercel from the GitHub repo. `vercel.json` tells Vercel to run `node build.js` and serve `dist/`.
+Progress is stored in each browser's localStorage, so laptop and phone do not sync (use Settings > export/import).
+
 ## Run / build
 
 - Open `dist/index.html` in a browser. It is fully offline (data, engines, app and fonts are inlined).
