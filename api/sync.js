@@ -5,8 +5,10 @@
 //   POST /api/sync { code, data }        -> { at }              later saves (the code must already exist)
 const crypto = require('crypto');
 
-const URL_ = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
-const TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+// Vercel names the variables after the prefix chosen when connecting (KV_ by default); any prefix works.
+const envEnding = (...ends) => { for (const e of ends) { const k = Object.keys(process.env).find(n => n.endsWith(e) && process.env[n]); if (k) return process.env[k]; } return undefined; };
+const URL_ = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL || envEnding('_REST_API_URL', '_REDIS_REST_URL');
+const TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN || envEnding('_REST_API_TOKEN', '_REDIS_REST_TOKEN');
 const ALPHA = '23456789ABCDEFGHJKMNPQRSTVWXYZ'; // no 0/O, 1/I/L or U, so codes are easy to read out and type
 const MAX_BYTES = 900 * 1024; // Upstash's free plan takes requests up to 1 MB
 const TTL = 60 * 60 * 24 * 400; // a code unused for about 13 months is dropped; every save resets the clock
