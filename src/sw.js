@@ -9,6 +9,7 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   const r = e.request, u = new URL(r.url);
   if (r.method !== 'GET' || u.origin !== location.origin) return;
+  if (u.pathname.startsWith('/api/')) return; // sync calls always go to the network
   if (r.mode === 'navigate') { // open instantly from the cache, refresh it in the background for the next visit
     e.respondWith(caches.open(CACHE).then(async c => {
       const cached = await c.match('./index.html');

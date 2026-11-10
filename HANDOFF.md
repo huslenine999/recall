@@ -186,3 +186,12 @@ live diagram preview), Settings (theme, show diagram, Megaminx sticker colours, 
 - Settings: Trigger marks (Boxes / Brackets / Off, default Boxes) and Show trigger names. `chunks()` and `algText()` in app.js.
 - Megaminx: dictionary TRIGS (sune, antisune, sexy, sledge, hedgeslammer), longest match first, other moves left plain. Square-1: each turn between slashes.
 - Not done: typing your own brackets in the Edit drawer; per-move fingertrick notes; the PDF's own trigger groups (its box layout is too garbled to read reliably).
+
+## Recap fix
+- Recap mode ("each case once") showed "No cases selected" after the first solve: `run.queue.shift()` sat inside `pool.find`'s callback, so it emptied the queue. Now one id is taken per round, and ids unselected mid-round are dropped.
+
+## Sync code (no accounts)
+- `api/sync.js` (Vercel function, no dependencies): GET ?code= loads, POST {data} makes a code, POST {code,data} saves. Storage is Upstash Redis via REST; env vars KV_REST_API_URL/KV_REST_API_TOKEN (or UPSTASH_REDIS_REST_URL/TOKEN). Without them it answers 503 "not set up".
+- Codes: 8 chars from 23456789ABCDEFGHJKMNPQRSTVWXYZ, shown ABCD-EFGH. Kept 400 days after the last use. 120 requests/min per IP, 900 KB cap.
+- App: Settings > Sync. Every change to progress/settings/colours marks it dirty and saves 2.5 s later; pulls on open, on returning to the tab (15 s throttle) and when back online. Merge: practice stats per case keep the more recently used side; selections, own algs, stars and settings come from the side that changed.
+- The service worker skips /api/.

@@ -297,6 +297,10 @@ body[data-phase="running"] .top,body[data-phase="running"] .nav,body[data-phase=
 .pal i{display:block;width:100%;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--m) 0 34%,var(--t) 34% 67%,var(--s) 67%)}
 .pal-def{--b:var(--panel);--t:var(--text);--m:var(--pri-bg);--s:var(--mute)}
 .pal[aria-pressed="true"]{box-shadow:0 0 0 3px var(--bg),0 0 0 5px var(--text)}
+.txt{font:600 17px/1 var(--mono);letter-spacing:.06em;background:var(--bg);border:2px solid var(--line);border-radius:12px;padding:10px 12px;width:13ch;color:inherit;text-transform:uppercase}
+.txt:focus{outline:none;border-color:var(--ink)}
+.synccode{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.synccode .code{font:700 24px/1 var(--mono);letter-spacing:.08em}
 .row-btns{display:flex;flex-wrap:wrap;gap:8px}
 #msg{min-height:1.4em}
 
@@ -1128,7 +1132,7 @@ const PALETTES = [
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const store = {
     get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
-    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage unavailable: run without it */ } }
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage unavailable: run without it */ } if (store.onChange) store.onChange(k); }
   };
 
   // ---- sticker colors: each alg set / parity group gets one, used as a marker everywhere ----
@@ -1274,8 +1278,10 @@ const PALETTES = [
     const due = run.soon.findIndex(x => x.left <= 0);
     if (due >= 0) { const id = run.soon.splice(due, 1)[0].id; const c = pool.find(c => c.id === id); if (c) return c; }
     if (run.mode === 'recap') {
+      const byIdP = new Map(pool.map(c => [c.id, c]));
+      run.queue = run.queue.filter(id => byIdP.has(id)); // drop cases unselected since the round began
       if (!run.queue.length) { run.queue = pool.map(c => c.id).sort(() => Math.random() - 0.5); run.total = run.queue.length; }
-      return pool.find(c => c.id === run.queue.shift()) || null;
+      return byIdP.get(run.queue.shift());
     }
     const means = pool.map(c => stat(p, c.id).times).filter(t => t.length).map(t => mean(t.slice(-10)));
     const now = Date.now(), ages = pool.map(c => stat(p, c.id).last).filter(Boolean);
@@ -1759,8 +1765,9 @@ const PALETTES = [
         <p class="note" id="offlineMsg">${offlineText()}</p>
         <div class="row-btns">${installEv ? '<button class="btn primary" id="install">Install Recall</button>' : ''}</div>
       </section>
+      ${syncSection()}
       <section class="group"><h2>Progress</h2>
-        <p class="note" style="margin-bottom:10px">Progress is stored in this browser only. Export it to move it to another device.</p>
+        <p class="note" style="margin-bottom:10px">Export saves your progress as a file; Import loads one.</p>
         <div class="row-btns"><button class="btn" id="export">Export</button><label class="btn">Import<input type="file" id="import" accept="application/json" hidden></label><button class="btn danger" id="reset">Reset ${name} stats</button></div>
         <p class="note" id="msg" role="status"></p>
       </section>
@@ -1769,6 +1776,7 @@ const PALETTES = [
   function wireSettings() {
     const on = (id, ev, fn) => { const e = $(id); if (e) e.addEventListener(ev, fn); };
     const p = dk(), msg = t => { $('#msg').textContent = t; };
+    wireSync();
     on('#showDiag', 'change', e => { settings.showDiagram[p] = e.target.checked; saveSettings(); });
     $$('[data-trg]').forEach(b => b.addEventListener('click', () => { settings.triggers = b.dataset.trg; saveSettings(); render(); }));
     on('#trigNames', 'change', e => { settings.trigNames = e.target.checked; saveSettings(); });
@@ -1822,8 +1830,132 @@ const PALETTES = [
     new ResizeObserver(es => setTopH(boxH(es[es.length - 1]))).observe($('.top'));
     new ResizeObserver(es => setNavH(boxH(es[es.length - 1]))).observe($('.nav'));
   } else { window.addEventListener('resize', () => { setTopH(); setNavH(); }); setTopH(); setNavH(); }
+  // ---- sync: progress kept under a short code (no account), so it follows you to your other devices ----
+  const SYNCED = /^at\.((mm|oll|sq|csp|pbl)\.v1|settings\.v1|colors|sqcolors)$/; // what a change to marks as needing a save
+  const sync = Object.assign({ code: null, at: 0, dirty: false }, store.get('at.sync.v1', {}), { err: '', busy: false, quiet: false, pulled: 0 });
+  const saveSync = () => { const q = sync.quiet; sync.quiet = true; store.set('at.sync.v1', { code: sync.code, at: sync.at, dirty: sync.dirty }); sync.quiet = q; };
+  const snapshot = () => ({ app: 'alg-trainer', v: 1, mm: db.mm, oll: db.oll, sq: db.sq, csp: db.csp, pbl: db.pbl, settings, colors, sqColors });
+  const forUpload = () => JSON.parse(JSON.stringify(snapshot(), (k, v) => (k === 'times' && Array.isArray(v) ? v.map(Math.round) : v))); // whole ms is plenty and halves the size
+  const canon = o => JSON.stringify(o, (k, v) => (v && typeof v === 'object' && !Array.isArray(v) ? Object.keys(v).sort().reduce((a, x) => ((a[x] = v[x]), a), {}) : v));
+  let pushT = null;
+  store.onChange = k => {
+    if (sync.quiet || !sync.code || !SYNCED.test(k)) return;
+    sync.dirty = true; saveSync(); syncStatus();
+    clearTimeout(pushT); pushT = setTimeout(syncPush, 2500);
+  };
+  async function syncApi(method, body, code, keepalive) {
+    let r;
+    try {
+      r = await fetch('/api/sync' + (method === 'GET' ? '?code=' + encodeURIComponent(code) : ''),
+        method === 'GET' ? { cache: 'no-store' } : { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), keepalive: !!keepalive });
+    } catch (e) { const x = new Error(navigator.onLine === false ? 'Offline: will sync when you are back online.' : 'Could not reach the sync server.'); x.offline = true; throw x; }
+    const j = await r.json().catch(() => null);
+    if (!j) { const x = new Error(/^https?:$/.test(location.protocol) ? 'Sync is not available on this site.' : 'Sync works on the online version of Recall.'); x.status = r.status; throw x; }
+    if (!r.ok) { const x = new Error(j.error || 'Sync failed (' + r.status + ')'); x.status = r.status; throw x; }
+    return j;
+  }
+  // Merge another copy into this one. Practice stats keep whichever side was used more recently, per case;
+  // selections, own algs, starred algs and settings come from `prefer` ('local' or 'remote') when both have them.
+  function syncMerge(o, prefer) {
+    const loc = prefer === 'local', before = canon(snapshot());
+    sync.quiet = true;
+    try {
+      KEYS.forEach(q => {
+        const r = o[q]; if (!r || typeof r !== 'object') return;
+        const l = db[q], st = Object.assign({}, r.st || {});
+        Object.entries(l.st || {}).forEach(([id, s]) => { const rs = st[id]; if (!rs || (s.last || 0) >= (rs.last || 0)) st[id] = s; });
+        const mix = k => (loc ? Object.assign({}, r[k] || {}, l[k] || {}) : Object.assign({}, l[k] || {}, r[k] || {}));
+        db[q] = Object.assign({}, r, l, { sel: mix('sel'), st, alg: mix('alg'), pref: mix('pref') });
+        save(q); checked[q] = 0;
+      });
+      if (!loc) {
+        if (o.settings && typeof o.settings === 'object') { Object.assign(settings, o.settings); saveSettings(); applyTheme(); }
+        if (Array.isArray(o.colors) && o.colors.length === 12) { colors = o.colors; store.set('at.colors', colors); }
+        if (cleanSq(o.sqColors)) { sqColors = cleanSq(o.sqColors); store.set('at.sqcolors', sqColors); }
+      }
+    } finally { sync.quiet = false; }
+    if (canon(snapshot()) === before) return; // nothing new: leave the current scramble alone
+    dcache.clear();
+    if (run.phase === 'idle' && !ui.edit) { if (!run.revealed) run.cur = null; if (ui.screen === 'train' && ready() && !run.cur) newRound(); render(); }
+  }
+  async function syncPush(keepalive) {
+    clearTimeout(pushT);
+    if (!sync.code) return;
+    if (sync.busy) { pushT = setTimeout(syncPush, 1500); return; }
+    sync.busy = true;
+    try { const j = await syncApi('POST', { code: sync.code, data: forUpload() }, null, keepalive); sync.at = j.at; sync.dirty = false; sync.err = ''; }
+    catch (e) { sync.err = e.message; }
+    finally { sync.busy = false; saveSync(); syncStatus(); }
+  }
+  async function syncPull() {
+    if (!sync.code || sync.busy) return;
+    sync.busy = true; sync.pulled = Date.now();
+    let again = false;
+    try {
+      const j = await syncApi('GET', null, sync.code);
+      if (sync.dirty) { syncMerge(j.data, 'local'); again = true; } // changed here while away: keep this device's choices, then save
+      else if (j.at > sync.at) { syncMerge(j.data, 'remote'); sync.at = j.at; again = canon(forUpload()) !== canon(Object.assign({}, j.data, { app: 'alg-trainer', v: 1 })); }
+      sync.err = '';
+    } catch (e) { sync.err = e.message; }
+    finally { sync.busy = false; saveSync(); syncStatus(); }
+    if (again) syncPush();
+  }
+  async function syncOn() {
+    sync.busy = true; syncStatus('Making a code...');
+    try { const j = await syncApi('POST', { data: forUpload() }); sync.code = j.code; sync.at = j.at; sync.dirty = false; sync.err = ''; }
+    catch (e) { sync.err = e.message; }
+    finally { sync.busy = false; saveSync(); }
+    render();
+  }
+  async function syncUse(code) {
+    const c = String(code || '').toUpperCase().replace(/[^0-9A-Z]/g, '');
+    if (c.length !== 8) { syncStatus('A sync code has 8 letters and numbers, like ABCD-EFGH.'); return; }
+    sync.busy = true; syncStatus('Loading...');
+    try {
+      const j = await syncApi('GET', null, c);
+      sync.code = c.slice(0, 4) + '-' + c.slice(4); sync.at = j.at; sync.dirty = false; sync.err = '';
+      sync.busy = false; saveSync();
+      syncMerge(j.data, 'remote'); // practice from this device is kept too, then saved under the code
+      await syncPush(); render(); toast('Sync is on. Progress loaded.');
+    } catch (e) { sync.busy = false; syncStatus(e.message); }
+  }
+  const agoText = t => { const s = Math.round((Date.now() - t) / 1000); return s < 45 ? 'just now' : s < 3600 ? Math.round(s / 60) + ' min ago' : s < 86400 ? Math.round(s / 3600) + ' h ago' : new Date(t).toLocaleDateString(); };
+  const syncText = () => (!sync.code ? '' : sync.err ? sync.err : sync.dirty ? 'Saving changes...' : sync.at ? 'Synced ' + agoText(sync.at) + '.' : '');
+  function syncStatus(t) { const m = $('#syncMsg'); if (m) m.textContent = t || syncText(); }
+  function syncSection() {
+    if (!sync.code) return `<section class="group"><h2>Sync</h2>
+        <p class="note" style="margin-bottom:10px">Progress saves in this browser by itself. Turn on sync to keep a copy under a short code, then enter the code on your phone or another computer to pick up where you left off. No account needed.</p>
+        <div class="row-btns"><button class="btn primary" id="syncOn">Turn on sync</button></div>
+        <label class="line" style="display:block;cursor:default;margin-top:14px"><span>Have a code from another device?</span>
+          <div class="row-btns" style="margin-top:8px"><input class="txt code" id="syncCode" placeholder="ABCD-EFGH" maxlength="9" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"><button class="btn" id="syncUse">Use code</button></div></label>
+        <p class="note" id="syncMsg" role="status">${esc(sync.err)}</p>
+      </section>`;
+    return `<section class="group"><h2>Sync</h2>
+        <div class="synccode"><span class="note">Your sync code</span><b class="code">${esc(sync.code)}</b><button class="btn" id="syncCopy">Copy</button></div>
+        <p class="note" style="margin:10px 0">Enter it on your other devices under Settings &gt; Sync. Anyone with the code can see and change this progress, so keep it to yourself.</p>
+        <p class="note" id="syncMsg" role="status">${esc(syncText())}</p>
+        <div class="row-btns" style="margin-top:10px"><button class="btn" id="syncNow">Sync now</button><button class="btn" id="syncOff">Stop syncing on this device</button></div>
+      </section>`;
+  }
+  function wireSync() {
+    const on = (id, ev, fn) => { const e = $(id); if (e) e.addEventListener(ev, fn); };
+    on('#syncOn', 'click', syncOn);
+    on('#syncUse', 'click', () => syncUse($('#syncCode').value));
+    on('#syncCode', 'keydown', e => { if (e.key === 'Enter') syncUse(e.target.value); });
+    on('#syncCopy', 'click', () => { (navigator.clipboard ? navigator.clipboard.writeText(sync.code) : Promise.reject()).then(() => toast('Code copied'), () => toast(sync.code)); });
+    on('#syncNow', 'click', async () => { await syncPull(); if (sync.dirty) await syncPush(); });
+    on('#syncOff', 'click', () => { if (!confirm('Stop syncing on this device? Your progress stays here and under the code, and you can enter the code again later.')) return; sync.code = null; sync.at = 0; sync.dirty = false; sync.err = ''; saveSync(); render(); });
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (!sync.code) return;
+    if (document.visibilityState === 'hidden') { if (sync.dirty) syncPush(true); }
+    else if (Date.now() - sync.pulled > 15000) syncPull();
+  });
+  window.addEventListener('online', () => { if (sync.code) (sync.dirty ? syncPush() : syncPull()); });
+
   newRound(); render();
   KEYS.forEach(warm);
+  if (sync.code) syncPull();
   // offline: the service worker keeps the app on the device; a new version shows up on the next open
   if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
     const had = !!navigator.serviceWorker.controller;
