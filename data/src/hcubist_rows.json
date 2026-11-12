@@ -1,0 +1,3005 @@
+{
+ "ns": [
+  {
+   "page": 1,
+   "section": "?",
+   "seccount": null,
+   "name": "HCubist",
+   "moves": null,
+   "alg": "",
+   "alt": ""
+  },
+  {
+   "page": 1,
+   "section": "SKEWB NS",
+   "seccount": null,
+   "name": "SKEWB NS",
+   "moves": null,
+   "alg": "",
+   "alt": ""
+  },
+  {
+   "page": 1,
+   "section": "SKEWB NS",
+   "seccount": null,
+   "name": "ALGORITHM",
+   "moves": null,
+   "alg": "",
+   "alt": ""
+  },
+  {
+   "page": 1,
+   "section": "SKEWB NS",
+   "seccount": null,
+   "name": "Skewb NS",
+   "moves": null,
+   "alg": "",
+   "alt": ""
+  },
+  {
+   "page": 1,
+   "section": "SKEWB NS",
+   "seccount": null,
+   "name": "HOW TO READ IT",
+   "moves": null,
+   "alg": "",
+   "alt": ""
+  },
+  {
+   "page": 1,
+   "section": "SKEWB NS",
+   "seccount": null,
+   "name": "SHEET",
+   "moves": null,
+   "alg": "",
+   "alt": ""
+  },
+  {
+   "page": 2,
+   "section": "SKEWB NS",
+   "seccount": null,
+   "name": "SKEWB NS",
+   "moves": null,
+   "alg": "",
+   "alt": ""
+  },
+  {
+   "page": 2,
+   "section": "PI + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 1a",
+   "moves": 8,
+   "alg": "y x R b' r' R' r z B' r B",
+   "alt": "y' x r' R r R' z' R r' R r z R r' R' r'"
+  },
+  {
+   "page": 2,
+   "section": "PI + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 2a",
+   "moves": 11,
+   "alg": "y2 x r B R' B' r R r R' r' R r",
+   "alt": "y' x b' r' R r R' z' R r' R' r R r R'"
+  },
+  {
+   "page": 2,
+   "section": "PI + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 1c",
+   "moves": 8,
+   "alg": "x y2 r' R r R b' r R' b'",
+   "alt": "y x R r' R r R' B R' B' r' R' r R"
+  },
+  {
+   "page": 2,
+   "section": "PI + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 2c",
+   "moves": 10,
+   "alg": "x r' R r' R' z' r' R r B R B'",
+   "alt": "y2 x R' r' B' r B R r B'"
+  },
+  {
+   "page": 2,
+   "section": "PI + WAT PERM",
+   "seccount": 8,
+   "name": "Case 3a",
+   "moves": 8,
+   "alg": "x r2' R r B R r' R B",
+   "alt": "y x R B R' B' R' r' R r R r' R' r"
+  },
+  {
+   "page": 2,
+   "section": "PI + WAT PERM",
+   "seccount": 8,
+   "name": "Case 4a",
+   "moves": 11,
+   "alg": "x r' R' r B R' B' R' r' R r R'",
+   "alt": "y2 x r R' r B r' z r R' r' R' r"
+  },
+  {
+   "page": 2,
+   "section": "PI + WAT PERM",
+   "seccount": 8,
+   "name": "Case 3c",
+   "moves": 12,
+   "alg": "y' x R r' R' r R' r' R r z r R r' R'",
+   "alt": "y x B R B' R' r' R' r R r' R r R'"
+  },
+  {
+   "page": 2,
+   "section": "PI + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 1b",
+   "moves": 8,
+   "alg": "y2 x r' B R r R' B r' B'",
+   "alt": "x r' R r R r' R' r z' r' R r R' B'"
+  },
+  {
+   "page": 2,
+   "section": "PI + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 2b",
+   "moves": 8,
+   "alg": "x R b R' z' R r' R' B' r",
+   "alt": "x z R' r' R' r z R r R' r z' r' R r R'"
+  },
+  {
+   "page": 2,
+   "section": "PI + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 1d",
+   "moves": 10,
+   "alg": "x r' R r z R r R' z' r' R' r R'",
+   "alt": "y x R' r' R' r z R r' R' r' R r R'"
+  },
+  {
+   "page": 2,
+   "section": "PI + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 2d",
+   "moves": 10,
+   "alg": "y' x R r' R r B R' B' r' R' r",
+   "alt": "x b r B r' B' z' r' R' b"
+  },
+  {
+   "page": 2,
+   "section": "PI + WAT PERM",
+   "seccount": 8,
+   "name": "Case 3b",
+   "moves": 12,
+   "alg": "y x B R' B' R B R B' R' r' R' r R",
+   "alt": "x B' R' B' r' R' B R' r'"
+  },
+  {
+   "page": 2,
+   "section": "PI + WAT PERM",
+   "seccount": 8,
+   "name": "Case 4b",
+   "moves": 10,
+   "alg": "y x r' R r R B' r' R' r B R'",
+   "alt": "x B R B' r' R r R B R' B' R"
+  },
+  {
+   "page": 2,
+   "section": "PI + WAT PERM",
+   "seccount": 8,
+   "name": "Case 3d",
+   "moves": 12,
+   "alg": "x r' R r R' r R r' R' z' R' r' R r",
+   "alt": "x r R' r' R r R' z' R B r' R r"
+  },
+  {
+   "page": 3,
+   "section": "PI + WAT PERM",
+   "seccount": 8,
+   "name": "Case 4c",
+   "moves": 11,
+   "alg": "y' x R r' R r z R r' R' r R r R'",
+   "alt": "y2 x r' R r R B R' B' R' r' R' r R"
+  },
+  {
+   "page": 3,
+   "section": "PI + X PERM",
+   "seccount": 8,
+   "name": "Case 5a",
+   "moves": 9,
+   "alg": "x z' r' R z' r' R r z r R r' R",
+   "alt": "x R' r' R r R z B R' B' R r'"
+  },
+  {
+   "page": 3,
+   "section": "PI + X PERM",
+   "seccount": 8,
+   "name": "Case 6a",
+   "moves": 9,
+   "alg": "y x R r' R r z2 R r' R' r b",
+   "alt": "y x R r' R r z B R' B' R r"
+  },
+  {
+   "page": 3,
+   "section": "PI + X PERM",
+   "seccount": 8,
+   "name": "Case 5c",
+   "moves": 12,
+   "alg": "y' x r' R r' R' r' R r R' z' R r' R r",
+   "alt": "x r' R' r R' z2 r' R r R' b'"
+  },
+  {
+   "page": 3,
+   "section": "PI + X PERM",
+   "seccount": 8,
+   "name": "Case 6c",
+   "moves": 9,
+   "alg": "y' x B' r' R r R' z2 r' R r' R'",
+   "alt": "x r' R r R' z' R' r' R r R B R' B'"
+  },
+  {
+   "page": 3,
+   "section": "PI + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 7a",
+   "moves": 8,
+   "alg": "y' x B r' R r' R' r B r'",
+   "alt": ""
+  },
+  {
+   "page": 3,
+   "section": "PI + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 7c",
+   "moves": 8,
+   "alg": "y' x r B' r' R r R' r B'",
+   "alt": ""
+  },
+  {
+   "page": 3,
+   "section": "PI + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 8a",
+   "moves": 8,
+   "alg": "x R' r R' B b r' R r'",
+   "alt": "y2 x r' R r B R' B' R' r' R' r R'"
+  },
+  {
+   "page": 3,
+   "section": "PI + WAT PERM",
+   "seccount": 8,
+   "name": "Case 4d",
+   "moves": 12,
+   "alg": "y x R r' R' r' z' r' R r R z R r R' r'",
+   "alt": "y' x r' R r R r' R' r B R B' R"
+  },
+  {
+   "page": 3,
+   "section": "PI + X PERM",
+   "seccount": 8,
+   "name": "Case 5b",
+   "moves": 9,
+   "alg": "y2 x R r' B R' B' R' r' R r'",
+   "alt": "y x b' r' R r R' z2 r' R' r R'"
+  },
+  {
+   "page": 3,
+   "section": "PI + X PERM",
+   "seccount": 8,
+   "name": "Case 6b",
+   "moves": 9,
+   "alg": "y' x R' r R' r' z' r' R' r z R' r",
+   "alt": "y2 x r' R r' R' z2 r' R r R' B'"
+  },
+  {
+   "page": 3,
+   "section": "PI + X PERM",
+   "seccount": 8,
+   "name": "Case 5d",
+   "moves": 11,
+   "alg": "x r' R' r R' r' R r R' B R' B'",
+   "alt": "x z R r R' z' R r z' r' R' r B"
+  },
+  {
+   "page": 3,
+   "section": "PI + X PERM",
+   "seccount": 8,
+   "name": "Case 6d",
+   "moves": 9,
+   "alg": "y x r B R' B' R r z' r' R r",
+   "alt": "x z R r' R' r R B R' B' R' r' R r"
+  },
+  {
+   "page": 3,
+   "section": "PI + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 7b",
+   "moves": 8,
+   "alg": "y2 x r' z R r' R r z r' B' r",
+   "alt": "y x b' R r' R r R' b' R"
+  },
+  {
+   "page": 3,
+   "section": "PI + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 7d",
+   "moves": 8,
+   "alg": "y2 x B' r z R r' R' r z' B' r",
+   "alt": "y z' r' R r B' r' b B' l"
+  },
+  {
+   "page": 3,
+   "section": "PI + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 8b",
+   "moves": 8,
+   "alg": "x R' r B R' B' r2' R' r",
+   "alt": "y x r' B R B' z' r' R r B'"
+  },
+  {
+   "page": 4,
+   "section": "PI + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 8c",
+   "moves": 8,
+   "alg": "x r R' r b' B' R r' R",
+   "alt": "y2 x R r' R' z' r' R r R z R r R' r"
+  },
+  {
+   "page": 4,
+   "section": "PI + VERTICAL U PERM",
+   "seccount": 4,
+   "name": "Case 9a",
+   "moves": 11,
+   "alg": "y' x B' r' R r R B' R' r' R' r B'",
+   "alt": "y' x R r R' r B r' z' r' R r R' b"
+  },
+  {
+   "page": 4,
+   "section": "PI + VERTICAL U PERM",
+   "seccount": 4,
+   "name": "Case 10a",
+   "moves": 6,
+   "alg": "x z r B r B' r' B'",
+   "alt": "y' z' B R r R' B' R'"
+  },
+  {
+   "page": 4,
+   "section": "PI + O PERM",
+   "seccount": 8,
+   "name": "Case 11a",
+   "moves": 10,
+   "alg": "y' x R r' R' r' R r R' z' r' R r",
+   "alt": ""
+  },
+  {
+   "page": 4,
+   "section": "PI + O PERM",
+   "seccount": 8,
+   "name": "Case 12a",
+   "moves": 10,
+   "alg": "y' x r' R' r z R r' R' r R r R'",
+   "alt": "y' x r' R' r B' R z R r R' r' R"
+  },
+  {
+   "page": 4,
+   "section": "PI + O PERM",
+   "seccount": 8,
+   "name": "Case 11c",
+   "moves": 7,
+   "alg": "y x r R' r B r' R B",
+   "alt": "y x r2' R' r B r' R B"
+  },
+  {
+   "page": 4,
+   "section": "PI + O PERM",
+   "seccount": 8,
+   "name": "Case 12c",
+   "moves": 7,
+   "alg": "x B' R' r B' r' R r'",
+   "alt": ""
+  },
+  {
+   "page": 4,
+   "section": "PI + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 13a",
+   "moves": 9,
+   "alg": "y x r' R' r' R' z' r' R r R B'",
+   "alt": "y x r' R' r B' r' R r B"
+  },
+  {
+   "page": 4,
+   "section": "PI + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 8d",
+   "moves": 8,
+   "alg": "y x R B' r' R r z R' r R'",
+   "alt": "x B r' R' r z B R' B' r"
+  },
+  {
+   "page": 4,
+   "section": "PI + VERTICAL U PERM",
+   "seccount": 4,
+   "name": "Case 9b",
+   "moves": 10,
+   "alg": "y' x B r' R r z R r' R' r R' r'",
+   "alt": "x z r B R' B' z' r' R' r B"
+  },
+  {
+   "page": 4,
+   "section": "PI + VERTICAL U PERM",
+   "seccount": 4,
+   "name": "Case 10b",
+   "moves": 6,
+   "alg": "x B' r' B' r B r",
+   "alt": "x B' r' y' r' R r b"
+  },
+  {
+   "page": 4,
+   "section": "PI + O PERM",
+   "seccount": 8,
+   "name": "Case 11b",
+   "moves": 10,
+   "alg": "x r' R r R r' R' r z R r' R'",
+   "alt": ""
+  },
+  {
+   "page": 4,
+   "section": "PI + O PERM",
+   "seccount": 8,
+   "name": "Case 12b",
+   "moves": 10,
+   "alg": "y x B R B' r' R r R' r' R' r",
+   "alt": "y2 x R r' z r R r R' z2 r' R r"
+  },
+  {
+   "page": 4,
+   "section": "PI + O PERM",
+   "seccount": 8,
+   "name": "Case 11d",
+   "moves": 7,
+   "alg": "y2 x R' r R' z' r' B R' r'",
+   "alt": ""
+  },
+  {
+   "page": 4,
+   "section": "PI + O PERM",
+   "seccount": 8,
+   "name": "Case 12d",
+   "moves": 7,
+   "alg": "x r R B' r B R' B",
+   "alt": ""
+  },
+  {
+   "page": 4,
+   "section": "PI + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 13b",
+   "moves": 8,
+   "alg": "y' x B R B' r B R' B' r'",
+   "alt": "y' r B r' R r B' r' R'"
+  },
+  {
+   "page": 5,
+   "section": "PI + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 13c",
+   "moves": 8,
+   "alg": "x r B R B' r' B R' B'",
+   "alt": ""
+  },
+  {
+   "page": 5,
+   "section": "PI + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 14a",
+   "moves": 12,
+   "alg": "x R' r' R' r R r' R' r R r' R r",
+   "alt": "x z R' r' R r B' r' R' r B R"
+  },
+  {
+   "page": 5,
+   "section": "PI + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 14c",
+   "moves": 13,
+   "alg": "y2 x r R r R' r' R' r R r R' r' R r",
+   "alt": "y2 x R' r' R r' R' r R r' R r R' r"
+  },
+  {
+   "page": 5,
+   "section": "PI + TRIPLE SLEDGE",
+   "seccount": 2,
+   "name": "Case 15a",
+   "moves": 11,
+   "alg": "x r' R r R r' z' r' R r z r R r'",
+   "alt": "x R r' R' r' R B R' B' R' r' R"
+  },
+  {
+   "page": 5,
+   "section": "PI + H OR Z PERM",
+   "seccount": 3,
+   "name": "Case 16",
+   "moves": 8,
+   "alg": "x r B R B' r2' R r R",
+   "alt": "y2 x R' r' R' r' B R' B' r'"
+  },
+  {
+   "page": 5,
+   "section": "PI + H OR Z PERM",
+   "seccount": 3,
+   "name": "Case 17b",
+   "moves": 10,
+   "alg": "y2 x R r R' r' z' r' R r z R r' R'",
+   "alt": "y x R r2' R' r B r' R r' R' r B"
+  },
+  {
+   "page": 5,
+   "section": "PEANUT + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 18a",
+   "moves": 9,
+   "alg": "y x b' r' R r R' z' R r' R' r'",
+   "alt": ""
+  },
+  {
+   "page": 5,
+   "section": "PEANUT + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 18c",
+   "moves": 8,
+   "alg": "x R r' R r z R r' R' r'",
+   "alt": ""
+  },
+  {
+   "page": 5,
+   "section": "PI + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 13d",
+   "moves": 8,
+   "alg": "B L B' F B L' B' F'",
+   "alt": ""
+  },
+  {
+   "page": 5,
+   "section": "PI + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 14b",
+   "moves": 10,
+   "alg": "y x R' B' r' R r B r' R' r R",
+   "alt": "y2 x B R' B' r' R r R' z' R r' R' r B"
+  },
+  {
+   "page": 5,
+   "section": "PI + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 14d",
+   "moves": 10,
+   "alg": "y' x R r R' B R B' R r2' R r",
+   "alt": "x R r R' r R r' R' r R r' R' r'"
+  },
+  {
+   "page": 5,
+   "section": "PI + TRIPLE SLEDGE",
+   "seccount": 2,
+   "name": "Case 15b",
+   "moves": 11,
+   "alg": "x r R' r' z' r' R' r z r R' r' R' r",
+   "alt": "x R' r' R r z r b r' R r R' z' R r' R"
+  },
+  {
+   "page": 5,
+   "section": "PI + H OR Z PERM",
+   "seccount": 3,
+   "name": "Case 17a",
+   "moves": 10,
+   "alg": "y2 x r' R' r R B R' B' r' R r",
+   "alt": "x r' R' r B R B' R' r' R r"
+  },
+  {
+   "page": 5,
+   "section": "PEANUT + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 18b",
+   "moves": 9,
+   "alg": "x r R r R' z R r' R' r b",
+   "alt": ""
+  },
+  {
+   "page": 5,
+   "section": "PEANUT + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 18d",
+   "moves": 8,
+   "alg": "x z r' R r' R' z' r' R r R",
+   "alt": ""
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 18e",
+   "moves": 9,
+   "alg": "y' x B r' R r R' z R r' R r",
+   "alt": ""
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 18g",
+   "moves": 8,
+   "alg": "x R' r' R' r z R r R' r",
+   "alt": ""
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + WAT PERM",
+   "seccount": 8,
+   "name": "Case 19a",
+   "moves": 10,
+   "alg": "y' x r R r R' B R' B' R' r R'",
+   "alt": ""
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + WAT PERM",
+   "seccount": 8,
+   "name": "Case 19c",
+   "moves": 7,
+   "alg": "x r2' R r R' z' r' R r",
+   "alt": ""
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + WAT PERM",
+   "seccount": 8,
+   "name": "Case 19e",
+   "moves": 10,
+   "alg": "y x B' R r R' r' R r R' B' r",
+   "alt": "y2 x b r' R' r z2 r' R r b'"
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + WAT PERM",
+   "seccount": 8,
+   "name": "Case 19g",
+   "moves": 9,
+   "alg": "x z R' r' R r z r R r R' r",
+   "alt": "x r' R r' R' r' z' r' R' r R"
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + X PERM",
+   "seccount": 8,
+   "name": "Case 20a",
+   "moves": 7,
+   "alg": "B' R B R F R F'",
+   "alt": ""
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + X PERM",
+   "seccount": 8,
+   "name": "Case 20c",
+   "moves": 7,
+   "alg": "B L' B' L' F' L' F",
+   "alt": ""
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 18f",
+   "moves": 10,
+   "alg": "y2 x B r' R r R' z R r' R' r R'",
+   "alt": ""
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 18h",
+   "moves": 8,
+   "alg": "x z r R r R' z' r' R' r R'",
+   "alt": ""
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + WAT PERM",
+   "seccount": 8,
+   "name": "Case 19b",
+   "moves": 11,
+   "alg": "y2 x r' R r z R r R' z R r' R' r b",
+   "alt": ""
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + WAT PERM",
+   "seccount": 8,
+   "name": "Case 19d",
+   "moves": 7,
+   "alg": "x R r R' z' r' R r R",
+   "alt": ""
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + WAT PERM",
+   "seccount": 8,
+   "name": "Case 19f",
+   "moves": 8,
+   "alg": "y r' R r b' B z' R' r' R",
+   "alt": "x z' B' R r R' z2 R r' R' B"
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + WAT PERM",
+   "seccount": 8,
+   "name": "Case 19h",
+   "moves": 9,
+   "alg": "x r R r' R' z' R' r' R' r R'",
+   "alt": "y' x R r' R r R z R r R' r'"
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + X PERM",
+   "seccount": 8,
+   "name": "Case 20b",
+   "moves": 8,
+   "alg": "R' F R F' B' R B R'",
+   "alt": ""
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + X PERM",
+   "seccount": 8,
+   "name": "Case 20d",
+   "moves": 8,
+   "alg": "B F' R' F R F' B F'",
+   "alt": ""
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + X PERM",
+   "seccount": 8,
+   "name": "Case 20e",
+   "moves": 8,
+   "alg": "y2 x B' R r' R' r z r' R r",
+   "alt": ""
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + X PERM",
+   "seccount": 8,
+   "name": "Case 20g",
+   "moves": 10,
+   "alg": "y x R' r' R r R' z' R r' R' r B",
+   "alt": ""
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 21a",
+   "moves": 10,
+   "alg": "y x b' r' R r R z' r' B' r B r'",
+   "alt": "y' x R r' R' z' r' R r z r R r' R' r' R r R'"
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 21c",
+   "moves": 8,
+   "alg": "x B' r R' r' B r R r'",
+   "alt": "x B' r' B r B' z r' R' r z' r'"
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 21e",
+   "moves": 9,
+   "alg": "y x R' r R' r' z' r' R' r z r R'",
+   "alt": "y2 x R r R' B R B' r' R r R r'"
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 21g",
+   "moves": 9,
+   "alg": "x R' B' R r' y' r' R' z' R r R'",
+   "alt": "x R' r' R' r B R' B' R r' R' r"
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + VERTICAL U PERM",
+   "seccount": 4,
+   "name": "Case 22a",
+   "moves": 10,
+   "alg": "x r R' r' R r R B R' B' r'",
+   "alt": "x z2 r B R B' R' r' R' r R r'"
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + VERTICAL U PERM",
+   "seccount": 4,
+   "name": "Case 22c",
+   "moves": 8,
+   "alg": "y r' R' r R z' R r' R' r",
+   "alt": "y x r R' r' z' r' R' r z r R"
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + X PERM",
+   "seccount": 8,
+   "name": "Case 20f",
+   "moves": 8,
+   "alg": "y' x r' R' r z' r' R r R' B",
+   "alt": ""
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + X PERM",
+   "seccount": 8,
+   "name": "Case 20h",
+   "moves": 8,
+   "alg": "x R r R' z R r' R' r b'",
+   "alt": "x B' r' R r R' z R r' R' r R"
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 21b",
+   "moves": 11,
+   "alg": "y' x R r R' z R r' R' r z' r2' R r R'",
+   "alt": "x z R r R r' R' r' z' r' R r B'"
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 21d",
+   "moves": 10,
+   "alg": "x r' R' r' R r R B R' B' r",
+   "alt": "x r' R' r z' r' R r R' z R' r' R' r"
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 21f",
+   "moves": 9,
+   "alg": "y' x R r' z' r' R r z r R r' R",
+   "alt": "x r' R' z' r' R r z R r R r' R'"
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 21h",
+   "moves": 9,
+   "alg": "x r' R B R' B' R' r' R r'",
+   "alt": "y2 x r' R r R' r' R' z' r' R' r B R'"
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + VERTICAL U PERM",
+   "seccount": 4,
+   "name": "Case 22b",
+   "moves": 10,
+   "alg": "x B' R B R' B' R' r' R r B",
+   "alt": "x z2 B' r' R' r R B R B' R' B"
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + VERTICAL U PERM",
+   "seccount": 4,
+   "name": "Case 22d",
+   "moves": 8,
+   "alg": "z2 R r R' r' z r' R r R'",
+   "alt": "x r R z R r' R' z' R' r' R"
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + O PERM",
+   "seccount": 8,
+   "name": "Case 23a",
+   "moves": 8,
+   "alg": "x z r R r' R' z' R' r' R r",
+   "alt": ""
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + O PERM",
+   "seccount": 8,
+   "name": "Case 23c",
+   "moves": 8,
+   "alg": "x r' R' r R z R r R' r'",
+   "alt": ""
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + O PERM",
+   "seccount": 8,
+   "name": "Case 23e",
+   "moves": 8,
+   "alg": "y' R r R B R' B' R' r'",
+   "alt": "x z2 r R r R' r' R' z' r' R' r B"
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + O PERM",
+   "seccount": 8,
+   "name": "Case 23g",
+   "moves": 9,
+   "alg": "y2 x b r' R r R' z' R r R' r",
+   "alt": "y' z' r' R' r l' r' R r R"
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 24a",
+   "moves": 11,
+   "alg": "x z R r R' r' R r R' r z' r' R r",
+   "alt": ""
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 24c",
+   "moves": 11,
+   "alg": "x r' R' r R' z R r' R' r R r' R'",
+   "alt": "x r' B R' B' R B R' B' R' r' R' r'"
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 25a",
+   "moves": 11,
+   "alg": "y' x r' R' r' z' r' R' r R r' R' r B",
+   "alt": "y2 x r R r R' r' R r R' z' R r' R' r R"
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 25c",
+   "moves": 12,
+   "alg": "y' x b' R r R' r' R r R' r z' r' R r'",
+   "alt": "x R r z r R r R' r' R r R' z' r'"
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + O PERM",
+   "seccount": 8,
+   "name": "Case 23b",
+   "moves": 8,
+   "alg": "x R' r' R r z r R r' R'",
+   "alt": "y2 x B r R' r' B' r R r'"
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + O PERM",
+   "seccount": 8,
+   "name": "Case 23d",
+   "moves": 8,
+   "alg": "x z R r R' r' z' r' R' r R",
+   "alt": ""
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + O PERM",
+   "seccount": 8,
+   "name": "Case 23f",
+   "moves": 10,
+   "alg": "y x B' r' R r R' z R' r' R r R",
+   "alt": "y r R B R B' R' r' R'"
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + O PERM",
+   "seccount": 8,
+   "name": "Case 23h",
+   "moves": 8,
+   "alg": "y r' R' r' R r z' r' R r",
+   "alt": "y x r' R r' R' z R r' R' r b'"
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 24b",
+   "moves": 11,
+   "alg": "x r' R' r R r' R' r R' z R r' R'",
+   "alt": "x R B R' B' r' R' r R r' R' r R"
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 24d",
+   "moves": 12,
+   "alg": "y' x R r' R r R' z R r' R' r R r' R'",
+   "alt": "x B r' R r R' r' R r z r R r R"
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 25b",
+   "moves": 9,
+   "alg": "L B' R' L' R' B' L R B'",
+   "alt": ""
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 25d",
+   "moves": 11,
+   "alg": "y2 x B' r' R r R' r' R r z r R r",
+   "alt": "x z r' R r R' z' b' r' R r R' z' R r' R' r'"
+  },
+  {
+   "page": 9,
+   "section": "PEANUT+ TRIPLE SLEDGE",
+   "seccount": 4,
+   "name": "Case 26a",
+   "moves": 9,
+   "alg": "F' B' F R B' R' B' F B'",
+   "alt": ""
+  },
+  {
+   "page": 9,
+   "section": "PEANUT+ TRIPLE SLEDGE",
+   "seccount": 4,
+   "name": "Case 26c",
+   "moves": 9,
+   "alg": "F B F' L' B L B F' B",
+   "alt": ""
+  },
+  {
+   "page": 9,
+   "section": "PEANUT + H OR Z PERM AND PURE PEANUT",
+   "seccount": 4,
+   "name": "Case 27",
+   "moves": 10,
+   "alg": "y2 B r' R r R' B' z' R r' R' r",
+   "alt": "y2 x r' R' z' r B r' R r y' r' R' r"
+  },
+  {
+   "page": 9,
+   "section": "PEANUT + H OR Z PERM AND PURE PEANUT",
+   "seccount": 4,
+   "name": "Case 29a",
+   "moves": 11,
+   "alg": "y x r' R' r R r' R' r' z' r' R' r B",
+   "alt": "y x r R r' R' z' r' R' r z r' R r' R'"
+  },
+  {
+   "page": 9,
+   "section": "L4C",
+   "seccount": 8,
+   "name": "Case 30a",
+   "moves": 8,
+   "alg": "y2 x B' r' B r B R r' R'",
+   "alt": "y' x R' r' R' r b z r B r' z' b' R"
+  },
+  {
+   "page": 9,
+   "section": "L4C",
+   "seccount": 8,
+   "name": "Case 31",
+   "moves": 8,
+   "alg": "y2 x b' r' R' r b z r B r'",
+   "alt": "y2 x b z r B r' B' z' r' R' r"
+  },
+  {
+   "page": 9,
+   "section": "L4C",
+   "seccount": 8,
+   "name": "Case 32",
+   "moves": 9,
+   "alg": "y x r' B r' B' z' r' R' r z B r'",
+   "alt": "y x r B' r B R r R' B' r"
+  },
+  {
+   "page": 9,
+   "section": "L4C",
+   "seccount": 8,
+   "name": "Case 34a",
+   "moves": 9,
+   "alg": "x b r' R r R' z2 r' R r R",
+   "alt": ""
+  },
+  {
+   "page": 9,
+   "section": "PEANUT+ TRIPLE SLEDGE",
+   "seccount": 4,
+   "name": "Case 26b",
+   "moves": 11,
+   "alg": "x r R r' R' r B R' B' R' r' R'",
+   "alt": "x B r' R r R z R r R' r' R r R"
+  },
+  {
+   "page": 9,
+   "section": "PEANUT+ TRIPLE SLEDGE",
+   "seccount": 4,
+   "name": "Case 26d",
+   "moves": 9,
+   "alg": "F B' F L F L' B' F B",
+   "alt": ""
+  },
+  {
+   "page": 9,
+   "section": "PEANUT + H OR Z PERM AND PURE PEANUT",
+   "seccount": 4,
+   "name": "Case 28",
+   "moves": 12,
+   "alg": "x z' r' R' r z r' R r R' r z' r' R' r R",
+   "alt": "x z R' r' R r R' z R r' R' r z' r' R r"
+  },
+  {
+   "page": 9,
+   "section": "PEANUT + H OR Z PERM AND PURE PEANUT",
+   "seccount": 4,
+   "name": "Case 29b",
+   "moves": 9,
+   "alg": "y' r' R r y' r l B r' l B'",
+   "alt": "y z' r' R' r y z' r' R r b r' R' r"
+  },
+  {
+   "page": 9,
+   "section": "L4C",
+   "seccount": 8,
+   "name": "Case 30b",
+   "moves": 8,
+   "alg": "y x B r' B' z' r' R' r b R",
+   "alt": "x B' r B r' B' z' r' R' r b'"
+  },
+  {
+   "page": 9,
+   "section": "L4C",
+   "seccount": 8,
+   "name": "U Perm",
+   "moves": 8,
+   "alg": "y x b' r' R r R' z2 r' R r",
+   "alt": "y x' r' R' r z2 R r' R' r b"
+  },
+  {
+   "page": 9,
+   "section": "L4C",
+   "seccount": 8,
+   "name": "Case 33",
+   "moves": 8,
+   "alg": "r R' r R' b' r B' r",
+   "alt": "r R' r R' x' B' R r' B"
+  },
+  {
+   "page": 9,
+   "section": "L4C",
+   "seccount": 8,
+   "name": "Case 34b",
+   "moves": 10,
+   "alg": "x B' r' R r R' z2 r' R r R' r",
+   "alt": "y x R' r' R' r z2 R r' R' r b'"
+  },
+  {
+   "page": 10,
+   "section": "L5C",
+   "seccount": 6,
+   "name": "Case 35a",
+   "moves": 11,
+   "alg": "y' x r' R r R' r R y' r' R r B' r",
+   "alt": "y' x b R r' b r R' b' r R' r'"
+  },
+  {
+   "page": 10,
+   "section": "L5C",
+   "seccount": 6,
+   "name": "Case 36a",
+   "moves": 12,
+   "alg": "y' x r' R' r B r' R r' R' r B r' R",
+   "alt": "y x R' r B r' R r' R' r B r' R r'"
+  },
+  {
+   "page": 10,
+   "section": "L5C",
+   "seccount": 6,
+   "name": "Case 37a",
+   "moves": 12,
+   "alg": "x B' r' R r R' r B' r' R r R' r",
+   "alt": "y' x r' R' r B r' R r z' r' R r R' z' r'"
+  },
+  {
+   "page": 10,
+   "section": "SHORT CASES",
+   "seccount": 6,
+   "name": "Short 1",
+   "moves": 4,
+   "alg": "F R' F' R",
+   "alt": ""
+  },
+  {
+   "page": 10,
+   "section": "SHORT CASES",
+   "seccount": 6,
+   "name": "Short 3",
+   "moves": 8,
+   "alg": "F R B' R' B L F' L'",
+   "alt": ""
+  },
+  {
+   "page": 10,
+   "section": "SHORT CASES",
+   "seccount": 6,
+   "name": "Short 5",
+   "moves": 8,
+   "alg": "F' B' R' B F B' R B",
+   "alt": ""
+  },
+  {
+   "page": 10,
+   "section": "L5C",
+   "seccount": 6,
+   "name": "Case 35b",
+   "moves": 12,
+   "alg": "y2 x R r' R' r B r' R r' R' r B r'",
+   "alt": "x r B' r' R r R' r B' r' R r R'"
+  },
+  {
+   "page": 10,
+   "section": "L5C",
+   "seccount": 6,
+   "name": "Case 36b",
+   "moves": 12,
+   "alg": "y' x B r' R r' R' r B r' R r' R' r",
+   "alt": "x B' r' R' r B r' R r z' r' R r R'"
+  },
+  {
+   "page": 10,
+   "section": "L5C",
+   "seccount": 6,
+   "name": "Case 37b",
+   "moves": 10,
+   "alg": "x r' R r z' r B' R r' R' B' r",
+   "alt": "x r B r' R r' R' r B r' R r' R'"
+  },
+  {
+   "page": 10,
+   "section": "SHORT CASES",
+   "seccount": 6,
+   "name": "Short 2",
+   "moves": 4,
+   "alg": "F' L F L'",
+   "alt": ""
+  },
+  {
+   "page": 10,
+   "section": "SHORT CASES",
+   "seccount": 6,
+   "name": "Short 4",
+   "moves": 8,
+   "alg": "F R' F' R F R' F' R",
+   "alt": ""
+  },
+  {
+   "page": 10,
+   "section": "SHORT CASES",
+   "seccount": 6,
+   "name": "Short 6",
+   "moves": 8,
+   "alg": "F' R' L B F' R' L B",
+   "alt": ""
+  }
+ ],
+ "sa": [
+  {
+   "page": 1,
+   "section": "?",
+   "seccount": null,
+   "name": "HCubist",
+   "moves": null,
+   "alg": "",
+   "alt": ""
+  },
+  {
+   "page": 1,
+   "section": "SKEWB, SARAH'S METHOD",
+   "seccount": null,
+   "name": "SARAH'S ADVANCED",
+   "moves": null,
+   "alg": "",
+   "alt": ""
+  },
+  {
+   "page": 1,
+   "section": "SKEWB, SARAH'S METHOD",
+   "seccount": null,
+   "name": "ALGORITHM",
+   "moves": null,
+   "alg": "",
+   "alt": ""
+  },
+  {
+   "page": 1,
+   "section": "SKEWB, SARAH'S METHOD",
+   "seccount": null,
+   "name": "Sarah's Advanced",
+   "moves": null,
+   "alg": "",
+   "alt": ""
+  },
+  {
+   "page": 1,
+   "section": "SKEWB, SARAH'S METHOD",
+   "seccount": null,
+   "name": "HOW TO READ IT",
+   "moves": null,
+   "alg": "",
+   "alt": ""
+  },
+  {
+   "page": 1,
+   "section": "SKEWB, SARAH'S METHOD",
+   "seccount": null,
+   "name": "SHEET",
+   "moves": null,
+   "alg": "",
+   "alt": ""
+  },
+  {
+   "page": 2,
+   "section": "SKEWB, SARAH'S METHOD",
+   "seccount": null,
+   "name": "SARAH'S",
+   "moves": null,
+   "alg": "",
+   "alt": ""
+  },
+  {
+   "page": 2,
+   "section": "SKEWB, SARAH'S METHOD",
+   "seccount": null,
+   "name": "ADVANCED",
+   "moves": null,
+   "alg": "",
+   "alt": ""
+  },
+  {
+   "page": 2,
+   "section": "PI + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 1a",
+   "moves": 16,
+   "alg": "H z S z' H z H",
+   "alt": "H z H z' H z S"
+  },
+  {
+   "page": 2,
+   "section": "PI + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 2a",
+   "moves": 16,
+   "alg": "z2 H z' S z S z' S",
+   "alt": "z2 S z' S z H z' S"
+  },
+  {
+   "page": 2,
+   "section": "PI + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 1c",
+   "moves": 16,
+   "alg": "S z S z' S z H",
+   "alt": "S z H z' S z S"
+  },
+  {
+   "page": 2,
+   "section": "PI + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 2c",
+   "moves": 16,
+   "alg": "z2 S z' H z H z' H",
+   "alt": "z2 H z' H z S z' H"
+  },
+  {
+   "page": 2,
+   "section": "PI + WAT PERM",
+   "seccount": 8,
+   "name": "Case 3a",
+   "moves": 16,
+   "alg": "z H z2 S z' S z' H",
+   "alt": "z' S z H z H z2 S"
+  },
+  {
+   "page": 2,
+   "section": "PI + WAT PERM",
+   "seccount": 8,
+   "name": "Case 4a",
+   "moves": 12,
+   "alg": "z S x H z2 H",
+   "alt": "z S x S z2 S"
+  },
+  {
+   "page": 2,
+   "section": "PI + WAT PERM",
+   "seccount": 8,
+   "name": "Case 3c",
+   "moves": 16,
+   "alg": "z S z2 H z' H z' S",
+   "alt": "z' H z S z S z2 H"
+  },
+  {
+   "page": 2,
+   "section": "PI + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 1b",
+   "moves": 16,
+   "alg": "z' S z' S z S z' H",
+   "alt": "z' S z' H z S z' S"
+  },
+  {
+   "page": 2,
+   "section": "PI + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 2b",
+   "moves": 16,
+   "alg": "z S z H z' H z H",
+   "alt": "z H z H z' S z H"
+  },
+  {
+   "page": 2,
+   "section": "PI + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 1d",
+   "moves": 16,
+   "alg": "z' H z' S z H z' H",
+   "alt": "z' H z' H z H z' S"
+  },
+  {
+   "page": 2,
+   "section": "PI + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 2d",
+   "moves": 16,
+   "alg": "z S z S z' H z S",
+   "alt": "z H z S z' S z S"
+  },
+  {
+   "page": 2,
+   "section": "PI + WAT PERM",
+   "seccount": 8,
+   "name": "Case 3b",
+   "moves": 16,
+   "alg": "H z' S z' S z2 H",
+   "alt": "S z' S z' H z2 S"
+  },
+  {
+   "page": 2,
+   "section": "PI + WAT PERM",
+   "seccount": 8,
+   "name": "Case 4b",
+   "moves": 12,
+   "alg": "z2 H x' S z2 S",
+   "alt": "z2 H x' H z2 H"
+  },
+  {
+   "page": 2,
+   "section": "PI + WAT PERM",
+   "seccount": 8,
+   "name": "Case 3d",
+   "moves": 16,
+   "alg": "H z' H z' S z2 H",
+   "alt": "S z' H z' H z2 S"
+  },
+  {
+   "page": 3,
+   "section": "PI + WAT PERM",
+   "seccount": 8,
+   "name": "Case 4c",
+   "moves": 12,
+   "alg": "z H x S z2 S",
+   "alt": "z H x H z2 H"
+  },
+  {
+   "page": 3,
+   "section": "PI + X PERM",
+   "seccount": 8,
+   "name": "Case 5a",
+   "moves": 12,
+   "alg": "x' S z2 S y2 x' H",
+   "alt": "x' S z2 S x y2 H"
+  },
+  {
+   "page": 3,
+   "section": "PI + X PERM",
+   "seccount": 8,
+   "name": "Case 6a",
+   "moves": 12,
+   "alg": "z H z2 x' S z2 S",
+   "alt": "z H x z2 S z2 S"
+  },
+  {
+   "page": 3,
+   "section": "PI + X PERM",
+   "seccount": 8,
+   "name": "Case 5c",
+   "moves": 12,
+   "alg": "x' S z2 S y2 x' S",
+   "alt": "x' H z2 H x y2 S"
+  },
+  {
+   "page": 3,
+   "section": "PI + X PERM",
+   "seccount": 8,
+   "name": "Case 6c",
+   "moves": 12,
+   "alg": "z S x z2 H z2 H",
+   "alt": "z S x z2 S z2 S"
+  },
+  {
+   "page": 3,
+   "section": "PI + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 7a",
+   "moves": 16,
+   "alg": "z S S y2 x' S z2 S",
+   "alt": "H z2 S z' H z S"
+  },
+  {
+   "page": 3,
+   "section": "PI + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 7c",
+   "moves": 16,
+   "alg": "H z2 S z H z' S",
+   "alt": "z H H x' S z2 S"
+  },
+  {
+   "page": 3,
+   "section": "PI + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 8a",
+   "moves": 12,
+   "alg": "S z' S z' S",
+   "alt": "H z' S z' H"
+  },
+  {
+   "page": 3,
+   "section": "PI + WAT PERM",
+   "seccount": 8,
+   "name": "Case 4d",
+   "moves": 12,
+   "alg": "z2 S x' H z2 H",
+   "alt": "z2 S x' S z2 S"
+  },
+  {
+   "page": 3,
+   "section": "PI + X PERM",
+   "seccount": 8,
+   "name": "Case 5b",
+   "moves": 12,
+   "alg": "x y H z2 H x z2 S",
+   "alt": "x y S x H x z2 H"
+  },
+  {
+   "page": 3,
+   "section": "PI + X PERM",
+   "seccount": 8,
+   "name": "Case 6b",
+   "moves": 12,
+   "alg": "z2 S y2 x' S z2 S",
+   "alt": "z2 S x y2 H z2 H"
+  },
+  {
+   "page": 3,
+   "section": "PI + X PERM",
+   "seccount": 8,
+   "name": "Case 5d",
+   "moves": 12,
+   "alg": "y z' S z2 S z2 x' H",
+   "alt": "x y S z2 S x z2 H"
+  },
+  {
+   "page": 3,
+   "section": "PI + X PERM",
+   "seccount": 8,
+   "name": "Case 6d",
+   "moves": 12,
+   "alg": "x' S x y2 S x H",
+   "alt": "z2 H x y2 S z2 S"
+  },
+  {
+   "page": 3,
+   "section": "PI + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 7b",
+   "moves": 16,
+   "alg": "S z2 H z S z' H",
+   "alt": "z S S x' H z2 H"
+  },
+  {
+   "page": 3,
+   "section": "PI + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 7d",
+   "moves": 16,
+   "alg": "S z2 H z' S z H",
+   "alt": "H z2 S z' S z S"
+  },
+  {
+   "page": 3,
+   "section": "PI + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 8b",
+   "moves": 12,
+   "alg": "S z' H z' S",
+   "alt": "H z' H z' H"
+  },
+  {
+   "page": 4,
+   "section": "PI + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 8c",
+   "moves": 12,
+   "alg": "H z H z H",
+   "alt": "S z H z S"
+  },
+  {
+   "page": 4,
+   "section": "PI + VERTICAL U PERM",
+   "seccount": 4,
+   "name": "Case 9a",
+   "moves": 12,
+   "alg": "x' S x' H x' S",
+   "alt": "x y2 H x S x H"
+  },
+  {
+   "page": 4,
+   "section": "PI + VERTICAL U PERM",
+   "seccount": 4,
+   "name": "Case 10a",
+   "moves": 8,
+   "alg": "S z2 H",
+   "alt": ""
+  },
+  {
+   "page": 4,
+   "section": "PI + O PERM",
+   "seccount": 8,
+   "name": "Case 11a",
+   "moves": 12,
+   "alg": "z2 H z' S z2 S",
+   "alt": "z2 H z' H z2 H"
+  },
+  {
+   "page": 4,
+   "section": "PI + O PERM",
+   "seccount": 8,
+   "name": "Case 12a",
+   "moves": 12,
+   "alg": "z S z' x' S z2 S",
+   "alt": "z2 H z2 H z S"
+  },
+  {
+   "page": 4,
+   "section": "PI + O PERM",
+   "seccount": 8,
+   "name": "Case 11c",
+   "moves": 12,
+   "alg": "z2 S z' S z2 S",
+   "alt": "z2 S z' H z2 H"
+  },
+  {
+   "page": 4,
+   "section": "PI + O PERM",
+   "seccount": 8,
+   "name": "Case 12c",
+   "moves": 12,
+   "alg": "z H y' z' S z2 S",
+   "alt": "z2 S z2 S z H"
+  },
+  {
+   "page": 4,
+   "section": "PI + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 13a",
+   "moves": 12,
+   "alg": "H x y S z2 S",
+   "alt": "H x y H z2 H"
+  },
+  {
+   "page": 4,
+   "section": "PI + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 8d",
+   "moves": 12,
+   "alg": "H z S z H",
+   "alt": "S z S z S"
+  },
+  {
+   "page": 4,
+   "section": "PI + VERTICAL U PERM",
+   "seccount": 4,
+   "name": "Case 9b",
+   "moves": 16,
+   "alg": "S z2 S z' S S",
+   "alt": "x' y H x' S x' H"
+  },
+  {
+   "page": 4,
+   "section": "PI + VERTICAL U PERM",
+   "seccount": 4,
+   "name": "Case 10b",
+   "moves": 8,
+   "alg": "z2 H z2 S",
+   "alt": ""
+  },
+  {
+   "page": 4,
+   "section": "PI + O PERM",
+   "seccount": 8,
+   "name": "Case 11b",
+   "moves": 12,
+   "alg": "z S z S z2 S",
+   "alt": "z S z H z2 H"
+  },
+  {
+   "page": 4,
+   "section": "PI + O PERM",
+   "seccount": 8,
+   "name": "Case 12b",
+   "moves": 12,
+   "alg": "z2 H z x S z2 S",
+   "alt": "z S z2 S z' H"
+  },
+  {
+   "page": 4,
+   "section": "PI + O PERM",
+   "seccount": 8,
+   "name": "Case 11d",
+   "moves": 12,
+   "alg": "z H z H z2 H",
+   "alt": "z H z S z2 S"
+  },
+  {
+   "page": 4,
+   "section": "PI + O PERM",
+   "seccount": 8,
+   "name": "Case 12d",
+   "moves": 12,
+   "alg": "z2 S x y' S z2 S",
+   "alt": "z H z2 H z' S"
+  },
+  {
+   "page": 4,
+   "section": "PI + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 13b",
+   "moves": 12,
+   "alg": "z' S x' y S z2 S",
+   "alt": "z' S x' y H z2 H"
+  },
+  {
+   "page": 5,
+   "section": "PI + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 13c",
+   "moves": 12,
+   "alg": "H x' y S z2 S",
+   "alt": "H x' y H z2 H"
+  },
+  {
+   "page": 5,
+   "section": "PI + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 14a",
+   "moves": 12,
+   "alg": "z' H z' S z S",
+   "alt": "z' S z' S z H"
+  },
+  {
+   "page": 5,
+   "section": "PI + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 14c",
+   "moves": 12,
+   "alg": "z' S z H z' H",
+   "alt": "z' H z H z' S"
+  },
+  {
+   "page": 5,
+   "section": "PI + TRIPLE SLEDGE",
+   "seccount": 2,
+   "name": "Case 15a",
+   "moves": 16,
+   "alg": "z H x z2 H z2 H x y2 S",
+   "alt": "z' S x y2 H z2 H x z2 H"
+  },
+  {
+   "page": 5,
+   "section": "PI + H OR Z PERM",
+   "seccount": 3,
+   "name": "Case 16",
+   "moves": 12,
+   "alg": "z' S z2 S z2 S",
+   "alt": "z S z2 S z2 H"
+  },
+  {
+   "page": 5,
+   "section": "PI + H OR Z PERM",
+   "seccount": 3,
+   "name": "Case 17b",
+   "moves": 20,
+   "alg": "z S z H z' H z S z' H",
+   "alt": "x2 z S S x S y2 H"
+  },
+  {
+   "page": 5,
+   "section": "PEANUT + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 18a",
+   "moves": 16,
+   "alg": "H z H z' H z H",
+   "alt": "S z' H x y S z2 S"
+  },
+  {
+   "page": 5,
+   "section": "PEANUT + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 18c",
+   "moves": 16,
+   "alg": "z2 S z' H z S z' H",
+   "alt": "S z' H x' H z2 H"
+  },
+  {
+   "page": 5,
+   "section": "PI + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 13d",
+   "moves": 12,
+   "alg": "z' S x' y S z2 S",
+   "alt": "z' S x' y H z2 H"
+  },
+  {
+   "page": 5,
+   "section": "PI + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 14b",
+   "moves": 12,
+   "alg": "z H z' H z S",
+   "alt": "z S z' H z H"
+  },
+  {
+   "page": 5,
+   "section": "PI + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 14d",
+   "moves": 12,
+   "alg": "z S z S z' H",
+   "alt": "z H z S z' S"
+  },
+  {
+   "page": 5,
+   "section": "PI + TRIPLE SLEDGE",
+   "seccount": 2,
+   "name": "Case 15b",
+   "moves": 16,
+   "alg": "z S x z2 H z2 H x y2 H",
+   "alt": "z' H x y2 H z2 H x z2 S"
+  },
+  {
+   "page": 5,
+   "section": "PI + H OR Z PERM",
+   "seccount": 3,
+   "name": "Case 17a",
+   "moves": 20,
+   "alg": "z S z' H z H z' S z H",
+   "alt": "x2 z' H H x' H y2 S"
+  },
+  {
+   "page": 5,
+   "section": "PEANUT + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 18b",
+   "moves": 16,
+   "alg": "z' S z' S z S z' S",
+   "alt": "z' H z S x' y S z2 S"
+  },
+  {
+   "page": 5,
+   "section": "PEANUT + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 18d",
+   "moves": 16,
+   "alg": "z H z S z' H z S",
+   "alt": "x S z' S x' H z' H"
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 18e",
+   "moves": 16,
+   "alg": "S z S z' S z S",
+   "alt": "H z' S x y S z2 S"
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 18g",
+   "moves": 16,
+   "alg": "z2 H z' S z H z' S",
+   "alt": "H z' S x' H z2 H"
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + WAT PERM",
+   "seccount": 8,
+   "name": "Case 19a",
+   "moves": 16,
+   "alg": "z2 S z2 S z' H z' H",
+   "alt": "S z S z S z2 S"
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + WAT PERM",
+   "seccount": 8,
+   "name": "Case 19c",
+   "moves": 16,
+   "alg": "z2 S z2 S z S z H",
+   "alt": "S z' H z' S z2 S"
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + WAT PERM",
+   "seccount": 8,
+   "name": "Case 19e",
+   "moves": 16,
+   "alg": "z2 S z2 S z' S z' S",
+   "alt": "H z H z S z2 S"
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + WAT PERM",
+   "seccount": 8,
+   "name": "Case 19g",
+   "moves": 16,
+   "alg": "z2 S z2 S z H z S",
+   "alt": "S z S z2 H z' H"
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + X PERM",
+   "seccount": 8,
+   "name": "Case 20a",
+   "moves": 8,
+   "alg": "z S z' S",
+   "alt": ""
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + X PERM",
+   "seccount": 8,
+   "name": "Case 20c",
+   "moves": 8,
+   "alg": "z2 H z H",
+   "alt": ""
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 18f",
+   "moves": 16,
+   "alg": "z' H z' H z H z' H",
+   "alt": "z' S z H x' y S z2 S"
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + SWIRL PERM",
+   "seccount": 8,
+   "name": "Case 18h",
+   "moves": 16,
+   "alg": "z S z H z' S z H",
+   "alt": "x H z' H x' S z' S"
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + WAT PERM",
+   "seccount": 8,
+   "name": "Case 19b",
+   "moves": 16,
+   "alg": "z S z2 S z S z S",
+   "alt": "z' H z' H z' S z2 S"
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + WAT PERM",
+   "seccount": 8,
+   "name": "Case 19d",
+   "moves": 16,
+   "alg": "z S z2 S z' H z' S",
+   "alt": "z' H z S z S z2 S"
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + WAT PERM",
+   "seccount": 8,
+   "name": "Case 19f",
+   "moves": 16,
+   "alg": "z S z2 S z H z H",
+   "alt": "H z' S x H z2 H"
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + WAT PERM",
+   "seccount": 8,
+   "name": "Case 19h",
+   "moves": 16,
+   "alg": "z S z2 S z' S z' H",
+   "alt": "z' H z' H z2 S z S"
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + X PERM",
+   "seccount": 8,
+   "name": "Case 20b",
+   "moves": 8,
+   "alg": "S z S",
+   "alt": ""
+  },
+  {
+   "page": 6,
+   "section": "PEANUT + X PERM",
+   "seccount": 8,
+   "name": "Case 20d",
+   "moves": 8,
+   "alg": "z' H z' H",
+   "alt": ""
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + X PERM",
+   "seccount": 8,
+   "name": "Case 20e",
+   "moves": 8,
+   "alg": "S z' H",
+   "alt": ""
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + X PERM",
+   "seccount": 8,
+   "name": "Case 20g",
+   "moves": 8,
+   "alg": "z' H z S",
+   "alt": ""
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 21a",
+   "moves": 12,
+   "alg": "z H z H z S",
+   "alt": ""
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 21c",
+   "moves": 12,
+   "alg": "z2 S z' S z' H",
+   "alt": ""
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 21e",
+   "moves": 12,
+   "alg": "z' S z' H z' H",
+   "alt": ""
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 21g",
+   "moves": 12,
+   "alg": "H z S z S",
+   "alt": ""
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + VERTICAL U PERM",
+   "seccount": 4,
+   "name": "Case 22a",
+   "moves": 16,
+   "alg": "S z S z2 H z2 H",
+   "alt": "S z H z2 H z2 S"
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + VERTICAL U PERM",
+   "seccount": 4,
+   "name": "Case 22c",
+   "moves": 16,
+   "alg": "H H z' S z2 H",
+   "alt": "S z2 H z2 H z' H"
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + X PERM",
+   "seccount": 8,
+   "name": "Case 20f",
+   "moves": 8,
+   "alg": "z S z H",
+   "alt": ""
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + X PERM",
+   "seccount": 8,
+   "name": "Case 20h",
+   "moves": 8,
+   "alg": "z2 H z' S",
+   "alt": ""
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 21b",
+   "moves": 12,
+   "alg": "z H z' S z' S",
+   "alt": ""
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 21d",
+   "moves": 12,
+   "alg": "z2 S z H z H",
+   "alt": ""
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 21f",
+   "moves": 12,
+   "alg": "z' S z S z H",
+   "alt": ""
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + HORIZONTAL U PERM",
+   "seccount": 8,
+   "name": "Case 21h",
+   "moves": 12,
+   "alg": "H z' H z' S",
+   "alt": ""
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + VERTICAL U PERM",
+   "seccount": 4,
+   "name": "Case 22b",
+   "moves": 16,
+   "alg": "H H z H z2 S",
+   "alt": "S z2 H z2 H z S"
+  },
+  {
+   "page": 7,
+   "section": "PEANUT + VERTICAL U PERM",
+   "seccount": 4,
+   "name": "Case 22d",
+   "moves": 16,
+   "alg": "H z2 S z' H H",
+   "alt": "H z H H z S"
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + O PERM",
+   "seccount": 8,
+   "name": "Case 23a",
+   "moves": 12,
+   "alg": "z2 H z' H z2 S",
+   "alt": "H z2 S z' S"
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + O PERM",
+   "seccount": 8,
+   "name": "Case 23c",
+   "moves": 12,
+   "alg": "z H z H z2 S",
+   "alt": "z' H z2 S z S"
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + O PERM",
+   "seccount": 8,
+   "name": "Case 23e",
+   "moves": 12,
+   "alg": "S z H z2 S",
+   "alt": "z2 S z2 H z S"
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + O PERM",
+   "seccount": 8,
+   "name": "Case 23g",
+   "moves": 12,
+   "alg": "H z S z2 H",
+   "alt": "z2 H z2 S z H"
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 24a",
+   "moves": 12,
+   "alg": "z' S z' H z S",
+   "alt": ""
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 24c",
+   "moves": 12,
+   "alg": "z' H z' S z H",
+   "alt": ""
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 25a",
+   "moves": 12,
+   "alg": "z2 S z' S z S",
+   "alt": ""
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 25c",
+   "moves": 12,
+   "alg": "z H z H z' H",
+   "alt": ""
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + O PERM",
+   "seccount": 8,
+   "name": "Case 23b",
+   "moves": 12,
+   "alg": "z S z S z2 H",
+   "alt": "z' S z2 H z H"
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + O PERM",
+   "seccount": 8,
+   "name": "Case 23d",
+   "moves": 12,
+   "alg": "z2 S z' S z2 H",
+   "alt": "S z2 H z' H"
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + O PERM",
+   "seccount": 8,
+   "name": "Case 23f",
+   "moves": 12,
+   "alg": "z' H z' S z2 H",
+   "alt": "z H z2 S z' H"
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + O PERM",
+   "seccount": 8,
+   "name": "Case 23h",
+   "moves": 12,
+   "alg": "z' S z' H z2 S",
+   "alt": "z S z2 H z' S"
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 24b",
+   "moves": 12,
+   "alg": "H z S z' H",
+   "alt": ""
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 24d",
+   "moves": 12,
+   "alg": "S z H z' S",
+   "alt": ""
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 25b",
+   "moves": 12,
+   "alg": "z' S z S z' S",
+   "alt": ""
+  },
+  {
+   "page": 8,
+   "section": "PEANUT + Z PERM CONJUGATES",
+   "seccount": 8,
+   "name": "Case 25d",
+   "moves": 12,
+   "alg": "H z' H z H",
+   "alt": ""
+  },
+  {
+   "page": 9,
+   "section": "PEANUT+ TRIPLE SLEDGE",
+   "seccount": 4,
+   "name": "Case 26a",
+   "moves": 12,
+   "alg": "S z H H",
+   "alt": "S z' S S"
+  },
+  {
+   "page": 9,
+   "section": "PEANUT+ TRIPLE SLEDGE",
+   "seccount": 4,
+   "name": "Case 26c",
+   "moves": 12,
+   "alg": "z2 S S z H",
+   "alt": "z' H z H H"
+  },
+  {
+   "page": 9,
+   "section": "PEANUT + H OR Z PERM AND PURE PEANUT",
+   "seccount": 4,
+   "name": "Case 27",
+   "moves": 16,
+   "alg": "z2 S S z S S",
+   "alt": "H H z' S S"
+  },
+  {
+   "page": 9,
+   "section": "PEANUT + H OR Z PERM AND PURE PEANUT",
+   "seccount": 4,
+   "name": "Case 29a",
+   "moves": 16,
+   "alg": "x' S x z' H x y' S x H",
+   "alt": "x2 H x' S x' z' H x' y S"
+  },
+  {
+   "page": 9,
+   "section": "L4C",
+   "seccount": 8,
+   "name": "Case 30a",
+   "moves": 16,
+   "alg": "S z S z S z' H",
+   "alt": "H z S z H z' H"
+  },
+  {
+   "page": 9,
+   "section": "L4C",
+   "seccount": 8,
+   "name": "Case 31",
+   "moves": 12,
+   "alg": "H H H",
+   "alt": "S S S"
+  },
+  {
+   "page": 9,
+   "section": "L4C",
+   "seccount": 8,
+   "name": "Case 32",
+   "moves": 16,
+   "alg": "x' S x2 H y2 S x2 H",
+   "alt": "x' S z2 S y2 H z2 H"
+  },
+  {
+   "page": 9,
+   "section": "L4C",
+   "seccount": 8,
+   "name": "Case 34a",
+   "moves": 16,
+   "alg": "S z' H z' S z' H",
+   "alt": "H z' S z' H z' S"
+  },
+  {
+   "page": 9,
+   "section": "PEANUT+ TRIPLE SLEDGE",
+   "seccount": 4,
+   "name": "Case 26b",
+   "moves": 12,
+   "alg": "z2 S S z' S",
+   "alt": "H H z S"
+  },
+  {
+   "page": 9,
+   "section": "PEANUT+ TRIPLE SLEDGE",
+   "seccount": 4,
+   "name": "Case 26d",
+   "moves": 12,
+   "alg": "z H H z H",
+   "alt": "z2 H z S S"
+  },
+  {
+   "page": 9,
+   "section": "PEANUT + H OR Z PERM AND PURE PEANUT",
+   "seccount": 4,
+   "name": "Case 28",
+   "moves": 20,
+   "alg": "S z' S S z' S z2 S",
+   "alt": "S x' y' H x' S x' H"
+  },
+  {
+   "page": 9,
+   "section": "PEANUT + H OR Z PERM AND PURE PEANUT",
+   "seccount": 4,
+   "name": "Case 29b",
+   "moves": 20,
+   "alg": "z S z' H z S z' H z H",
+   "alt": "x S x' z S x' y' S x' H"
+  },
+  {
+   "page": 9,
+   "section": "L4C",
+   "seccount": 8,
+   "name": "Case 30b",
+   "moves": 16,
+   "alg": "S z2 S x y2 H z2 H",
+   "alt": "S x' H x y2 H x S"
+  },
+  {
+   "page": 9,
+   "section": "L4C",
+   "seccount": 8,
+   "name": "U Perm",
+   "moves": 8,
+   "alg": "z' x S z2 S",
+   "alt": "x y H z2 H"
+  },
+  {
+   "page": 9,
+   "section": "L4C",
+   "seccount": 8,
+   "name": "Case 33",
+   "moves": 12,
+   "alg": "H z2 S z2 H",
+   "alt": "S z2 H z2 S"
+  },
+  {
+   "page": 9,
+   "section": "L4C",
+   "seccount": 8,
+   "name": "Case 34b",
+   "moves": 16,
+   "alg": "S z H z S z H",
+   "alt": "H z S z H z S"
+  },
+  {
+   "page": 10,
+   "section": "L5C",
+   "seccount": 6,
+   "name": "Case 35a",
+   "moves": 16,
+   "alg": "z' S z2 S x y' S z2 S",
+   "alt": "z' S z H z2 H z' S"
+  },
+  {
+   "page": 10,
+   "section": "L5C",
+   "seccount": 6,
+   "name": "Case 36a",
+   "moves": 16,
+   "alg": "H z2 H z H z2 H",
+   "alt": "S z2 S z H z2 H"
+  },
+  {
+   "page": 10,
+   "section": "L5C",
+   "seccount": 6,
+   "name": "Case 37a",
+   "moves": 16,
+   "alg": "S z S z' H z H",
+   "alt": "H z S z' S z H"
+  },
+  {
+   "page": 10,
+   "section": "SHORT CASES",
+   "seccount": 6,
+   "name": "Short 1",
+   "moves": 4,
+   "alg": "H",
+   "alt": ""
+  },
+  {
+   "page": 10,
+   "section": "SHORT CASES",
+   "seccount": 6,
+   "name": "Short 3",
+   "moves": 8,
+   "alg": "x' y' H z2 H",
+   "alt": "x' y' S z2 S"
+  },
+  {
+   "page": 10,
+   "section": "SHORT CASES",
+   "seccount": 6,
+   "name": "Short 5",
+   "moves": 12,
+   "alg": "S x y H z2 H",
+   "alt": "S x y S z2 S"
+  },
+  {
+   "page": 10,
+   "section": "L5C",
+   "seccount": 6,
+   "name": "Case 35b",
+   "moves": 16,
+   "alg": "S z' H z2 H z S",
+   "alt": "H z' S z2 S z H"
+  },
+  {
+   "page": 10,
+   "section": "L5C",
+   "seccount": 6,
+   "name": "Case 36b",
+   "moves": 16,
+   "alg": "S z2 S x' y S z2 S",
+   "alt": "S z2 S x' y H z2 H"
+  },
+  {
+   "page": 10,
+   "section": "L5C",
+   "seccount": 6,
+   "name": "Case 37b",
+   "moves": 16,
+   "alg": "z' H z' H z S z' S",
+   "alt": "z' S z' S z H z' H"
+  },
+  {
+   "page": 10,
+   "section": "SHORT CASES",
+   "seccount": 6,
+   "name": "Short 2",
+   "moves": 4,
+   "alg": "z' S",
+   "alt": ""
+  },
+  {
+   "page": 10,
+   "section": "SHORT CASES",
+   "seccount": 6,
+   "name": "Short 4",
+   "moves": 8,
+   "alg": "H H",
+   "alt": "z2 S S"
+  },
+  {
+   "page": 10,
+   "section": "SHORT CASES",
+   "seccount": 6,
+   "name": "Short 6",
+   "moves": 8,
+   "alg": "z' H z2 H",
+   "alt": "z' S z2 S"
+  }
+ ],
+ "l4e": [
+  {
+   "page": 1,
+   "section": "?",
+   "seccount": null,
+   "name": "HCubist",
+   "moves": null,
+   "alg": "",
+   "alt": ""
+  },
+  {
+   "page": 1,
+   "section": "PYRAMINX",
+   "seccount": null,
+   "name": "L4E",
+   "moves": null,
+   "alg": "",
+   "alt": ""
+  },
+  {
+   "page": 1,
+   "section": "PYRAMINX",
+   "seccount": null,
+   "name": "ALGORITHM",
+   "moves": null,
+   "alg": "",
+   "alt": ""
+  },
+  {
+   "page": 1,
+   "section": "PYRAMINX",
+   "seccount": null,
+   "name": "L4E",
+   "moves": null,
+   "alg": "",
+   "alt": ""
+  },
+  {
+   "page": 1,
+   "section": "PYRAMINX",
+   "seccount": null,
+   "name": "HOW TO READ IT",
+   "moves": null,
+   "alg": "",
+   "alt": ""
+  },
+  {
+   "page": 1,
+   "section": "PYRAMINX",
+   "seccount": null,
+   "name": "SHEET",
+   "moves": null,
+   "alg": "",
+   "alt": ""
+  },
+  {
+   "page": 2,
+   "section": "PYRAMINX",
+   "seccount": null,
+   "name": "L4E",
+   "moves": null,
+   "alg": "",
+   "alt": ""
+  },
+  {
+   "page": 2,
+   "section": "LAST LAYER",
+   "seccount": 4,
+   "name": "Sune",
+   "moves": 7,
+   "alg": "R U R' U R U R'",
+   "alt": "L U L' U L U L'"
+  },
+  {
+   "page": 2,
+   "section": "LAST LAYER",
+   "seccount": 4,
+   "name": "Lefty Bars",
+   "moves": 6,
+   "alg": "R' U' L' U L R",
+   "alt": ""
+  },
+  {
+   "page": 2,
+   "section": "L3E",
+   "seccount": 8,
+   "name": "Sledge",
+   "moves": 6,
+   "alg": "L U' R' L R L2'",
+   "alt": "U' L R U' R' U L'"
+  },
+  {
+   "page": 2,
+   "section": "L3E",
+   "seccount": 8,
+   "name": "Clockwise",
+   "moves": 7,
+   "alg": "R U' R' U' L' U' L",
+   "alt": "U L' U' L2 R' L' R"
+  },
+  {
+   "page": 2,
+   "section": "L3E",
+   "seccount": 8,
+   "name": "Righty",
+   "moves": 3,
+   "alg": "R U' R'",
+   "alt": ""
+  },
+  {
+   "page": 2,
+   "section": "L3E",
+   "seccount": 8,
+   "name": "Sexy",
+   "moves": 4,
+   "alg": "U' R U R'",
+   "alt": ""
+  },
+  {
+   "page": 2,
+   "section": "FLIPPED EDGES",
+   "seccount": 5,
+   "name": "2 Flip",
+   "moves": 8,
+   "alg": "R' L R L' U L' U' L",
+   "alt": "U' R' U L' U L U' R"
+  },
+  {
+   "page": 2,
+   "section": "LAST LAYER",
+   "seccount": 4,
+   "name": "AntiSune",
+   "moves": 7,
+   "alg": "R U' R' U' R U' R'",
+   "alt": "L' U' L U' L' U' L"
+  },
+  {
+   "page": 2,
+   "section": "LAST LAYER",
+   "seccount": 4,
+   "name": "Righty Bars",
+   "moves": 6,
+   "alg": "L U R U' R' L'",
+   "alt": ""
+  },
+  {
+   "page": 2,
+   "section": "L3E",
+   "seccount": 8,
+   "name": "Hedge",
+   "moves": 6,
+   "alg": "R' U L R' L' R2",
+   "alt": "U R' L' U L U' R"
+  },
+  {
+   "page": 2,
+   "section": "L3E",
+   "seccount": 8,
+   "name": "Counterclockwise",
+   "moves": 8,
+   "alg": "U L' U L R' L R L'",
+   "alt": "U R' L R L' R U R'"
+  },
+  {
+   "page": 2,
+   "section": "L3E",
+   "seccount": 8,
+   "name": "Lefty",
+   "moves": 3,
+   "alg": "L' U L",
+   "alt": ""
+  },
+  {
+   "page": 2,
+   "section": "L3E",
+   "seccount": 8,
+   "name": "Left Sexy",
+   "moves": 4,
+   "alg": "U L' U' L",
+   "alt": ""
+  },
+  {
+   "page": 2,
+   "section": "FLIPPED EDGES",
+   "seccount": 5,
+   "name": "DR Flip",
+   "moves": 7,
+   "alg": "L R' L' R L' U L",
+   "alt": "R U R' L R' L' R"
+  },
+  {
+   "page": 3,
+   "section": "FLIPPED EDGES",
+   "seccount": 5,
+   "name": "DL Flip",
+   "moves": 7,
+   "alg": "R' L R L' R U' R'",
+   "alt": "L' U' L R' L R L'"
+  },
+  {
+   "page": 3,
+   "section": "FLIPPED EDGES",
+   "seccount": 5,
+   "name": "4 Flip",
+   "moves": 12,
+   "alg": "L' U L R U' R' L' U L R U' R'",
+   "alt": "R U' R' L' U L R U' R' L' U L"
+  },
+  {
+   "page": 3,
+   "section": "POLISH FLIP",
+   "seccount": 4,
+   "name": "Right Polish Flip",
+   "moves": 8,
+   "alg": "U L' U' L U R U' R'",
+   "alt": "U' L R' L' R U' L' U' L"
+  },
+  {
+   "page": 3,
+   "section": "POLISH FLIP",
+   "seccount": 4,
+   "name": "SUS",
+   "moves": 8,
+   "alg": "R U' R2' L R L2' U' L",
+   "alt": "L' U' L R U' R2' L R L'"
+  },
+  {
+   "page": 3,
+   "section": "SEPARATED BAR",
+   "seccount": 6,
+   "name": "Good Niky",
+   "moves": 7,
+   "alg": "U R U R' L' U' L",
+   "alt": "L' B' U B L"
+  },
+  {
+   "page": 3,
+   "section": "SEPARATED BAR",
+   "seccount": 6,
+   "name": "Super Sledge",
+   "moves": 7,
+   "alg": "U' L R' L' R2 U R'",
+   "alt": "R' L R2 U R' U' L'"
+  },
+  {
+   "page": 3,
+   "section": "SEPARATED BAR",
+   "seccount": 6,
+   "name": "Bad Niky",
+   "moves": 7,
+   "alg": "R U' R' U' L' U L",
+   "alt": ""
+  },
+  {
+   "page": 3,
+   "section": "CONNECTED BAR",
+   "seccount": 4,
+   "name": "Right Spam",
+   "moves": 8,
+   "alg": "R U R' U R' L R L'",
+   "alt": "U' L' U' L2 R' L' R2 U R'"
+  },
+  {
+   "page": 3,
+   "section": "FLIPPED EDGES",
+   "seccount": 5,
+   "name": "DB Flip",
+   "moves": 7,
+   "alg": "R U R' U L' U' L",
+   "alt": ""
+  },
+  {
+   "page": 3,
+   "section": "POLISH FLIP",
+   "seccount": 4,
+   "name": "Left Polish Flip",
+   "moves": 8,
+   "alg": "U' R U R' U' L' U L",
+   "alt": "U R' L R L' U R U R'"
+  },
+  {
+   "page": 3,
+   "section": "POLISH FLIP",
+   "seccount": 4,
+   "name": "Anti SUS",
+   "moves": 8,
+   "alg": "L' U L2 R' L' R2 U R'",
+   "alt": "R U R' L' U L2 R' L' R"
+  },
+  {
+   "page": 3,
+   "section": "SEPARATED BAR",
+   "seccount": 6,
+   "name": "Good Sochi",
+   "moves": 7,
+   "alg": "U' L' U' L R U R'",
+   "alt": "L' B' U' B L"
+  },
+  {
+   "page": 3,
+   "section": "SEPARATED BAR",
+   "seccount": 6,
+   "name": "Super Hedge",
+   "moves": 7,
+   "alg": "U R' L R L2' U' L",
+   "alt": "R' U' L' U L2 R L'"
+  },
+  {
+   "page": 3,
+   "section": "SEPARATED BAR",
+   "seccount": 6,
+   "name": "Bad Sochi",
+   "moves": 7,
+   "alg": "L' U L U R U' R'",
+   "alt": ""
+  },
+  {
+   "page": 3,
+   "section": "CONNECTED BAR",
+   "seccount": 4,
+   "name": "Left Spam",
+   "moves": 8,
+   "alg": "L' U' L U' L R' L' R",
+   "alt": "U R U R2' L R L2' U' L"
+  },
+  {
+   "page": 4,
+   "section": "CONNECTED BAR",
+   "seccount": 4,
+   "name": "Bad Sledge",
+   "moves": 8,
+   "alg": "R U' R2' L R L2' U L",
+   "alt": "U' L R' L' R2 U R' U' L' U L"
+  },
+  {
+   "page": 4,
+   "section": "NO BAR",
+   "seccount": 6,
+   "name": "Bad Sexy",
+   "moves": 7,
+   "alg": "L' U' L U' R U' R'",
+   "alt": ""
+  },
+  {
+   "page": 4,
+   "section": "NO BAR",
+   "seccount": 6,
+   "name": "Bad Righty",
+   "moves": 7,
+   "alg": "L' U L U' R U R'",
+   "alt": "R' L R L' U R' L R L'"
+  },
+  {
+   "page": 4,
+   "section": "NO BAR",
+   "seccount": 6,
+   "name": "Double Sexy",
+   "moves": 8,
+   "alg": "L' U' L U R' L R L'",
+   "alt": "U' R U' R' U R U R'"
+  },
+  {
+   "page": 4,
+   "section": "CONNECTED BAR",
+   "seccount": 4,
+   "name": "Bad Hedge",
+   "moves": 8,
+   "alg": "L' U L2 R' L' R2 U' R'",
+   "alt": "U R' L R L2' U' L U R U' R'"
+  },
+  {
+   "page": 4,
+   "section": "NO BAR",
+   "seccount": 6,
+   "name": "Bad Ugly",
+   "moves": 7,
+   "alg": "R U R' U L' U L",
+   "alt": ""
+  },
+  {
+   "page": 4,
+   "section": "NO BAR",
+   "seccount": 6,
+   "name": "Bad Lefty",
+   "moves": 7,
+   "alg": "R U' R' U L' U' L",
+   "alt": "L R' L' R U' L R' L' R"
+  },
+  {
+   "page": 4,
+   "section": "NO BAR",
+   "seccount": 6,
+   "name": "Double Ugly",
+   "moves": 8,
+   "alg": "R U R' U' L R' L' R",
+   "alt": "U L' U L U' L' U' L"
+  }
+ ]
+}

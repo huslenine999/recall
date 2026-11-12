@@ -2,7 +2,7 @@
  "id": "./",
  "name": "Recall: Algorithm Trainer",
  "short_name": "Recall",
- "description": "Alg trainer for Megaminx and Square-1.",
+ "description": "Alg trainer for Megaminx, Square-1, Skewb and Pyraminx.",
  "start_url": "./",
  "scope": "./",
  "display": "standalone",

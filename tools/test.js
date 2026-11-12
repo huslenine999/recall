@@ -22,12 +22,13 @@ step('built page is complete', () => {
   return (html.length / 1024).toFixed(0) + ' KB';
 });
 step('data files parse and ids are unique', () => {
-  const sets = { 'megaminx.json': r => r.id, 'megaminx_oll.json': r => r.id, 'square1_pbl.json': r => r.id, 'square1_obl.json': r => r.id, 'square1_csp.json': r => r.name + '|' + r.parity, 'square1_ep.json': r => r.u + '|' + r.d };
+  const sets = { 'megaminx.json': r => r.id, 'megaminx_oll.json': r => r.id, 'square1_pbl.json': r => r.id, 'square1_obl.json': r => r.id, 'square1_csp.json': r => r.name + '|' + r.parity, 'square1_ep.json': r => r.u + '|' + r.d, 'skewb_ns.json': r => r.id, 'skewb_sa.json': r => r.id, 'pyraminx_l4e.json': r => r.id };
   return Object.entries(sets).map(([f, id]) => { const rows = JSON.parse(fs.readFileSync(path.join(root, 'data', f), 'utf8')), seen = new Set(); rows.forEach(r => { const k = id(r); if (seen.has(k)) throw new Error(f + ': duplicate ' + k); seen.add(k); }); return rows.length; }).join(' + ') + ' rows';
 });
 step('Square-1 CSP algs', () => node('tools/verify_csp.js'));
 step('Square-1 PBL algs', () => node('tools/verify_pbl.js'));
 step('Square-1 OBL algs', () => node('tools/verify_obl.js'));
+step('Skewb and Pyraminx algs', () => node('tools/verify_hcubist.js'));
 step('scrambles (setup + alg = solved)', () => node('tools/test_scramble.js'));
 step('sync API (no storage configured)', () => {
   // without the Redis variables the function must answer 503 and never throw

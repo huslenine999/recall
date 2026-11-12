@@ -1,0 +1,1207 @@
+[
+ {
+  "id": "Case 1a",
+  "group": "Pi + Swirl perm",
+  "algs": [
+   "H z S z' H z H",
+   "H z H z' H z S"
+  ],
+  "cls": "ABCDEFABCABDAECAEDCFBBDFCFEEDF"
+ },
+ {
+  "id": "Case 2a",
+  "group": "Pi + Swirl perm",
+  "algs": [
+   "z2 H z' S z S z' S",
+   "z2 S z' S z H z' S"
+  ],
+  "cls": "ABCDEFABDABCAFDAFCBDEBCEDEFCEF"
+ },
+ {
+  "id": "Case 1c",
+  "group": "Pi + Swirl perm",
+  "algs": [
+   "S z S z' S z H",
+   "S z H z' S z S"
+  ],
+  "cls": "ABCDEFABCABDAECAEDBCFDFBECFDFE"
+ },
+ {
+  "id": "Case 2c",
+  "group": "Pi + Swirl perm",
+  "algs": [
+   "z2 S z' H z H z' H",
+   "z2 H z' H z S z' H"
+  ],
+  "cls": "ABCDEFABDABCAFDAFCDEBCEBFDEFCE"
+ },
+ {
+  "id": "Case 3a",
+  "group": "Pi + Wat perm",
+  "algs": [
+   "z H z2 S z' S z' H",
+   "z' S z H z H z2 S"
+  ],
+  "cls": "ABCDEFABFABCAEFAECFDBCDBEFDECD"
+ },
+ {
+  "id": "Case 4a",
+  "group": "Pi + Wat perm",
+  "algs": [
+   "z S x H z2 H",
+   "z S x S z2 S"
+  ],
+  "cls": "ABCDEFABFABCAEFAECBFDCDBEFDCDE"
+ },
+ {
+  "id": "Case 3c",
+  "group": "Pi + Wat perm",
+  "algs": [
+   "z S z2 H z' H z' S",
+   "z' H z S z S z2 H"
+  ],
+  "cls": "ABCDEFABEEAFCBEECFBDADAFBDCDCF"
+ },
+ {
+  "id": "Case 1b",
+  "group": "Pi + Swirl perm",
+  "algs": [
+   "z' S z' S z S z' H",
+   "z' S z' H z S z' S"
+  ],
+  "cls": "ABCDEFABDABCAFDAFCBDECEBFDECEF"
+ },
+ {
+  "id": "Case 2b",
+  "group": "Pi + Swirl perm",
+  "algs": [
+   "z S z H z' H z H",
+   "z H z H z' S z H"
+  ],
+  "cls": "ABCDEFABCABDAECAEDBCFBDFCFEDFE"
+ },
+ {
+  "id": "Case 1d",
+  "group": "Pi + Swirl perm",
+  "algs": [
+   "z' H z' S z H z' H",
+   "z' H z' H z H z' S"
+  ],
+  "cls": "ABCDEFABDABCAFDAFCDEBBCEDEFFCE"
+ },
+ {
+  "id": "Case 2d",
+  "group": "Pi + Swirl perm",
+  "algs": [
+   "z S z S z' H z S",
+   "z H z S z' S z S"
+  ],
+  "cls": "ABCDEFABCABDAECAEDCFBDFBECFEDF"
+ },
+ {
+  "id": "Case 3b",
+  "group": "Pi + Wat perm",
+  "algs": [
+   "H z' S z' S z2 H",
+   "S z' S z' H z2 S"
+  ],
+  "cls": "ABCDEFABCABEAFCAFECDBEDBFCDFED"
+ },
+ {
+  "id": "Case 4b",
+  "group": "Pi + Wat perm",
+  "algs": [
+   "z2 H x' S z2 S",
+   "z2 H x' H z2 H"
+  ],
+  "cls": "ABCDEFABCABEAFCAFECDBBEDCDFFED"
+ },
+ {
+  "id": "Case 3d",
+  "group": "Pi + Wat perm",
+  "algs": [
+   "H z' H z' S z2 H",
+   "S z' H z' H z2 S"
+  ],
+  "cls": "ABCDEFABCABEAFCAFEBCDBEDCDFEDF"
+ },
+ {
+  "id": "Case 4c",
+  "group": "Pi + Wat perm",
+  "algs": [
+   "z H x S z2 S",
+   "z H x H z2 H"
+  ],
+  "cls": "ABCDEFABECBEBDABDCEAFECFFDAFDC"
+ },
+ {
+  "id": "Case 5a",
+  "group": "Pi + X perm",
+  "algs": [
+   "x' S z2 S y2 x' H",
+   "x' S z2 S x y2 H"
+  ],
+  "cls": "ABCDEFABDABEACDACEBDFEFBCDFEFC"
+ },
+ {
+  "id": "Case 6a",
+  "group": "Pi + X perm",
+  "algs": [
+   "z H z2 x' S z2 S",
+   "z H x z2 S z2 S"
+  ],
+  "cls": "ABCDEFABDABEACDACEDFBEFBCDFCEF"
+ },
+ {
+  "id": "Case 5c",
+  "group": "Pi + X perm",
+  "algs": [
+   "x' S z2 S y2 x' S",
+   "x' H z2 H x y2 S"
+  ],
+  "cls": "ABCDEFABDABEACDACEDFBBEFDFCCEF"
+ },
+ {
+  "id": "Case 6c",
+  "group": "Pi + X perm",
+  "algs": [
+   "z S x z2 H z2 H",
+   "z S x z2 S z2 S"
+  ],
+  "cls": "ABCDEFABDABEACDACEBDFBEFDFCEFC"
+ },
+ {
+  "id": "Case 7a",
+  "group": "Pi + Horizontal U perm",
+  "algs": [
+   "z S S y2 x' S z2 S",
+   "H z2 S z' H z S"
+  ],
+  "cls": "ABCDEFABEFABACEFACDBEBFDDCECFD"
+ },
+ {
+  "id": "Case 7c",
+  "group": "Pi + Horizontal U perm",
+  "algs": [
+   "H z2 S z H z' S",
+   "z H H x' S z2 S"
+  ],
+  "cls": "ABCDEFABCCFBBDABDFAECCFEEDAEDF"
+ },
+ {
+  "id": "Case 8a",
+  "group": "Pi + Horizontal U perm",
+  "algs": [
+   "S z' S z' S",
+   "H z' S z' H"
+  ],
+  "cls": "ABCDEFABEFABACECFADBEFDBDCECFD"
+ },
+ {
+  "id": "Case 4d",
+  "group": "Pi + Wat perm",
+  "algs": [
+   "z2 S x' H z2 H",
+   "z2 S x' S z2 S"
+  ],
+  "cls": "ABCDEFABCABEAFCAFEBCDEDBFCDEDF"
+ },
+ {
+  "id": "Case 5b",
+  "group": "Pi + X perm",
+  "algs": [
+   "x y H z2 H x z2 S",
+   "x y S x H x z2 H"
+  ],
+  "cls": "ABCDEFABFABDACFACDFEBBDEFECCDE"
+ },
+ {
+  "id": "Case 6b",
+  "group": "Pi + X perm",
+  "algs": [
+   "z2 S y2 x' S z2 S",
+   "z2 S x y2 H z2 H"
+  ],
+  "cls": "ABCDEFABFABDACFACDFEBDEBCFECDE"
+ },
+ {
+  "id": "Case 5d",
+  "group": "Pi + X perm",
+  "algs": [
+   "y z' S z2 S z2 x' H",
+   "x y S z2 S x z2 H"
+  ],
+  "cls": "ABCDEFABEBEFABCBCFEADDEFCADDCF"
+ },
+ {
+  "id": "Case 6d",
+  "group": "Pi + X perm",
+  "algs": [
+   "x' S x y2 S x H",
+   "z2 H x y2 S z2 S"
+  ],
+  "cls": "ABCDEFABEBEFCABBCFADEDEFCADDCF"
+ },
+ {
+  "id": "Case 7b",
+  "group": "Pi + Horizontal U perm",
+  "algs": [
+   "S z2 H z S z' H",
+   "z S S x' H z2 H"
+  ],
+  "cls": "ABCDEFACBACEDBADEAFCBFCEBFDEFD"
+ },
+ {
+  "id": "Case 7d",
+  "group": "Pi + Horizontal U perm",
+  "algs": [
+   "S z2 H z' S z H",
+   "H z2 S z' S z S"
+  ],
+  "cls": "ABCDEFABEBFAACECFADBEFDBDCEFDC"
+ },
+ {
+  "id": "Case 8b",
+  "group": "Pi + Horizontal U perm",
+  "algs": [
+   "S z' H z' S",
+   "H z' H z' H"
+  ],
+  "cls": "ABCDEFABEBFAACEFACDBEBFDDCEFDC"
+ },
+ {
+  "id": "Case 8c",
+  "group": "Pi + Horizontal U perm",
+  "algs": [
+   "H z H z H",
+   "S z H z S"
+  ],
+  "cls": "ABCDEFACBACEDBAEADFCBFCEDBFEFD"
+ },
+ {
+  "id": "Case 9a",
+  "group": "Pi + Vertical U perm",
+  "algs": [
+   "x' S x' H x' S",
+   "x y2 H x S x H"
+  ],
+  "cls": "ABCDEFABCBCFABDBDFCAEECFDAEEDF"
+ },
+ {
+  "id": "Case 10a",
+  "group": "Pi + Vertical U perm",
+  "algs": [
+   "S z2 H"
+  ],
+  "cls": "ABCDEFABEABFACEACFBEDFDBCEDFDC"
+ },
+ {
+  "id": "Case 11a",
+  "group": "Pi + O perm",
+  "algs": [
+   "z2 H z' S z2 S",
+   "z2 H z' H z2 H"
+  ],
+  "cls": "ABCDEFABCABFADCADFBCEFEBDCEFED"
+ },
+ {
+  "id": "Case 12a",
+  "group": "Pi + O perm",
+  "algs": [
+   "z S z' x' S z2 S",
+   "z2 H z2 H z S"
+  ],
+  "cls": "ABCDEFABEABCADEADCBEFBCFEFDCFD"
+ },
+ {
+  "id": "Case 11c",
+  "group": "Pi + O perm",
+  "algs": [
+   "z2 S z' S z2 S",
+   "z2 S z' H z2 H"
+  ],
+  "cls": "ABCDEFABCABFADCADFCEBBFECEDDFE"
+ },
+ {
+  "id": "Case 12c",
+  "group": "Pi + O perm",
+  "algs": [
+   "z H y' z' S z2 S",
+   "z2 S z2 S z H"
+  ],
+  "cls": "ABCDEFABEABCADEADCEFBCFBDEFDCF"
+ },
+ {
+  "id": "Case 13a",
+  "group": "Pi + Z perm conjugates",
+  "algs": [
+   "H x y S z2 S",
+   "H x y H z2 H"
+  ],
+  "cls": "ABCDEFABCCAFBCDCDFABEEAFBEDEDF"
+ },
+ {
+  "id": "Case 8d",
+  "group": "Pi + Horizontal U perm",
+  "algs": [
+   "H z S z H",
+   "S z S z S"
+  ],
+  "cls": "ABCDEFABCFBCBDABDFCAECFEEDAEDF"
+ },
+ {
+  "id": "Case 9b",
+  "group": "Pi + Vertical U perm",
+  "algs": [
+   "S z2 S z' S S",
+   "x' y H x' S x' H"
+  ],
+  "cls": "ABCDEFABEABFACEACFEDBFDBCEDCFD"
+ },
+ {
+  "id": "Case 10b",
+  "group": "Pi + Vertical U perm",
+  "algs": [
+   "z2 H z2 S"
+  ],
+  "cls": "ABCDEFABCBCFDABBDFAECECFDAEEDF"
+ },
+ {
+  "id": "Case 11b",
+  "group": "Pi + O perm",
+  "algs": [
+   "z S z S z2 S",
+   "z S z H z2 H"
+  ],
+  "cls": "ABCDEFABEABCADEADCEFBBCFEFDDCF"
+ },
+ {
+  "id": "Case 12b",
+  "group": "Pi + O perm",
+  "algs": [
+   "z2 H z x S z2 S",
+   "z S z2 S z' H"
+  ],
+  "cls": "ABCDEFABCABFADCADFBCEBFECEDFED"
+ },
+ {
+  "id": "Case 11d",
+  "group": "Pi + O perm",
+  "algs": [
+   "z H z H z2 H",
+   "z H z S z2 S"
+  ],
+  "cls": "ABCDEFABEABCADEADCBEFCFBDEFCFD"
+ },
+ {
+  "id": "Case 12d",
+  "group": "Pi + O perm",
+  "algs": [
+   "z2 S x y' S z2 S",
+   "z H z2 H z' S"
+  ],
+  "cls": "ABCDEFABCABFADCADFCEBFEBDCEDFE"
+ },
+ {
+  "id": "Case 13b",
+  "group": "Pi + Z perm conjugates",
+  "algs": [
+   "z' S x' y S z2 S",
+   "z' S x' y H z2 H"
+  ],
+  "cls": "ABCDEFABEABDAFEAFDECBBDCECFFDC"
+ },
+ {
+  "id": "Case 13c",
+  "group": "Pi + Z perm conjugates",
+  "algs": [
+   "H x' y S z2 S",
+   "H x' y H z2 H"
+  ],
+  "cls": "ABCDEFABEABDAFEAFDBECDCBFECDCF"
+ },
+ {
+  "id": "Case 14a",
+  "group": "Pi + Z perm conjugates",
+  "algs": [
+   "z' H z' S z S",
+   "z' S z' S z H"
+  ],
+  "cls": "ABCDEFABDABFAEDAEFBDCBFCDCEFCE"
+ },
+ {
+  "id": "Case 14c",
+  "group": "Pi + Z perm conjugates",
+  "algs": [
+   "z' S z H z' H",
+   "z' H z H z' S"
+  ],
+  "cls": "ABCDEFABEABDAFEAFDBECBDCECFDCF"
+ },
+ {
+  "id": "Case 15a",
+  "group": "Pi + Triple sledge",
+  "algs": [
+   "z H x z2 H z2 H x y2 S",
+   "z' S x y2 H z2 H x z2 H"
+  ],
+  "cls": "ABCDEFABFABEADFADEFCBECBDFCDEC"
+ },
+ {
+  "id": "Case 16",
+  "group": "Pi + H or Z perm",
+  "algs": [
+   "z' S z2 S z2 S",
+   "z S z2 S z2 H"
+  ],
+  "cls": "ABCDEFADFADEACFACEDFBDEBFBCEBC"
+ },
+ {
+  "id": "Case 17b",
+  "group": "Pi + H or Z perm",
+  "algs": [
+   "z S z H z' H z S z' H",
+   "x2 z S S x S y2 H"
+  ],
+  "cls": "ABCDEFAECAEDAFCAFDCBEDBEFCBFDB"
+ },
+ {
+  "id": "Case 18a",
+  "group": "Peanut + Swirl perm",
+  "algs": [
+   "H z H z' H z H",
+   "S z' H x y S z2 S"
+  ],
+  "cls": "ABCDEFABCABDAECAEDFBCDFBECFFED"
+ },
+ {
+  "id": "Case 18c",
+  "group": "Peanut + Swirl perm",
+  "algs": [
+   "z2 S z' H z S z' H",
+   "S z' H x' H z2 H"
+  ],
+  "cls": "ABCDEFABDABCAFDAFCEBDBCEDEFEFC"
+ },
+ {
+  "id": "Case 13d",
+  "group": "Pi + Z perm conjugates",
+  "algs": [
+   "z' S x' y S z2 S",
+   "z' S x' y H z2 H"
+  ],
+  "cls": "ABCDEFABEABDAFEAFDECBBDCECFFDC"
+ },
+ {
+  "id": "Case 14b",
+  "group": "Pi + Z perm conjugates",
+  "algs": [
+   "z H z' H z S",
+   "z S z' H z H"
+  ],
+  "cls": "ABCDEFABCAFCCDBCDFBEAFEAEDBEDF"
+ },
+ {
+  "id": "Case 14d",
+  "group": "Pi + Z perm conjugates",
+  "algs": [
+   "z S z S z' H",
+   "z H z S z' S"
+  ],
+  "cls": "ABCDEFABEABDAFEAFDECBDCBFECFDC"
+ },
+ {
+  "id": "Case 15b",
+  "group": "Pi + Triple sledge",
+  "algs": [
+   "z S x z2 H z2 H x y2 H",
+   "z' H x y2 H z2 H x z2 S"
+  ],
+  "cls": "ABCDEFABFABEADFADEBFCBECFCDECD"
+ },
+ {
+  "id": "Case 17a",
+  "group": "Pi + H or Z perm",
+  "algs": [
+   "z S z' H z H z' S z H",
+   "x2 z' H H x' H y2 S"
+  ],
+  "cls": "ABCDEFAECAEDAFCAFDCBEEDBCBFFDB"
+ },
+ {
+  "id": "Case 18b",
+  "group": "Peanut + Swirl perm",
+  "algs": [
+   "z' S z' S z S z' S",
+   "z' H z S x' y S z2 S"
+  ],
+  "cls": "ABCDEFABDABCAFDAFCDEBEBCEFDFCE"
+ },
+ {
+  "id": "Case 18d",
+  "group": "Peanut + Swirl perm",
+  "algs": [
+   "z H z S z' H z S",
+   "x S z' S x' H z' H"
+  ],
+  "cls": "ABCDEFABCABDAECAEDBCFFBDFECDFE"
+ },
+ {
+  "id": "Case 18e",
+  "group": "Peanut + Swirl perm",
+  "algs": [
+   "S z S z' S z S",
+   "H z' S x y S z2 S"
+  ],
+  "cls": "ABCDEFABCABDAECAEDFBCBDFCFEFED"
+ },
+ {
+  "id": "Case 18g",
+  "group": "Peanut + Swirl perm",
+  "algs": [
+   "z2 H z' S z H z' S",
+   "H z' S x' H z2 H"
+  ],
+  "cls": "ABCDEFABDABCAFDAFCEBDCEBFDEEFC"
+ },
+ {
+  "id": "Case 19a",
+  "group": "Peanut + Wat perm",
+  "algs": [
+   "z2 S z2 S z' H z' H",
+   "S z S z S z2 S"
+  ],
+  "cls": "ABCDEFABFABCAEFAECDBFCDBEFDDEC"
+ },
+ {
+  "id": "Case 19c",
+  "group": "Peanut + Wat perm",
+  "algs": [
+   "z2 S z2 S z S z H",
+   "S z' H z' S z2 S"
+  ],
+  "cls": "ABCDEFABCABEAFCAFEDBCEDBFCDDFE"
+ },
+ {
+  "id": "Case 19e",
+  "group": "Peanut + Wat perm",
+  "algs": [
+   "z2 S z2 S z' S z' S",
+   "H z H z S z2 S"
+  ],
+  "cls": "ABCDEFABEBECBDABDCFEAECFFDAFDC"
+ },
+ {
+  "id": "Case 19g",
+  "group": "Peanut + Wat perm",
+  "algs": [
+   "z2 S z2 S z H z S",
+   "S z S z2 H z' H"
+  ],
+  "cls": "ABCDEFABCABEAFCAFEDBCBEDCDFDFE"
+ },
+ {
+  "id": "Case 20a",
+  "group": "Peanut + X perm",
+  "algs": [
+   "z S z' S"
+  ],
+  "cls": "ABCDEFABFABDACFACDFEBEBDECFCDE"
+ },
+ {
+  "id": "Case 20c",
+  "group": "Peanut + X perm",
+  "algs": [
+   "z2 H z H"
+  ],
+  "cls": "ABCDEFABDABEACDACEFBDEFBCDFFCE"
+ },
+ {
+  "id": "Case 18f",
+  "group": "Peanut + Swirl perm",
+  "algs": [
+   "z' H z' H z H z' H",
+   "z' S z H x' y S z2 S"
+  ],
+  "cls": "ABCDEFABDABCAFDAFCBDEEBCEFDCEF"
+ },
+ {
+  "id": "Case 18h",
+  "group": "Peanut + Swirl perm",
+  "algs": [
+   "z S z H z' S z H",
+   "x H z' H x' S z' S"
+  ],
+  "cls": "ABCDEFABCABDAECAEDCFBFBDFECEDF"
+ },
+ {
+  "id": "Case 19b",
+  "group": "Peanut + Wat perm",
+  "algs": [
+   "z S z2 S z S z S",
+   "z' H z' H z' S z2 S"
+  ],
+  "cls": "ABCDEFABCABEAFCAFECDBDBEDFCFED"
+ },
+ {
+  "id": "Case 19d",
+  "group": "Peanut + Wat perm",
+  "algs": [
+   "z S z2 S z' H z' S",
+   "z' H z S z S z2 S"
+  ],
+  "cls": "ABCDEFABFABCAEFAECFDBDBCDEFECD"
+ },
+ {
+  "id": "Case 19f",
+  "group": "Peanut + Wat perm",
+  "algs": [
+   "z S z2 S z H z H",
+   "H z' S x H z2 H"
+  ],
+  "cls": "ABCDEFABCABEAFCAFEBCDDBEDFCEDF"
+ },
+ {
+  "id": "Case 19h",
+  "group": "Peanut + Wat perm",
+  "algs": [
+   "z S z2 S z' S z' H",
+   "z' H z' H z2 S z S"
+  ],
+  "cls": "ABCDEFABFABCAEFAECBFDDBCDEFCDE"
+ },
+ {
+  "id": "Case 20b",
+  "group": "Peanut + X perm",
+  "algs": [
+   "S z S"
+  ],
+  "cls": "ABCDEFABDABEACDACEFBDBEFDFCFCE"
+ },
+ {
+  "id": "Case 20d",
+  "group": "Peanut + X perm",
+  "algs": [
+   "z' H z' H"
+  ],
+  "cls": "ABCDEFABEBEFBCABCFDEADEFCADDCF"
+ },
+ {
+  "id": "Case 20e",
+  "group": "Peanut + X perm",
+  "algs": [
+   "S z' H"
+  ],
+  "cls": "ABCDEFABFABDACFACDEBFBDEFECECD"
+ },
+ {
+  "id": "Case 20g",
+  "group": "Peanut + X perm",
+  "algs": [
+   "z' H z S"
+  ],
+  "cls": "ABCDEFABDABEACDACEBDFFBEFCDEFC"
+ },
+ {
+  "id": "Case 21a",
+  "group": "Peanut + Horizontal U perm",
+  "algs": [
+   "z H z H z S"
+  ],
+  "cls": "ABCDEFABCBCFBDABDFECACFEEDAEDF"
+ },
+ {
+  "id": "Case 21c",
+  "group": "Peanut + Horizontal U perm",
+  "algs": [
+   "z2 S z' S z' H"
+  ],
+  "cls": "ABCDEFABEBFAACEACFDBEDBFDCEFDC"
+ },
+ {
+  "id": "Case 21e",
+  "group": "Peanut + Horizontal U perm",
+  "algs": [
+   "z' S z' H z' H"
+  ],
+  "cls": "ABCDEFABEABFACECFADBEFDBDCEDCF"
+ },
+ {
+  "id": "Case 21g",
+  "group": "Peanut + Horizontal U perm",
+  "algs": [
+   "H z S z S"
+  ],
+  "cls": "ABCDEFABEABFCEAACFEDBDBFDCEDCF"
+ },
+ {
+  "id": "Case 22a",
+  "group": "Peanut + Vertical U perm",
+  "algs": [
+   "S z S z2 H z2 H",
+   "S z H z2 H z2 S"
+  ],
+  "cls": "ABCDEFABCBCFBDABDFECAECFDAEEDF"
+ },
+ {
+  "id": "Case 22c",
+  "group": "Peanut + Vertical U perm",
+  "algs": [
+   "H H z' S z2 H",
+   "S z2 H z2 H z' H"
+  ],
+  "cls": "ABCDEFABEABFACEACFEDBDBFDCECFD"
+ },
+ {
+  "id": "Case 20f",
+  "group": "Peanut + X perm",
+  "algs": [
+   "z S z H"
+  ],
+  "cls": "ABCDEFABDABEACDACEDFBFBEFCDCEF"
+ },
+ {
+  "id": "Case 20h",
+  "group": "Peanut + X perm",
+  "algs": [
+   "z2 H z' S"
+  ],
+  "cls": "ABCDEFABFABDACFACDEBFDEBCFEECD"
+ },
+ {
+  "id": "Case 21b",
+  "group": "Peanut + Horizontal U perm",
+  "algs": [
+   "z H z' S z' S"
+  ],
+  "cls": "ABCDEFABEABFACEFACDBEBFDDCEDCF"
+ },
+ {
+  "id": "Case 21d",
+  "group": "Peanut + Horizontal U perm",
+  "algs": [
+   "z2 S z H z H"
+  ],
+  "cls": "ABCDEFABEABFEACACFBEDDBFDCEDCF"
+ },
+ {
+  "id": "Case 21f",
+  "group": "Peanut + Horizontal U perm",
+  "algs": [
+   "z' S z S z H"
+  ],
+  "cls": "ABCDEFACBACEDBAADEFCBFCEFDBEFD"
+ },
+ {
+  "id": "Case 21h",
+  "group": "Peanut + Horizontal U perm",
+  "algs": [
+   "H z' H z' S"
+  ],
+  "cls": "ABCDEFABEFABACEACFDBEDBFDCECFD"
+ },
+ {
+  "id": "Case 22b",
+  "group": "Peanut + Vertical U perm",
+  "algs": [
+   "H H z H z2 S",
+   "S z2 H z2 H z S"
+  ],
+  "cls": "ABCDEFABEABFACEACFBEDDBFDCEFDC"
+ },
+ {
+  "id": "Case 22d",
+  "group": "Peanut + Vertical U perm",
+  "algs": [
+   "H z2 S z' H H",
+   "H z H H z S"
+  ],
+  "cls": "ABCDEFABEABFACEACFDBEFDBCEDDCF"
+ },
+ {
+  "id": "Case 23a",
+  "group": "Peanut + O perm",
+  "algs": [
+   "z2 H z' H z2 S",
+   "H z2 S z' S"
+  ],
+  "cls": "ABCDEFABCABFADCADFEBCBFECEDEDF"
+ },
+ {
+  "id": "Case 23c",
+  "group": "Peanut + O perm",
+  "algs": [
+   "z H z H z2 S",
+   "z' H z2 S z S"
+  ],
+  "cls": "ABCDEFABEABCADEADCEFBFBCFDEDCF"
+ },
+ {
+  "id": "Case 23e",
+  "group": "Peanut + O perm",
+  "algs": [
+   "S z H z2 S",
+   "z2 S z2 H z S"
+  ],
+  "cls": "ABCDEFABEABCADEADCFBECFBDEFFDC"
+ },
+ {
+  "id": "Case 23g",
+  "group": "Peanut + O perm",
+  "algs": [
+   "H z S z2 H",
+   "z2 H z2 S z H"
+  ],
+  "cls": "ABCDEFABEABCADEADCFBEBCFEFDFDC"
+ },
+ {
+  "id": "Case 24a",
+  "group": "Peanut + Z perm conjugates",
+  "algs": [
+   "z' S z' H z S"
+  ],
+  "cls": "ABCDEFABDABFAEDAEFBDCCBFCEDFCE"
+ },
+ {
+  "id": "Case 24c",
+  "group": "Peanut + Z perm conjugates",
+  "algs": [
+   "z' H z' S z H"
+  ],
+  "cls": "ABCDEFABCCAFCDBCDFEABFEAEDBEDF"
+ },
+ {
+  "id": "Case 25a",
+  "group": "Peanut + Z perm conjugates",
+  "algs": [
+   "z2 S z' S z S"
+  ],
+  "cls": "ABCDEFABCCAFCDBCDFEABEAFBEDEDF"
+ },
+ {
+  "id": "Case 25c",
+  "group": "Peanut + Z perm conjugates",
+  "algs": [
+   "z H z H z' H"
+  ],
+  "cls": "ABCDEFABEABDAFEAFDECBCBDCFEFDC"
+ },
+ {
+  "id": "Case 23b",
+  "group": "Peanut + O perm",
+  "algs": [
+   "z S z S z2 H",
+   "z' S z2 H z H"
+  ],
+  "cls": "ABCDEFABEABCADEADCBEFFBCFDECFD"
+ },
+ {
+  "id": "Case 23d",
+  "group": "Peanut + O perm",
+  "algs": [
+   "z2 S z' S z2 H",
+   "S z2 H z' H"
+  ],
+  "cls": "ABCDEFABCABFADCADFEBCFEBDCEEDF"
+ },
+ {
+  "id": "Case 23f",
+  "group": "Peanut + O perm",
+  "algs": [
+   "z' H z' S z2 H",
+   "z H z2 S z' H"
+  ],
+  "cls": "ABCDEFABCABFADCADFCEBEBFEDCDFE"
+ },
+ {
+  "id": "Case 23h",
+  "group": "Peanut + O perm",
+  "algs": [
+   "z' S z' H z2 S",
+   "z S z2 H z' S"
+  ],
+  "cls": "ABCDEFABCABFADCADFBCEEBFEDCFED"
+ },
+ {
+  "id": "Case 24b",
+  "group": "Peanut + Z perm conjugates",
+  "algs": [
+   "H z S z' H"
+  ],
+  "cls": "ABCDEFABEABDAFEAFDCBEBDCECFCFD"
+ },
+ {
+  "id": "Case 24d",
+  "group": "Peanut + Z perm conjugates",
+  "algs": [
+   "S z H z' S"
+  ],
+  "cls": "ABCDEFABEABDAFEAFDCBEDCBFECCFD"
+ },
+ {
+  "id": "Case 25b",
+  "group": "Peanut + Z perm conjugates",
+  "algs": [
+   "z' S z S z' S"
+  ],
+  "cls": "ABCDEFABEABDAFEAFDBECCBDCFEDCF"
+ },
+ {
+  "id": "Case 25d",
+  "group": "Peanut + Z perm conjugates",
+  "algs": [
+   "H z' H z H"
+  ],
+  "cls": "ABCDEFABDABFAEDAEFCBDBFCDCECEF"
+ },
+ {
+  "id": "Case 26a",
+  "group": "Peanut + Triple sledge",
+  "algs": [
+   "S z H H",
+   "S z' S S"
+  ],
+  "cls": "ABCDEFABFABEADFADECBFECBDFCCDE"
+ },
+ {
+  "id": "Case 26c",
+  "group": "Peanut + Triple sledge",
+  "algs": [
+   "z2 S S z H",
+   "z' H z H H"
+  ],
+  "cls": "ABCDEFABFABEADFADEFCBCBECDFDEC"
+ },
+ {
+  "id": "Case 27",
+  "group": "Peanut + H or Z perm and pure peanut",
+  "algs": [
+   "z2 S S z S S",
+   "H H z' S S"
+  ],
+  "cls": "ABCDEFACEACFADEADFBCECFBEBDBDF"
+ },
+ {
+  "id": "Case 29a",
+  "group": "Peanut + H or Z perm and pure peanut",
+  "algs": [
+   "x' S x z' H x y' S x H",
+   "x2 H x' S x' z' H x' y S"
+  ],
+  "cls": "ABCDEFAECAEDAFCAFDBECDBEFCBBFD"
+ },
+ {
+  "id": "Case 30a",
+  "group": "L4C",
+  "algs": [
+   "S z S z S z' H",
+   "H z S z H z' H"
+  ],
+  "cls": "ABCDEFABDABFAEDAEFCBDCBFCEDCEF"
+ },
+ {
+  "id": "Case 31",
+  "group": "L4C",
+  "algs": [
+   "H H H",
+   "S S S"
+  ],
+  "cls": "ABCDEFABFABEADFADECBFCBECDFCDE"
+ },
+ {
+  "id": "Case 32",
+  "group": "L4C",
+  "algs": [
+   "x' S x2 H y2 S x2 H",
+   "x' S z2 S y2 H z2 H"
+  ],
+  "cls": "ABCDEFAECAEDAFCAFDBECBEDBFCBFD"
+ },
+ {
+  "id": "Case 34a",
+  "group": "L4C",
+  "algs": [
+   "S z' H z' S z' H",
+   "H z' S z' H z' S"
+  ],
+  "cls": "ABCDEFABCABFADCADFEBCEBFEDCEDF"
+ },
+ {
+  "id": "Case 26b",
+  "group": "Peanut + Triple sledge",
+  "algs": [
+   "z2 S S z' S",
+   "H H z S"
+  ],
+  "cls": "ABCDEFABFABEADFADEBFCCBECDFECD"
+ },
+ {
+  "id": "Case 26d",
+  "group": "Peanut + Triple sledge",
+  "algs": [
+   "z H H z H",
+   "z2 H z S S"
+  ],
+  "cls": "ABCDEFABFABEADFADECBFBECFCDCDE"
+ },
+ {
+  "id": "Case 28",
+  "group": "Peanut + H or Z perm and pure peanut",
+  "algs": [
+   "S z' S S z' S z2 S",
+   "S x' y' H x' S x' H"
+  ],
+  "cls": "ABCDEFADFADEACFACEBDFDEBFBCBCE"
+ },
+ {
+  "id": "Case 29b",
+  "group": "Peanut + H or Z perm and pure peanut",
+  "algs": [
+   "z S z' H z S z' H z H",
+   "x S x' z S x' y' S x' H"
+  ],
+  "cls": "ABCDEFAECAEDAFCAFDCBEBEDBFCFDB"
+ },
+ {
+  "id": "Case 30b",
+  "group": "L4C",
+  "algs": [
+   "S z2 S x y2 H z2 H",
+   "S x' H x y2 H x S"
+  ],
+  "cls": "ABCDEFABEABDAFEAFDCBECBDCFECFD"
+ },
+ {
+  "id": "U Perm",
+  "group": "L4C",
+  "algs": [
+   "z' x S z2 S",
+   "x y H z2 H"
+  ],
+  "cls": "ABCDEFABEABFACEACFDBEDBFDCEDCF"
+ },
+ {
+  "id": "Case 33",
+  "group": "L4C",
+  "algs": [
+   "H z2 S z2 H",
+   "S z2 H z2 S"
+  ],
+  "cls": "ABCDEFADFADEACFACEBDFBDEBCFBCE"
+ },
+ {
+  "id": "Case 34b",
+  "group": "L4C",
+  "algs": [
+   "S z H z S z H",
+   "H z S z H z S"
+  ],
+  "cls": "ABCDEFABEABCADEADCFBEFBCFDEFDC"
+ },
+ {
+  "id": "Case 35a",
+  "group": "L5C",
+  "algs": [
+   "z' S z2 S x y' S z2 S",
+   "z' S z H z2 H z' S"
+  ],
+  "cls": "ABCDEFABCABEAFCAFEDBCDBEDFCDFE"
+ },
+ {
+  "id": "Case 36a",
+  "group": "L5C",
+  "algs": [
+   "H z2 H z H z2 H",
+   "S z2 S z H z2 H"
+  ],
+  "cls": "ABCDEFABDABEACDACEFBDFBEFCDFCE"
+ },
+ {
+  "id": "Case 37a",
+  "group": "L5C",
+  "algs": [
+   "S z S z' H z H",
+   "H z S z' S z H"
+  ],
+  "cls": "ABCDEFABCABDAECAEDFBCFBDFECFED"
+ },
+ {
+  "id": "Short 1",
+  "group": "Short cases",
+  "algs": [
+   "H"
+  ],
+  "cls": "ABCDEFABFABEADFADEBFCECBDFCECD"
+ },
+ {
+  "id": "Short 3",
+  "group": "Short cases",
+  "algs": [
+   "x' y' H z2 H",
+   "x' y' S z2 S"
+  ],
+  "cls": "ABCDEFABEABFACEACFDBEDBFDCEDCF"
+ },
+ {
+  "id": "Short 5",
+  "group": "Short cases",
+  "algs": [
+   "S x y H z2 H",
+   "S x y S z2 S"
+  ],
+  "cls": "ABCDEFABCFCACDBCDFABEFEAEDBEDF"
+ },
+ {
+  "id": "Case 35b",
+  "group": "L5C",
+  "algs": [
+   "S z' H z2 H z S",
+   "H z' S z2 S z H"
+  ],
+  "cls": "ABCDEFABFABCAEFAECDBFDBCDEFDEC"
+ },
+ {
+  "id": "Case 36b",
+  "group": "L5C",
+  "algs": [
+   "S z2 S x' y S z2 S",
+   "S z2 S x' y H z2 H"
+  ],
+  "cls": "ABCDEFABFABDACFACDEBFEBDECFECD"
+ },
+ {
+  "id": "Case 37b",
+  "group": "L5C",
+  "algs": [
+   "z' H z' H z S z' S",
+   "z' S z' S z H z' H"
+  ],
+  "cls": "ABCDEFABDABCAFDAFCEBDEBCEFDEFC"
+ },
+ {
+  "id": "Short 2",
+  "group": "Short cases",
+  "algs": [
+   "z' S"
+  ],
+  "cls": "ABCDEFABFABEADFADEFCBBECFCDDEC"
+ },
+ {
+  "id": "Short 4",
+  "group": "Short cases",
+  "algs": [
+   "H H",
+   "z2 S S"
+  ],
+  "cls": "ABCDEFACEACFADEADFCEBCFBEBDFBD"
+ },
+ {
+  "id": "Short 6",
+  "group": "Short cases",
+  "algs": [
+   "z' H z2 H",
+   "z' S z2 S"
+  ],
+  "cls": "ABCDEFABEABFACEACFDBEDBFDCEDCF"
+ }
+]

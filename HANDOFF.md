@@ -273,3 +273,13 @@ Reference for the look: the puzzles themselves, black plastic with bright sticke
 - **Icons** regenerated in black and sticker yellow (`node tools/make_icons.js`).
 
 Old design copies (`backup-before-redesign/` and the dated backup folders) were removed on 2026-11-13; only the current design is kept. The original build is still in git history before that commit.
+
+## 2026-11-13: Skewb and Pyraminx (HCubist sheets)
+
+New tabs: **Skewb** (sets NS and Sarah's Advanced, 137 cases each) and **Pyraminx** (L4E, 37 cases). Source: HCubist by Hitesh Kumar Bhuwalka.
+- Engines: `src/skewb.js` (30 stickers; corners F R B L = top UFR UBR UBL UFL, lowercase f r b l = bottom; x y z turn the puzzle; Sarah's notation swaps y and z and adds the macros S and H) and `src/pyraminx.js` (36 stickers; capitals turn a vertex with its layers, lowercase the tip).
+- Verified against the sheets' own pictures: every Skewb case (main and alt alg, both sheets) and every Pyraminx L4E main alg starts from exactly the state drawn in the PDF (sticker for sticker, up to one colour renaming per picture). The PDFs are not in the repo, so `tools/verify_hcubist.js` (in `npm test`) checks what can be checked without them: all algs of a case start from the same position, scrambles reach it, NS and SA agree by case name.
+- Data: `tools/hcubist_extract.py <pdf folder>` -> `data/src/hcubist_rows.json`; `node tools/make_hcubist.js` -> `data/skewb_ns.json`, `skewb_sa.json`, `pyraminx_l4e.json` (id, group, algs[main, alt], cls). `cls` is the position the alg starts from, however the puzzle is held; an alg is accepted when it starts from its case's class.
+- App: sets built on a simulator are one entry in `GEN` (top of `app.js`): data rows, engine, `start(alg)`, `scr(alg)`, `draw(state)`. Adding another is one `GEN` entry + a data file + `DATA_*` in `build.js` + a `PUZZLES` tab. Groups show as chips (<= 9 groups) or a select. Lists over 150 cases show 90 at a time.
+- Scrambles keep the sheet's x y z turns (written the NS way), so you finish holding the puzzle like the picture. Diagrams: Skewb = two isometric views (corner U F R and the opposite corner), Pyraminx = the three faces round the top tip + the face opposite. Colours are fixed for now (not in Settings).
+- Tabs are made in JS (`PUZZLES`); on a phone only the selected tab shows its name.

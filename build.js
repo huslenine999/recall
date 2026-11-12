@@ -15,9 +15,12 @@ const data = [
   embed('DATA_SQ', pick('data/square1_ep.json', ['u', 'd', 'parity', 'algsNoFlip', 'algsFlip', 'note'])),
   embed('DATA_CSP', pick('data/square1_csp.json', ['n', 'name', 'section', 'parity', 'alg', 'key'])),
   embed('DATA_OBL', pick('data/square1_obl.json', ['id', 'slashes', 'alg', 'cls'])),
+  embed('DATA_SKNS', pick('data/skewb_ns.json', ['id', 'group', 'algs', 'cls'])),
+  embed('DATA_SKSA', pick('data/skewb_sa.json', ['id', 'group', 'algs', 'cls'])),
+  embed('DATA_PYL4E', pick('data/pyraminx_l4e.json', ['id', 'group', 'algs', 'cls'])),
   embed('DATA_PBL', pick('data/square1_pbl.json', ['id', 'top', 'bot', 'slices', 'alg', 'ct', 'cb']))
 ].join('\n');
-const engines = ['src/palettes.js', 'src/megaminx.js', 'src/square1.js', 'src/diagram.js', 'src/scramble.js'].map(read).join('\n');
+const engines = ['src/palettes.js', 'src/megaminx.js', 'src/square1.js', 'src/skewb.js', 'src/pyraminx.js', 'src/diagram.js', 'src/scramble.js'].map(read).join('\n');
 // replacer functions: avoid '$' patterns in code being interpreted
 html = html.replace('/*__FONTS__*/', () => fonts).replace('/*__DATA__*/', () => wrap(data)).replace('/*__ENGINES__*/', () => wrap(engines)).replace('/*__APP__*/', () => wrap(read('src/app.js')));
 fs.mkdirSync('dist', { recursive: true });
@@ -25,7 +28,7 @@ fs.writeFileSync('dist/index.html', html);
 // installable + offline: manifest, icons and a service worker whose cache name changes with every build
 const buildId = require('crypto').createHash('sha1').update(html).digest('hex').slice(0, 10);
 const manifest = {
-  id: './', name: 'Recall: Algorithm Trainer', short_name: 'Recall', description: 'Alg trainer for Megaminx and Square-1.',
+  id: './', name: 'Recall: Algorithm Trainer', short_name: 'Recall', description: 'Alg trainer for Megaminx, Square-1, Skewb and Pyraminx.',
   start_url: './', scope: './', display: 'standalone', background_color: '#100F14', theme_color: '#100F14',
   icons: [{ src: 'icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' }, { src: 'icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' }, { src: 'icon-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' }]
 };

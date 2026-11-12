@@ -27,15 +27,15 @@ async function desktop(browser) {
   check('two entries after forgot', await page.locator('.solves li').count() === 2);
 
   // every set: the sheet algs pass the simulator. Known open item: EP 'H / W' (no flip) has an illegal slice in the data, so EP is 145 of 146.
-  for (const [tab, set, n, ok = n] of [['mm', 'pll', 151], ['mm', 'oll', 257], ['sq', 'ep', 146, 145], ['sq', 'csp', 179], ['sq', 'pbl', 967], ['sq', 'obl', 185]]) {
-    await page.click('#tab-' + tab); await page.click(`[data-set="${set}"]`); await page.click('[data-s="cases"]');
+  for (const [tab, set, n, ok = n] of [['mm', 'pll', 151], ['mm', 'oll', 257], ['sq', 'ep', 146, 145], ['sq', 'csp', 179], ['sq', 'pbl', 967], ['sq', 'obl', 185], ['sk', 'ns', 137], ['sk', 'sa', 137], ['px', 'l4e', 37]]) {
+    await page.click(`[data-p="${tab}"]`); await page.click(`[data-set="${set}"]`); await page.click('[data-s="cases"]');
     const count = await page.locator('.count').textContent();
     check(`${tab} ${set}: ${ok} of ${n} cases usable`, count.startsWith(`${ok} of ${n} `), count);
   }
-  check('address follows the set', page.url().endsWith('#sq/obl/cases'), page.url());
+  check('address follows the set', page.url().endsWith('#px/l4e/cases'), page.url());
 
   // search
-  await page.click('#tab-mm'); await page.click('[data-set="pll"]');
+  await page.click('[data-p="mm"]'); await page.click('[data-set="pll"]');
   await page.keyboard.press('/'); await page.keyboard.type('k1');
   await page.waitForTimeout(250);
   check('search narrows the cards and keeps focus', await page.locator('.tile').count() === 2 && await page.evaluate(() => document.activeElement.id) === 'q', await page.locator('.tile').count());
@@ -80,7 +80,7 @@ async function smallPhone(browser) {
   console.log('small phone (320px)');
   const page = await (await browser.newContext({ ...devices['iPhone SE'] })).newPage();
   await page.goto(url + '#mm/pll/train'); await page.tap('#introOk');
-  for (const h of ['#mm/pll/train', '#mm/pll/cases', '#mm/oll/cases', '#sq/pbl/cases', '#sq/obl/cases', '#sq/csp/cases', '#sq/ep/settings']) {
+  for (const h of ['#mm/pll/train', '#mm/pll/cases', '#mm/oll/cases', '#sq/pbl/cases', '#sq/obl/cases', '#sq/csp/cases', '#sk/ns/train', '#sk/ns/cases', '#sk/sa/cases', '#px/l4e/train', '#px/l4e/cases', '#sq/ep/settings']) {
     await page.goto(url + h); await page.waitForTimeout(150);
     check(h + ' fits 320px with no sideways scroll', await page.evaluate(() => document.documentElement.scrollWidth <= 320), await page.evaluate(() => document.documentElement.scrollWidth));
   }

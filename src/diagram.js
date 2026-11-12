@@ -275,6 +275,66 @@
     return sqFrame(sqLayer(st.top, CXU, CY, colors, '', '', { arrows: false, orient: true }), sqLayer(st.bot, CXD, CY, colors, '', '', { arrows: false, orient: true }), null, opts.label || 'Square-1 OBL case', 'obl');
   }
 
-  const api = { oblDiagram, megaminxDiagram, megaminxOllDiagram, square1Diagram, cspDiagram, pblDiagram, MM_DEFAULT_COLORS, SQ_COLORS, MM_CFG };
+
+  // ---------- Skewb and Pyraminx: drawn from the simulator's sticker colours, two views each ----------
+  const SK = root.Skewb || require('./skewb.js');
+  const PY = root.Pyraminx || require('./pyraminx.js');
+  const SKEWB_COLORS = ['#f04a3c', '#f58a24', '#f4f4f1', '#f7cf3d', '#2fbf6b', '#4a86f5']; // by face R L U D F B: red, orange, white, yellow, green, blue
+  const PYRA_COLORS = ['#2fbf6b', '#f04a3c', '#4a86f5', '#f7cf3d']; // green, red, blue, yellow
+  const vsub = (a, b) => a.map((x, i) => x - b[i]);
+  const vdot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+  const vcross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+  const vunit = a => { const l = Math.hypot(a[0], a[1], a[2]); return a.map(x => x / l); };
+  // draws sticker polygons [{poly: [[x, y]...], fill}] of several views side by side
+  function viewsSvg(views, scale, gap, label, cls, r, sw) {
+    let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity, body = '';
+    views.forEach(v => v.forEach(s => s.poly.forEach(p => { x0 = Math.min(x0, p[0]); x1 = Math.max(x1, p[0]); y0 = Math.min(y0, p[1]); y1 = Math.max(y1, p[1]); })));
+    const w = x1 - x0, h = y1 - y0; let ox = 0;
+    // every view is centred in its own box; the boxes share one height
+    views.forEach(v => {
+      let a0 = Infinity, a1 = -Infinity; v.forEach(s => s.poly.forEach(p => { a0 = Math.min(a0, p[0]); a1 = Math.max(a1, p[0]); }));
+      const dx = ox - a0, dy = -y0;
+      body += v.map(s => shape(s.poly.map(p => [(p[0] + dx) * scale, (p[1] + dy) * scale]), s.fill, r, sw)).join('');
+      ox += a1 - a0 + gap;
+    });
+    const W = (ox - gap) * scale, H = h * scale, m = sw;
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${f1(-m)} ${f1(-m)} ${f1(W + 2 * m)} ${f1(H + 2 * m)}" class="diagram ${cls}" role="img" aria-label="${label}">${body}</svg>`;
+  }
+  // state: the 30 sticker colours of the Skewb (what Skewb.run gives for the case's setup)
+  const SK_VIEWS = [{ viewer: [1, 1, 1], right: [1, 0, -1] }, { viewer: [-1, -1, -1], right: [-1, 0, 1] }];
+  function skewbDiagram(state, opts) {
+    opts = opts || {};
+    const up = vunit([-1, 2, -1]);
+    const views = SK_VIEWS.map(v => {
+      const right = vunit(v.right), out = [];
+      SK.stickers.forEach((st, i) => {
+        if (vdot(st.n, v.viewer) <= 0) return;
+        const n = st.n, ax = [0, 1, 2].filter(k => !n[k]); // the two axes along the face
+        let pts;
+        if (st.p.every((c, k) => c === n[k])) { const e = ax.map(k => { const u = [0, 0, 0]; u[k] = 1; return u; }); pts = [[1, 0], [0, 1], [-1, 0], [0, -1]].map(([a, b]) => n.map((c, k) => c + a * e[0][k] + b * e[1][k])); } // a center: the diamond between the four edge midpoints
+        else pts = [st.p, st.p.map((c, k) => (k === ax[1] ? 0 : c)), st.p.map((c, k) => (k === ax[0] ? 0 : c))]; // a corner: the cube corner and the two edge midpoints next to it
+        out.push({ poly: pts.map(q => [vdot(q, right), -vdot(q, up)]), fill: opts.colors ? opts.colors[state[i]] : SKEWB_COLORS[state[i]] });
+      });
+      return out;
+    });
+    return viewsSvg(views, 46, 0.5, opts.label || 'Skewb case', 'skewb', 2.4, 2.2);
+  }
+  // state: the 36 sticker colours of the Pyraminx. Left: the three faces around the top tip. Right: the face opposite it.
+  function pyraminxDiagram(state, opts) {
+    opts = opts || {};
+    const axisOf = dir => vunit(PY.V.U.map(c => c * dir));
+    const make = (dir) => {
+      const axis = axisOf(dir); let up = PY.V.B.map(c => c * dir); up = vunit(up.map((c, i) => c - vdot(up, axis) * axis[i]));
+      const right = vcross(up, axis), out = [];
+      PY.stickers.forEach((st, i) => {
+        if (vdot(st.n, axis) <= 0) return;
+        out.push({ poly: st.verts.map(q => [vdot(q, right), -vdot(q, up)]), fill: opts.colors ? opts.colors[state[i]] : PYRA_COLORS[state[i]] });
+      });
+      return out;
+    };
+    return viewsSvg([make(1), make(-1)], 46, 0.55, opts.label || 'Pyraminx case', 'pyra', 1.6, 1.5);
+  }
+
+  const api = { skewbDiagram, pyraminxDiagram, SKEWB_COLORS, PYRA_COLORS, oblDiagram, megaminxDiagram, megaminxOllDiagram, square1Diagram, cspDiagram, pblDiagram, MM_DEFAULT_COLORS, SQ_COLORS, MM_CFG };
   if (typeof module !== 'undefined') module.exports = api; else root.Diagram = api;
 })(typeof window !== 'undefined' ? window : globalThis);
