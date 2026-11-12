@@ -1454,7 +1454,7 @@ const PALETTES = [
   const SK = root.Skewb || require('./skewb.js');
   const PY = root.Pyraminx || require('./pyraminx.js');
   const C2 = root.Cube2 || require('./cube2.js');
-  const SKEWB_COLORS = ['#f04a3c', '#f58a24', '#f4f4f1', '#f7cf3d', '#2fbf6b', '#4a86f5']; // by face R L U D F B: red, orange, white, yellow, green, blue
+  const SKEWB_COLORS = ['#f04a3c', '#f58a24', '#f4f4f1', '#f7cf3d', '#2fbf6b', '#4a86f5']; // red, orange, white, yellow, green, blue (the solved layer is white, its opposite yellow)
   const PYRA_COLORS = ['#2fbf6b', '#f04a3c', '#4a86f5', '#f7cf3d']; // green, red, blue, yellow
   const vsub = (a, b) => a.map((x, i) => x - b[i]);
   const vdot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
@@ -1480,6 +1480,9 @@ const PALETTES = [
   function skewbDiagram(state, opts) {
     opts = opts || {};
     const up = vunit([-1, 2, -1]);
+    // The solved first layer is the bottom face of every case (the one at the back-left in the right-hand picture). It is drawn white, whatever the case's turns did to the colours:
+    // the colours are read through the whole-puzzle rotation that sends the colour sitting on that layer to the white one.
+    const turn = (SK.ROTS.find(r => SK.colorOf(r[state[3]]) === 2) || SK.ROTS[0]), shown = c => SK.colorOf(turn[c]);
     const views = SK_VIEWS.map(v => {
       const right = vunit(v.right), out = [];
       SK.stickers.forEach((st, i) => {
@@ -1488,7 +1491,7 @@ const PALETTES = [
         let pts;
         if (st.p.every((c, k) => c === n[k])) { const e = ax.map(k => { const u = [0, 0, 0]; u[k] = 1; return u; }); pts = [[1, 0], [0, 1], [-1, 0], [0, -1]].map(([a, b]) => n.map((c, k) => c + a * e[0][k] + b * e[1][k])); } // a center: the diamond between the four edge midpoints
         else pts = [st.p, st.p.map((c, k) => (k === ax[1] ? 0 : c)), st.p.map((c, k) => (k === ax[0] ? 0 : c))]; // a corner: the cube corner and the two edge midpoints next to it
-        out.push({ poly: pts.map(q => [vdot(q, right), -vdot(q, up)]), fill: opts.colors ? opts.colors[state[i]] : SKEWB_COLORS[state[i]] });
+        out.push({ poly: pts.map(q => [vdot(q, right), -vdot(q, up)]), fill: (opts.colors || SKEWB_COLORS)[shown(state[i])] });
       });
       return out;
     });
