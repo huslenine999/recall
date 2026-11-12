@@ -195,3 +195,22 @@ live diagram preview), Settings (theme, show diagram, Megaminx sticker colours, 
 - Codes: 8 chars from 23456789ABCDEFGHJKMNPQRSTVWXYZ, shown ABCD-EFGH. Kept 400 days after the last use. 120 requests/min per IP, 900 KB cap.
 - App: Settings > Sync. Every change to progress/settings/colours marks it dirty and saves 2.5 s later; pulls on open, on returning to the tab (15 s throttle) and when back online. Merge: practice stats per case keep the more recently used side; selections, own algs, stars and settings come from the side that changed.
 - The service worker skips /api/.
+
+## 2026-11-12: usability, accessibility and tooling pass
+
+- **Tooling.** `package.json` (no dependencies): `npm run dev` (`tools/dev.js`: serves dist on :5173, rebuilds on save, live reload, real `/api/sync` handler, no service worker),
+  `npm test` (`tools/test.js`: build, built-page sanity, data ids, CSP/PBL verify, scramble test, sync API answers 503 when not set up), `npm run test:ui` (`tools/smoke.js`, Playwright).
+  `README.md` is the entry point for people; this file stays the detailed notes.
+- **Address bar.** `#puzzle/set/screen` (`routeHash`, `readRoute`, `writeRoute` in app.js; the old `#sq` still works). Changing screen adds a Back step; opening the alg editor adds one too
+  (`history.state.edit`), so Back closes it on a phone. `closeEditor()` is the one way to close the editor: it takes that Back step and returns focus to the card's Edit button.
+- **Search on Cases** (`ui.q`, `filterCases`, `tilesHtml`, `setQuery`): matches case name, group, status, alg text (spaces optional) and, on Megaminx, trigger names ("sune").
+  Typing redraws only `#tilesWrap`, so the box keeps focus. `/` focuses it, Escape clears it. Card clicks are delegated on `#tilesWrap` (was `.tiles`). "Select all shown" follows the search.
+- **First visit.** `introHtml()` shows a three-step card above Train until `settings.seenIntro`; people who already have stats never see it. Settings > Training > "How Recall works" shows it again.
+- **Hints follow the input in use** (`touchMode`): a touch switches the wording to "tap", Space switches it back. It starts from `(pointer: coarse)`.
+- **Toast**: `toast(msg, { ms, action, fn })`. Longer text stays longer; the new-version toast has a Reload button.
+- **Fixes.** Phone: the timer hint overlapped the digits. The sync code box had no focus ring (`--ink` did not exist). Trigger names used an undefined font variable.
+  Import asks before replacing, accepts the same file twice, and redraws. Saved data with missing or damaged parts no longer breaks startup (`fixDb`, `stat`).
+  A failed save (storage full or blocked) now says so once instead of failing silently. Tabs move with the arrow keys; Tab stays inside the open editor.
+- **Known data problem.** Square-1 EP "H / W" (no flip): the sheet alg `/ -3,0 / 3,3 / 3,0 / 1,0 / -2,4 / 2,-4 / 0,4 / -1,-1 / -1,-1 / 1,-4 / -3,-3 /` hits an illegal slice in the simulator,
+  so EP trains 145 of 146 cases and that card shows "check". Needs comparing with the source sheet. `tools/smoke.js` expects 145 until it is fixed.
+- **CI.** `.github/workflows/ci.yml` runs `npm test` on every push to main and on pull requests (the browser test is not in CI; run `npm run test:ui` locally).

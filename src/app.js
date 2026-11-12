@@ -5,7 +5,7 @@
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const store = {
     get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
-    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage unavailable: run without it */ } if (store.onChange) store.onChange(k); }
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { if (!store.warned) { store.warned = true; setTimeout(() => toast('Progress could not be saved: this browser\'s storage is full or blocked.', { ms: 7000 }), 0); } } if (store.onChange) store.onChange(k); }
   };
 
   // ---- sticker colors: each alg set / parity group gets one, used as a marker everywhere ----
@@ -94,7 +94,9 @@
   const isHex = v => typeof v === 'string' && /^#[0-9a-fA-F]{6}$/.test(v);
   const cleanSq = o => (o && isHex(o.face) && isHex(o.faceD) && Array.isArray(o.sides) && o.sides.length === 4 && o.sides.every(isHex) ? { face: o.face, faceD: o.faceD, sides: o.sides.slice() } : null);
   let sqColors = cleanSq(store.get('at.sqcolors', null)) || sqDefault();
-  KEYS.forEach(p => { db[p].alg = db[p].alg || {}; db[p].pref = db[p].pref || {}; });
+  const isObj = o => !!o && typeof o === 'object' && !Array.isArray(o);
+  const fixDb = p => { if (!isObj(db[p])) db[p] = {}; ['sel', 'st', 'alg', 'pref'].forEach(k => { if (!isObj(db[p][k])) db[p][k] = {}; }); };
+  KEYS.forEach(fixDb);
   DATA_MM.forEach(c => { sheet.mm[c.id] = [c.alg]; const k = { id: c.id, group: c.set }; cases.mm.push(k); byId.mm[c.id] = k; });
   DATA_OLL.forEach(r => { sheet.oll[r.id] = r.algs; const k = { id: r.id, group: r.set, cls: r.cls }; cases.oll.push(k); byId.oll[r.id] = k; });
   DATA_SQ.forEach(r => [['nf', r.algsNoFlip, false], ['f', r.algsFlip, true]].forEach(([col, list, flip]) => {
@@ -106,7 +108,13 @@
   DATA_PBL.forEach(r => { sheet.pbl[r.id] = [r.alg]; const k = { id: r.id, top: r.top, bot: r.bot, ct: r.ct, cb: r.cb, slices: r.slices, group: r.slices + ' slicers' }; cases.pbl.push(k); byId.pbl[r.id] = k; });
 
   const selected = (p, c) => db[p].sel[c.id] !== 0; // default: selected
-  const stat = (p, id) => db[p].st[id] || (db[p].st[id] = { status: 'New', times: [], att: [], fails: 0, last: 0 });
+  const STATUSES = ['New', 'Learning', 'Learned'];
+  const stat = (p, id) => {
+    let s = db[p].st[id];
+    if (!isObj(s)) s = db[p].st[id] = { status: 'New', times: [], att: [], fails: 0, last: 0 };
+    else if (!Array.isArray(s.times) || !Array.isArray(s.att) || !STATUSES.includes(s.status)) { if (!Array.isArray(s.times)) s.times = []; if (!Array.isArray(s.att)) s.att = []; if (!STATUSES.includes(s.status)) s.status = 'New'; s.fails = +s.fails || 0; s.last = +s.last || 0; }
+    return s;
+  };
   const mean = a => a.reduce((x, y) => x + y, 0) / a.length;
   const avgOf = (t, n) => (t.length >= n ? mean(t.slice(-n)) : null);
 
@@ -122,10 +130,30 @@
   };
   const PUZZLE_NAME = { mm: 'Megaminx', sq: 'Square-1' };
   const DK_NAME = { mm: 'Megaminx PLL', oll: 'Megaminx OLL', sq: 'Square-1 EP', csp: 'Square-1 CSP', pbl: 'Square-1 PBL' };
-  const ui = { puzzle: 'mm', screen: 'train', mmSet: 'all', ollSet: 'all', sqParity: 'all', sqCol: 'both', cspSec: 'all', cspPar: 'both', pblSec: 'all', pblTop: 'any', pblBot: 'any', limit: 90, sort: 'name', edit: null, chipScroll: 0 };
-  if (location.hash === '#sq') ui.puzzle = 'sq';
+  const ui = { puzzle: 'mm', screen: 'train', mmSet: 'all', ollSet: 'all', sqParity: 'all', sqCol: 'both', cspSec: 'all', cspPar: 'both', pblSec: 'all', pblTop: 'any', pblBot: 'any', limit: 90, sort: 'name', edit: null, chipScroll: 0, q: '' };
   ui.set = Object.assign({ mm: 'pll', sq: 'ep' }, store.get('at.sets.v1', {}));
   ['mm', 'sq'].forEach(q => { if (!SETS[q].some(x => x.id === ui.set[q])) ui.set[q] = SETS[q][0].id; });
+  // The address bar follows what is on screen (#sq/pbl/cases), so Back, reload and shared links land where you were.
+  const SCREENS = ['train', 'cases', 'settings'];
+  const routeHash = () => '#' + ui.puzzle + '/' + ui.set[ui.puzzle] + '/' + ui.screen;
+  function readRoute() { // returns true when the puzzle or set changed
+    const [pz, set, scr] = location.hash.replace(/^#\/?/, '').split('/');
+    if (!SETS[pz]) return false;
+    const was = ui.puzzle + ui.set[ui.puzzle];
+    ui.puzzle = pz;
+    if (SETS[pz].some(x => x.id === set)) ui.set[pz] = set;
+    if (SCREENS.includes(scr)) ui.screen = scr;
+    return was !== ui.puzzle + ui.set[ui.puzzle];
+  }
+  readRoute();
+  let routed = false;
+  function writeRoute() {
+    const h = routeHash(), had = (history.state && history.state.edit) || null, want = ui.edit || null;
+    if (location.hash === h && had === want) { routed = true; return; }
+    const push = routed && (location.hash !== h || (want && !had)); // opening a screen or the editor adds a Back step; closing does not
+    try { history[push ? 'pushState' : 'replaceState'](want ? { edit: want } : null, '', h); } catch (e) { /* some embedded browsers block it: the app works without */ }
+    routed = true;
+  }
   const curSet = () => SETS[ui.puzzle].find(x => x.id === ui.set[ui.puzzle]);
   const ready = () => curSet().ready;
   const dk = () => (ui.puzzle === 'sq' ? (ui.set.sq === 'csp' || ui.set.sq === 'pbl' ? ui.set.sq : 'sq') : ui.set.mm === 'oll' ? 'oll' : 'mm'); // key of the data behind what is on screen
@@ -134,6 +162,7 @@
   const sess = { mm: [], oll: [], sq: [], csp: [], pbl: [] }; // this visit's solves per puzzle: {id, time|null}
   const MOD = /Mac|iPhone|iPad|iPod/.test(navigator.platform || navigator.userAgent || '') ? '⌥' : 'Alt+'; // cstimer-style shortcuts
   const isTouch = () => !!(window.matchMedia && matchMedia('(pointer: coarse)').matches);
+  let touchMode = isTouch(); // which wording the hints use; follows what the person actually uses (a laptop with a touch screen, a tablet with a keyboard)
 
   // ---- weighting ----
   function weightOf(p, c, ctx) {
@@ -191,6 +220,8 @@
     if (main.dataset.key === key) window.scrollTo(0, y); else window.scrollTo(0, 0);
     main.dataset.key = key;
     if (!soon) updateTimer();
+    writeRoute();
+    document.title = (ready() ? DK_NAME[dk()] : PUZZLE_NAME[ui.puzzle] + ' ' + curSet().label) + (ui.screen === 'train' ? '' : ' ' + ui.screen) + ' · Recall';
   }
 
   // diagrams are cached: the Cases screen draws every case
@@ -274,6 +305,20 @@
         <dl class="stats"><div><dd>${fmtN(s.times.length ? Math.min(...s.times) : null)}</dd><dt>Best</dt></div><div><dd>${fmtN(avgOf(s.times, 5))}</dd><dt>Average of 5</dt></div><div><dd>${s.fails}</dd><dt>Forgot</dt></div></dl>
       </section>`;
   }
+  function introHtml() {
+    if (settings.seenIntro) return '';
+    const key = touchMode ? 'the timer' : '<kbd>Space</kbd>';
+    return `<section class="panel intro" aria-label="How Recall works">
+      <h2>How Recall works</h2>
+      <ol>
+        <li><span><b>Scramble.</b> Do the moves at the top on your solved puzzle. They set up one case.</span></li>
+        <li><span><b>Solve it.</b> Hold ${key} until it turns green, let go, do the alg, then ${touchMode ? 'tap anywhere' : 'press any key'} to stop.</span></li>
+        <li><span><b>Blank?</b> ${touchMode ? 'Tap' : 'Press <kbd>F</kbd> or tap'} I forgot it to see the alg. That case then comes back more often.</span></li>
+      </ol>
+      <p class="note">Every case is switched on to begin with. In Cases you can pick just the ones you want to drill, search them, and swap in your own algs.</p>
+      <div class="row-btns"><button class="btn primary" id="introOk">Got it</button><button class="btn" id="introCases">Choose cases</button></div>
+    </section>`;
+  }
   function viewTrain() {
     const p = dk(), c = run.cur;
     if (!c) return `<div class="empty"><h2>No cases selected</h2><p class="muted">Choose the cases you want to drill, then come back to train.</p><button class="btn primary" id="toCases">Choose cases</button></div>`;
@@ -296,7 +341,7 @@
       </div>`
       : `<div class="actions pre"><button class="btn" id="forgot">I forgot it: show answer <kbd>F</kbd></button></div>`;
     const keys = `<div class="keys"><span><kbd>Space</kbd> Solve</span><span><kbd>F</kbd> Show answer</span><span><kbd>${MOD}Z</kbd> Delete last</span><span><kbd>${MOD}D</kbd> Reset session</span></div>`;
-    return `<div class="train ${shown ? 'revealed' : ''}">
+    return `${introHtml()}<div class="train ${shown ? 'revealed' : ''}">
       <div class="stage">
         <div class="stage-bar">
           <select id="mode" aria-label="Mode"><option value="random" ${run.mode === 'random' ? 'selected' : ''}>Weighted random</option><option value="recap" ${run.mode === 'recap' ? 'selected' : ''}>Recap, each case once</option></select>
@@ -313,6 +358,9 @@
   function wireTrain() {
     const on = (id, ev, fn) => { const e = $(id); if (e) e.addEventListener(ev, fn); };
     on('#toCases', 'click', () => go(ui.puzzle, 'cases'));
+    const seen = () => { settings.seenIntro = true; saveSettings(); };
+    on('#introOk', 'click', () => { seen(); render(); window.scrollTo(0, 0); });
+    on('#introCases', 'click', () => { seen(); go(ui.puzzle, 'cases'); });
     on('#mode', 'change', e => { run.mode = e.target.value; run.queue = []; newRound(); render(); });
     on('#next', 'click', doNext); on('#forgot', 'click', doForgot); on('#undo', 'click', doUndo);
     const rail = $('.rail'); if (rail) rail.addEventListener('click', e => { const st = e.target.closest('[data-pref]'); if (st && togglePref(dk(), st.dataset.pref, +st.dataset.i)) { const cur = run.cur; render(); if (cur && cur.id === st.dataset.pref) toast(db[dk()].pref[cur.id] ? 'Saved: scrambles for this case now use this alg' : 'Cleared: this case uses any of its algs again'); } });
@@ -325,13 +373,19 @@
     const t = $('#timer'); if (t) { t.addEventListener('pointerdown', e => { e.preventDefault(); if (!ptrStopped) press(); }); t.addEventListener('pointerup', e => { e.preventDefault(); release(); }); t.addEventListener('pointercancel', release); }
   }
   let toastT = 0;
-  function toast(msg) { const n = $('#toast'); if (!n) return; n.textContent = msg; n.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => n.classList.remove('show'), 1800); }
+  function toast(msg, o) { // o: { ms, action, fn } ; longer messages stay longer, and one with a button waits for it
+    const n = $('#toast'); if (!n) return; o = o || {};
+    n.textContent = msg;
+    if (o.action) { const b = document.createElement('button'); b.type = 'button'; b.textContent = o.action; b.addEventListener('click', () => { n.classList.remove('show', 'act'); o.fn(); }); n.appendChild(b); }
+    n.classList.toggle('act', !!o.action); n.classList.add('show');
+    clearTimeout(toastT); toastT = setTimeout(() => n.classList.remove('show', 'act'), o.ms || (o.action ? 12000 : Math.max(1800, 1000 + msg.length * 45)));
+  }
 
   // ---- timer state machine ----
   let holdT = 0, raf = 0;
   const stopRaf = () => { if (raf) cancelAnimationFrame(raf); raf = 0; };
   function hintText() {
-    const touch = isTouch();
+    const touch = touchMode;
     if (run.phase === 'hold') return 'Keep holding';
     if (run.phase === 'armed') return 'Let go to start';
     if (run.phase === 'running') return touch ? 'Tap to stop' : 'Press any key to stop';
@@ -403,12 +457,30 @@
   // keyboard (train screen only; Escape closes the alg editor)
   let spaceDown = false, ignoreUp = false;
   document.addEventListener('click', e => { $$('details.menu[open]').forEach(d => { if (!d.contains(e.target)) d.open = false; }); });
+  const setTouch = v => { if (touchMode === v) return; touchMode = v; if (ui.screen === 'train' && run.phase === 'idle' && !settings.seenIntro) render(); else { const h = $('#hint'); if (h) h.textContent = hintText(); } };
+  // arrow keys move along a row of tabs (puzzle, alg set, screen)
+  document.addEventListener('keydown', e => {
+    const t = e.target, step = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+    if (!step || !t.matches || !t.matches('[role="tab"]') || run.phase === 'running') return;
+    const list = t.closest('[role="tablist"]'), tabs = $$('[role="tab"]', list), i = (tabs.indexOf(t) + step + tabs.length) % tabs.length;
+    e.preventDefault(); tabs[i].click();
+    const again = $$('[role="tab"]', list)[i]; if (again) again.focus();
+  });
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') $$('details.menu[open]').forEach(d => { d.open = false; });
-    if (e.key === 'Escape' && ui.edit) { ui.edit = null; render(); return; }
-    if (ui.screen !== 'train' || !ready()) return;
+    if (e.key === 'Escape' && ui.edit) { closeEditor(); return; }
+    if (e.key === 'Tab' && ui.edit) { // keep Tab inside the open editor
+      const f = $$('.drawer button, .drawer textarea'), first = f[0], last = f[f.length - 1];
+      if (first && !e.target.closest('.drawer')) { e.preventDefault(); first.focus(); }
+      else if (first && e.shiftKey && e.target === first) { e.preventDefault(); last.focus(); }
+      else if (first && !e.shiftKey && e.target === last) { e.preventDefault(); first.focus(); }
+      return;
+    }
     const tag = (e.target.tagName || '').toLowerCase();
-    if (tag === 'input' || tag === 'select' || tag === 'textarea') return;
+    if (tag === 'input' || tag === 'select' || tag === 'textarea') { if (e.key === 'Escape' && e.target.id === 'q' && e.target.value) { e.target.value = ''; setQuery(''); } return; }
+    if (ui.screen === 'cases' && e.key === '/' && !e.ctrlKey && !e.metaKey && !e.altKey && !ui.edit) { const q = $('#q'); if (q) { e.preventDefault(); q.focus(); q.select(); } return; }
+    if (ui.screen !== 'train' || !ready()) return;
+    if (e.code === 'Space') setTouch(false);
     if (e.altKey && !e.ctrlKey && !e.metaKey && run.phase !== 'running') { // Option/Alt shortcuts, by key position (Option+Z types a symbol on a Mac)
       const act = { KeyZ: doUndo, KeyD: resetSession, Digit3: markLastForgot }[e.code];
       if (act) { e.preventDefault(); if (!e.repeat && run.phase === 'idle') act(); return; }
@@ -429,7 +501,7 @@
   });
   // tap anywhere stops a running timer
   let ptrStopped = false;
-  document.addEventListener('pointerdown', e => { if (run.phase === 'running') { e.preventDefault(); ptrStopped = true; stopTimer(); } }, true);
+  document.addEventListener('pointerdown', e => { if (e.pointerType === 'touch') setTouch(true); if (run.phase === 'running') { e.preventDefault(); ptrStopped = true; stopTimer(); } }, true);
   ['pointerup', 'pointercancel'].forEach(ev => document.addEventListener(ev, () => setTimeout(() => { ptrStopped = false; }, 0), true));
   window.addEventListener('blur', () => { if (run.phase === 'hold' || run.phase === 'armed') { clearTimeout(holdT); run.phase = 'idle'; updateTimer(); } });
 
@@ -452,18 +524,34 @@
     </article>`;
   }
   const countText = p => `${cases[p].filter(c => c.ok && selected(p, c)).length} of ${cases[p].length} selected for training`;
-  function viewCases() {
-    const p = dk();
+  function filterCases(p) { // the cases the chips, the selects and the search box leave, in the chosen order
     let list = cases[p];
     if (p === 'mm') list = list.filter(c => ui.mmSet === 'all' || c.group === ui.mmSet);
     else if (p === 'oll') list = list.filter(c => ui.ollSet === 'all' || c.group === ui.ollSet);
     else if (p === 'pbl') list = list.filter(c => (ui.pblSec === 'all' || c.group === ui.pblSec) && (ui.pblTop === 'any' || c.top === ui.pblTop) && (ui.pblBot === 'any' || c.bot === ui.pblBot));
     else if (p === 'csp') list = list.filter(c => (ui.cspSec === 'all' || c.group === ui.cspSec) && (ui.cspPar === 'both' || c.parity === ui.cspPar));
     else list = list.filter(c => (ui.sqParity === 'all' || (ui.sqParity === 'yes') === c.parity) && (ui.sqCol === 'both' || (ui.sqCol === 'flip') === c.flip));
+    const norm = t => String(t).toLowerCase().replace(/[\u2018\u2019]/g, "'").replace(/\s+/g, ' ').trim(), q = norm(ui.q);
+    if (q) { const tight = q.replace(/ /g, ''); list = list.filter(c => { const name = norm(c.id + ' ' + (c.group || '') + ' ' + stat(p, c.id).status); return name.includes(q) || c.algs.some(x => { const a = norm(x.a + ((p === 'mm' || p === 'oll') && /[a-z]{4}/.test(q) ? ' ' + chunks(p, x.a).map(k => k.name || '').join(' ') : '')); return a.includes(q) || a.replace(/ /g, '').includes(tight); }); }); }
     const val = c => { const t = stat(p, c.id).times; return t.length ? mean(t) : -1; };
     if (ui.sort === 'mean') list = list.slice().sort((a, b) => val(b) - val(a));
     else if (ui.sort === 'fails') list = list.slice().sort((a, b) => stat(p, b.id).fails - stat(p, a.id).fails);
-    ui.shown = list;
+    return (ui.shown = list);
+  }
+  function tilesHtml(p, list) {
+    const vis = p === 'pbl' ? list.slice(0, ui.limit) : list; // 967 PBL diagrams at once would be slow to draw
+    const more = list.length > vis.length ? `<div class="more"><p class="note">Showing ${vis.length} of ${list.length}</p><button class="btn" id="more">Show ${Math.min(90, list.length - vis.length)} more</button></div>` : '';
+    if (!list.length) return `<div class="none muted"><p>No cases match${ui.q.trim() ? ` \u201C${esc(ui.q.trim())}\u201D` : ' these filters'}.</p>${ui.q.trim() ? '<button class="btn" id="qClear">Clear search</button>' : ''}</div>`;
+    return `<div class="tiles ${p}">${vis.map(c => tileHtml(p, c)).join('')}</div>${more}`;
+  }
+  const shownText = (p, list) => (list.length === cases[p].length ? '' : ` \u00B7 ${list.length} shown`);
+  let qT = 0;
+  function setQuery(v) { // typing redraws only the cards, so the box keeps its focus
+    ui.q = v; ui.limit = 90; clearTimeout(qT);
+    qT = setTimeout(() => { const p = dk(), w = $('#tilesWrap'); if (!w || ui.screen !== 'cases') return; const list = filterCases(p); w.innerHTML = tilesHtml(p, list); const cn = $('.count'); if (cn) cn.textContent = countText(p) + shownText(p, list); }, 90);
+  }
+  function viewCases() {
+    const p = dk(), list = filterCases(p);
     const ollGroups = p === 'oll' ? [...new Set(cases.oll.map(c => c.group))] : [];
     const chips = p === 'oll'
       ? `<div class="chips" role="group" aria-label="Shape"><select id="ollSet" aria-label="Shape">${[['all', 'All shapes (' + cases.oll.length + ')'], ...ollGroups.map(g => [g, g + ' (' + cases.oll.filter(c => c.group === g).length + ')'])].map(([v, l]) => `<option value="${esc(v)}" ${ui.ollSet === v ? 'selected' : ''}>${esc(l)}</option>`).join('')}</select></div>`
@@ -474,17 +562,14 @@
       : p === 'csp'
       ? `<div class="chips" role="group" aria-label="Shape group and parity">${chip('cspSec', 'all', ui.cspSec === 'all', 'All', cases.csp.length)}${[...new Set(cases.csp.map(c => c.group))].map(s => chip('cspSec', s, ui.cspSec === s, s, cases.csp.filter(c => c.group === s).length, s)).join('')}<span class="div" aria-hidden="true"></span>${[['both', 'Even and odd'], ['even', 'Even'], ['odd', 'Odd']].map(([v, l]) => chip('cspPar', v, ui.cspPar === v, l, null, v === 'both' ? null : v)).join('')}</div>`
       : `<div class="chips" role="group" aria-label="Parity and flip">${[['all', 'All'], ['yes', 'Parity'], ['no', 'No parity']].map(([v, l]) => chip('sqParity', v, ui.sqParity === v, l, null, v === 'yes' ? 'parity' : v === 'no' ? 'no parity' : null)).join('')}<span class="div" aria-hidden="true"></span>${[['both', 'Both algs'], ['noflip', 'Without flip'], ['flip', 'With flip']].map(([v, l]) => chip('sqCol', v, ui.sqCol === v, l)).join('')}</div>`;
-    const vis = p === 'pbl' ? list.slice(0, ui.limit) : list; // 967 PBL diagrams at once would be slow to draw
-    const more = list.length > vis.length ? `<div class="more"><p class="note">Showing ${vis.length} of ${list.length}</p><button class="btn" id="more">Show ${Math.min(90, list.length - vis.length)} more</button></div>` : '';
-    const tiles = list.length ? `<div class="tiles ${p}">${vis.map(c => tileHtml(p, c)).join('')}</div>${more}` : `<p class="none muted">No cases match these filters.</p>`;
     const layerSel = (id, label, key, names) => `<select id="${id}" aria-label="${label}"><option value="any">${label}: any</option>${names.map(n => `<option value="${esc(n)}" ${ui[key] === n ? 'selected' : ''}>${label}: ${esc(n)}</option>`).join('')}</select>`;
     const pblSel = p === 'pbl' ? layerSel('pblTop', 'Top', 'pblTop', [...new Set(cases.pbl.map(c => c.top))]) + layerSel('pblBot', 'Bottom', 'pblBot', [...new Set(cases.pbl.map(c => c.bot))].sort()) : '';
     return `<div class="cases-top">${chips}
-      <div class="tools"><span class="count">${countText(p)}</span>${pblSel}
+      <div class="tools"><span class="count" role="status">${countText(p)}${shownText(p, list)}</span><input type="search" class="txt search" id="q" value="${esc(ui.q)}" placeholder="Search name or alg" aria-label="Search cases by name or alg" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search">${pblSel}
         <details class="menu"><summary class="btn">Select cases <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1.5l5 5 5-5"/></svg></summary>
           <div class="menu-pop"><button id="selAll">Select all shown</button><button id="selNone">Deselect all shown</button><button id="selLearning">Only the ones I am learning</button><button id="selNotLearned">Only the ones not learned yet</button></div></details>
         <select id="sort" aria-label="Sort">${[['name', 'Sheet order'], ['mean', 'Slowest first'], ['fails', 'Most forgotten']].map(([v, l]) => `<option value="${v}" ${v === ui.sort ? 'selected' : ''}>${l}</option>`).join('')}</select>
-      </div></div>${tiles}${ui.edit && byId[p][ui.edit] ? editorHtml(p, byId[p][ui.edit]) : ''}`;
+      </div></div><div id="tilesWrap">${tilesHtml(p, list)}</div>${ui.edit && byId[p][ui.edit] ? editorHtml(p, byId[p][ui.edit]) : ''}`;
   }
   // ---- alg editor: reverse the alg, show the state it starts from ----
   const SHEET_U = { '-': '-', T3b: 'cw U', T3a: 'ccw U', Z: 'Z', H: 'H', Opp: 'Opp', Adj: 'Adj', 'O-': 'cw O', 'O+': 'ccw O', W: 'W' };
@@ -541,6 +626,14 @@
         <div class="drawer-f"><button class="btn primary" id="edsave">Save</button><button class="btn" id="edcancel">Cancel</button>${db[p].alg[c.id] ? '<button class="btn danger" id="edreset">Back to sheet alg</button>' : ''}</div>
       </aside>`;
   }
+  function closeEditor(changed) {
+    const id = ui.edit; if (changed) { run.queue = []; run.cur = null; }
+    editFocus = id;
+    if (history.state && history.state.edit) { history.back(); return; } // opening added a Back step: take it, and popstate redraws
+    ui.edit = null; render(); focusEdit();
+  }
+  let editFocus = null;
+  function focusEdit() { const id = editFocus; editFocus = null; const b = id && $$('[data-edit]').find(x => x.dataset.edit === id); if (b) b.focus({ preventScroll: true }); }
   function wireCases() {
     const on = (id, ev, fn) => { const e = $(id); if (e) e.addEventListener(ev, fn); };
     const p = dk();
@@ -548,12 +641,11 @@
     $$('[data-f]').forEach(b => b.addEventListener('click', () => { const [k, v] = b.dataset.f.split('::'); ui.chipScroll = (b.closest('.chips') || {}).scrollLeft || 0; ui[k] = v; ui.limit = 90; render(); }));
     on('#ollSet', 'change', e => { ui.ollSet = e.target.value; render(); });
     ['pblTop', 'pblBot'].forEach(k => { const e = $('#' + k); if (e) e.addEventListener('change', () => { ui[k] = e.value; ui.limit = 90; render(); }); });
-    on('#more', 'click', () => { ui.limit += 90; render(); });
+    on('#q', 'input', e => setQuery(e.target.value));
     const edit = ui.edit && byId[p][ui.edit];
     if (edit) {
       on('#edtxt', 'input', e => { $('#edprev').innerHTML = previewHtml(p, e.target.value); });
-      const done = () => { ui.edit = null; run.queue = []; run.cur = null; render(); };
-      const close = () => { ui.edit = null; render(); };
+      const done = () => closeEditor(true), close = () => closeEditor();
       on('#edsave', 'click', () => {
         const list = $('#edtxt').value.split('\n').map(x => x.trim()).filter(Boolean);
         if (!list.length) return;
@@ -564,15 +656,17 @@
       on('#edcancel', 'click', close); on('#edx', 'click', close); on('#edscrim', 'click', close);
     }
     on('#sort', 'change', e => { ui.sort = e.target.value; render(); });
-    const setSel = fn => { ui.shown.forEach(c => { if (c.ok) db[p].sel[c.id] = fn(c) ? 1 : 0; }); save(p); run.queue = []; run.cur = null; render(); };
+    const setSel = fn => { $$('details.menu[open]').forEach(d => { d.open = false; }); ui.shown.forEach(c => { if (c.ok) db[p].sel[c.id] = fn(c) ? 1 : 0; }); save(p); run.queue = []; run.cur = null; render(); };
     on('#selAll', 'click', () => setSel(() => true));
     on('#selNone', 'click', () => setSel(() => false));
     on('#selLearning', 'click', () => setSel(c => stat(p, c.id).status === 'Learning'));
     on('#selNotLearned', 'click', () => setSel(c => stat(p, c.id).status !== 'Learned'));
     // the whole card is the button: a click anywhere on it (except its own buttons) toggles the case
-    const grid = $('.tiles');
+    const grid = $('#tilesWrap');
     if (grid) {
       grid.addEventListener('click', e => {
+        if (e.target.closest('#more')) { ui.limit += 90; grid.innerHTML = tilesHtml(p, ui.shown); return; }
+        if (e.target.closest('#qClear')) { const q = $('#q'); if (q) { q.value = ''; q.focus(); } setQuery(''); return; }
         const st = e.target.closest('[data-pref]');
         if (st) { if (togglePref(p, st.dataset.pref, +st.dataset.i)) st.closest('.tile').outerHTML = tileHtml(p, byId[p][st.dataset.pref]); return; }
         const ed = e.target.closest('[data-edit]');
@@ -590,7 +684,7 @@
         const box = e.target.closest('input[data-sel]'); if (!box) return;
         db[p].sel[box.dataset.sel] = box.checked ? 1 : 0; run.queue = []; run.cur = null; save(p);
         box.closest('.tile').classList.toggle('is-on', box.checked);
-        const cn = $('.count'); if (cn) cn.textContent = countText(p);
+        const cn = $('.count'); if (cn) cn.textContent = countText(p) + shownText(p, ui.shown);
       });
     }
   }
@@ -617,6 +711,7 @@
         <label class="line"><span>Show trigger names<small>The name under each marked group, such as sune.</small></span><input type="checkbox" class="switch" id="trigNames" ${settings.trigNames !== false ? 'checked' : ''}></label>
         ${p === 'mm' ? `<label class="line"><span>Show arrows on Megaminx cases<small>Arrows mark where each piece goes. Off by default: the sticker colours already show the case.</small></span><input type="checkbox" class="switch" id="mmArrows" ${settings.mmArrows ? 'checked' : ''}></label>` : ''}
         <label class="line"><span>Show the case picture while solving<small>The case you are about to solve, without its algorithm. Turn off to solve from the scramble alone.</small></span><input type="checkbox" class="switch" id="showCase" ${settings.showCase ? 'checked' : ''}></label>
+        <div class="line" style="cursor:default"><span>New here?<small>A three-step walkthrough of the Train screen.</small></span><button class="btn" id="showIntro">How Recall works</button></div>
       </section>
       <section class="group kbd-group"><h2>Keyboard shortcuts</h2>
         <ul class="klist">
@@ -655,6 +750,7 @@
     on('#trigNames', 'change', e => { settings.trigNames = e.target.checked; saveSettings(); });
     on('#mmArrows', 'change', e => { settings.mmArrows = e.target.checked; saveSettings(); });
     on('#showCase', 'change', e => { settings.showCase = e.target.checked; saveSettings(); });
+    on('#showIntro', 'click', () => { settings.seenIntro = false; saveSettings(); go(ui.puzzle, 'train'); });
     $$('[data-pal]').forEach(b => b.addEventListener('click', () => { settings.palette = b.dataset.pal; saveSettings(); applyTheme(); const y = scrollY; render(); scrollTo(0, y); }));
     $$('.seg [data-theme]').forEach(b => b.addEventListener('click', () => { settings.theme = b.dataset.theme; saveSettings(); applyTheme(); render(); }));
     on('#install', 'click', () => { if (installEv) { installEv.prompt(); installEv = null; } });
@@ -667,18 +763,19 @@
       const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'recall-progress.json'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
     });
     on('#import', 'change', e => {
-      const f = e.target.files[0]; if (!f) return;
+      const f = e.target.files[0]; e.target.value = ''; if (!f) return;
       f.text().then(t => {
-        const o = JSON.parse(t);
-        if (o.app !== 'alg-trainer' || !o.mm || !o.sq) throw new Error('not an alg-trainer export');
-        db.mm = o.mm; db.sq = o.sq; if (o.oll) db.oll = o.oll; if (o.csp) db.csp = o.csp; if (o.pbl) db.pbl = o.pbl; KEYS.forEach(q => { db[q].alg = db[q].alg || {}; db[q].pref = db[q].pref || {}; save(q); checked[q] = 0; });
+        let o; try { o = JSON.parse(t); } catch (x) { throw new Error('that file is not a Recall export'); }
+        if (!isObj(o) || o.app !== 'alg-trainer' || !isObj(o.mm) || !isObj(o.sq)) throw new Error('that file is not a Recall export');
+        if (!confirm('Replace the progress on this device with the one in ' + f.name + '?')) return;
+        db.mm = o.mm; db.sq = o.sq; if (o.oll) db.oll = o.oll; if (o.csp) db.csp = o.csp; if (o.pbl) db.pbl = o.pbl; KEYS.forEach(q => { fixDb(q); save(q); checked[q] = 0; });
         if (o.settings) { Object.assign(settings, o.settings); saveSettings(); applyTheme(); }
         if (Array.isArray(o.colors) && o.colors.length === 12) { colors = o.colors; store.set('at.colors', colors); }
         if (cleanSq(o.sqColors)) { sqColors = cleanSq(o.sqColors); store.set('at.sqcolors', sqColors); }
-        run.cur = null; msg('Imported.');
+        run.cur = null; dcache.clear(); render(); $('#msg').textContent = 'Imported ' + f.name + '.';
       }).catch(err => msg('Import failed: ' + err.message));
     });
-    on('#reset', 'click', () => { if (confirm('Delete all stats and selections for this puzzle?')) { db[p] = { sel: {}, st: {}, alg: db[p].alg }; save(p); run.cur = null; msg('Reset.'); } });
+    on('#reset', 'click', () => { if (confirm('Delete all ' + name + ' stats and selections? Your own algs are kept.')) { db[p] = { sel: {}, st: {}, alg: db[p].alg }; save(p); run.cur = null; msg(name + ' stats and selections were reset.'); } });
   }
 
   // ---- navigation ----
@@ -689,6 +786,14 @@
     run.cur = null; run.queue = []; run.soon = []; run.last = null;
     if (ui.screen === 'train' && ready()) newRound();
     render();
+  });
+  window.addEventListener('popstate', () => {
+    if (run.phase === 'running') return;
+    clearTimeout(holdT); ui.peek = false;
+    if (readRoute()) { run.cur = null; run.queue = []; run.soon = []; run.last = null; }
+    const ed = history.state && history.state.edit; ui.edit = ui.screen === 'cases' && ed && byId[dk()][ed] ? ed : null;
+    if (ui.screen === 'train' && ready() && !run.cur) newRound();
+    render(); focusEdit();
   });
   $('#tab-mm').addEventListener('click', () => go('mm', ui.screen));
   $('#tab-sq').addEventListener('click', () => go('sq', ui.screen));
@@ -739,7 +844,7 @@
         Object.entries(l.st || {}).forEach(([id, s]) => { const rs = st[id]; if (!rs || (s.last || 0) >= (rs.last || 0)) st[id] = s; });
         const mix = k => (loc ? Object.assign({}, r[k] || {}, l[k] || {}) : Object.assign({}, l[k] || {}, r[k] || {}));
         db[q] = Object.assign({}, r, l, { sel: mix('sel'), st, alg: mix('alg'), pref: mix('pref') });
-        save(q); checked[q] = 0;
+        fixDb(q); save(q); checked[q] = 0;
       });
       if (!loc) {
         if (o.settings && typeof o.settings === 'object') { Object.assign(settings, o.settings); saveSettings(); applyTheme(); }
@@ -826,13 +931,14 @@
   });
   window.addEventListener('online', () => { if (sync.code) (sync.dirty ? syncPush() : syncPull()); });
 
+  if (settings.seenIntro === undefined && KEYS.some(p => Object.keys(db[p].st).length)) settings.seenIntro = true;
   newRound(); render();
   KEYS.forEach(warm);
   if (sync.code) syncPull();
   // offline: the service worker keeps the app on the device; a new version shows up on the next open
   if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
     const had = !!navigator.serviceWorker.controller;
-    navigator.serviceWorker.addEventListener('controllerchange', () => { if (had) toast('A new version of Recall is ready. Reload to use it.'); else if (ui.screen === 'settings') { const m = $('#offlineMsg'); if (m) m.textContent = offlineText(); } });
+    navigator.serviceWorker.addEventListener('controllerchange', () => { if (had) toast('A new version of Recall is ready.', { action: 'Reload', fn: () => location.reload() }); else if (ui.screen === 'settings') { const m = $('#offlineMsg'); if (m) m.textContent = offlineText(); } });
     window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => { /* private mode or blocked: the site still works online */ }));
   }
 })();

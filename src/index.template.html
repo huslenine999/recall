@@ -13,7 +13,12 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="description" content="Recall: an alg trainer for Megaminx PLL and Square-1 EP, CSP and PBL, with a cstimer-style timer.">
+<meta name="description" content="Recall: a free, offline alg trainer for Megaminx PLL and OLL and Square-1 EP, PBL and CSP, with case diagrams and a cstimer-style timer.">
+<meta property="og:title" content="Recall: Algorithm Trainer">
+<meta property="og:description" content="Drill Megaminx PLL and OLL and Square-1 EP, PBL and CSP. Works offline, no account.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="icon-512.png">
+<meta name="twitter:card" content="summary">
 <style>
 /*__FONTS__*/
 
@@ -84,6 +89,7 @@ svg{display:block}
 .set[aria-selected="true"] i{opacity:.7}
 .sub{display:flex;align-items:center;gap:8px;border:0;background:none;color:var(--mute);border-radius:12px;padding:10px 14px;font-weight:650}
 .sub svg{width:20px;height:20px;flex:none}
+.tab,.sub,.set,.fchip{-webkit-tap-highlight-color:transparent}
 .sub[aria-selected="true"]{background:var(--raise);color:var(--text)}
 .tab:hover:not([aria-selected="true"]),.sub:hover:not([aria-selected="true"]){color:var(--text)}
 main.shell{padding-block:8px 48px}
@@ -162,7 +168,7 @@ body[data-phase="running"] .top,body[data-phase="running"] .nav,body[data-phase=
 .trg{display:inline-block;white-space:nowrap;margin:1px 2px;vertical-align:top;text-align:center}
 .trg.boxes{background:color-mix(in srgb,var(--set,#8E8BB0) 22%,transparent);border-radius:6px;padding:0 6px}
 .trg.brackets{padding:0 2px}
-.trg .tn{display:block;font:600 10px/1.1 var(--sans,system-ui);font-style:normal;color:var(--mute);letter-spacing:0;padding-bottom:2px}
+.trg .tn{display:block;font:600 10px/1.1 var(--ui);font-style:normal;color:var(--mute);letter-spacing:0;padding-bottom:2px}
 .seg{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
 .seg .btn[aria-pressed="true"]{background:var(--pri-bg);color:var(--pri-fg)}
 .algrow{display:flex;align-items:flex-start;gap:4px}
@@ -255,7 +261,7 @@ body[data-phase="running"] .top,body[data-phase="running"] .nav,body[data-phase=
 .tile-f .btn{min-height:36px;padding:6px 10px}
 .warn{font-size:14px;color:var(--bad);background:rgba(214,59,68,.1);border-radius:12px;padding:10px 12px}
 .tag-check{font:700 11px/1 var(--ui);color:var(--bad);border:1.5px solid var(--bad);border-radius:6px;padding:2px 5px;margin-right:6px}
-.none{padding:40px 0;text-align:center}
+.none{padding:40px 0;text-align:center;display:grid;justify-items:center;gap:12px}
 
 /* alg editor drawer */
 .scrim{position:fixed;inset:0;background:var(--scrim);z-index:40}
@@ -298,7 +304,9 @@ body[data-phase="running"] .top,body[data-phase="running"] .nav,body[data-phase=
 .pal-def{--b:var(--panel);--t:var(--text);--m:var(--pri-bg);--s:var(--mute)}
 .pal[aria-pressed="true"]{box-shadow:0 0 0 3px var(--bg),0 0 0 5px var(--text)}
 .txt{font:600 17px/1 var(--mono);letter-spacing:.06em;background:var(--bg);border:2px solid var(--line);border-radius:12px;padding:10px 12px;width:13ch;color:inherit;text-transform:uppercase}
-.txt:focus{outline:none;border-color:var(--ink)}
+.txt:focus{outline:none;border-color:var(--focus)}
+.txt.search{flex:1 1 200px;max-width:300px;min-height:44px;width:auto;font:500 15px/1.2 var(--ui);letter-spacing:0;text-transform:none}
+.txt.search::placeholder{color:var(--mute);opacity:1}
 .synccode{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .synccode .code{font:700 24px/1 var(--mono);letter-spacing:.08em}
 .row-btns{display:flex;flex-wrap:wrap;gap:8px}
@@ -307,6 +315,17 @@ body[data-phase="running"] .top,body[data-phase="running"] .nav,body[data-phase=
 /* ---------- toast ---------- */
 #toast{position:fixed;left:50%;bottom:calc(var(--nav-h) + 24px);transform:translate(-50%,8px);z-index:60;background:var(--text);color:var(--bg);padding:11px 18px;border-radius:12px;font-weight:600;opacity:0;pointer-events:none;max-width:calc(100% - 32px)}
 #toast.show{opacity:1;transform:translate(-50%,0);transition:opacity .15s,transform .15s}
+#toast.act{pointer-events:auto;display:flex;align-items:center;gap:14px;padding:8px 8px 8px 18px}
+#toast button{flex:none;border:0;border-radius:9px;min-height:36px;padding:6px 14px;font-weight:700;background:var(--bg);color:var(--text)}
+
+/* ---------- first visit ---------- */
+.intro{display:flex;flex-direction:column;gap:12px;margin-bottom:20px;box-shadow:inset 0 0 0 2px var(--pri-bg)}
+.intro ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 24px;counter-reset:st}
+.intro li{counter-increment:st;font-size:15px;color:var(--mute)}
+.intro li::before{content:counter(st);display:grid;flex:none;place-items:center;width:26px;height:26px;margin-bottom:6px;border-radius:8px;background:var(--raise);color:var(--text);font:700 13px/1 var(--mono)}
+.intro li b{color:var(--text);font-weight:650}
+.intro kbd{display:inline}
+body[data-phase="running"] .intro{opacity:0;pointer-events:none}
 
 /* ---------- phone ---------- */
 @media (max-width:860px){
@@ -353,6 +372,12 @@ body[data-phase="running"] .top,body[data-phase="running"] .nav,body[data-phase=
   .actions .btn{padding:10px 6px;font-size:15px}
   .actions .primary{font-size:18px}
   .tools .count{flex:1 0 100%}
+  .txt.search{flex:1 0 100%;max-width:none}
+  .intro ol{grid-template-columns:1fr}
+  .intro li{display:grid;grid-template-columns:26px 1fr;gap:0 10px;align-items:start}
+  .intro li::before{margin:0}
+  .pad .hint{bottom:9px;font-size:14px}
+  .pad .digits{margin-top:-.3em}
   .tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .tiles.sq,.tiles.csp,.tiles.pbl{grid-template-columns:1fr}
   .tile{padding:10px}
@@ -404,6 +429,7 @@ body[data-phase="running"] .top,body[data-phase="running"] .nav,body[data-phase=
   </ul></details>
 </div></footer>
 <div id="toast" role="status" aria-live="polite"></div>
+<noscript><p style="padding:24px;font:16px/1.5 system-ui,sans-serif">Recall needs JavaScript: the scrambles, diagrams and timer are all worked out in your browser. Turn it on and reload.</p></noscript>
 <script>
 /*__DATA__*/
 </script>
