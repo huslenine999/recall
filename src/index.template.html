@@ -221,16 +221,16 @@ body[data-phase="running"] .top,body[data-phase="running"] .nav,body[data-phase=
 .menu-pop button{border:0;background:none;text-align:left;padding:12px 14px;border-radius:10px;font-weight:600}
 .menu-pop button:hover{background:var(--raise)}
 .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(236px,1fr));gap:14px}
-.tiles.sq,.tiles.csp,.tiles.pbl{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-@media (min-width:1000px){.tiles.sq,.tiles.csp,.tiles.pbl{grid-template-columns:repeat(4,minmax(0,1fr))}}
-.tiles.sq .tile,.tiles.csp .tile,.tiles.pbl .tile{padding:10px;gap:8px}
-.tiles.sq .tile-h h3,.tiles.csp .tile-h h3,.tiles.pbl .tile-h h3{font-size:22px;font-weight:800;letter-spacing:-.01em;line-height:1.1}
+.tiles.sq,.tiles.csp,.tiles.pbl,.tiles.obl{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (min-width:1000px){.tiles.sq,.tiles.csp,.tiles.pbl,.tiles.obl{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.tiles.sq .tile,.tiles.csp .tile,.tiles.pbl .tile,.tiles.obl .tile{padding:10px;gap:8px}
+.tiles.sq .tile-h h3,.tiles.csp .tile-h h3,.tiles.pbl .tile-h h3,.tiles.obl .tile-h h3{font-size:22px;font-weight:800;letter-spacing:-.01em;line-height:1.1}
 .tile-h h3 .sl{color:var(--mute);font-weight:500;padding:0 .22em}
-.tiles.sq .tile-h,.tiles.csp .tile-h,.tiles.pbl .tile-h{padding-bottom:8px;border-bottom:1px solid var(--line)}
-.tiles.sq .alg,.tiles.csp .alg,.tiles.pbl .alg{font-size:13.5px;line-height:1.5}
-.tiles.sq .tile-f .st,.tiles.csp .tile-f .st,.tiles.pbl .tile-f .st{font-size:13px;gap:2px 10px}
-.tiles.sq .tile-f .st b,.tiles.csp .tile-f .st b,.tiles.pbl .tile-f .st b{font-size:13px}
-.tiles.sq .status span,.tiles.csp .status span,.tiles.pbl .status span{display:none}
+.tiles.sq .tile-h,.tiles.csp .tile-h,.tiles.pbl .tile-h,.tiles.obl .tile-h{padding-bottom:8px;border-bottom:1px solid var(--line)}
+.tiles.sq .alg,.tiles.csp .alg,.tiles.pbl .alg,.tiles.obl .alg{font-size:13.5px;line-height:1.5}
+.tiles.sq .tile-f .st,.tiles.csp .tile-f .st,.tiles.pbl .tile-f .st,.tiles.obl .tile-f .st{font-size:13px;gap:2px 10px}
+.tiles.sq .tile-f .st b,.tiles.csp .tile-f .st b,.tiles.pbl .tile-f .st b,.tiles.obl .tile-f .st b{font-size:13px}
+.tiles.sq .status span,.tiles.csp .status span,.tiles.pbl .status span,.tiles.obl .status span{display:none}
 .more{display:grid;justify-items:center;gap:10px;margin:22px 0 8px}
 .tile{content-visibility:auto;contain-intrinsic-size:auto 360px;display:flex;flex-direction:column;gap:10px;background:var(--panel);border-radius:16px;padding:12px;box-shadow:inset 0 0 0 2px transparent;cursor:pointer;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
 .tile.is-on{box-shadow:inset 0 0 0 2px var(--set)}
@@ -379,7 +379,7 @@ body[data-phase="running"] .intro{opacity:0;pointer-events:none}
   .pad .hint{bottom:9px;font-size:14px}
   .pad .digits{margin-top:-.3em}
   .tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  .tiles.sq,.tiles.csp,.tiles.pbl{grid-template-columns:1fr}
+  .tiles.sq,.tiles.csp,.tiles.pbl,.tiles.obl{grid-template-columns:1fr}
   .tile{padding:10px}
   .tile-h h3{font-size:17px}
   .status span{display:none}
@@ -424,6 +424,7 @@ body[data-phase="running"] .intro{opacity:0;pointer-events:none}
   <details class="credits"><summary>Algorithm sources</summary><ul>
     <li><b>Megaminx PLL</b> &ndash; the full PLL sheet by Raul Low Beattie, using James Macdiarmid&rsquo;s case system.</li>
     <li><b>Megaminx OLL</b> &ndash; the OLL algorithms from SpeedcubeQuest (speedcube.quest).</li>
+    <li><b>Square-1 OBL</b> &ndash; HCubist&rsquo;s OBL sheet by Hitesh Kumar Bhuwalka (hcubist.com).</li>
     <li><b>Square-1 PBL</b> &ndash; Daniel&rsquo;s Public PBL Doc.</li>
     <li><b>Square-1 CSP</b> &ndash; the &ldquo;Squanmate cube shape + parity&rdquo; sheet.</li>
   </ul></details>

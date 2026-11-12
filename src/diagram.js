@@ -184,12 +184,13 @@
     for (let i = 0; i < 12; i++) {
       const id = L[i], a0 = i * 30, k = id % 4, isU = id < 4 || (id >= 8 && id < 12);
       const fill = opt.neutral ? opt.neutral.fill : isU ? colors.face : colors.faceD;
+      const side = j => (opt.neutral ? opt.neutral.sticker : opt.orient ? fill : colors.sides[j]); // OBL: a piece is just top or bottom colour
       if (id >= 8) { // edge: one wedge, one sticker
-        V.push(rim(a0)); col.push(opt.neutral ? opt.neutral.sticker : colors.sides[k]);
+        V.push(rim(a0)); col.push(side(k));
         pieces += sharp([C, rim(a0), rim(a0 + 30)], fill, 2.2);
       } else if (L[(i + 11) % 12] !== id) { // first slot of a corner: kite wedge, two stickers
         const tip = sqPt(cx, cy, SH_RC, a0 + 30);
-        V.push(rim(a0), tip); col.push(...(opt.neutral ? [opt.neutral.sticker, opt.neutral.sticker] : [colors.sides[(k + 3) % 4], colors.sides[k]]));
+        V.push(rim(a0), tip); col.push(side((k + 3) % 4), side(k));
         pieces += sharp([C, rim(a0), tip, rim(a0 + 60)], fill, 2.2);
       }
     }
@@ -265,6 +266,15 @@
     return sqFrame(sqLayer(bestTurn(st.top, 0, 8), CXU, CY, colors, '', '', { arrows: false }), sqLayer(bestTurn(st.bot, 4, 12), CXD, CY, colors, '', '', { arrows: false }), null, opts.label || 'Square-1 PBL case', 'pbl');
   }
 
-  const api = { megaminxDiagram, megaminxOllDiagram, square1Diagram, cspDiagram, pblDiagram, MM_DEFAULT_COLORS, SQ_COLORS, MM_CFG };
+  // OBL: cube shape, each piece only in its layer's colour (U colour or D colour); which slot is which piece does not matter yet
+  function oblDiagram(alg, colors, opts) {
+    colors = Object.assign({}, SQ_COLORS, colors || {}); opts = opts || {};
+    let st;
+    try { st = S.cspState(alg, 'CCECCECCECCE/CCECCECCECCE'); } catch (e) { return null; }
+    if (!st) return null;
+    return sqFrame(sqLayer(st.top, CXU, CY, colors, '', '', { arrows: false, orient: true }), sqLayer(st.bot, CXD, CY, colors, '', '', { arrows: false, orient: true }), null, opts.label || 'Square-1 OBL case', 'obl');
+  }
+
+  const api = { oblDiagram, megaminxDiagram, megaminxOllDiagram, square1Diagram, cspDiagram, pblDiagram, MM_DEFAULT_COLORS, SQ_COLORS, MM_CFG };
   if (typeof module !== 'undefined') module.exports = api; else root.Diagram = api;
 })(typeof window !== 'undefined' ? window : globalThis);

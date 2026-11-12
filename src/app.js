@@ -14,12 +14,18 @@
   const sticker = g => `<span class="sticker" style="--set:${setColor(g)}"></span>`;
 
   // ---- case lists (same shape for both puzzles); algs come from the sheet or from the user's override ----
-  const KEYS = ['mm', 'oll', 'sq', 'csp', 'pbl']; // data keys: Megaminx PLL and OLL, Square-1 EP, CSP and PBL
+  const KEYS = ['mm', 'oll', 'sq', 'csp', 'pbl', 'obl']; // data keys: Megaminx PLL and OLL, Square-1 EP, CSP, PBL and OBL
   const CUBE_SHAPE = 'CCECCECCECCE/CCECCECCECCE';
-  const cases = { mm: [], oll: [], sq: [], csp: [], pbl: [] }, sheet = { mm: {}, oll: {}, sq: {}, csp: {}, pbl: {} }, byId = { mm: {}, oll: {}, sq: {}, csp: {}, pbl: {} };
+  const cases = {}, sheet = {}, byId = {};
+  KEYS.forEach(k => { cases[k] = []; sheet[k] = {}; byId[k] = {}; });
   function verifyAlg(p, a, c) {
     const flip = c.flip;
     try {
+      if (p === 'obl') {
+        const st = S.cspState(a, CUBE_SHAPE), cl = st && S.oblClass(st);
+        if (!cl) return { ok: false, why: 'This alg does not start from a cube shape' };
+        return { ok: cl === c.cls, why: cl === c.cls ? '' : 'This alg solves a different OBL than ' + c.id };
+      }
       if (p === 'pbl') {
         const st = S.cspState(a, CUBE_SHAPE), cl = st && S.pblClass(st);
         if (!cl) return { ok: false, why: 'This alg does not start from a cube shape with every piece in its own layer' };
@@ -45,7 +51,7 @@
   }
   // Checking every alg against the simulator is the slowest part of startup (PBL alone is 967 simulations), so each set is
   // checked when it is first needed, and the others are checked a few cases at a time while the browser is idle.
-  const checked = { mm: 0, oll: 0, sq: 0, csp: 0, pbl: 0 }; // how many cases of each set are checked so far
+  const checked = { mm: 0, oll: 0, sq: 0, csp: 0, pbl: 0, obl: 0 }; // how many cases of each set are checked so far
   const ensure = p => { const list = cases[p]; while (checked[p] < list.length) setAlgs(p, list[checked[p]++]); };
   // The alg you use: when a case has several algs, the one marked with the star is the one scrambles are built from and shown first.
   const prefAlg = (p, c) => { const a = db[p].pref && db[p].pref[c.id]; return (a && c.algs.find(x => x.ok && x.a === a)) || null; };
@@ -57,9 +63,9 @@
   }
 
   // ---- persistent data: one key per puzzle {sel:{id:0|1}, st:{id:{status,times,att,fails,last}}} ----
-  const db = { mm: store.get('at.mm.v1', { sel: {}, st: {} }), oll: store.get('at.oll.v1', { sel: {}, st: {} }), sq: store.get('at.sq.v1', { sel: {}, st: {} }), csp: store.get('at.csp.v1', { sel: {}, st: {} }), pbl: store.get('at.pbl.v1', { sel: {}, st: {} }) };
+  const db = { mm: store.get('at.mm.v1', { sel: {}, st: {} }), oll: store.get('at.oll.v1', { sel: {}, st: {} }), sq: store.get('at.sq.v1', { sel: {}, st: {} }), csp: store.get('at.csp.v1', { sel: {}, st: {} }), pbl: store.get('at.pbl.v1', { sel: {}, st: {} }), obl: store.get('at.obl.v1', { sel: {}, st: {} }) };
   const save = p => store.set('at.' + p + '.v1', db[p]);
-  const settings = Object.assign({ showDiagram: { mm: true, oll: true, sq: true, csp: true, pbl: true }, showCase: true, mmArrows: false, triggers: 'boxes', trigNames: true, theme: 'system' }, store.get('at.settings.v1', {}));
+  const settings = Object.assign({ showDiagram: { mm: true, oll: true, sq: true, csp: true, pbl: true, obl: true }, showCase: true, mmArrows: false, triggers: 'boxes', trigNames: true, theme: 'system' }, store.get('at.settings.v1', {}));
   const saveSettings = () => store.set('at.settings.v1', settings);
   // A chosen palette (settings.palette = its name) sets the color tokens inline, which beats the stylesheet's light/dark blocks.
   const PAL_VARS = ['--bg', '--text', '--mute', '--pri-bg', '--pri-fg', '--focus', '--bad', '--ok', '--warn', '--panel', '--raise', '--line', '--scrim'];
@@ -83,7 +89,7 @@
     $$('meta[name="theme-color"]').forEach((m, i) => { m.content = pal ? pal[1] : metaOrig[i]; });
   };
   if (!settings.showDiagram || typeof settings.showDiagram !== 'object') settings.showDiagram = { mm: true, sq: true, csp: true };
-  ['csp', 'pbl'].forEach(q => { if (settings.showDiagram[q] === undefined) settings.showDiagram[q] = settings.showDiagram.sq !== false; });
+  ['csp', 'pbl', 'obl'].forEach(q => { if (settings.showDiagram[q] === undefined) settings.showDiagram[q] = settings.showDiagram.sq !== false; });
   if (settings.showDiagram.oll === undefined) settings.showDiagram.oll = settings.showDiagram.mm !== false;
   applyTheme();
   let colors = store.get('at.colors', D.MM_DEFAULT_COLORS.slice());
@@ -105,6 +111,7 @@
     sheet.sq[id] = list; const k = { id, group: r.parity ? 'parity' : 'no parity', parity: r.parity, flip, note: r.note }; cases.sq.push(k); byId.sq[id] = k;
   }));
   DATA_CSP.forEach(r => { const id = r.name + ' · ' + r.parity; sheet.csp[id] = [r.alg]; const k = { id, name: r.name, n: r.n, key: r.key, parity: r.parity, group: r.section }; cases.csp.push(k); byId.csp[id] = k; });
+  DATA_OBL.forEach(r => { sheet.obl[r.id] = [r.alg]; const k = { id: r.id, cls: r.cls, slashes: r.slashes, group: r.slashes + (r.slashes === 1 ? ' slash' : ' slashes') }; cases.obl.push(k); byId.obl[r.id] = k; });
   DATA_PBL.forEach(r => { sheet.pbl[r.id] = [r.alg]; const k = { id: r.id, top: r.top, bot: r.bot, ct: r.ct, cb: r.cb, slices: r.slices, group: r.slices + ' slicers' }; cases.pbl.push(k); byId.pbl[r.id] = k; });
 
   const selected = (p, c) => db[p].sel[c.id] !== 0; // default: selected
@@ -126,11 +133,11 @@
   // each puzzle has several alg sets; only the ones with algs behind them are ready (data key = 'mm' or 'sq')
   const SETS = {
     mm: [{ id: 'pll', label: 'PLL', ready: true }, { id: 'oll', label: 'OLL', ready: true }],
-    sq: [{ id: 'ep', label: 'EP', ready: true }, { id: 'pbl', label: 'PBL', ready: true }, { id: 'obl', label: 'OBL', ready: false }, { id: 'csp', label: 'CSP', ready: true }]
+    sq: [{ id: 'ep', label: 'EP', ready: true }, { id: 'pbl', label: 'PBL', ready: true }, { id: 'obl', label: 'OBL', ready: true }, { id: 'csp', label: 'CSP', ready: true }]
   };
   const PUZZLE_NAME = { mm: 'Megaminx', sq: 'Square-1' };
-  const DK_NAME = { mm: 'Megaminx PLL', oll: 'Megaminx OLL', sq: 'Square-1 EP', csp: 'Square-1 CSP', pbl: 'Square-1 PBL' };
-  const ui = { puzzle: 'mm', screen: 'train', mmSet: 'all', ollSet: 'all', sqParity: 'all', sqCol: 'both', cspSec: 'all', cspPar: 'both', pblSec: 'all', pblTop: 'any', pblBot: 'any', limit: 90, sort: 'name', edit: null, chipScroll: 0, q: '' };
+  const DK_NAME = { mm: 'Megaminx PLL', oll: 'Megaminx OLL', sq: 'Square-1 EP', csp: 'Square-1 CSP', pbl: 'Square-1 PBL', obl: 'Square-1 OBL' };
+  const ui = { puzzle: 'mm', screen: 'train', mmSet: 'all', ollSet: 'all', sqParity: 'all', sqCol: 'both', cspSec: 'all', cspPar: 'both', pblSec: 'all', pblTop: 'any', pblBot: 'any', oblSec: 'all', limit: 90, sort: 'name', edit: null, chipScroll: 0, q: '' };
   ui.set = Object.assign({ mm: 'pll', sq: 'ep' }, store.get('at.sets.v1', {}));
   ['mm', 'sq'].forEach(q => { if (!SETS[q].some(x => x.id === ui.set[q])) ui.set[q] = SETS[q][0].id; });
   // The address bar follows what is on screen (#sq/pbl/cases), so Back, reload and shared links land where you were.
@@ -156,10 +163,10 @@
   }
   const curSet = () => SETS[ui.puzzle].find(x => x.id === ui.set[ui.puzzle]);
   const ready = () => curSet().ready;
-  const dk = () => (ui.puzzle === 'sq' ? (ui.set.sq === 'csp' || ui.set.sq === 'pbl' ? ui.set.sq : 'sq') : ui.set.mm === 'oll' ? 'oll' : 'mm'); // key of the data behind what is on screen
+  const dk = () => (ui.puzzle === 'sq' ? (ui.set.sq === 'csp' || ui.set.sq === 'pbl' || ui.set.sq === 'obl' ? ui.set.sq : 'sq') : ui.set.mm === 'oll' ? 'oll' : 'mm'); // key of the data behind what is on screen
   const run = { mode: 'random', cur: null, last: null, queue: [], soon: [], phase: 'idle', t0: 0, time: null, scramble: '', revealed: false, lastRec: false };
   // phase: idle (scramble shown, ready) | hold | armed | running | stopped
-  const sess = { mm: [], oll: [], sq: [], csp: [], pbl: [] }; // this visit's solves per puzzle: {id, time|null}
+  const sess = { mm: [], oll: [], sq: [], csp: [], pbl: [], obl: [] }; // this visit's solves per puzzle: {id, time|null}
   const MOD = /Mac|iPhone|iPad|iPod/.test(navigator.platform || navigator.userAgent || '') ? '⌥' : 'Alt+'; // cstimer-style shortcuts
   const isTouch = () => !!(window.matchMedia && matchMedia('(pointer: coarse)').matches);
   let touchMode = isTouch(); // which wording the hints use; follows what the person actually uses (a laptop with a touch screen, a tablet with a keyboard)
@@ -198,7 +205,7 @@
     if (!c) { run.scramble = ''; return; }
     run.last = c.id;
     const good = c.algs.filter(x => x.ok), mine = prefAlg(dk(), c), alg = mine ? mine.a : good[Math.floor(Math.random() * good.length)].a;
-    run.scramble = ui.puzzle === 'mm' ? X.mmSetup(alg) : dk() === 'csp' ? X.cspSetup(alg, c.key) : dk() === 'pbl' ? X.cspSetup(alg, CUBE_SHAPE) : X.sqSetup(alg);
+    run.scramble = ui.puzzle === 'mm' ? X.mmSetup(alg) : dk() === 'csp' ? X.cspSetup(alg, c.key) : dk() === 'pbl' || dk() === 'obl' ? X.cspSetup(alg, CUBE_SHAPE) : X.sqSetup(alg);
   }
 
   // ---- icons ----
@@ -229,7 +236,7 @@
   function diagSvg(p, c) {
     const good = prefAlg(p, c) || c.algs.find(x => x.ok); if (!good) return '';
     const key = p + '|' + c.id + '|' + good.a + (p === 'mm' ? '|' + colors.join('') + '|' + settings.mmArrows : p === 'oll' || p === 'csp' ? '' : '|' + sqColors.face + sqColors.faceD + sqColors.sides.join(''));
-    if (!dcache.has(key)) dcache.set(key, (p === 'mm' ? D.megaminxDiagram(good.a, colors, { label: c.id, arrows: settings.mmArrows }) : p === 'oll' ? D.megaminxOllDiagram(good.a, { label: c.id }) : p === 'csp' ? D.cspDiagram(good.a, c.key, { label: c.id }) : p === 'pbl' ? D.pblDiagram(good.a, sqColors, { label: c.id }) : D.square1Diagram(good.a, sqColors, { label: c.id })) || '');
+    if (!dcache.has(key)) dcache.set(key, (p === 'mm' ? D.megaminxDiagram(good.a, colors, { label: c.id, arrows: settings.mmArrows }) : p === 'oll' ? D.megaminxOllDiagram(good.a, { label: c.id }) : p === 'obl' ? D.oblDiagram(good.a, sqColors, { label: c.id }) : p === 'csp' ? D.cspDiagram(good.a, c.key, { label: c.id }) : p === 'pbl' ? D.pblDiagram(good.a, sqColors, { label: c.id }) : D.square1Diagram(good.a, sqColors, { label: c.id })) || '');
     return dcache.get(key);
   }
   const matFor = (p, c) => { const s = diagSvg(p, c); return s ? `<div class="mat">${s}</div>` : ''; };
@@ -243,7 +250,7 @@
   ].map(([name, t]) => ({ name, t: t.split(' ') })).sort((a, b) => b.t.length - a.t.length);
   const tokEq = (pat, tok) => (pat === 'U?' ? /^U2'?$/.test(tok) : pat === tok);
   function chunks(p, a) { // [{t:'R U R\' U\'', name}] ; name is '' for an unnamed chunk, null for plain moves
-    if (p === 'sq' || p === 'csp' || p === 'pbl') return a.split('/').map(x => x.trim()).filter(Boolean).map(t => ({ t, name: '', slash: true }));
+    if (p === 'sq' || p === 'csp' || p === 'pbl' || p === 'obl') return a.split('/').map(x => x.trim()).filter(Boolean).map(t => ({ t, name: '', slash: true }));
     const toks = a.split(/\s+/).filter(Boolean), out = [];
     for (let i = 0; i < toks.length;) {
       const m = TRIGS.find(g => g.t.every((q, k) => toks[i + k] !== undefined && tokEq(q, toks[i + k])));
@@ -528,6 +535,7 @@
     let list = cases[p];
     if (p === 'mm') list = list.filter(c => ui.mmSet === 'all' || c.group === ui.mmSet);
     else if (p === 'oll') list = list.filter(c => ui.ollSet === 'all' || c.group === ui.ollSet);
+    else if (p === 'obl') list = list.filter(c => ui.oblSec === 'all' || c.group === ui.oblSec);
     else if (p === 'pbl') list = list.filter(c => (ui.pblSec === 'all' || c.group === ui.pblSec) && (ui.pblTop === 'any' || c.top === ui.pblTop) && (ui.pblBot === 'any' || c.bot === ui.pblBot));
     else if (p === 'csp') list = list.filter(c => (ui.cspSec === 'all' || c.group === ui.cspSec) && (ui.cspPar === 'both' || c.parity === ui.cspPar));
     else list = list.filter(c => (ui.sqParity === 'all' || (ui.sqParity === 'yes') === c.parity) && (ui.sqCol === 'both' || (ui.sqCol === 'flip') === c.flip));
@@ -557,6 +565,8 @@
       ? `<div class="chips" role="group" aria-label="Shape"><select id="ollSet" aria-label="Shape">${[['all', 'All shapes (' + cases.oll.length + ')'], ...ollGroups.map(g => [g, g + ' (' + cases.oll.filter(c => c.group === g).length + ')'])].map(([v, l]) => `<option value="${esc(v)}" ${ui.ollSet === v ? 'selected' : ''}>${esc(l)}</option>`).join('')}</select></div>`
       : p === 'mm'
       ? `<div class="chips" role="group" aria-label="Alg set">${chip('mmSet', 'all', ui.mmSet === 'all', 'All', cases.mm.length)}${[...new Set(cases.mm.map(c => c.group))].map(s => chip('mmSet', s, ui.mmSet === s, s, cases.mm.filter(c => c.group === s).length, s)).join('')}</div>`
+      : p === 'obl'
+      ? `<div class="chips" role="group" aria-label="Slashes">${chip('oblSec', 'all', ui.oblSec === 'all', 'All', cases.obl.length)}${[...new Set(cases.obl.map(c => c.group))].map(g => chip('oblSec', g, ui.oblSec === g, g, cases.obl.filter(c => c.group === g).length)).join('')}</div>`
       : p === 'pbl'
       ? `<div class="chips" role="group" aria-label="Slices">${chip('pblSec', 'all', ui.pblSec === 'all', 'All', cases.pbl.length)}${[...new Set(cases.pbl.map(c => c.group))].sort().map(g => chip('pblSec', g, ui.pblSec === g, g, cases.pbl.filter(c => c.group === g).length, g)).join('')}</div>`
       : p === 'csp'
@@ -593,6 +603,12 @@
         if (!r.ok) return { inv, st: `<div class="bad">Not an OLL alg: ${esc(r.reason)}</div>`, svg: null };
         const same = c && r.cls === c.cls;
         return { inv, st: same ? `<div>This alg solves <b>${esc(c.id)}</b>.</div>` : `<div class="bad">This alg solves a different OLL than ${esc(c ? c.id : '')}.</div>`, svg: D.megaminxOllDiagram(a) };
+      }
+      if (p === 'obl') {
+        const inv = S.invert(a), c = byId.obl[ui.edit], st = S.cspState(a, CUBE_SHAPE), cl = st && S.oblClass(st);
+        if (!cl) return { inv, st: `<div class="bad">Not an OBL alg: it has to start from a cube shape.</div>`, svg: null };
+        const same = c && cl === c.cls;
+        return { inv, st: same ? `<div>This alg solves <b>${esc(c.id)}</b>.</div>` : `<div class="bad">This alg solves a different OBL than ${esc(c ? c.id : '')}.</div>`, svg: D.oblDiagram(a, sqColors) };
       }
       if (p === 'pbl') {
         const inv = S.invert(a), c = byId.pbl[ui.edit], st = S.cspState(a, CUBE_SHAPE), cl = st && S.pblClass(st);
@@ -726,7 +742,7 @@
       <section class="group"><h2>Appearance</h2>
         ${settings.palette && PALETTES.some(x => x[0] === settings.palette) ? '' : `<div class="line"><span>Theme</span><div class="seg" role="group" aria-label="Theme">${[['system', 'System'], ['light', 'Light'], ['dark', 'Dark']].map(([v, l]) => `<button data-theme="${v}" aria-pressed="${settings.theme === v}">${l}</button>`).join('')}</div></div>`}
         <div class="line" style="display:block;cursor:default"><span>Color palette<small>Pick a look for the whole site. Default uses the System, Light or Dark theme.</small></span><div class="pals">${palBtn(null)}${PALETTES.map(palBtn).join('')}</div></div>
-        ${p !== 'mm' && p !== 'oll' ? `<div class="line" style="display:block;cursor:default"><span>Square-1 colors<small>Used by the EP and PBL diagrams. Sides 1 to 4 go clockwise seen from above, starting on the right. ${p === 'csp' ? 'CSP cases are about shape only, so they are drawn without colors.' : 'Match them to your puzzle.'}</small></span><div class="swatches">${sqSw}</div><button class="btn" id="resetSqCol">Reset colors</button></div>` : ''}
+        ${p !== 'mm' && p !== 'oll' ? `<div class="line" style="display:block;cursor:default"><span>Square-1 colors<small>Used by the EP, PBL and OBL diagrams. Sides 1 to 4 go clockwise seen from above, starting on the right. ${p === 'csp' ? 'CSP cases are about shape only, so they are drawn without colors.' : 'Match them to your puzzle.'}</small></span><div class="swatches">${sqSw}</div><button class="btn" id="resetSqCol">Reset colors</button></div>` : ''}
         ${p === 'mm' ? `<div class="line" style="display:block;cursor:default"><span>Megaminx face colors<small>Used by the case diagrams. Match them to your puzzle.</small></span><div class="swatches">${swatch}</div><button class="btn" id="resetCol">Reset colors</button></div>` : ''}
       </section>
       <section class="group"><h2>Offline</h2>
@@ -759,7 +775,7 @@
     on('#resetCol', 'click', () => { colors = D.MM_DEFAULT_COLORS.slice(); store.set('at.colors', colors); render(); });
     $$('input[data-col]').forEach(i => i.addEventListener('change', e => { colors[+e.target.dataset.col] = e.target.value; store.set('at.colors', colors); }));
     on('#export', 'click', () => {
-      const blob = new Blob([JSON.stringify({ app: 'alg-trainer', v: 1, mm: db.mm, oll: db.oll, sq: db.sq, csp: db.csp, pbl: db.pbl, settings, colors, sqColors }, null, 1)], { type: 'application/json' });
+      const blob = new Blob([JSON.stringify(snapshot(), null, 1)], { type: 'application/json' });
       const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'recall-progress.json'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
     });
     on('#import', 'change', e => {
@@ -768,7 +784,7 @@
         let o; try { o = JSON.parse(t); } catch (x) { throw new Error('that file is not a Recall export'); }
         if (!isObj(o) || o.app !== 'alg-trainer' || !isObj(o.mm) || !isObj(o.sq)) throw new Error('that file is not a Recall export');
         if (!confirm('Replace the progress on this device with the one in ' + f.name + '?')) return;
-        db.mm = o.mm; db.sq = o.sq; if (o.oll) db.oll = o.oll; if (o.csp) db.csp = o.csp; if (o.pbl) db.pbl = o.pbl; KEYS.forEach(q => { fixDb(q); save(q); checked[q] = 0; });
+        KEYS.forEach(q => { if (o[q]) db[q] = o[q]; }); KEYS.forEach(q => { fixDb(q); save(q); checked[q] = 0; });
         if (o.settings) { Object.assign(settings, o.settings); saveSettings(); applyTheme(); }
         if (Array.isArray(o.colors) && o.colors.length === 12) { colors = o.colors; store.set('at.colors', colors); }
         if (cleanSq(o.sqColors)) { sqColors = cleanSq(o.sqColors); store.set('at.sqcolors', sqColors); }
@@ -809,10 +825,10 @@
     new ResizeObserver(es => setNavH(boxH(es[es.length - 1]))).observe($('.nav'));
   } else { window.addEventListener('resize', () => { setTopH(); setNavH(); }); setTopH(); setNavH(); }
   // ---- sync: progress kept under a short code (no account), so it follows you to your other devices ----
-  const SYNCED = /^at\.((mm|oll|sq|csp|pbl)\.v1|settings\.v1|colors|sqcolors)$/; // what a change to marks as needing a save
+  const SYNCED = /^at\.((mm|oll|sq|csp|pbl|obl)\.v1|settings\.v1|colors|sqcolors)$/; // what a change to marks as needing a save
   const sync = Object.assign({ code: null, at: 0, dirty: false }, store.get('at.sync.v1', {}), { err: '', busy: false, quiet: false, pulled: 0 });
   const saveSync = () => { const q = sync.quiet; sync.quiet = true; store.set('at.sync.v1', { code: sync.code, at: sync.at, dirty: sync.dirty }); sync.quiet = q; };
-  const snapshot = () => ({ app: 'alg-trainer', v: 1, mm: db.mm, oll: db.oll, sq: db.sq, csp: db.csp, pbl: db.pbl, settings, colors, sqColors });
+  function snapshot() { const o = { app: 'alg-trainer', v: 1 }; KEYS.forEach(k => (o[k] = db[k])); return Object.assign(o, { settings, colors, sqColors }); }
   const forUpload = () => JSON.parse(JSON.stringify(snapshot(), (k, v) => (k === 'times' && Array.isArray(v) ? v.map(Math.round) : v))); // whole ms is plenty and halves the size
   const canon = o => JSON.stringify(o, (k, v) => (v && typeof v === 'object' && !Array.isArray(v) ? Object.keys(v).sort().reduce((a, x) => ((a[x] = v[x]), a), {}) : v));
   let pushT = null;

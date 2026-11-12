@@ -131,6 +131,18 @@
     const t = ring8(st.top, 0, 8), b = ring8(st.bot, 4, 12);
     return t && b ? { top: canon8(t), bot: canon8(b) } : null;
   }
-  const api = { cspState, shapeKey, pblClass, caseState, invert, solved, parse, step, run, analyze, classOf, parity, invPerm, sliceCount, endTurns, CONV };
+  // ---- OBL (orient both layers): which pieces belong on top, per layer, up to turning each layer ----
+  // A layer's 8 pieces in ring order (corner, edge, ...): 1 for a top piece. Read clockwise from above for both layers.
+  function oblRing(L) {
+    let start = -1;
+    for (let i = 0; i < 12; i++) if (L[i] < 8 && L[i] === L[(i + 1) % 12] && L[(i + 11) % 12] !== L[i]) { start = i; break; }
+    if (start < 0) return null;
+    const out = [];
+    for (let i = start; i < start + 12;) { const v = L[i % 12]; if (v < 8) { out.push(v < 4 ? 1 : 0); i += 2; } else { out.push(v < 12 ? 1 : 0); i++; } }
+    return out.length === 8 ? out : null;
+  }
+  const canonRing = r => { let best = null; for (let a = 0; a < 8; a += 2) { const q = r.slice(a).concat(r.slice(0, a)).join(''); if (best === null || q < best) best = q; } return best; };
+  function oblClass(st) { const t = oblRing(st.top), b = oblRing(st.bot); return t && b ? canonRing(t) + '/' + canonRing(b) : null; }
+  const api = { oblClass, cspState, shapeKey, pblClass, caseState, invert, solved, parse, step, run, analyze, classOf, parity, invPerm, sliceCount, endTurns, CONV };
   if (typeof module !== 'undefined') module.exports = api; else root.Square1 = api;
 })(typeof window !== 'undefined' ? window : globalThis);

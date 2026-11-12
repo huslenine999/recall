@@ -214,3 +214,11 @@ live diagram preview), Settings (theme, show diagram, Megaminx sticker colours, 
 - **Known data problem.** Square-1 EP "H / W" (no flip): the sheet alg `/ -3,0 / 3,3 / 3,0 / 1,0 / -2,4 / 2,-4 / 0,4 / -1,-1 / -1,-1 / 1,-4 / -3,-3 /` hits an illegal slice in the simulator,
   so EP trains 145 of 146 cases and that card shows "check". Needs comparing with the source sheet. `tools/smoke.js` expects 145 until it is fixed.
 - **CI.** `.github/workflows/ci.yml` runs `npm test` on every push to main and on pull requests (the browser test is not in CI; run `npm run test:ui` locally).
+
+## Square-1 OBL
+- Data: `data/square1_obl.json` (185 cases from HCubist's OBL sheet by Hitesh Kumar Bhuwalka, hcubist.com). Fields: id (the sheet's name, top / bottom), slashes, alg, cls.
+- `Square1.oblClass(st)`: per layer, which of its 8 pieces belong on top (corner, edge, ... in ring order), smallest over 90-degree turns; "top/bottom". An alg passes when it starts from a cube shape and its class equals the case's `cls`.
+- `Diagram.oblDiagram`: cube shape, pieces in the U or D colour only (Square-1 colours from Settings).
+- Data key `obl`; filters by number of slashes. Scrambles use `cspSetup(alg, CUBE_SHAPE)` like PBL.
+- `tools/verify_obl.js` (in `npm test`): class matches, no duplicates, scramble + alg orients both layers.
+- Names cut off in the PDF's text were restored (Pinwheel, Snoopy).

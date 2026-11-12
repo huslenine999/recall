@@ -27,12 +27,12 @@ async function desktop(browser) {
   check('two entries after forgot', await page.locator('.solves li').count() === 2);
 
   // every set: the sheet algs pass the simulator. Known open item: EP 'H / W' (no flip) has an illegal slice in the data, so EP is 145 of 146.
-  for (const [tab, set, n, ok = n] of [['mm', 'pll', 151], ['mm', 'oll', 257], ['sq', 'ep', 146, 145], ['sq', 'csp', 179], ['sq', 'pbl', 967]]) {
+  for (const [tab, set, n, ok = n] of [['mm', 'pll', 151], ['mm', 'oll', 257], ['sq', 'ep', 146, 145], ['sq', 'csp', 179], ['sq', 'pbl', 967], ['sq', 'obl', 185]]) {
     await page.click('#tab-' + tab); await page.click(`[data-set="${set}"]`); await page.click('[data-s="cases"]');
     const count = await page.locator('.count').textContent();
     check(`${tab} ${set}: ${ok} of ${n} cases usable`, count.startsWith(`${ok} of ${n} `), count);
   }
-  check('address follows the set', page.url().endsWith('#sq/pbl/cases'), page.url());
+  check('address follows the set', page.url().endsWith('#sq/obl/cases'), page.url());
 
   // search
   await page.click('#tab-mm'); await page.click('[data-set="pll"]');

@@ -14,6 +14,7 @@ const data = [
   embed('DATA_OLL', pick('data/megaminx_oll.json', ['id', 'set', 'algs', 'cls'])),
   embed('DATA_SQ', pick('data/square1_ep.json', ['u', 'd', 'parity', 'algsNoFlip', 'algsFlip', 'note'])),
   embed('DATA_CSP', pick('data/square1_csp.json', ['n', 'name', 'section', 'parity', 'alg', 'key'])),
+  embed('DATA_OBL', pick('data/square1_obl.json', ['id', 'slashes', 'alg', 'cls'])),
   embed('DATA_PBL', pick('data/square1_pbl.json', ['id', 'top', 'bot', 'slices', 'alg', 'ct', 'cb']))
 ].join('\n');
 const engines = ['src/palettes.js', 'src/megaminx.js', 'src/square1.js', 'src/diagram.js', 'src/scramble.js'].map(read).join('\n');
