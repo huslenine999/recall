@@ -1,0 +1,161 @@
+[
+ {
+  "id": "Base Solved / Top Solved",
+  "group": "Base solved",
+  "algs": [
+   "R R'",
+   "R2 U2 R2 U2 R2 U2",
+   "R U R U' R' U' R' U' R U",
+   "R U' R' U' R U2 R' U R U R' U2",
+   "R2 U2 F2 R2 U2 R2 F2 U2",
+   "R F R2 U2 R2 F R2 U2 R",
+   "F2 R2 U2 R2 F' R2 U2 R2 F",
+   "R U R' U R' U' R2 U' R' U R' U R U2",
+   "F' R' U R U2 F U R' U' R2"
+  ],
+  "cls": [
+   "1f6zvht"
+  ]
+ },
+ {
+  "id": "Base Solved / Top Bar",
+  "group": "Base solved",
+  "algs": [
+   "(U) R' F R F' R U2 R' U R U2 R'",
+   "(U) F R U' R' F R F' R U R2 F'",
+   "(U) R U2 R' U' R U2 R' F R' F' R",
+   "(U) R U R' F' R U R' U' R' F R2 U' R'",
+   "(U) R U R' U' R' F R2 U' R' U' R U R' F'",
+   "(U2) R' F R' F2 R U' R' F2 R2",
+   "(U') R2 F2 R U R' F2 R F' R",
+   "(U') R U' R' F R' F2 R U' R' F2 R",
+   "(U') R2 U' R' F R' F2 R U' R' F2",
+   "F R2 U' R' F R' F' R U R' F'"
+  ],
+  "cls": [
+   "1614f0l",
+   "8gqclp",
+   "90deu9",
+   "7z4pex"
+  ]
+ },
+ {
+  "id": "Base Solved / Top Diag",
+  "group": "Base solved",
+  "algs": [
+   "R U R U' R' F R' F' R U R' U' R' F R F'",
+   "R U2 R' U2 R' F R F' R U' R' F R' F' R",
+   "F R' F' R U R U' R' F R F' U' R' U' R",
+   "F R U' R' U' R U R' F' R U R' U' R' F R F'",
+   "R F' U' R' U' R F R' F' R U R U' R' F",
+   "R' U R' F2 R F' U R' F2 R F' R",
+   "R U' R' U' F2 U' R U R' U F2",
+   "F' R U R' U' R' F R U2 R U R' U' R' F R F'",
+   "R F R' F' R U R' F' U' F R2 U' R2",
+   "R U' R' F R F' U' R' U' R F R' F' R"
+  ],
+  "cls": [
+   "18gp2ll",
+   "18ef85h"
+  ]
+ },
+ {
+  "id": "Base Bar / Top Solved",
+  "group": "Base bar",
+  "algs": [
+   "R2 F2 U' R2 U R2 U' R2 U R2",
+   "y R2 U' R' U R' F2 R F' R' F2",
+   "F R' F' R U2 R U R2' F R U' R' F R F'",
+   "y' R2 U R2 U' R2 U R2 U' F2 R2",
+   "y R' U R' U' R' F R2 U' R' U' R U R' F' R2",
+   "R U' R' U' F R2 U' R' U R' F' R",
+   "y2 F2 R U' R' F2 R2 U' R' F R'",
+   "y2 R2 B2 (U' R2 U R2)2",
+   "F R2 U' R' U R' F' R F R' F'",
+   "R2 U R' U2 R' U R' F' R2 U R'",
+   "R' U2 R' U R2 U2 R' F R2 U' R'"
+  ],
+  "cls": [
+   "1614f0l",
+   "8gqclp",
+   "90deu9"
+  ]
+ },
+ {
+  "id": "Base Bar / Top Bar",
+  "group": "Base bar",
+  "algs": [
+   "y2 R2 U' R2 U2 F2 U' R2",
+   "R2 U' B2 U2 R2 U' R2",
+   "y F2 U' R2 U2' B2 U' R2'",
+   "y2 (U2) R' F R F' R U R2 F R2 U' R' U R U' R' F",
+   "y2 z U2 R U2 R2 F2 R U2"
+  ],
+  "cls": [
+   "1t1e8wd"
+  ]
+ },
+ {
+  "id": "Base Bar / Top Diag",
+  "group": "Base bar",
+  "algs": [
+   "y R2 U R2 U' R2 U R2 U' R2",
+   "y2 R U' R' U' R' F2 U' R U R",
+   "y R U' R' U R' U2 R U' R U R'",
+   "x L' U R' F2 R F' R",
+   "y' F' R F' R2 F U' R",
+   "y R U' R' U' R' F2 R U R U R'",
+   "R' F U' R2 U F' R",
+   "R U' F U2 F' U R'",
+   "y2 R' U' R' U F2 U' R U R",
+   "y R2 U' R2 U R2 U' R2 U R2"
+  ],
+  "cls": [
+   "1qout0t",
+   "19d841t",
+   "mnzrnl"
+  ]
+ },
+ {
+  "id": "Base Diag / Top Solved",
+  "group": "Base diag",
+  "algs": [
+   "F U' R U R U' R' U R' F' R2 U' R U R2",
+   "F' R U R' U' R' U2 R U' R' F R U' F R F'",
+   "F R' U2 R' U' R' F U2 R U' R",
+   "F R2 U2 R' U R U2 R2 F R F' R' F'",
+   "R U' R' U' F2 U' R U R' U R2 B2",
+   "R F' U R U' R2 U' R' F' U F2"
+  ],
+  "cls": [
+   "18ef85h"
+  ]
+ },
+ {
+  "id": "Base Diag / Top Bar",
+  "group": "Base diag",
+  "algs": [
+   "(U2) R' U R' F2 R F' R",
+   "R' F R' F2 R U' R",
+   "R U' R F2 R' U R'",
+   "x' R F' R U2 R' U R'"
+  ],
+  "cls": [
+   "mnzrnl",
+   "1qout0t"
+  ]
+ },
+ {
+  "id": "Base Diag / Top Diag",
+  "group": "Base diag",
+  "algs": [
+   "R2 F2 R2",
+   "R2 B2 R2",
+   "x R2 U2 R2",
+   "x U' R U R U2 R' U' R' U"
+  ],
+  "cls": [
+   "1hf2c45"
+  ]
+ }
+]

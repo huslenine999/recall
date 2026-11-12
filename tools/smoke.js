@@ -27,12 +27,12 @@ async function desktop(browser) {
   check('two entries after forgot', await page.locator('.solves li').count() === 2);
 
   // every set: the sheet algs pass the simulator. Known open item: EP 'H / W' (no flip) has an illegal slice in the data, so EP is 145 of 146.
-  for (const [tab, set, n, ok = n] of [['mm', 'pll', 151], ['mm', 'oll', 257], ['sq', 'ep', 146, 145], ['sq', 'csp', 179], ['sq', 'pbl', 967], ['sq', 'obl', 185], ['sk', 'ns', 137], ['sk', 'sa', 137], ['px', 'l4e', 37]]) {
+  for (const [tab, set, n, ok = n] of [['mm', 'pll', 151], ['mm', 'oll', 257], ['sq', 'ep', 146, 145], ['sq', 'csp', 179], ['sq', 'pbl', 967], ['sq', 'obl', 185], ['sk', 'ns', 137], ['sk', 'sa', 137], ['px', 'l4e', 37], ['c2', 'pbl', 9], ['c2', 'cll', 40], ['c2', 'eg1', 40], ['c2', 'eg2', 40], ['c2', 'leg1', 40], ['c2', 'tcllp', 43], ['c2', 'tcllm', 43], ['c2', 'ls', 486], ['c2', 'teg2p', 43]]) {
     await page.click(`[data-p="${tab}"]`); await page.click(`[data-set="${set}"]`); await page.click('[data-s="cases"]');
     const count = await page.locator('.count').textContent();
     check(`${tab} ${set}: ${ok} of ${n} cases usable`, count.startsWith(`${ok} of ${n} `), count);
   }
-  check('address follows the set', page.url().endsWith('#px/l4e/cases'), page.url());
+  check('address follows the set', page.url().endsWith('#c2/teg2p/cases'), page.url());
 
   // search
   await page.click('[data-p="mm"]'); await page.click('[data-set="pll"]');
@@ -80,7 +80,7 @@ async function smallPhone(browser) {
   console.log('small phone (320px)');
   const page = await (await browser.newContext({ ...devices['iPhone SE'] })).newPage();
   await page.goto(url + '#mm/pll/train'); await page.tap('#introOk');
-  for (const h of ['#mm/pll/train', '#mm/pll/cases', '#mm/oll/cases', '#sq/pbl/cases', '#sq/obl/cases', '#sq/csp/cases', '#sk/ns/train', '#sk/ns/cases', '#sk/sa/cases', '#px/l4e/train', '#px/l4e/cases', '#sq/ep/settings']) {
+  for (const h of ['#mm/pll/train', '#mm/pll/cases', '#mm/oll/cases', '#sq/pbl/cases', '#sq/obl/cases', '#sq/csp/cases', '#sk/ns/train', '#sk/ns/cases', '#sk/sa/cases', '#px/l4e/train', '#px/l4e/cases', '#c2/cll/train', '#c2/cll/cases', '#c2/ls/cases', '#sq/ep/settings']) {
     await page.goto(url + h); await page.waitForTimeout(150);
     check(h + ' fits 320px with no sideways scroll', await page.evaluate(() => document.documentElement.scrollWidth <= 320), await page.evaluate(() => document.documentElement.scrollWidth));
   }

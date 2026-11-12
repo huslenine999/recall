@@ -1,0 +1,4936 @@
+[
+ {
+  "id": "LS-1 PBL 1",
+  "group": "LS-1",
+  "sub": "PBL",
+  "algs": [
+   "F2 R2 U' R' F R' F2 R U' R'",
+   "(U) F' R U' R' F U2 F R U R'",
+   "R U R' F2 R F' R U R2 F2",
+   "(U') R' F R' F' R U R' F' U' F R2"
+  ]
+ },
+ {
+  "id": "LS-1 PBL 2",
+  "group": "LS-1",
+  "sub": "PBL",
+  "algs": [
+   "(U2) R' F R F' R' F R F' R' F R F'",
+   "(U) R' F R F' R U2 R' F R' F' R",
+   "(U2) F R' F' R F R' F' R F R' F' R",
+   "y R U R' U F2 U' R U' R'"
+  ]
+ },
+ {
+  "id": "LS-1 PBL 3",
+  "group": "LS-1",
+  "sub": "PBL",
+  "algs": [
+   "(U2) R U' R U' R' F R' F' R U R'",
+   "(U) R2 U' F2 U R2 U' F2",
+   "y' R' U' R U' R' F R' F' R U R",
+   "(U') F R F' U R' U' F R' F'",
+   "y' R' F R F' R' U' R2 U R'"
+  ]
+ },
+ {
+  "id": "LS-1 PBL 4",
+  "group": "LS-1",
+  "sub": "PBL",
+  "algs": [
+   "(U2) R2 U R2 U' R2",
+   "(U2) R U' R' U2 R U R'"
+  ]
+ },
+ {
+  "id": "LS-1 PBL 5",
+  "group": "LS-1",
+  "sub": "PBL",
+  "algs": [
+   "y' (U2) R2 U' R2 U R2",
+   "(U) R' F R F' U R U2 R'",
+   "(U2) R U2 R' U' F R' F' R",
+   "y' R U' R' U R' U' R U R'",
+   "y (U2) R2 U' F2 U R2"
+  ]
+ },
+ {
+  "id": "LS-1 PBL 6",
+  "group": "LS-1",
+  "sub": "PBL",
+  "algs": [
+   "R U' R' F R F' R U R' U R'",
+   "R F' R U R2 U' R' F R",
+   "R' U R2 U R2 F R F' R' U2 R",
+   "(U) F R F' U R U' F R' F'",
+   "(U') F2 U R2 U' F2 U R2"
+  ]
+ },
+ {
+  "id": "LS-1 Sune 1",
+  "group": "LS-1",
+  "sub": "Sune",
+  "algs": [
+   "(U2) y' R' U2 R U' F R2 F'",
+   "(U') F R' F' R U R U2 R' U R U2 R'",
+   "(U2) y F R U2 R' U R U' R' F'"
+  ]
+ },
+ {
+  "id": "LS-1 Sune 2",
+  "group": "LS-1",
+  "sub": "Sune",
+  "algs": [
+   "(U2) R U R' U2 F R' F' R2 U R'",
+   "y' R' F2 R U' R' U' R U' R' F R"
+  ]
+ },
+ {
+  "id": "LS-1 Sune 3",
+  "group": "LS-1",
+  "sub": "Sune",
+  "algs": [
+   "(U') R U' R2 F R F' R' F R F'",
+   "R U2 R' U R U' R' U R U' R'",
+   "y (U) R' F R U2 R' F R2 U' R' F"
+  ]
+ },
+ {
+  "id": "LS-1 Sune 4",
+  "group": "LS-1",
+  "sub": "Sune",
+  "algs": [
+   "(U) F R' F' R U' F R' F' R",
+   "(U) F2 R F' U R' F R2"
+  ]
+ },
+ {
+  "id": "LS-1 Sune 5",
+  "group": "LS-1",
+  "sub": "Sune",
+  "algs": [
+   "(U') F R' F' R U F R' F' R",
+   "F' R' F R2 U' R' F2",
+   "y (U') R U' R' F U R U' R' F"
+  ]
+ },
+ {
+  "id": "LS-1 Sune 6",
+  "group": "LS-1",
+  "sub": "Sune",
+  "algs": [
+   "y R' F2 R U2 R' F R U' R' F R",
+   "y' R' U' R U R' U' R U R' U2' R",
+   "(U) F R' F' R2 U R' U2 R U R'"
+  ]
+ },
+ {
+  "id": "LS-1 Antisune 1",
+  "group": "LS-1",
+  "sub": "Antisune",
+  "algs": [
+   "y' (U2) F R2 F' U R' U2' R",
+   "(U2) R U2 R' U F' U2 F",
+   "y (U) F R U R' U' R U2 R' F'"
+  ]
+ },
+ {
+  "id": "LS-1 Antisune 2",
+  "group": "LS-1",
+  "sub": "Antisune",
+  "algs": [
+   "R U' R2 F R F' U2 R U' R'",
+   "y (U2) R' F' R U2 F' R U R2' F' R"
+  ]
+ },
+ {
+  "id": "LS-1 Antisune 3",
+  "group": "LS-1",
+  "sub": "Antisune",
+  "algs": [
+   "(U') R U' R' U2 R U' R2 F R F'",
+   "y' R' U2 R U' R' U R U' R' U R"
+  ]
+ },
+ {
+  "id": "LS-1 Antisune 4",
+  "group": "LS-1",
+  "sub": "Antisune",
+  "algs": [
+   "(U') R' F R F' U R' F R F'",
+   "(U') R2 F' R U' F R' F2",
+   "(U2) R U R' F R F' R U R2 U' R U R'"
+  ]
+ },
+ {
+  "id": "LS-1 Antisune 5",
+  "group": "LS-1",
+  "sub": "Antisune",
+  "algs": [
+   "(U) R' F R F' U' R' F R F'"
+  ]
+ },
+ {
+  "id": "LS-1 Antisune 6",
+  "group": "LS-1",
+  "sub": "Antisune",
+  "algs": [
+   "R U2 R' U2 R U' R' U R U' R'",
+   "(U) R2 U R2 U2 R U R' U R2",
+   "(U2) F R' F' R F R' F' R2 U R'",
+   "R U R' U' R U R' U' R U2' R'"
+  ]
+ },
+ {
+  "id": "LS-1 Ua 1",
+  "group": "LS-1",
+  "sub": "Ua",
+  "algs": [
+   "(U') R2 F R F' R U' R' U R'",
+   "(U2) R' F R F' U R U' R' U R U' R'",
+   "y (U2) R' F' R U R' F' R U F' R U R'"
+  ]
+ },
+ {
+  "id": "LS-1 Ua 2",
+  "group": "LS-1",
+  "sub": "Ua",
+  "algs": [
+   "y (U) R' F R U R' F R2 U' R' F",
+   "(U') R' F R F' R U' R' U2 R U' R'"
+  ]
+ },
+ {
+  "id": "LS-1 Ua 3",
+  "group": "LS-1",
+  "sub": "Ua",
+  "algs": [
+   "(U') R U' R' U R U' R' U R U' R'",
+   "(U2) R U R' U' R U R' U' R U R'",
+   "y' (U) R' F R' F' R2 U' R' F R' F' R2",
+   "(U2) x U R U2 R2 F2 R F'",
+   "(U2) F R F2 R2 U2 R F'"
+  ]
+ },
+ {
+  "id": "LS-1 Ua 4",
+  "group": "LS-1",
+  "sub": "Ua",
+  "algs": [
+   "(U') F' R2 F' R2 F R2",
+   "y (U') R U R' F' R U' R' F R U' R'",
+   "(U') R F R F' R' F R' F' R",
+   "y (U') F R U R' F' R U' R' F"
+  ]
+ },
+ {
+  "id": "LS-1 Ua 5",
+  "group": "LS-1",
+  "sub": "Ua",
+  "algs": [
+   "(U') F2 U' R' U R' F' R2",
+   "y' (U2) R' U R' U' R U' R U2 R2",
+   "(U2) F R' F' R U' F R' F' R2 U R'"
+  ]
+ },
+ {
+  "id": "LS-1 Ua 6",
+  "group": "LS-1",
+  "sub": "Ua",
+  "algs": [
+   "(U2) F' R U2 R' F U2 R' F R",
+   "y' F R' F' R2 U' R U R' U R U' R'",
+   "(U2) R2 U' F R F' R U' R2 U R2",
+   "y' F R' F' U R' U' R U' R' U R"
+  ]
+ },
+ {
+  "id": "LS-1 Ub 1",
+  "group": "LS-1",
+  "sub": "Ub",
+  "algs": [
+   "(U2) R U' F R' F' R U R' U' R2",
+   "(U) R U' R U R' F R' F' R2",
+   "(U2) R U R' U' R U R' U' F R' F' R",
+   "y (U2) R U' R' F U' R' F R U' R' F R",
+   "y' (U2) F R' F' R2 U' R' U R U' R"
+  ]
+ },
+ {
+  "id": "LS-1 Ub 2",
+  "group": "LS-1",
+  "sub": "Ub",
+  "algs": [
+   "(U) R U' R' U' R U R2 F R F'",
+   "y (U) R U' R' F R' F R U2' R' F R",
+   "(U') R U' R' U' R U' R2 F R F'"
+  ]
+ },
+ {
+  "id": "LS-1 Ub 3",
+  "group": "LS-1",
+  "sub": "Ub",
+  "algs": [
+   "y (U) R' F R U' R' F R U' R' F R",
+   "y (U2) R' U' R U R' U' R U R' U' R",
+   "y R' F' R U R' F' R U R' F' R"
+  ]
+ },
+ {
+  "id": "LS-1 Ub 4",
+  "group": "LS-1",
+  "sub": "Ub",
+  "algs": [
+   "(U) R F2 R F2 R' F2",
+   "y (U) F R U' R' F2 R U R'",
+   "R' F' R U2 R U2 R' U' F",
+   "(U) R U2 R' U' F R F' R U R2"
+  ]
+ },
+ {
+  "id": "LS-1 Ub 5",
+  "group": "LS-1",
+  "sub": "Ub",
+  "algs": [
+   "(U) R2 F R F' U R U2 R' U2 R'",
+   "F' U F U' R U R' U R U' R'",
+   "(U2) F R F' R U R' U R' F' U' F",
+   "(U2) F' R' F2 R2 U R' U2 R' F2 R",
+   "(U) R2' F R F' R' U' R U' R' U R"
+  ]
+ },
+ {
+  "id": "LS-1 Ub 6",
+  "group": "LS-1",
+  "sub": "Ub",
+  "algs": [
+   "(U2) F2 R U R' F R U' R'",
+   "(U2) R U R' U' R U2 R' U2 R U R'",
+   "(U2) R U' R U R' U R U2 R2"
+  ]
+ },
+ {
+  "id": "LS-1 La 1",
+  "group": "LS-1",
+  "sub": "La",
+  "algs": [
+   "(U2) R2 F' R U' R' F2 R2 U' R2",
+   "(U2) R2 F' R U' R U R2 F2",
+   "(U') R U2 R' U2 R U' R' U R U2 R'",
+   "(U') R U R' U' R U2 R' U2 R U2 R'",
+   "y (U2) R' F' R U F' R U R2' F' R"
+  ]
+ },
+ {
+  "id": "LS-1 La 2",
+  "group": "LS-1",
+  "sub": "La",
+  "algs": [
+   "(U2) R U R' U' F R' F' R2 U R'",
+   "(U2) R2 F R F' R U R2 U' R2 U' R2"
+  ]
+ },
+ {
+  "id": "LS-1 La 3",
+  "group": "LS-1",
+  "sub": "La",
+  "algs": [
+   "(U) R U' R' U2 R U2 R2 F R F'"
+  ]
+ },
+ {
+  "id": "LS-1 La 4",
+  "group": "LS-1",
+  "sub": "La",
+  "algs": [
+   "(U) R U' R2 F R F' R U' R'"
+  ]
+ },
+ {
+  "id": "LS-1 La 5",
+  "group": "LS-1",
+  "sub": "La",
+  "algs": [
+   "(U) R2 F' R U' F U R' F",
+   "y R U R' U2 F R' F2 R F'",
+   "(U) R U2 R U2 R' U' F R' F' R2"
+  ]
+ },
+ {
+  "id": "LS-1 La 6",
+  "group": "LS-1",
+  "sub": "La",
+  "algs": [
+   "y' (U) R U2 R U2 R' U2 F R F'",
+   "R' F' R U2 F' R U2' R' F",
+   "y' R' U' R U R' U R U' F R F'"
+  ]
+ },
+ {
+  "id": "LS-1 Lb 1",
+  "group": "LS-1",
+  "sub": "Lb",
+  "algs": [
+   "y' (U) R' U R U' R' F R' F' R U2 R",
+   "y R' F2 R U2 R' F R2 U' R' F",
+   "(U) R U2 R' F2 R F' U R' F R2"
+  ]
+ },
+ {
+  "id": "LS-1 Lb 2",
+  "group": "LS-1",
+  "sub": "Lb",
+  "algs": [
+   "(U') R U R' F R F' R U R2",
+   "R U2 R' U2 R U' R2 F R F'",
+   "R U R' U' R U2 R' U R' F R F'",
+   "y (U2) F R U R' F R F' R U R2 F'"
+  ]
+ },
+ {
+  "id": "LS-1 Lb 3",
+  "group": "LS-1",
+  "sub": "Lb",
+  "algs": [
+   "y (U2) F R U2 R' F'",
+   "(U2) F' R' F2 R F",
+   "(U') R U2 R' F' U' F",
+   "(U2) R U' R' F' U2 F",
+   "y (U2) R' U' F2 U R"
+  ]
+ },
+ {
+  "id": "LS-1 Lb 4",
+  "group": "LS-1",
+  "sub": "Lb",
+  "algs": [
+   "(U2) R U R' F R' F' R2 U R'",
+   "(U2) y R' F' R F' R U R2 F' R"
+  ]
+ },
+ {
+  "id": "LS-1 Lb 5",
+  "group": "LS-1",
+  "sub": "Lb",
+  "algs": [
+   "R U' R2 F R F' U R' F R F'",
+   "(U2) R2 F R U' R U B2"
+  ]
+ },
+ {
+  "id": "LS-1 Lb 6",
+  "group": "LS-1",
+  "sub": "Lb",
+  "algs": [
+   "(U') R U R' F' R U' R' F2"
+  ]
+ },
+ {
+  "id": "LS-1 Ta 1",
+  "group": "LS-1",
+  "sub": "Ta",
+  "algs": [
+   "(U') R U' R2 F R F' U R U' R'",
+   "y' (U') R' U2 R U2' R' U2 R U' R' U R"
+  ]
+ },
+ {
+  "id": "LS-1 Ta 2",
+  "group": "LS-1",
+  "sub": "Ta",
+  "algs": [
+   "y' (U2) R' U2 R' F R F' R U R' U' R",
+   "y F' R U R2' F' R U2 R' F2 R",
+   "R U R' F R F' R U R2 U' R U' R'"
+  ]
+ },
+ {
+  "id": "LS-1 Ta 3",
+  "group": "LS-1",
+  "sub": "Ta",
+  "algs": [
+   "y (U) R' F R U' R' F R2 U' R' F",
+   "(U2) F R' F' R2 U R' U' R U R'"
+  ]
+ },
+ {
+  "id": "LS-1 Ta 4",
+  "group": "LS-1",
+  "sub": "Ta",
+  "algs": [
+   "y' (U2) R2 F R F' R U' R' U' R",
+   "R U R' U2 R U R' F R' F' R",
+   "(U') R U2 R' U R U2 R' F R' F' R",
+   "y' (U2) R2 F R F' R2 U R' U' R'"
+  ]
+ },
+ {
+  "id": "LS-1 Ta 5",
+  "group": "LS-1",
+  "sub": "Ta",
+  "algs": [
+   "(U') F2 R F2 R' F2 R'",
+   "(U') x U2 R U2 R' U2 R'",
+   "y (U') R U' R' F2 R U R' F'"
+  ]
+ },
+ {
+  "id": "LS-1 Ta 6",
+  "group": "LS-1",
+  "sub": "Ta",
+  "algs": [
+   "(U') R U2 R' U2 R U2 R'"
+  ]
+ },
+ {
+  "id": "LS-1 Tb 1",
+  "group": "LS-1",
+  "sub": "Tb",
+  "algs": [
+   "(U2) R2 U' R' F R' F' R U' R'",
+   "y' R' U' R U R' U2 R' F R F' R",
+   "F R' F' R2 U R' U2 R U2 R'",
+   "y (U) F R2 U' R' F R' F' R U' R' F'"
+  ]
+ },
+ {
+  "id": "LS-1 Tb 2",
+  "group": "LS-1",
+  "sub": "Tb",
+  "algs": [
+   "(U) R U2 R' U2 R U2 R' U R U' R'",
+   "(U2) R U R' U' F R' F' R F R' F' R",
+   "y (U) R' F R2 U' R' F U' R' F R",
+   "(U) F2 R2 U' R' U R' F R2"
+  ]
+ },
+ {
+  "id": "LS-1 Tb 3",
+  "group": "LS-1",
+  "sub": "Tb",
+  "algs": [
+   "(U') R U' R' U R U' R2 F R F'",
+   "y (U2) F' R U R2' F' R U R' F' R"
+  ]
+ },
+ {
+  "id": "LS-1 Tb 4",
+  "group": "LS-1",
+  "sub": "Tb",
+  "algs": [
+   "(U') F R' F' R' U R U' R2",
+   "y R' F' R U2 R' F' R F' R U R'",
+   "(U') F R' F' R2 U' R' U R U R'",
+   "(U') R U R2 U F R F' U2 R",
+   "y' F R F' U R' U' R2 U R' U' R'"
+  ]
+ },
+ {
+  "id": "LS-1 Tb 5",
+  "group": "LS-1",
+  "sub": "Tb",
+  "algs": [
+   "(U) R2 F' R2 F R2 F",
+   "(U) x R2 U' R2 U R2 U",
+   "(U) R' F R F2' R' F' R F",
+   "y (U) F' R U R' F R U' R' F'",
+   "(U) R2' F' R2 B U2' B"
+  ]
+ },
+ {
+  "id": "LS-1 Tb 6",
+  "group": "LS-1",
+  "sub": "Tb",
+  "algs": [
+   "y (U) R' F2 R U2 R' F2 R",
+   "y (U') F U' R U2 R' U F'"
+  ]
+ },
+ {
+  "id": "LS-2 Hammer 1",
+  "group": "LS-2",
+  "sub": "Hammer",
+  "algs": [
+   "(U) F R' F' R2 U' R' F R' F' R2 U R'",
+   "(U) F2 U R U R' U2 F2 R U' R'",
+   "(U) R' F R F' R U' R' U R U R' U' R' F R F'"
+  ]
+ },
+ {
+  "id": "LS-2 Hammer 2",
+  "group": "LS-2",
+  "sub": "Hammer",
+  "algs": [
+   "(U2) R' F R F' R U' R2 F R F'",
+   "F R U R' F U' F2 U' F"
+  ]
+ },
+ {
+  "id": "LS-2 Hammer 3",
+  "group": "LS-2",
+  "sub": "Hammer",
+  "algs": [
+   "(U2) R' U' R U' R2 U2 F R F'",
+   "(U') R U2 R2 F R U R U' R' F'",
+   "(U') R U R' U' R U2 R2 F R F'",
+   "y' R2 U' R' U R' U2 R U2 R'"
+  ]
+ },
+ {
+  "id": "LS-2 Hammer 4",
+  "group": "LS-2",
+  "sub": "Hammer",
+  "algs": [
+   "(U') R U R' U R' F R F' R U' R'",
+   "(U2) R U R' U2 R U R' U' F R' F' R"
+  ]
+ },
+ {
+  "id": "LS-2 Hammer 5",
+  "group": "LS-2",
+  "sub": "Hammer",
+  "algs": [
+   "R U2 R2 F R F' R' F R F'",
+   "(U') R' F' R F R' F' R2 U R' F'"
+  ]
+ },
+ {
+  "id": "LS-2 Hammer 6",
+  "group": "LS-2",
+  "sub": "Hammer",
+  "algs": [
+   "(U') R U2 R' U R2 U' R' F R' F'",
+   "y' (U2) R' F' U2 R U' R' F2 R",
+   "R2 F' U' F U' F R2 F' R'",
+   "y' (U2) F R' F' R U2 R U' R U' R'",
+   "y' F R2 F' R' U2 R U' y R U' R'"
+  ]
+ },
+ {
+  "id": "LS-2 Spaceship 1",
+  "group": "LS-2",
+  "sub": "Spaceship",
+  "algs": [
+   "(U') R' F R F' R U R' U' R U2 R'",
+   "y' (U) R2 U R' U2 R U' F R F' R",
+   "y' (U) R2 U R' U' F R' F' R U' R2",
+   "(U2) y2 x' R U2 R' F R2 U' R' F R'",
+   "y (U2) F R U' R2 F R F' R U' R' F'",
+   "(U2) F' U F R' F R F' R U2 R'"
+  ]
+ },
+ {
+  "id": "LS-2 Spaceship 2",
+  "group": "LS-2",
+  "sub": "Spaceship",
+  "algs": [
+   "R U R' U R U2 R' F R' F' R",
+   "y R' F2 R U R' F R2 U' R' F",
+   "(U') R' F' R2 U R' U' R U R' F'"
+  ]
+ },
+ {
+  "id": "LS-2 Spaceship 3",
+  "group": "LS-2",
+  "sub": "Spaceship",
+  "algs": [
+   "(U') R' U2 R2 U R' U R",
+   "R U R' U2 R U2 R'",
+   "(U') R U2 R' U R U' R'"
+  ]
+ },
+ {
+  "id": "LS-2 Spaceship 4",
+  "group": "LS-2",
+  "sub": "Spaceship",
+  "algs": [
+   "y' (U2) R2 U' R2 U' R' U2 R2",
+   "(U') R U' R2 F R2 U R' F' R U' R' F'",
+   "y (U2) R' F' R U' R' F' R U R' F' R",
+   "y' (U') R U R' U R U2 R2 U R"
+  ]
+ },
+ {
+  "id": "LS-2 Spaceship 5",
+  "group": "LS-2",
+  "sub": "Spaceship",
+  "algs": [
+   "(U') R F R F' U R'",
+   "(U') y F R U R' U F'",
+   "(U') x R U R U' B R'"
+  ]
+ },
+ {
+  "id": "LS-2 Spaceship 6",
+  "group": "LS-2",
+  "sub": "Spaceship",
+  "algs": [
+   "y R U' R' F R' F' R2 U' R' F",
+   "R U' R' F2 R F2 R' F2 R'",
+   "F R' F' R F' R U' R' F2"
+  ]
+ },
+ {
+  "id": "LS-2 Stollery-A 1",
+  "group": "LS-2",
+  "sub": "Stollery-A",
+  "algs": [
+   "R U R' F' U' F",
+   "y' F R F' R' U' R",
+   "(U') F R' F' R U R U R'"
+  ]
+ },
+ {
+  "id": "LS-2 Stollery-A 2",
+  "group": "LS-2",
+  "sub": "Stollery-A",
+  "algs": [
+   "(U) R U R' U' R U R2 F R F'",
+   "(U2) R' F R F' R U' R' U R U' R'"
+  ]
+ },
+ {
+  "id": "LS-2 Stollery-A 3",
+  "group": "LS-2",
+  "sub": "Stollery-A",
+  "algs": [
+   "F' R U' R' F2",
+   "y' R' F R' F' R2",
+   "y R' F' R2 U' R' F",
+   "y R' U R' F' R2"
+  ]
+ },
+ {
+  "id": "LS-2 Stollery-A 4",
+  "group": "LS-2",
+  "sub": "Stollery-A",
+  "algs": [
+   "F R F' R U R2"
+  ]
+ },
+ {
+  "id": "LS-2 Stollery-A 5",
+  "group": "LS-2",
+  "sub": "Stollery-A",
+  "algs": [
+   "R' F R F' R U R' U2 R U2 R'",
+   "(U') R F R' F' R U R U' R' U2 R'",
+   "(U2) R' U R F' U F U2 R'",
+   "y' (U') R2 U' R U R2 F R F'"
+  ]
+ },
+ {
+  "id": "LS-2 Stollery-A 6",
+  "group": "LS-2",
+  "sub": "Stollery-A",
+  "algs": [
+   "y R U' R' F R' F' R U' R' F R",
+   "y' (U2) R U' R' F R' F' R U R' U R",
+   "R U R' U R' F R F' U R U R'",
+   "(U') R U2 R2 F2 R F2 R' F2 R",
+   "(U) F R F' R U2 R' F R' F' R2"
+  ]
+ },
+ {
+  "id": "LS-2 Stollery-B 1",
+  "group": "LS-2",
+  "sub": "Stollery-B",
+  "algs": [
+   "(U') R' U R2 U R2 U' F R F'",
+   "(U) R U R2 F' U' F R' U R",
+   "y' (U2) R' U R U R' U' R' F R F' R"
+  ]
+ },
+ {
+  "id": "LS-2 Stollery-B 2",
+  "group": "LS-2",
+  "sub": "Stollery-B",
+  "algs": [
+   "(U) F R F' R' U' R2 U R2",
+   "R2 U R F R' F' R2",
+   "R F' U' R' U' R U F",
+   "R F' R U R' U' R' F"
+  ]
+ },
+ {
+  "id": "LS-2 Stollery-B 3",
+  "group": "LS-2",
+  "sub": "Stollery-B",
+  "algs": [
+   "y' (U) R U' R U' R' U R'",
+   "y' R' U R2 U2 R' U2 R'",
+   "y R' F R U' R' F' R U' R' F R",
+   "(U') R' F' R2 U R' F' R' F R",
+   "y (U) R F' U R' U' F R'"
+  ]
+ },
+ {
+  "id": "LS-2 Stollery-B 4",
+  "group": "LS-2",
+  "sub": "Stollery-B",
+  "algs": [
+   "(U') x U' R U2 R U2 R' U",
+   "(U') F' R F2 R F2 R' F",
+   "F R' F' R U2 R U2 R' U' R U R'",
+   "F R' F' R' U' R U R' U R2",
+   "R2 F R U R U' R' F' R2",
+   "(U') R' U' R U2 R2 F R F' R2",
+   "y' (U) R U2 R' U R' F R' F' R"
+  ]
+ },
+ {
+  "id": "LS-2 Stollery-B 5",
+  "group": "LS-2",
+  "sub": "Stollery-B",
+  "algs": [
+   "(U) R U2 R2 F R F' R U' R'",
+   "R2 U R2 F R F' R' U' R",
+   "R2 F' R U R U' R' F R2",
+   "R2 F' U F R2 U R' U' R"
+  ]
+ },
+ {
+  "id": "LS-2 Stollery-B 6",
+  "group": "LS-2",
+  "sub": "Stollery-B",
+  "algs": [
+   "(U2) F2 R2 U2 R' U R' F U' R'",
+   "(U2) R2 U2 R2 F2 R U R' F U' R'",
+   "R U' R' U F' R U' R' F2"
+  ]
+ },
+ {
+  "id": "LS-2 Stollery-C 1",
+  "group": "LS-2",
+  "sub": "Stollery-C",
+  "algs": [
+   "(U') R2 U R' U' R' F R F' U R'",
+   "(U) R U' R' U' R U' F R F' U R'",
+   "(U2) F R F' R' U R2 U R2",
+   "(U) R U' R' F R' F' R U' R U R'",
+   "R' F' U F U' R2 U R2"
+  ]
+ },
+ {
+  "id": "LS-2 Stollery-C 2",
+  "group": "LS-2",
+  "sub": "Stollery-C",
+  "algs": [
+   "(U2) y2 x R U' R U' R' F R'",
+   "(U2) F' U F U' R U' R'",
+   "y' (U2) R' U R U' F R' F'"
+  ]
+ },
+ {
+  "id": "LS-2 Stollery-C 3",
+  "group": "LS-2",
+  "sub": "Stollery-C",
+  "algs": [
+   "(U') F2 R' F2 R U2 R' F2 R",
+   "y' R' U R U' R' F R' F' R2",
+   "y' (U') R' F R2 F' R' U' R U R'"
+  ]
+ },
+ {
+  "id": "LS-2 Stollery-C 4",
+  "group": "LS-2",
+  "sub": "Stollery-C",
+  "algs": [
+   "F R' F' R2 U R2 F R F'",
+   "(U) R U2 R' F R' F' R U' R U R'",
+   "R U2 R2 F R2 U R' F' R U' R' F'",
+   "R' U R U2 R' F R F' R",
+   "(U') F' R2 U' R' F R' F' R U' R' F'"
+  ]
+ },
+ {
+  "id": "LS-2 Stollery-C 5",
+  "group": "LS-2",
+  "sub": "Stollery-C",
+  "algs": [
+   "R U R' U R U' R'",
+   "(U') R' U2 R U2 R"
+  ]
+ },
+ {
+  "id": "LS-2 Stollery-C 6",
+  "group": "LS-2",
+  "sub": "Stollery-C",
+  "algs": [
+   "(U) F R' F' R U' R U R'",
+   "R U' F R F' U R'",
+   "y F U' R U R' U F'"
+  ]
+ },
+ {
+  "id": "LS-2 Two-Face 1",
+  "group": "LS-2",
+  "sub": "Two-Face",
+  "algs": [
+   "y R' F2 R U' R' F R2 U' R' F",
+   "(U2) F' U' F U R U' R2 F R F'",
+   "y' R' U2 R U' R' U2' F R' F' R2",
+   "(U2) F R' F' R F' R' F R F U' R U R'",
+   "y' R2 U R' U2 R' F R F' R'"
+  ]
+ },
+ {
+  "id": "LS-2 Two-Face 2",
+  "group": "LS-2",
+  "sub": "Two-Face",
+  "algs": [
+   "(U') R U R' U R' F R F' U R U2 R'",
+   "(U) R' F R F' R U R2 F R F' R U2 R'",
+   "(U2) R U2 R' U R U' R' U' F R' F' R"
+  ]
+ },
+ {
+  "id": "LS-2 Two-Face 3",
+  "group": "LS-2",
+  "sub": "Two-Face",
+  "algs": [
+   "F U' R' F' R U2 F'",
+   "y (U') R' F' R2 U' R' F R' F R",
+   "(U) R U R2 F R F' U R U2 R'",
+   "y (U) R U R U2' R U2 R2 F",
+   "y' (U') R' F R' F' R2 U' R' U R",
+   "y R U R' U R U R' F"
+  ]
+ },
+ {
+  "id": "LS-2 Two-Face 4",
+  "group": "LS-2",
+  "sub": "Two-Face",
+  "algs": [
+   "(U2) R U2 R' U' R U R'",
+   "(U2) R U' R U R' U' R2",
+   "R2 U' R U R' U R2"
+  ]
+ },
+ {
+  "id": "LS-2 Two-Face 5",
+  "group": "LS-2",
+  "sub": "Two-Face",
+  "algs": [
+   "R2 F2 U' R U R' U F2 R2",
+   "F R' F' R2 U2 F R2 F' U R'",
+   "(U') R' F R F' R U2 R' U R' F R F'",
+   "R U B2 R' U R U' R B2 R2",
+   "z y U' F2 R F' U R U' R2' F"
+  ]
+ },
+ {
+  "id": "LS-2 Two-Face 6",
+  "group": "LS-2",
+  "sub": "Two-Face",
+  "algs": [
+   "(U') F R F' R U R' U R'",
+   "y' (U2) R' U' R' F R F' U2 R"
+  ]
+ },
+ {
+  "id": "LS-2 Turtle 1",
+  "group": "LS-2",
+  "sub": "Turtle",
+  "algs": [
+   "y (U) R U' R' F U2 R' F R",
+   "R U R' y' R' U R U R' U R"
+  ]
+ },
+ {
+  "id": "LS-2 Turtle 2",
+  "group": "LS-2",
+  "sub": "Turtle",
+  "algs": [
+   "y R U2 R' U2 R' F R U2 F'",
+   "(U) R U' F2 R F2 R' F2",
+   "(U) R U R' U' F R F' R U R2",
+   "R U R' U' R U R' U R' F R F'"
+  ]
+ },
+ {
+  "id": "LS-2 Turtle 3",
+  "group": "LS-2",
+  "sub": "Turtle",
+  "algs": [
+   "y (U) R' F R U2 R' F R U' R' F R",
+   "y' (U') R2 U2 R' U2 R2 U R' U R",
+   "(U) R U2 R U R' F R' F' R2",
+   "(U2) R U R' U' R U R' U F' U2 F"
+  ]
+ },
+ {
+  "id": "LS-2 Turtle 4",
+  "group": "LS-2",
+  "sub": "Turtle",
+  "algs": [
+   "F R' F' R2 U R' U R U' R'",
+   "(U') F' U2 F R' U2 R U2 R"
+  ]
+ },
+ {
+  "id": "LS-2 Turtle 5",
+  "group": "LS-2",
+  "sub": "Turtle",
+  "algs": [
+   "(U) R U2 R' U' R U R2 F R F'",
+   "F R' F' R2 U' F R F' U R'",
+   "(U) F' U' R' F R2 U' R' F2"
+  ]
+ },
+ {
+  "id": "LS-2 Turtle 6",
+  "group": "LS-2",
+  "sub": "Turtle",
+  "algs": [
+   "R2 U' R U' R' U2 R U' R2",
+   "y (U') R U' R' F R' F' R U R' F R",
+   "y' (U) R2 U2 R' F R F' U R'",
+   "(U) R U R' U' F' R U' R' F2"
+  ]
+ },
+ {
+  "id": "LS-2 Gun-A 1",
+  "group": "LS-2",
+  "sub": "Gun-A",
+  "algs": [
+   "R U R' U R2 U' R' F R' F'",
+   "(U') F' R U R' U' R U2 R' F'",
+   "(U') R' U R' F R F' U R U' R"
+  ]
+ },
+ {
+  "id": "LS-2 Gun-A 2",
+  "group": "LS-2",
+  "sub": "Gun-A",
+  "algs": [
+   "(U') R U R' F' U' F R U R'",
+   "(U2) R' F R F' U' R U' R' U R U' R'",
+   "(U) R F R' F' R2 U' R' U R",
+   "(U2) F R' F' R U R U R' U' R U R'"
+  ]
+ },
+ {
+  "id": "LS-2 Gun-A 3",
+  "group": "LS-2",
+  "sub": "Gun-A",
+  "algs": [
+   "(U) R' F R F' R U' R'",
+   "y' R2 U2 R U R' U R2",
+   "y' (U2) R2 U2 R' U R' U R2",
+   "y' R' U R U R2 U' R2 U R2"
+  ]
+ },
+ {
+  "id": "LS-2 Gun-A 4",
+  "group": "LS-2",
+  "sub": "Gun-A",
+  "algs": [
+   "y (U2) R' F R U2 F' R U R'",
+   "(U2) F' U F U2 R' F R F'"
+  ]
+ },
+ {
+  "id": "LS-2 Gun-A 5",
+  "group": "LS-2",
+  "sub": "Gun-A",
+  "algs": [
+   "(U') R U2 R2 F R F'"
+  ]
+ },
+ {
+  "id": "LS-2 Gun-A 6",
+  "group": "LS-2",
+  "sub": "Gun-A",
+  "algs": [
+   "(U2) R2 U' R2 U R' U R' U R2",
+   "(U2) R2 U R2 U' R U' R2 U R2 U' R'"
+  ]
+ },
+ {
+  "id": "LS-2 Gun-B 1",
+  "group": "LS-2",
+  "sub": "Gun-B",
+  "algs": [
+   "(U) R U' R2 F R F' R U R' U' R U' R'",
+   "R U R' U' R U' R' U R' F R F'",
+   "F R2 F' U' R' U R2 U R2"
+  ]
+ },
+ {
+  "id": "LS-2 Gun-B 2",
+  "group": "LS-2",
+  "sub": "Gun-B",
+  "algs": [
+   "y' (U) F R F' R U2 R' U2 R'",
+   "y (U) R' F' R U R U' R' F U2 R' F R",
+   "(U') F2 R U R U2 R U2 R2 F",
+   "F' R U R' U2 R U2 R2 F2 R"
+  ]
+ },
+ {
+  "id": "LS-2 Gun-B 3",
+  "group": "LS-2",
+  "sub": "Gun-B",
+  "algs": [
+   "R U R' U2 F2 R U R' F",
+   "(U') R U' R' U R' F R F' R' F R F'",
+   "(U') F R' F' R F R' F' R2 U' R'",
+   "y F' R U R' U R' F2 R2 U' R' F"
+  ]
+ },
+ {
+  "id": "LS-2 Gun-B 4",
+  "group": "LS-2",
+  "sub": "Gun-B",
+  "algs": [
+   "y' (U') R U' R2 U R2 U R'"
+  ]
+ },
+ {
+  "id": "LS-2 Gun-B 5",
+  "group": "LS-2",
+  "sub": "Gun-B",
+  "algs": [
+   "(U) R' F' R U' F R' F2 R",
+   "(U) F R F' U R' F R F' R"
+  ]
+ },
+ {
+  "id": "LS-2 Gun-B 6",
+  "group": "LS-2",
+  "sub": "Gun-B",
+  "algs": [
+   "(U2) R2 U2 R U2 R' F R F' R'",
+   "R2 U2 R' U2 R' F R F' R'",
+   "y (U) R U' R' F R' F' R U' R U' R' F",
+   "R U' R' y' R U R2 U' R2 U' R"
+  ]
+ },
+ {
+  "id": "LS-3 Hammer 1",
+  "group": "LS-3",
+  "sub": "Hammer",
+  "algs": [
+   "(U) R' F2 R F' R U R2 F' R F'",
+   "R U' R2 F R U R' F R U' F'",
+   "(U) R' F R F' R U' R2 F R F' R U R'",
+   "R U' R2 F R U R' U' R' F' U R",
+   "(U') F' R U R' U2 F R' F' R F'"
+  ]
+ },
+ {
+  "id": "LS-3 Hammer 2",
+  "group": "LS-3",
+  "sub": "Hammer",
+  "algs": [
+   "y (U2) R U' R' F R' F R2 U' R' F"
+  ]
+ },
+ {
+  "id": "LS-3 Hammer 3",
+  "group": "LS-3",
+  "sub": "Hammer",
+  "algs": [
+   "(U) R' F R F' R U R' U2 R' F R F'",
+   "(U) R U' R' U2 R U2 R' U2 R U2 R'"
+  ]
+ },
+ {
+  "id": "LS-3 Hammer 4",
+  "group": "LS-3",
+  "sub": "Hammer",
+  "algs": [
+   "y (U) R' F' R U' R U' R' F R' F R",
+   "R' F R F' U2 R2 U R2 U' R2"
+  ]
+ },
+ {
+  "id": "LS-3 Hammer 5",
+  "group": "LS-3",
+  "sub": "Hammer",
+  "algs": [
+   "F R F' R U' R' U2 R2",
+   "(U) R' F R F' U2 R U' R' U2 R U' R'",
+   "(U) R' F R F' R U' R2 F' R U' R' F2 R",
+   "y R' F2 R2 U' R' F R U' R' F"
+  ]
+ },
+ {
+  "id": "LS-3 Hammer 6",
+  "group": "LS-3",
+  "sub": "Hammer",
+  "algs": [
+   "R U2 R' U R' F R F' U R U' R'"
+  ]
+ },
+ {
+  "id": "LS-3 Spaceship 1",
+  "group": "LS-3",
+  "sub": "Spaceship",
+  "algs": [
+   "(U') R2 U' R' U2 R U' F R F' R",
+   "y' (U2) R' U2 R U' R2 F R F' R"
+  ]
+ },
+ {
+  "id": "LS-3 Spaceship 2",
+  "group": "LS-3",
+  "sub": "Spaceship",
+  "algs": [
+   "R U2 R' U' R U' R2 F R F'",
+   "y R' F' R U' R' F2 R F' R U R'"
+  ]
+ },
+ {
+  "id": "LS-3 Spaceship 3",
+  "group": "LS-3",
+  "sub": "Spaceship",
+  "algs": [
+   "y (U) R' F2 R U' R' F R",
+   "y' (U) R' U2 R U' R' U R"
+  ]
+ },
+ {
+  "id": "LS-3 Spaceship 4",
+  "group": "LS-3",
+  "sub": "Spaceship",
+  "algs": [
+   "(U2) R U R' U R U R' U' R U R'",
+   "(U2) R U' R' U R U' R' U R U R'",
+   "(U2) R2 U R2 U R U2 R2"
+  ]
+ },
+ {
+  "id": "LS-3 Spaceship 5",
+  "group": "LS-3",
+  "sub": "Spaceship",
+  "algs": [
+   "(U) F' R' F' R U' F"
+  ]
+ },
+ {
+  "id": "LS-3 Spaceship 6",
+  "group": "LS-3",
+  "sub": "Spaceship",
+  "algs": [
+   "R' F R F' R U R2 F R F'",
+   "y' R' F R F' R U R2 U' R"
+  ]
+ },
+ {
+  "id": "LS-3 Stollery-A 1",
+  "group": "LS-3",
+  "sub": "Stollery-A",
+  "algs": [
+   "R' F R F' R U R' F' U' F",
+   "(U) R2 U' R2 F R F' R U' R' U' R",
+   "y' (U) R' F R F' U' R' U' R2",
+   "y' R' U' R' U2 F R F' U R'",
+   "(U') y R' F R F' R U R' U R' F' R"
+  ]
+ },
+ {
+  "id": "LS-3 Stollery-A 2",
+  "group": "LS-3",
+  "sub": "Stollery-A",
+  "algs": [
+   "y' (U2) R' U R' F R F' R",
+   "(U2) R U' R' U F' U F",
+   "R U' R2 F R F' U' R U2 R'"
+  ]
+ },
+ {
+  "id": "LS-3 Stollery-A 3",
+  "group": "LS-3",
+  "sub": "Stollery-A",
+  "algs": [
+   "y' (U') F' R U R' U R' F' R",
+   "F' U R' F' R U' F",
+   "x' R2 U2 R' F' R U' R2",
+   "R U R' U' R U2 R' U' R U2 R'",
+   "R U R' U' R U' R' U2 R U' R'"
+  ]
+ },
+ {
+  "id": "LS-3 Stollery-A 4",
+  "group": "LS-3",
+  "sub": "Stollery-A",
+  "algs": [
+   "y' R' U' R U' R' U R",
+   "y' (U) R U2 R' U2 R'",
+   "y R' F' R U' R' F R"
+  ]
+ },
+ {
+  "id": "LS-3 Stollery-A 5",
+  "group": "LS-3",
+  "sub": "Stollery-A",
+  "algs": [
+   "y' R U2 R' F R' F' R U2 R'",
+   "y F' R U R2 F' R2 U' R' F",
+   "(U) F2 R U R' U' R U' R' F2",
+   "y' (U') R2 F R' F' R U' R U R'",
+   "(U) R U' R2 F' R U' F R' F2 R"
+  ]
+ },
+ {
+  "id": "LS-3 Stollery-A 6",
+  "group": "LS-3",
+  "sub": "Stollery-A",
+  "algs": [
+   "R U' R' U R U R2 F R F'",
+   "R' F R2 F' R U R2"
+  ]
+ },
+ {
+  "id": "LS-3 Stollery-B 1",
+  "group": "LS-3",
+  "sub": "Stollery-B",
+  "algs": [
+   "y' (U) F R' F' R U2 R' U2 R'",
+   "(U') R U' R' U R' F R F' U R U' R'",
+   "(U') R U' R' U2 R U' R' F' U' F"
+  ]
+ },
+ {
+  "id": "LS-3 Stollery-B 2",
+  "group": "LS-3",
+  "sub": "Stollery-B",
+  "algs": [
+   "R U' R U R' U' R' F R F' U R'",
+   "(U) R2 F R2 F' R' U' R",
+   "(U') R2 U2 R U2 R F R F'",
+   "(U) R2 U2 R' U2 R F R F'",
+   "(U') R' F R U R' F R U' F'"
+  ]
+ },
+ {
+  "id": "LS-3 Stollery-B 3",
+  "group": "LS-3",
+  "sub": "Stollery-B",
+  "algs": [
+   "R2 U R2 U2 R' U R' F R F' R",
+   "R' U R U' R U' R2 F R F' R",
+   "y' (U) R' U R' F R F' R' F R F' R"
+  ]
+ },
+ {
+  "id": "LS-3 Stollery-B 4",
+  "group": "LS-3",
+  "sub": "Stollery-B",
+  "algs": [
+   "(U) R U2 R2 F' R U' F R' F2 R",
+   "(U') R' F R F' R' F2 R F' R' F2 R",
+   "(U) R U R' U R U' R2 F R F' U2 R U R'",
+   "(U') F R F' U R U' R U R2"
+  ]
+ },
+ {
+  "id": "LS-3 Stollery-B 5",
+  "group": "LS-3",
+  "sub": "Stollery-B",
+  "algs": [
+   "R U' R' U R U' F R F' U R'",
+   "R U' R' U2 F R' F' R U' R U R'",
+   "(U) x R U' R2 U' R2 U R'",
+   "(U) R F' R2 F' R2 F R'"
+  ]
+ },
+ {
+  "id": "LS-3 Stollery-B 6",
+  "group": "LS-3",
+  "sub": "Stollery-B",
+  "algs": [
+   "(U') R' U R' U R U' R",
+   "(U) R' F' R U' R' F2 R2 U' R'",
+   "R U' R' U R U R' U R U' R'"
+  ]
+ },
+ {
+  "id": "LS-3 Stollery-C 1",
+  "group": "LS-3",
+  "sub": "Stollery-C",
+  "algs": [
+   "(U2) R F R' F' U' R'",
+   "F' U' F R U R'",
+   "(U') R' F R F' U' R U2 R'"
+  ]
+ },
+ {
+  "id": "LS-3 Stollery-C 2",
+  "group": "LS-3",
+  "sub": "Stollery-C",
+  "algs": [
+   "F2 R U' R' F2 U2 R' F R",
+   "y (U') R' F' R U R' F' R2 U' R' F",
+   "y (U2) R U' R' F R' F R U' R' F R",
+   "(U') R2 U2 R' F R' F' R U' R U' R2"
+  ]
+ },
+ {
+  "id": "LS-3 Stollery-C 3",
+  "group": "LS-3",
+  "sub": "Stollery-C",
+  "algs": [
+   "R' F R F' R U R' U R U' R'",
+   "(U2) R U' R' U R' U' F R F' U R"
+  ]
+ },
+ {
+  "id": "LS-3 Stollery-C 4",
+  "group": "LS-3",
+  "sub": "Stollery-C",
+  "algs": [
+   "R U' R' U2 R' F R F' R U' R'",
+   "(U) R2 U R' F R' F' R2"
+  ]
+ },
+ {
+  "id": "LS-3 Stollery-C 5",
+  "group": "LS-3",
+  "sub": "Stollery-C",
+  "algs": [
+   "(U') F' R U' R' F2 R U R'",
+   "y x U' R' F R' F' R2"
+  ]
+ },
+ {
+  "id": "LS-3 Stollery-C 6",
+  "group": "LS-3",
+  "sub": "Stollery-C",
+  "algs": [
+   "R U R2 F R F'",
+   "x' R U' R U R2"
+  ]
+ },
+ {
+  "id": "LS-3 Two-Face 1",
+  "group": "LS-3",
+  "sub": "Two-Face",
+  "algs": [
+   "R U2 R' U R U' R2 F R F'",
+   "y' R U' R' U R' U' F R' F' R",
+   "y' (U) F R' F' R U' R U' R' U R'"
+  ]
+ },
+ {
+  "id": "LS-3 Two-Face 2",
+  "group": "LS-3",
+  "sub": "Two-Face",
+  "algs": [
+   "(U) F R' F' R U' R' F R F' R U R' U' R U R'",
+   "(U2) R F R' F' R U' R' F R' F'",
+   "(U') F R F' R U R' U' R' U' R U' R'",
+   "(U2) R U' R U' R' F R2 F' R"
+  ]
+ },
+ {
+  "id": "LS-3 Two-Face 3",
+  "group": "LS-3",
+  "sub": "Two-Face",
+  "algs": [
+   "(U) R U R2 F R F' R U' R'",
+   "R' U F R F' U2 R",
+   "R' F' R U' R' F' R F'"
+  ]
+ },
+ {
+  "id": "LS-3 Two-Face 4",
+  "group": "LS-3",
+  "sub": "Two-Face",
+  "algs": [
+   "y' (U2) R' U2 R U R' U' R",
+   "(U2) R2 U R U' R' F R F' R'",
+   "y' R2 U R' U' R U' R2",
+   "y' R U' R' U2 R' U2 R U R'"
+  ]
+ },
+ {
+  "id": "LS-3 Two-Face 5",
+  "group": "LS-3",
+  "sub": "Two-Face",
+  "algs": [
+   "(U') R U2 R' U2 F2 R U R' F",
+   "R U2 R U' R' F' U2 F2 R F'",
+   "y (U) R U' R' F R' F2 R U' R U' R' F"
+  ]
+ },
+ {
+  "id": "LS-3 Two-Face 6",
+  "group": "LS-3",
+  "sub": "Two-Face",
+  "algs": [
+   "(U2) F U R U' R' F' R U' R'",
+   "(U) R' F' U' F R' U R",
+   "(U2) R U R' U F R' F' R2 U R'",
+   "(U) y x U' R' F R' F' R U' R",
+   "y F U2 R U2 R' U F'"
+  ]
+ },
+ {
+  "id": "LS-3 Turtle 1",
+  "group": "LS-3",
+  "sub": "Turtle",
+  "algs": [
+   "(U') R' F R F' U2 R U' R'"
+  ]
+ },
+ {
+  "id": "LS-3 Turtle 2",
+  "group": "LS-3",
+  "sub": "Turtle",
+  "algs": [
+   "y' (U') R' U R' U' F R F' R U R2",
+   "(U') R U' R' F' U' F U' R U2 R'",
+   "y R' U' R U' R' U2 R F' R U R'"
+  ]
+ },
+ {
+  "id": "LS-3 Turtle 3",
+  "group": "LS-3",
+  "sub": "Turtle",
+  "algs": [
+   "(U') R U' R' U2 R U' R' U R U' R'"
+  ]
+ },
+ {
+  "id": "LS-3 Turtle 4",
+  "group": "LS-3",
+  "sub": "Turtle",
+  "algs": [
+   "y F' R U R2 F' R U' R' F R",
+   "R' U R2 U' R2 F R F' U2 R"
+  ]
+ },
+ {
+  "id": "LS-3 Turtle 5",
+  "group": "LS-3",
+  "sub": "Turtle",
+  "algs": [
+   "(U2) R U' R2 F R F' U2 R U R'",
+   "y (U') R' U2 R U R' F R' F' R2"
+  ]
+ },
+ {
+  "id": "LS-3 Turtle 6",
+  "group": "LS-3",
+  "sub": "Turtle",
+  "algs": [
+   "(U) R' F R F' R U R' U' R U' R'",
+   "(U') R2 U R2 U' R' F R F' U R'",
+   "(U') R U' R2 F R F' U2 R U2 R'"
+  ]
+ },
+ {
+  "id": "LS-3 Gun-A 1",
+  "group": "LS-3",
+  "sub": "Gun-A",
+  "algs": [
+   "(U) R U' R2 F R F' U R U2 R'"
+  ]
+ },
+ {
+  "id": "LS-3 Gun-A 2",
+  "group": "LS-3",
+  "sub": "Gun-A",
+  "algs": [
+   "(U') R U R' U' R' F R F' U2 R U' R'",
+   "y' (U2) F R' F' U2 R U2 R U2 R'",
+   "y' R U R' U2 R2 F R' F' R2 U R'",
+   "y' R U' R' U R' U2 R U' R' F' U F",
+   "(U) R F R' F' R2 U2 R' U2 R"
+  ]
+ },
+ {
+  "id": "LS-3 Gun-A 3",
+  "group": "LS-3",
+  "sub": "Gun-A",
+  "algs": [
+   "F R' F' R U' R U2 R2 F R F'",
+   "(U') R U' F R F' U2 R2 F R F'",
+   "y' (U) R U2 R2 F2 R U R' F"
+  ]
+ },
+ {
+  "id": "LS-3 Gun-A 4",
+  "group": "LS-3",
+  "sub": "Gun-A",
+  "algs": [
+   "(U') R' U2 R U R' F R F' U R",
+   "(U') R' F R F' R U R' U R' F R F'"
+  ]
+ },
+ {
+  "id": "LS-3 Gun-A 5",
+  "group": "LS-3",
+  "sub": "Gun-A",
+  "algs": [
+   "(U') y R U R' U F' R U2 R'",
+   "F R' F' R U R' F R F' R U' R'",
+   "(U') R' F' R U' F R' F' R F'"
+  ]
+ },
+ {
+  "id": "LS-3 Gun-A 6",
+  "group": "LS-3",
+  "sub": "Gun-A",
+  "algs": [
+   "(U) R' U R2 U' R2 U' R",
+   "(U) R2 U' R' U2 R U R' U' R",
+   "(U2) R U R' U2 R U R' U' R U R'",
+   "(U2) R' F R F' R' F R F' U2 R U2 R'",
+   "y' (U) F' R U2 R' U2 R' F"
+  ]
+ },
+ {
+  "id": "LS-3 Gun-B 1",
+  "group": "LS-3",
+  "sub": "Gun-B",
+  "algs": [
+   "(U) R2 U' R' U2 R U' F R2 F'",
+   "(U) R U R' U' R' F R F' R U R2 F R F'",
+   "(U') R U2 R' U' R U R' U R' F R F'"
+  ]
+ },
+ {
+  "id": "LS-3 Gun-B 2",
+  "group": "LS-3",
+  "sub": "Gun-B",
+  "algs": [
+   "(U2) R' F' R U R U' R' U2 F",
+   "y (U2) F' R U R' U' R' F' R U R' F' R",
+   "(U') F' U F2 R F' R U R' U R'"
+  ]
+ },
+ {
+  "id": "LS-3 Gun-B 3",
+  "group": "LS-3",
+  "sub": "Gun-B",
+  "algs": [
+   "R2 U2 R' U' R U' R2",
+   "y (U') R U' R' F R' F R"
+  ]
+ },
+ {
+  "id": "LS-3 Gun-B 4",
+  "group": "LS-3",
+  "sub": "Gun-B",
+  "algs": [
+   "(U) F' U' F2 R F' R U R2",
+   "y' (U2) R2 U R2 U' R U' R U' R2",
+   "(U) F R' F' R U2 R U' R' U R U R'"
+  ]
+ },
+ {
+  "id": "LS-3 Gun-B 5",
+  "group": "LS-3",
+  "sub": "Gun-B",
+  "algs": [
+   "y (U) R' F2 R2 U' R' F",
+   "y' (U) R' U' F R' F' R2",
+   "(U) F' U' R U' R' F2"
+  ]
+ },
+ {
+  "id": "LS-3 Gun-B 6",
+  "group": "LS-3",
+  "sub": "Gun-B",
+  "algs": [
+   "(U2) R U' R' U2 F R' F' R"
+  ]
+ },
+ {
+  "id": "LS-4 Sune-A 1",
+  "group": "LS-4",
+  "sub": "Sune-A",
+  "algs": [
+   "F R U2 R' U R U' R' F",
+   "(U2) F R F' R U R2 U' R U' R'",
+   "(U') R U R2 F R F' U2 R' F R F'",
+   "R2 F R F' U R U2 R' U R'",
+   "(U2) R' U R' U' F R' F' R U' R"
+  ]
+ },
+ {
+  "id": "LS-4 Sune-A 2",
+  "group": "LS-4",
+  "sub": "Sune-A",
+  "algs": [
+   "(U') y' R U2 R U2 R' F R' F'",
+   "y (U2) R' F' R2 U R U' R' F R' F'",
+   "y2 (U2) x U' R' F2 R U' R' U' R U R' F'",
+   "R U2 R2 F2 R U2 R U' R' F"
+  ]
+ },
+ {
+  "id": "LS-4 Sune-A 3",
+  "group": "LS-4",
+  "sub": "Sune-A",
+  "algs": [
+   "R U R' F R' F' R"
+  ]
+ },
+ {
+  "id": "LS-4 Sune-A 4",
+  "group": "LS-4",
+  "sub": "Sune-A",
+  "algs": [
+   "(U) R' F2 R F' U R' F R",
+   "(U) R' F R' F' R U' F R' F'"
+  ]
+ },
+ {
+  "id": "LS-4 Sune-A 5",
+  "group": "LS-4",
+  "sub": "Sune-A",
+  "algs": [
+   "R U' R' U R U2 R'",
+   "R2 U R U' R' U R'",
+   "(U') R2 U' R U' R' U R2"
+  ]
+ },
+ {
+  "id": "LS-4 Sune-A 6",
+  "group": "LS-4",
+  "sub": "Sune-A",
+  "algs": [
+   "(U2) y R' F' R2 F' U' R' U' R F",
+   "(U') R U2 R' F R' F' R2 U' R' F R' F' R",
+   "R' F R F' U R U2 R' U2 R U' R'"
+  ]
+ },
+ {
+  "id": "LS-4 Sune-B 1",
+  "group": "LS-4",
+  "sub": "Sune-B",
+  "algs": [
+   "y' R F R' F' R U2 R U' R2",
+   "(U2) R' U2 R U2 R2 F R F' U2 R'",
+   "y' (U2) R2 F R F' U R U2 R' U R"
+  ]
+ },
+ {
+  "id": "LS-4 Sune-B 2",
+  "group": "LS-4",
+  "sub": "Sune-B",
+  "algs": [
+   "y (U2) F' R U' R' U' R U' R'",
+   "y' (U') R' U' R U R2 F R F' R",
+   "(U2) R' F R' F' U' F R' F'",
+   "F U2 R' F R U F'",
+   "F R' F R U R' F2 R F'"
+  ]
+ },
+ {
+  "id": "LS-4 Sune-B 3",
+  "group": "LS-4",
+  "sub": "Sune-B",
+  "algs": [
+   "(U') R F R' F' R U2 R U2 R2",
+   "(U2) R' F R F' U2 R' F R F' R U R'"
+  ]
+ },
+ {
+  "id": "LS-4 Sune-B 4",
+  "group": "LS-4",
+  "sub": "Sune-B",
+  "algs": [
+   "y R2 F' R U R' F R2 U R' U' R",
+   "R' U R U2 R' U R' U R' U' R",
+   "y' F2 R F' U R U2 R2 F'",
+   "y R' F R U R' F R U2 R U' R' F"
+  ]
+ },
+ {
+  "id": "LS-4 Sune-B 5",
+  "group": "LS-4",
+  "sub": "Sune-B",
+  "algs": [
+   "y' (U2) R U' R2 U' R2 U R'",
+   "(U') R U' R' U R U R' U' R' F R F'"
+  ]
+ },
+ {
+  "id": "LS-4 Sune-B 6",
+  "group": "LS-4",
+  "sub": "Sune-B",
+  "algs": [
+   "y R U' R' F U2 R' F' R",
+   "(U') R U' R' U' R' F' R U R U' R' F",
+   "R' F R F' R' U2 R' U2 F R F'",
+   "y R' U' F R F' R U' R U2 R'"
+  ]
+ },
+ {
+  "id": "LS-4 Sune-C 1",
+  "group": "LS-4",
+  "sub": "Sune-C",
+  "algs": [
+   "(U') F R' F' R U' R U R' U R U' R'",
+   "(U') F R' F' R U2 R' U2 R U2 R",
+   "R U R' F R' F' R2 U R' U' R' F R F'",
+   "R U R' U R U' R' F R' F' R2 U R'"
+  ]
+ },
+ {
+  "id": "LS-4 Sune-C 2",
+  "group": "LS-4",
+  "sub": "Sune-C",
+  "algs": [
+   "R U' R' U R U' R' U' R' F R F'",
+   "y F U2 R' F' R U R U' R'",
+   "(U') R' U' R U R2 F R F' R'",
+   "R U' R' F' U F R U' R'"
+  ]
+ },
+ {
+  "id": "LS-4 Sune-C 3",
+  "group": "LS-4",
+  "sub": "Sune-C",
+  "algs": [
+   "R U' R U' R' F R' F'",
+   "y' (U2) R' U2 F R' F' R U R"
+  ]
+ },
+ {
+  "id": "LS-4 Sune-C 4",
+  "group": "LS-4",
+  "sub": "Sune-C",
+  "algs": [
+   "F R' F' R U' R U2 R' F R' F' R",
+   "y' (U) R' F' R U' R' F2 U' R U R' U2 R"
+  ]
+ },
+ {
+  "id": "LS-4 Sune-C 5",
+  "group": "LS-4",
+  "sub": "Sune-C",
+  "algs": [
+   "F R U2 R2 F R",
+   "F R' F' R2 U2 R'"
+  ]
+ },
+ {
+  "id": "LS-4 Sune-C 6",
+  "group": "LS-4",
+  "sub": "Sune-C",
+  "algs": [
+   "(U2) R U R2 F R F' R' F R F'",
+   "(U2) R' U2 R U2 R' U R U' R' U R'",
+   "(U') F R' F' R F R' F' R U' R U R'"
+  ]
+ },
+ {
+  "id": "LS-4 Pi-A 1",
+  "group": "LS-4",
+  "sub": "Pi-A",
+  "algs": [
+   "y (U) R' F' R U2 F' R U R'",
+   "(U) F' U' F U2 R' F R F'"
+  ]
+ },
+ {
+  "id": "LS-4 Pi-A 2",
+  "group": "LS-4",
+  "sub": "Pi-A",
+  "algs": [
+   "(U2) R' F R F' R U2 R' U' R U' R'",
+   "y (U2) F' R U R2 F' R U' R' F2 R",
+   "(U2) F R U' R' U R U' R2 F R"
+  ]
+ },
+ {
+  "id": "LS-4 Pi-A 3",
+  "group": "LS-4",
+  "sub": "Pi-A",
+  "algs": [
+   "y (U2) F' R U' R' U2 R' F R F'",
+   "(U') F' R U2 R' U' R U' R' F R U' R'",
+   "R' F R F' U R U' R' U2 R U' R'",
+   "(U') R U R' F R' F' R U' R U' R'"
+  ]
+ },
+ {
+  "id": "LS-4 Pi-A 4",
+  "group": "LS-4",
+  "sub": "Pi-A",
+  "algs": [
+   "(U') R U' R2 U' R U' R' U2 R",
+   "(U2) R U R' U2 R' F R F' R' F R F'",
+   "(U2) F R U' R2 F R F' R' F R",
+   "y' (U') R' F R F' R2 U R' U R'",
+   "F R' F' R F R' F' R2 U2 R'"
+  ]
+ },
+ {
+  "id": "LS-4 Pi-A 5",
+  "group": "LS-4",
+  "sub": "Pi-A",
+  "algs": [
+   "y (U2) F' R U R2 F R F' R U R'",
+   "(U2) R' F' R U R' F2 R F2",
+   "(U') R U' R' U2 R' F R F' R U R'"
+  ]
+ },
+ {
+  "id": "LS-4 Pi-A 6",
+  "group": "LS-4",
+  "sub": "Pi-A",
+  "algs": [
+   "(U2) R2 F R F' R U' R' U2 R'",
+   "y (U) R' F' R U R' F' R U2 R' F' R",
+   "y' (U') R U R' U' R U2 R U2 R2",
+   "(U') F' R U2 R' U2 R' F R2 U' R'",
+   "F' U R U2 R' U2 R' F R2 U' R'"
+  ]
+ },
+ {
+  "id": "LS-4 Pi-B 1",
+  "group": "LS-4",
+  "sub": "Pi-B",
+  "algs": [
+   "(U) R U R' U2 R U2 R' F R' F' R",
+   "R U2 R' U R U' R' F R' F' R",
+   "(U2) y2 x' R F' R U R2 F' R U2 R'"
+  ]
+ },
+ {
+  "id": "LS-4 Pi-B 2",
+  "group": "LS-4",
+  "sub": "Pi-B",
+  "algs": [
+   "y (U2) F' R U R2 U' R U' R' U2 R",
+   "(U) F2 R F2 R' F2 U R'",
+   "(U') F' U' R' F' R U' R' F R F",
+   "(U2) F R' F' R U' R U' R' U R U' R'"
+  ]
+ },
+ {
+  "id": "LS-4 Pi-B 3",
+  "group": "LS-4",
+  "sub": "Pi-B",
+  "algs": [
+   "y (U2) F' R U R' U2 R' F R F' R U R'",
+   "y' R' U2 R U2 R' U2 R U2 R' U' R",
+   "(U) F R U R' U' R U2 R2 F R",
+   "y F U' R U2 R' U' R U R' F'",
+   "y' (U2) R U2 R' U2 R U' R U R2"
+  ]
+ },
+ {
+  "id": "LS-4 Pi-B 4",
+  "group": "LS-4",
+  "sub": "Pi-B",
+  "algs": [
+   "y' (U2) R' U2 R' F R F' R U' R' U2 R",
+   "(U2) F R U R U' R' F' R2 U2 R",
+   "F R' F' R2 U R' F R' F' R",
+   "(U2) R U2 R2 F R F' U2 R U' R'"
+  ]
+ },
+ {
+  "id": "LS-4 Pi-B 5",
+  "group": "LS-4",
+  "sub": "Pi-B",
+  "algs": [
+   "F R' F' R2 U' R' U R U2 R'"
+  ]
+ },
+ {
+  "id": "LS-4 Pi-B 6",
+  "group": "LS-4",
+  "sub": "Pi-B",
+  "algs": [
+   "(U) R U2 R' U2 R U' R'",
+   "y (U') F R U' R' U R U' R' F'",
+   "R' U2 R' U R' U R"
+  ]
+ },
+ {
+  "id": "LS-4 U 1",
+  "group": "LS-4",
+  "sub": "U",
+  "algs": [
+   "(U2) F R' F' R2 U' R' U R U' R'",
+   "y' (U') R2 U R' U R' F R F' R'"
+  ]
+ },
+ {
+  "id": "LS-4 U 2",
+  "group": "LS-4",
+  "sub": "U",
+  "algs": [
+   "(U') R U' R' U R' F R F' R U R'",
+   "(U') R U' F R' F' R U R U' R2"
+  ]
+ },
+ {
+  "id": "LS-4 U 3",
+  "group": "LS-4",
+  "sub": "U",
+  "algs": [
+   "y' (U2) R' U' R U' R' F R F' R U R'",
+   "y (U2) R' F' R U R' F R F' R U R'",
+   "R2 F R F' R U2 R' F R' F'"
+  ]
+ },
+ {
+  "id": "LS-4 U 4",
+  "group": "LS-4",
+  "sub": "U",
+  "algs": [
+   "(U') R U R' U' R U' R'",
+   "(U2) R' U2 R' U2 R"
+  ]
+ },
+ {
+  "id": "LS-4 U 5",
+  "group": "LS-4",
+  "sub": "U",
+  "algs": [
+   "(U2) R2 F R U R' U' R' F' R2",
+   "y' R' F R F' R U' R U2 R'",
+   "y (U2) F U R U R' U' R U' R' U F'"
+  ]
+ },
+ {
+  "id": "LS-4 U 6",
+  "group": "LS-4",
+  "sub": "U",
+  "algs": [
+   "y' R U' R U R' U R'",
+   "(U') R' F' R F R U' R2 F R"
+  ]
+ },
+ {
+  "id": "LS-4 L 1",
+  "group": "LS-4",
+  "sub": "L",
+  "algs": [
+   "(U) R U' R' U R' F R F'",
+   "y' R2 F' R U' R' F2 R2",
+   "y (U) F U' R U' R' U F'"
+  ]
+ },
+ {
+  "id": "LS-4 L 2",
+  "group": "LS-4",
+  "sub": "L",
+  "algs": [
+   "(U2) F R' F' R2 U' R2 F R F'",
+   "(U) R' F R' F' R U2 R' U' R",
+   "R U' R' U R' F R F' R U2 R'"
+  ]
+ },
+ {
+  "id": "LS-4 L 3",
+  "group": "LS-4",
+  "sub": "L",
+  "algs": [
+   "(U') R2 F R F' R' U' R2",
+   "(U2) F' R U R U' R' F R'"
+  ]
+ },
+ {
+  "id": "LS-4 L 4",
+  "group": "LS-4",
+  "sub": "L",
+  "algs": [
+   "y' (U2) R' U' R U R' F' R U R U' R' F",
+   "y' (U2) R' F R' F' R U R U' R' U' R",
+   "y' (U2) R' F R' F' U' R' U R2"
+  ]
+ },
+ {
+  "id": "LS-4 L 5",
+  "group": "LS-4",
+  "sub": "L",
+  "algs": [
+   "y R2 F R U' R",
+   "F2 R U R' F",
+   "y' R2 F R F' R"
+  ]
+ },
+ {
+  "id": "LS-4 L 6",
+  "group": "LS-4",
+  "sub": "L",
+  "algs": [
+   "y2 R B2 U' R' F R' F' R",
+   "R U2 R' U2 R U' R' F R' F' R",
+   "y' F R' F' R2 U' R' U R2"
+  ]
+ },
+ {
+  "id": "LS-4 T 1",
+  "group": "LS-4",
+  "sub": "T",
+  "algs": [
+   "y' (U2) R2 F R F' R U' F R F'"
+  ]
+ },
+ {
+  "id": "LS-4 T 2",
+  "group": "LS-4",
+  "sub": "T",
+  "algs": [
+   "(U2) R2 F' R U R' U' R' F R2",
+   "(U') R U R' F R' F' R2 U2 R'"
+  ]
+ },
+ {
+  "id": "LS-4 T 3",
+  "group": "LS-4",
+  "sub": "T",
+  "algs": [
+   "y' (U) F R F' U R' U' R",
+   "(U2) R U' R' U R' F R F' R U' R'",
+   "R U2 R' F R F' R U R' U' R'",
+   "(U) R U R' U F' U' F"
+  ]
+ },
+ {
+  "id": "LS-4 T 4",
+  "group": "LS-4",
+  "sub": "T",
+  "algs": [
+   "R U' R' U' R' F R F'",
+   "(U') R' U' R' U F R F'",
+   "y' (U2) R' U' F R F' R U R'"
+  ]
+ },
+ {
+  "id": "LS-4 T 5",
+  "group": "LS-4",
+  "sub": "T",
+  "algs": [
+   "(U') R2 U' R' F R' F'",
+   "y' (U2) R' U' F' R U' R' F2 R"
+  ]
+ },
+ {
+  "id": "LS-4 T 6",
+  "group": "LS-4",
+  "sub": "T",
+  "algs": [
+   "y' (U) R2 F R F' R U R' U' R"
+  ]
+ },
+ {
+  "id": "LS-4 H 1",
+  "group": "LS-4",
+  "sub": "H",
+  "algs": [
+   "y (U2) R' F' R U' R' F R F' R U R'",
+   "(U2) R2 U2 R U R' U R U2 R' U' R"
+  ]
+ },
+ {
+  "id": "LS-4 H 2",
+  "group": "LS-4",
+  "sub": "H",
+  "algs": [
+   "y F U' R U' R' F'",
+   "R' U2 R' F R U R' U' R' F'",
+   "R U' F R' F' R'"
+  ]
+ },
+ {
+  "id": "LS-4 H 3",
+  "group": "LS-4",
+  "sub": "H",
+  "algs": [
+   "y (U2) R' F' R U R' U' R U' R' U2 R",
+   "y (U) R' F R U R' F' R U R' F' R",
+   "R U R2 F R F' R U R' U' R U R'",
+   "y (U2) R' F' R2 B2 R' U' R B' R'",
+   "y' (U2) R' U' R2 U2 R' U' R U' R'"
+  ]
+ },
+ {
+  "id": "LS-4 H 4",
+  "group": "LS-4",
+  "sub": "H",
+  "algs": [
+   "(U2) R U R' U' R U' R2 F R F'"
+  ]
+ },
+ {
+  "id": "LS-4 H 5",
+  "group": "LS-4",
+  "sub": "H",
+  "algs": [
+   "y (U) F' R U' R' F U2 R' F R F'",
+   "y (U2) F' R U' R2 F R F' R U2 R'",
+   "y' (U) R2 F R F' R U R' U R U' R' U2 R",
+   "(U) R U R' U' R U' R U' R' F R' F'",
+   "(U2) R U' R2 F R F' R U R2 F R F'",
+   "y' F R F' R U' R U' R' U2 R U' R'"
+  ]
+ },
+ {
+  "id": "LS-4 H 6",
+  "group": "LS-4",
+  "sub": "H",
+  "algs": [
+   "(U) F R F' R U R2 U' R U2 R'",
+   "y' (U') R U R' U R' U2 R' F R F'",
+   "y' R' F2 R U R' U2 F R"
+  ]
+ },
+ {
+  "id": "LS-5 Hammer-A 1",
+  "group": "LS-5",
+  "sub": "Hammer-A",
+  "algs": [
+   "R' F R2 U2 R' U R U' R' F",
+   "R U2 R2 F' R U R U' R' F",
+   "y' (U') R U2 R' U2 R' F R' F'"
+  ]
+ },
+ {
+  "id": "LS-5 Hammer-A 2",
+  "group": "LS-5",
+  "sub": "Hammer-A",
+  "algs": [
+   "R' F R F' R U R' F R' F' R",
+   "y (U2) R' F R2 U' R' F R' F2 R",
+   "F' R' F R F' R U R' F"
+  ]
+ },
+ {
+  "id": "LS-5 Hammer-A 3",
+  "group": "LS-5",
+  "sub": "Hammer-A",
+  "algs": [
+   "R' F R F' R U' R' U R U2 R'"
+  ]
+ },
+ {
+  "id": "LS-5 Hammer-A 4",
+  "group": "LS-5",
+  "sub": "Hammer-A",
+  "algs": [
+   "(U2) F' R U' R' F2 R U' R'",
+   "(U2) R U2 R' U' R2 U R2 U' R2"
+  ]
+ },
+ {
+  "id": "LS-5 Hammer-A 5",
+  "group": "LS-5",
+  "sub": "Hammer-A",
+  "algs": [
+   "F2 R U2 R' U2 R' F2 R",
+   "R' F2 R U2 R U2 R' F2",
+   "R2 U R2 U' R2 U R' F R F'",
+   "y R2 U' F R2 U' R' U R' U R2",
+   "y' (U') R' U R' U R' U2 R U' R2",
+   "y2 R2 B2 R' U2 R B2 R2"
+  ]
+ },
+ {
+  "id": "LS-5 Hammer-A 6",
+  "group": "LS-5",
+  "sub": "Hammer-A",
+  "algs": [
+   "F' R U2 R' U2 R' F R",
+   "F' R U R' U' R' F R2 U R'",
+   "y R' U R2 U' R2 U' R F",
+   "y R2 U' R' U R' U' R U R2 F"
+  ]
+ },
+ {
+  "id": "LS-5 Hammer-B 1",
+  "group": "LS-5",
+  "sub": "Hammer-B",
+  "algs": [
+   "(U2) R U R2 F R F' U R U' R'",
+   "(U) F R' F' R U R U R2 F R F'"
+  ]
+ },
+ {
+  "id": "LS-5 Hammer-B 2",
+  "group": "LS-5",
+  "sub": "Hammer-B",
+  "algs": [
+   "(U') R U' R' F R' F' R U2 R U2 R'",
+   "y2 (U) R U' R' F R' F' R2 B2 R'",
+   "(U) R' F2 R F' R U' R' F R' F2 R"
+  ]
+ },
+ {
+  "id": "LS-5 Hammer-B 3",
+  "group": "LS-5",
+  "sub": "Hammer-B",
+  "algs": [
+   "R U2 R'",
+   "y R' U' R' F2 R U R"
+  ]
+ },
+ {
+  "id": "LS-5 Hammer-B 4",
+  "group": "LS-5",
+  "sub": "Hammer-B",
+  "algs": [
+   "y R' F2 R F' R U R2 F' R",
+   "(U') F U2 R' F' R U' F2",
+   "(U2) R' F R F' R U' R' F R' F' R",
+   "y' (U2) R' U' R2 U R' U' R' F R F'"
+  ]
+ },
+ {
+  "id": "LS-5 Hammer-B 5",
+  "group": "LS-5",
+  "sub": "Hammer-B",
+  "algs": [
+   "(U') R U2 R' F R' F' R"
+  ]
+ },
+ {
+  "id": "LS-5 Hammer-B 6",
+  "group": "LS-5",
+  "sub": "Hammer-B",
+  "algs": [
+   "y' (U2) R' F R F' R U R2 U R",
+   "R2 U2 R' U R' U R' F R F' R",
+   "y R' U' F R F' R U' R U2 R'",
+   "y R' F R F' R U R' U2 R' F R"
+  ]
+ },
+ {
+  "id": "LS-5 Spaceship-A 1",
+  "group": "LS-5",
+  "sub": "Spaceship-A",
+  "algs": [
+   "(U) R' F' R F R U R2 F' R",
+   "(U2) R' U2 R' U2 F R F' R U R'",
+   "(U') R U R2 F2 R F' R' F2 R",
+   "(U2) R' U' R U R' F R F' R' U' R2",
+   "(U') R U2 R U' R' U R' U' F R' F"
+  ]
+ },
+ {
+  "id": "LS-5 Spaceship-A 2",
+  "group": "LS-5",
+  "sub": "Spaceship-A",
+  "algs": [
+   "R' F2 R U' R U2 R' F",
+   "F' R U2 R' U R' F2 R",
+   "F R U2 R2 F2 R F'",
+   "(U) F R' F' R2 U2 R2 F R F'"
+  ]
+ },
+ {
+  "id": "LS-5 Spaceship-A 3",
+  "group": "LS-5",
+  "sub": "Spaceship-A",
+  "algs": [
+   "R' F R F' R U2 R'"
+  ]
+ },
+ {
+  "id": "LS-5 Spaceship-A 4",
+  "group": "LS-5",
+  "sub": "Spaceship-A",
+  "algs": [
+   "(U') F2 R U2 R U' R' F R'",
+   "R U2 R' F R' F' R U R U' R'",
+   "(U2) R' U2 R U2 R U2 R' F R F'"
+  ]
+ },
+ {
+  "id": "LS-5 Spaceship-A 5",
+  "group": "LS-5",
+  "sub": "Spaceship-A",
+  "algs": [
+   "y' (U') R' U' R U' R' U' R",
+   "y' (U') R' U R U' R' U' R",
+   "y' (U') R2 U' R' U R2"
+  ]
+ },
+ {
+  "id": "LS-5 Spaceship-A 6",
+  "group": "LS-5",
+  "sub": "Spaceship-A",
+  "algs": [
+   "(U') F' R U2 R' F R U2 R' F",
+   "(U') R U R' F2 R U R' F",
+   "y R2 F R2 U R' U' R U' R' U' R",
+   "(U') R2 U R' U R U2 R' U R'"
+  ]
+ },
+ {
+  "id": "LS-5 Spaceship-B 1",
+  "group": "LS-5",
+  "sub": "Spaceship-B",
+  "algs": [
+   "R U R' U' F R' F' R2 U' R'",
+   "(U') F' U F R U R' U' R U' R'",
+   "(U') R2 U R2 U' R2 U' R' F R F'"
+  ]
+ },
+ {
+  "id": "LS-5 Spaceship-B 2",
+  "group": "LS-5",
+  "sub": "Spaceship-B",
+  "algs": [
+   "(U2) R' F' R U2 R U2 R' F"
+  ]
+ },
+ {
+  "id": "LS-5 Spaceship-B 3",
+  "group": "LS-5",
+  "sub": "Spaceship-B",
+  "algs": [
+   "(U) R U R' U R' F R F'",
+   "y' (U) F R U R' U' R F'"
+  ]
+ },
+ {
+  "id": "LS-5 Spaceship-B 4",
+  "group": "LS-5",
+  "sub": "Spaceship-B",
+  "algs": [
+   "(U) R U2 R' U' F2 R U R' F",
+   "(U2) F' R U' R' F2 U R U2 R'"
+  ]
+ },
+ {
+  "id": "LS-5 Spaceship-B 5",
+  "group": "LS-5",
+  "sub": "Spaceship-B",
+  "algs": [
+   "(U) R' F R F' U' F R' F' R",
+   "y (U) F' R U R' U' R U' R' F",
+   "y' (U2) F R U' R2 U' R2 U R' F'"
+  ]
+ },
+ {
+  "id": "LS-5 Spaceship-B 6",
+  "group": "LS-5",
+  "sub": "Spaceship-B",
+  "algs": [
+   "y' R2 U' R U R2",
+   "y' (U2) R' U R U R' U' R",
+   "R F R' F' R U R U' R' U R'",
+   "y' (U') R U R2 U R U2 R'"
+  ]
+ },
+ {
+  "id": "LS-5 Stollery 1",
+  "group": "LS-5",
+  "sub": "Stollery",
+  "algs": [
+   "y' (U2) R2 F R F' R U2 R' U R",
+   "y (U2) R2 F R U' R U2 R' F R",
+   "y' R' U' R U2 R' F R' F' R2",
+   "y R' F' R U2 R' F' R2 U' R' F",
+   "(U) R' U R F R' F' R2 U' R' U R'"
+  ]
+ },
+ {
+  "id": "LS-5 Stollery 2",
+  "group": "LS-5",
+  "sub": "Stollery",
+  "algs": [
+   "F R' F' R U2 R' F R F'",
+   "y' R U R' U' R' F R2 F'",
+   "(U2) R' F2 R F2 R' F2 R"
+  ]
+ },
+ {
+  "id": "LS-5 Stollery 3",
+  "group": "LS-5",
+  "sub": "Stollery",
+  "algs": [
+   "(U) R' F2 R F' R' F2 R",
+   "y' (U') F R F' U2 R' U' R"
+  ]
+ },
+ {
+  "id": "LS-5 Stollery 4",
+  "group": "LS-5",
+  "sub": "Stollery",
+  "algs": [
+   "(U) F2 R U R' F U' R U2 R'",
+   "(U2) R U2 R' U F' R U' R' F2",
+   "y' (U) R2 F R F' R U' F R2 F'"
+  ]
+ },
+ {
+  "id": "LS-5 Stollery 5",
+  "group": "LS-5",
+  "sub": "Stollery",
+  "algs": [
+   "(U2) R' U R' U' R U' F R F'",
+   "y F R' F2 R F2 R' F2 R F'",
+   "(U) R' U R' F R F' R U' R"
+  ]
+ },
+ {
+  "id": "LS-5 Stollery 6",
+  "group": "LS-5",
+  "sub": "Stollery",
+  "algs": [
+   "F' U F U2 R U' R'",
+   "y' R' U R U2 F R' F'",
+   "y F U2 R U R' U' F'",
+   "(U') R' F2 R F R' F2 R"
+  ]
+ },
+ {
+  "id": "LS-5 Pinwheel 1",
+  "group": "LS-5",
+  "sub": "Pinwheel",
+  "algs": [
+   "y (U2) R' F' R2 U' R' F R' F' R",
+   "y' (U2) R U' R' F R2 F' R2",
+   "y' (U2) R U' R' F U2 R2 F R2"
+  ]
+ },
+ {
+  "id": "LS-5 Pinwheel 2",
+  "group": "LS-5",
+  "sub": "Pinwheel",
+  "algs": [
+   "(U) R U' R2 F2 R F' U R' F R",
+   "y' (U') R' F R' F' R U2 R U R' U' R",
+   "(U) F R F' R U R2 U2 R U' R'",
+   "y' (U') F R2 F' R U2 R U2 R'",
+   "y' (U') R' F R' F' R U R' U' R U R2"
+  ]
+ },
+ {
+  "id": "LS-5 Pinwheel 3",
+  "group": "LS-5",
+  "sub": "Pinwheel",
+  "algs": [
+   "y (U2) R' F' R2 U R' U R U2 R'",
+   "(U) F R' F' U2 R U2 R",
+   "y (U) R U' R' U2 F U2 F"
+  ]
+ },
+ {
+  "id": "LS-5 Pinwheel 4",
+  "group": "LS-5",
+  "sub": "Pinwheel",
+  "algs": [
+   "y' (U) R' F R' F' R2 U R' U' R",
+   "y (U) R' U R' F' R2 U R' F' R"
+  ]
+ },
+ {
+  "id": "LS-5 Pinwheel 5",
+  "group": "LS-5",
+  "sub": "Pinwheel",
+  "algs": [
+   "y' R' U R U' F R2 F'",
+   "y (U2) R' F R U2 R U' R' F",
+   "F' U F U' R U2 R'"
+  ]
+ },
+ {
+  "id": "LS-5 Pinwheel 6",
+  "group": "LS-5",
+  "sub": "Pinwheel",
+  "algs": [
+   "(U) R2 U2 R' U2 R' U R'",
+   "(U') R2 U2 R U2 R' U R'",
+   "(U') R U' R' U' R U R' U R U2 R'",
+   "(U) R U2 R' U2 R U R' U' R U' R'",
+   "(U) R' F2 R F' U2 R U' R' F"
+  ]
+ },
+ {
+  "id": "LS-5 Turtle-A 1",
+  "group": "LS-5",
+  "sub": "Turtle-A",
+  "algs": [
+   "y' F R F' R U2 R U2 R'",
+   "(U) F' R U R' U' R U2 R2 F' R",
+   "y' (U') R U' R' U R' F R' F' R U R'"
+  ]
+ },
+ {
+  "id": "LS-5 Turtle-A 2",
+  "group": "LS-5",
+  "sub": "Turtle-A",
+  "algs": [
+   "y' (U2) R' U' R2 U' R' F R' F' R",
+   "y' R' U' R U' R' U' F R' F' R2",
+   "R U2 R' U' R U' R' F R' F' R"
+  ]
+ },
+ {
+  "id": "LS-5 Turtle-A 3",
+  "group": "LS-5",
+  "sub": "Turtle-A",
+  "algs": [
+   "(U2) R F' R U R' U2 R' F2",
+   "F R' F' R U2 R' U2 R' U2 R",
+   "(U2) R' U' R2 F R F' R U' R' U2 R",
+   "(U) R U R' U' R' F R F' R U2 R'"
+  ]
+ },
+ {
+  "id": "LS-5 Turtle-A 4",
+  "group": "LS-5",
+  "sub": "Turtle-A",
+  "algs": [
+   "y (U') F' R U R' U R U' R' F",
+   "y' R' F R F' R U2 R U' R'",
+   "y R' F R F' R U R' U R' F R",
+   "y' F R U' R2 U R2 U R' F'"
+  ]
+ },
+ {
+  "id": "LS-5 Turtle-A 5",
+  "group": "LS-5",
+  "sub": "Turtle-A",
+  "algs": [
+   "(U') R U R2 U' R2 U' R2 U2 R",
+   "y' (U2) R' U' F2 R U2 R U' R' F",
+   "R U2 R2 F2 R U R' F R",
+   "(U2) R' U R' U' R U R' U2 R",
+   "(U') R U R' U R U' R' U2 R U' R'"
+  ]
+ },
+ {
+  "id": "LS-5 Turtle-A 6",
+  "group": "LS-5",
+  "sub": "Turtle-A",
+  "algs": [
+   "y' (U') R U' R U2 R' U R'",
+   "y' (U') R2 U R' U2 R U' R2"
+  ]
+ },
+ {
+  "id": "LS-5 Turtle-B 1",
+  "group": "LS-5",
+  "sub": "Turtle-B",
+  "algs": [
+   "(U2) R' F R2 U' R' F' R' F R",
+   "R U2 R' U2 R U2 R' U2 R' F R F'",
+   "F U2 R2 F R U2 R' U R",
+   "(U') F' U R' F' R U' R' F R F"
+  ]
+ },
+ {
+  "id": "LS-5 Turtle-B 2",
+  "group": "LS-5",
+  "sub": "Turtle-B",
+  "algs": [
+   "y R' U2 F R U2 R' F U' R",
+   "R' F2 R F' U R' F2 R F'",
+   "y' (U) F R U' R2 F R F' R U2 F'"
+  ]
+ },
+ {
+  "id": "LS-5 Turtle-B 3",
+  "group": "LS-5",
+  "sub": "Turtle-B",
+  "algs": [
+   "R' F' U' F U' R U2 R",
+   "y (U2) R U2 R' U2 R U2 R' F R U R'",
+   "(U) R U2 R' U' R U R' F R' F' R",
+   "y' (U2) R' U R U R' F R' F' R U R"
+  ]
+ },
+ {
+  "id": "LS-5 Turtle-B 4",
+  "group": "LS-5",
+  "sub": "Turtle-B",
+  "algs": [
+   "R' U2 R U' R' U R U' R",
+   "(U) R U R' U R' U2 R' U2 R",
+   "(U') R' U' R U2 R' U2 R U' R"
+  ]
+ },
+ {
+  "id": "LS-5 Turtle-B 5",
+  "group": "LS-5",
+  "sub": "Turtle-B",
+  "algs": [
+   "R U2 R' U2 R' F R F' R U R'",
+   "(U) R U2 R2 F2 R F' U R' F R",
+   "y2 R B2 R2 F R F' R U R'"
+  ]
+ },
+ {
+  "id": "LS-5 Turtle-B 6",
+  "group": "LS-5",
+  "sub": "Turtle-B",
+  "algs": [
+   "F R' F' R U' R U' R'",
+   "(U') R U' F R F' U' R'"
+  ]
+ },
+ {
+  "id": "LS-5 Pinwheel-Poser 1",
+  "group": "LS-5",
+  "sub": "Pinwheel-Poser",
+  "algs": [
+   "y' R2 F R2 F' R U R'",
+   "y' (U') R' U R U R2 F R F' R",
+   "y (U') R' F R F' R U R2 F R",
+   "y' R' F R F' R U R' F R F'"
+  ]
+ },
+ {
+  "id": "LS-5 Pinwheel-Poser 2",
+  "group": "LS-5",
+  "sub": "Pinwheel-Poser",
+  "algs": [
+   "y' (U2) R U2 R' U2 R' F R2 F'",
+   "y' (U) R2 U2 R U R' U' F R F' U R'"
+  ]
+ },
+ {
+  "id": "LS-5 Pinwheel-Poser 3",
+  "group": "LS-5",
+  "sub": "Pinwheel-Poser",
+  "algs": [
+   "y' (U) F R2 F' U R' U' R",
+   "(U) R U2 R' U F' U' F",
+   "y F' R U R' U2 R' F' R",
+   "(U) R U2 R2 F R F' U' R U R'"
+  ]
+ },
+ {
+  "id": "LS-5 Pinwheel-Poser 4",
+  "group": "LS-5",
+  "sub": "Pinwheel-Poser",
+  "algs": [
+   "(U') R U R' U' R U R' U' R U' R'",
+   "y' R U2 R' U' R U' R' F R F'",
+   "(U') R U' R U2 R' U2 R2",
+   "R' F' R U' R' F2 R2 U R'",
+   "(U2) F' R U R' U2 F R' F2 R"
+  ]
+ },
+ {
+  "id": "LS-5 Pinwheel-Poser 5",
+  "group": "LS-5",
+  "sub": "Pinwheel-Poser",
+  "algs": [
+   "R' U2 R' U2 F R F'",
+   "y F' U2 F' U2 R U R'",
+   "y' (U) R U2 R' U' R2 U R' U2 R'"
+  ]
+ },
+ {
+  "id": "LS-5 Pinwheel-Poser 6",
+  "group": "LS-5",
+  "sub": "Pinwheel-Poser",
+  "algs": [
+   "y' R' U R U' R2 F R F' R",
+   "y R' F R U' R2 F R U' R"
+  ]
+ },
+ {
+  "id": "LS-6 Hammer 1",
+  "group": "LS-6",
+  "sub": "Hammer",
+  "algs": [
+   "y' (U2) R U' R2 U' R F R' F' R",
+   "(U') R U' R' F R F' U' R' U' R",
+   "(U2) R U2 R' U2 R' F R F' R U' R'",
+   "y' (U) F R' F' R U R U' R2 U' R"
+  ]
+ },
+ {
+  "id": "LS-6 Hammer 2",
+  "group": "LS-6",
+  "sub": "Hammer",
+  "algs": [
+   "y (U) R' F' R U2 R' F' R",
+   "y' (U2) R' U2 R U' R' U2 R",
+   "y' (U) R' U' R U2 R' U' R"
+  ]
+ },
+ {
+  "id": "LS-6 Hammer 3",
+  "group": "LS-6",
+  "sub": "Hammer",
+  "algs": [
+   "y R F' U R' F R2 U2 F",
+   "y' R U2 R' U2 R' U F R F'",
+   "y' R U' R U' F U2 R2 F",
+   "y (U2) R' F' R2 U2 R' U2 R' F R F'",
+   "y (U2) R U2 R2 F R U2 R' F R F'"
+  ]
+ },
+ {
+  "id": "LS-6 Hammer 4",
+  "group": "LS-6",
+  "sub": "Hammer",
+  "algs": [
+   "y (U2) F R2 U' R' F R' F2",
+   "R U2 R2 F' R U' R' F2 R",
+   "y' (U) F R F' U' R2 F R F' R",
+   "R' F R2 U2 R' U' R' F2 R"
+  ]
+ },
+ {
+  "id": "LS-6 Hammer 5",
+  "group": "LS-6",
+  "sub": "Hammer",
+  "algs": [
+   "R U2 R2 F R F' R U R'",
+   "y (U2) R F' R U R2 U2 R U R'",
+   "(U') R U R' U' R2 U' R' F R' F'"
+  ]
+ },
+ {
+  "id": "LS-6 Hammer 6",
+  "group": "LS-6",
+  "sub": "Hammer",
+  "algs": [
+   "(U2) R' F R F'",
+   "y' (U') R' U' R F R' F'"
+  ]
+ },
+ {
+  "id": "LS-6 Spaceship 1",
+  "group": "LS-6",
+  "sub": "Spaceship",
+  "algs": [
+   "y (U) F' R U R' U2 R' F R",
+   "y (U) F' U' R' F R2 U R'",
+   "y' (U2) R2 F R F' R U R' U2 R"
+  ]
+ },
+ {
+  "id": "LS-6 Spaceship 2",
+  "group": "LS-6",
+  "sub": "Spaceship",
+  "algs": [
+   "y R2 F2 R F' R U R' U2 R",
+   "(U) F' U F U2 R U' R2 F R F'",
+   "(U2) x' R U2 R' F R F' R U2 R2",
+   "(U2) R B2 R' U R U' R B2 R2"
+  ]
+ },
+ {
+  "id": "LS-6 Spaceship 3",
+  "group": "LS-6",
+  "sub": "Spaceship",
+  "algs": [
+   "y (U) R' F R F' R U R2 F' R",
+   "y (U) F R U' R2 F R F' R U R' F'"
+  ]
+ },
+ {
+  "id": "LS-6 Spaceship 4",
+  "group": "LS-6",
+  "sub": "Spaceship",
+  "algs": [
+   "y (U2) R' F R F' R' F2 R2 U' R'",
+   "y R' F R F' R U' R' F R U2 R'",
+   "y' (U2) R' U R U R2 F R F' U R",
+   "y' R' F R F' R U R' U2 R' U2 R",
+   "y' (U) R U' R' U' F R' F' R U' R'"
+  ]
+ },
+ {
+  "id": "LS-6 Spaceship 5",
+  "group": "LS-6",
+  "sub": "Spaceship",
+  "algs": [
+   "y (U2) R U2 R' U' R U' R2 F2 R",
+   "y' F2 R U R' F R U R2",
+   "y F2 R U R' U2 F' R U' R'",
+   "R2 F R F' U2 R' F R' F'",
+   "R2 U' R' F R' F U2 F"
+  ]
+ },
+ {
+  "id": "LS-6 Spaceship 6",
+  "group": "LS-6",
+  "sub": "Spaceship",
+  "algs": [
+   "y' (U') R' U2 R F R' F'",
+   "y' (U') R' F' U' F R",
+   "y (U') F R U' R' F'",
+   "R' F R F' U' R U' R'",
+   "y' (U') F U R' U' F'"
+  ]
+ },
+ {
+  "id": "LS-6 Two-Face 1",
+  "group": "LS-6",
+  "sub": "Two-Face",
+  "algs": [
+   "y' F R F' R U R U' R'",
+   "(U') R' F R F' U R U R'",
+   "y' F R F' U' R' U R"
+  ]
+ },
+ {
+  "id": "LS-6 Two-Face 2",
+  "group": "LS-6",
+  "sub": "Two-Face",
+  "algs": [
+   "y' (U2) R' U' R",
+   "y (U2) R' F' R",
+   "y (U2) z U' R' U"
+  ]
+ },
+ {
+  "id": "LS-6 Two-Face 3",
+  "group": "LS-6",
+  "sub": "Two-Face",
+  "algs": [
+   "(U2) R U' R' F R F' R U R2",
+   "y' R' U2 R' F R F' R U R' U R",
+   "y (U2) F' R U2 R' U R U2 R'"
+  ]
+ },
+ {
+  "id": "LS-6 Two-Face 4",
+  "group": "LS-6",
+  "sub": "Two-Face",
+  "algs": [
+   "R' F2 R2 U R' F R' F2 R",
+   "y' R' U R' F R F' R U2 F R' F'"
+  ]
+ },
+ {
+  "id": "LS-6 Two-Face 5",
+  "group": "LS-6",
+  "sub": "Two-Face",
+  "algs": [
+   "R' U' R2 U' R' U2 F R F'",
+   "y' R U' R' F R' F2 U' F R",
+   "F R' F' U2 R' U2 F R F'",
+   "y R U' R' U2 F' U2 R U R'"
+  ]
+ },
+ {
+  "id": "LS-6 Two-Face 6",
+  "group": "LS-6",
+  "sub": "Two-Face",
+  "algs": [
+   "(U2) R U' R' F' R U' R' F2",
+   "y (U2) R2 F2 R U' R' F2 R2",
+   "(U2) F R' F' R U2 R U' R2 F R F'",
+   "y (U) R2 F' R U R U' R2 F R2"
+  ]
+ },
+ {
+  "id": "LS-6 Turtle 1",
+  "group": "LS-6",
+  "sub": "Turtle",
+  "algs": [
+   "(U') R U R' U2 R' F R F'",
+   "(U2) R' F R2 U R' U' F'",
+   "(U2) F R F' R U R' U2 R'"
+  ]
+ },
+ {
+  "id": "LS-6 Turtle 2",
+  "group": "LS-6",
+  "sub": "Turtle",
+  "algs": [
+   "y' R' F' R U R' U2 R' F2 R2",
+   "(U2) R U R' U2 R' F R F' U R U' R'"
+  ]
+ },
+ {
+  "id": "LS-6 Turtle 3",
+  "group": "LS-6",
+  "sub": "Turtle",
+  "algs": [
+   "(U') R U' R2 F R F' R U R'",
+   "(U2) F R' F' R U R U' R2 F R F'"
+  ]
+ },
+ {
+  "id": "LS-6 Turtle 4",
+  "group": "LS-6",
+  "sub": "Turtle",
+  "algs": [
+   "y (U) F' R U' R' F R U2 R'",
+   "y' (U2) R' U2 R' F R F' U R"
+  ]
+ },
+ {
+  "id": "LS-6 Turtle 5",
+  "group": "LS-6",
+  "sub": "Turtle",
+  "algs": [
+   "(U) R U' R' U2 R U' R'",
+   "(U) R U2 R' U' R U2 R'",
+   "R' U' R2 U' R2 U2 R",
+   "y R U R' U' R' F R2 U' R' F'"
+  ]
+ },
+ {
+  "id": "LS-6 Turtle 6",
+  "group": "LS-6",
+  "sub": "Turtle",
+  "algs": [
+   "y R2 F R U2 R' F R F' U R",
+   "(U) F U2 R2 F U' R U' R",
+   "(U2) F' R U R' U2 R' F2 R2 U' R'",
+   "y (U) R U2 R' U' R U R' F R U2 R'"
+  ]
+ },
+ {
+  "id": "LS-6 Pinwheel-Poser-A 1",
+  "group": "LS-6",
+  "sub": "Pinwheel-Poser-A",
+  "algs": [
+   "(U) R U2 R' U R' F R F'",
+   "y' (U) F R2 U R' U' R F'"
+  ]
+ },
+ {
+  "id": "LS-6 Pinwheel-Poser-A 2",
+  "group": "LS-6",
+  "sub": "Pinwheel-Poser-A",
+  "algs": [
+   "R U' R2 F R F' U R U R'",
+   "y' R' U2 R U R' U2 R' F R F' R",
+   "y' R U' R' F R' F' R2 U R' U' R'",
+   "(U') R U' R' U R U' R' F R' F' R",
+   "y (U2) R U' R' F R' F' R U R' F' R"
+  ]
+ },
+ {
+  "id": "LS-6 Pinwheel-Poser-A 3",
+  "group": "LS-6",
+  "sub": "Pinwheel-Poser-A",
+  "algs": [
+   "y' F R' F' U' R' U' R",
+   "y' F R' F' R U R' U' R'",
+   "y F R U R' U2 F'",
+   "y' F U R U' R2 F'",
+   "R F R F' U2 R'"
+  ]
+ },
+ {
+  "id": "LS-6 Pinwheel-Poser-A 4",
+  "group": "LS-6",
+  "sub": "Pinwheel-Poser-A",
+  "algs": [
+   "F R U2 R2 F' R U R' F R",
+   "(U) F' U F U' R U' R2 F R F'",
+   "y' R' F U2 R2 F U' R U' R2",
+   "(U) R U R2 F R F' U' F R' F' R"
+  ]
+ },
+ {
+  "id": "LS-6 Pinwheel-Poser-A 5",
+  "group": "LS-6",
+  "sub": "Pinwheel-Poser-A",
+  "algs": [
+   "y (U2) R' U' R U' R' U2 F2 R",
+   "R U2 R' U' R U R' U' R' F R F'",
+   "y' F R2 F' R U R' U' R' F R F'",
+   "y' (U2) R' F' R U' R' F2 U2 R"
+  ]
+ },
+ {
+  "id": "LS-6 Pinwheel-Poser-A 6",
+  "group": "LS-6",
+  "sub": "Pinwheel-Poser-A",
+  "algs": [
+   "y (U) R' U2 R U R2 F' R U R",
+   "(U') R U' R2 U2 R U R' U R",
+   "y' (U) F R' F' U' R2 F R F' R",
+   "(U2) R' U R' U2 R U R' U2 R"
+  ]
+ },
+ {
+  "id": "LS-6 Pinwheel-Poser-B 1",
+  "group": "LS-6",
+  "sub": "Pinwheel-Poser-B",
+  "algs": [
+   "y' (U) F R' F' U R' U' R",
+   "y' (U) R' U R' F R F' U2 R"
+  ]
+ },
+ {
+  "id": "LS-6 Pinwheel-Poser-B 2",
+  "group": "LS-6",
+  "sub": "Pinwheel-Poser-B",
+  "algs": [
+   "R' F R F' U2 R' F R F'",
+   "R' U' R U' R' U2 F R F'"
+  ]
+ },
+ {
+  "id": "LS-6 Pinwheel-Poser-B 3",
+  "group": "LS-6",
+  "sub": "Pinwheel-Poser-B",
+  "algs": [
+   "R U' R' U R U' R' U R U2 R'",
+   "(U') y F' R U R2 F' R U R' F R",
+   "y (U2) R' F' R U R U' R' F R' F' R",
+   "y' F U2 R2 F R U2 R2",
+   "y' R U R2 F' U' F2 R F' R' U' R2"
+  ]
+ },
+ {
+  "id": "LS-6 Pinwheel-Poser-B 4",
+  "group": "LS-6",
+  "sub": "Pinwheel-Poser-B",
+  "algs": [
+   "y (U2) R F' U' R' U' R2 U R'",
+   "R U' R' U R U R' F R' F' R",
+   "(U) R U2 R' U2 R2 U' R' F R' F'"
+  ]
+ },
+ {
+  "id": "LS-6 Pinwheel-Poser-B 5",
+  "group": "LS-6",
+  "sub": "Pinwheel-Poser-B",
+  "algs": [
+   "y' (U2) R2 U2 R U' R2 F R F' R'",
+   "y' R2 U2 R' U' R2 F R F' R'",
+   "y (U') R U R' U R U' R2 F2 R F",
+   "y R U' R' F U' F' R U R2 F R"
+  ]
+ },
+ {
+  "id": "LS-6 Pinwheel-Poser-B 6",
+  "group": "LS-6",
+  "sub": "Pinwheel-Poser-B",
+  "algs": [
+   "y' R U R' U2 R U R' U R'",
+   "y' (U') R U2 R' U R U2 R' U R'",
+   "y' (U2) R' U' F2 R U R' F R",
+   "y' R U R' U R U2 R2 U' R"
+  ]
+ },
+ {
+  "id": "LS-6 Pinwheel-Poser-C 1",
+  "group": "LS-6",
+  "sub": "Pinwheel-Poser-C",
+  "algs": [
+   "y' (U') R U R2 U' R' F R F'",
+   "y' (U2) R' U2 R U F R F'",
+   "(U2) F' U2 F U R U R'",
+   "R U2 R' U' R' F R F' R U R'",
+   "y (U) F' R U R' U R' F2 R"
+  ]
+ },
+ {
+  "id": "LS-6 Pinwheel-Poser-C 2",
+  "group": "LS-6",
+  "sub": "Pinwheel-Poser-C",
+  "algs": [
+   "(U') R2 U R' U2 R' F R' F'",
+   "y' (U2) F R' F' R2 U R' U' R U' R2",
+   "(U2) F' R U2 R' F R U2 R' U2 F"
+  ]
+ },
+ {
+  "id": "LS-6 Pinwheel-Poser-C 3",
+  "group": "LS-6",
+  "sub": "Pinwheel-Poser-C",
+  "algs": [
+   "y' R U' R' F R' F' R F R' F'",
+   "y' R' U2 R U R' U' R U R' U' R",
+   "y (U) R' F R F' R U R' F' R U R'",
+   "(U) R2 U2 R' F U2 R2 F",
+   "(U2) R U R' U R U' R2' F R F'"
+  ]
+ },
+ {
+  "id": "LS-6 Pinwheel-Poser-C 4",
+  "group": "LS-6",
+  "sub": "Pinwheel-Poser-C",
+  "algs": [
+   "R U' R' U F2 R U R' F",
+   "R U2 R' U2 R U2 R' U' R U' R'",
+   "F' R' F R F U' R2 U' R' F R' F'",
+   "y F U' F R' F' R2 U' R' F'"
+  ]
+ },
+ {
+  "id": "LS-6 Pinwheel-Poser-C 5",
+  "group": "LS-6",
+  "sub": "Pinwheel-Poser-C",
+  "algs": [
+   "(U2) R' F R2 F' U' R' U' R",
+   "y' F' U F U' R U R' U R'"
+  ]
+ },
+ {
+  "id": "LS-6 Pinwheel-Poser-C 6",
+  "group": "LS-6",
+  "sub": "Pinwheel-Poser-C",
+  "algs": [
+   "y' (U) R' U' R U' F R' F'",
+   "(U) F' U' F U' R U' R' U'",
+   "(U') R U R2 F R F' R U2 R'"
+  ]
+ },
+ {
+  "id": "LS-6 Gun-A 1",
+  "group": "LS-6",
+  "sub": "Gun-A",
+  "algs": [
+   "R' U' F R F' R' U' R U2 R",
+   "(U) F' R U' R' F2 U R' F R F'",
+   "y' (U) R' U R U' R' U' R U' F R2 F'",
+   "(U2) R U' R' F R' F' R2 U R2 F R F'"
+  ]
+ },
+ {
+  "id": "LS-6 Gun-A 2",
+  "group": "LS-6",
+  "sub": "Gun-A",
+  "algs": [
+   "y' (U2) R' U R U2 F R F'",
+   "y' (U2) R' F R F' R U2 R2 U' R'",
+   "(U2) R U2 F R F' U R'",
+   "(U2) F' U F U2 R U R'",
+   "R U2 R' U R' F R F' R U R'"
+  ]
+ },
+ {
+  "id": "LS-6 Gun-A 3",
+  "group": "LS-6",
+  "sub": "Gun-A",
+  "algs": [
+   "R' F2 R F' R' F2 R2 U2 R'",
+   "y (U2) R U2 R2 F2 R F' R U2 R'"
+  ]
+ },
+ {
+  "id": "LS-6 Gun-A 4",
+  "group": "LS-6",
+  "sub": "Gun-A",
+  "algs": [
+   "(U2) R' F R2 U' R' U' R U R' F'",
+   "y R' F2 R F' R U R' F' R U R'",
+   "y' R U' R' U R U' R U R2 U' R",
+   "R2 U' F R' F' R2 U2 R"
+  ]
+ },
+ {
+  "id": "LS-6 Gun-A 5",
+  "group": "LS-6",
+  "sub": "Gun-A",
+  "algs": [
+   "(U') R U' R'",
+   "R' U' R' U R"
+  ]
+ },
+ {
+  "id": "LS-6 Gun-A 6",
+  "group": "LS-6",
+  "sub": "Gun-A",
+  "algs": [
+   "(U') F R' F' R U2 R U2 R2 F R F'",
+   "y' R U2 R2 F R F' R U' R2 U' R'",
+   "y (U) R U2 R' F R U2 R2 F' R",
+   "y' R' F2 R F' R U' R' U R' F"
+  ]
+ },
+ {
+  "id": "LS-6 Gun-B 1",
+  "group": "LS-6",
+  "sub": "Gun-B",
+  "algs": [
+   "y (U2) F' R U' R' F R' F' R2 U2 R'",
+   "y (U2) F' R U' R' F R U2 R2 F R",
+   "y' R U' R U R' U2 R U' R' F R' F'",
+   "y' R U2 R U2 R' U F R' F'"
+  ]
+ },
+ {
+  "id": "LS-6 Gun-B 2",
+  "group": "LS-6",
+  "sub": "Gun-B",
+  "algs": [
+   "(U') R' U R U2 R' F R2 F'",
+   "(U) R U' R2 F2 R F' R' F2 R"
+  ]
+ },
+ {
+  "id": "LS-6 Gun-B 3",
+  "group": "LS-6",
+  "sub": "Gun-B",
+  "algs": [
+   "y' (U) R' U' R' F R F' R"
+  ]
+ },
+ {
+  "id": "LS-6 Gun-B 4",
+  "group": "LS-6",
+  "sub": "Gun-B",
+  "algs": [
+   "R' F R F' R' F R F' R U2 R'",
+   "(U2) R2 U R' U R' U' R U' R2",
+   "y (U2) R' F' R2 U R' U' R' F R F'",
+   "y' R U2 R' U2 R U R2 F R F' R'",
+   "y (U') R F' R U R2 U2 F",
+   "y' (U') R U' F R U2 R2 F"
+  ]
+ },
+ {
+  "id": "LS-6 Gun-B 5",
+  "group": "LS-6",
+  "sub": "Gun-B",
+  "algs": [
+   "y (U2) F' R U2 R U' R' F R' F'",
+   "y' (U') R2 U' F R' F' U R2",
+   "y' (U') R2 U' R' U R' F R F' U' R'",
+   "(U') F2 U' R U' R' U F2",
+   "(U2) R' F R U2 R U' R' U2 F'",
+   "y' (U') F U R' U2 F' R U' R' F"
+  ]
+ },
+ {
+  "id": "LS-6 Gun-B 6",
+  "group": "LS-6",
+  "sub": "Gun-B",
+  "algs": [
+   "y' (U) R' U' R' F' R U' R' F2 R2",
+   "y' (U) R' U2 R U' R U2 R' U2 R'",
+   "y' (U) R' U R' U' R2 U R' U R U' R'",
+   "y2 (U') R2 B2 R' U' R B2 R2",
+   "(U2) F2 R F' R U R2 F2"
+  ]
+ },
+ {
+  "id": "LS-7 Antisune-A 1",
+  "group": "LS-7",
+  "sub": "Antisune-A",
+  "algs": [
+   "R' U R U' R2 U' F R F' R",
+   "(U) R' F2 R U' F R U2 R' F",
+   "R U2 R' U' F R' F' R2 U R'",
+   "y' R2 U' R2 U R2 U' F R F'",
+   "y' R' U R U2 R' F R' F' R U' R",
+   "y R' F' R U' R' F R F' R U R2 F' R"
+  ]
+ },
+ {
+  "id": "LS-7 Antisune-A 2",
+  "group": "LS-7",
+  "sub": "Antisune-A",
+  "algs": [
+   "F' U2 R U R' U' R' F R",
+   "y R' F' R U R' U' F' U R",
+   "y' R' U2 F R' F' U' R U R2"
+  ]
+ },
+ {
+  "id": "LS-7 Antisune-A 3",
+  "group": "LS-7",
+  "sub": "Antisune-A",
+  "algs": [
+   "y' R' U' R' F R F' R U R' U2 R",
+   "y L' U L' U L F' L F",
+   "(U2) R U R' F R U R' U' F'"
+  ]
+ },
+ {
+  "id": "LS-7 Antisune-A 4",
+  "group": "LS-7",
+  "sub": "Antisune-A",
+  "algs": [
+   "(U') F' R U' R' F2 U2 R U2 R'",
+   "y F' R U R' U R' F2 R F' R U R'"
+  ]
+ },
+ {
+  "id": "LS-7 Antisune-A 5",
+  "group": "LS-7",
+  "sub": "Antisune-A",
+  "algs": [
+   "y' (U) R2 F R F' U R",
+   "y F' R' F2 R2 U' R'",
+   "y F' R U R2 F2 R"
+  ]
+ },
+ {
+  "id": "LS-7 Antisune-A 6",
+  "group": "LS-7",
+  "sub": "Antisune-A",
+  "algs": [
+   "y' (U2) F' R U' R' F2 R2 U2 R'",
+   "y' (U2) R U2 R' U2 R U' R' U R U' R",
+   "y (U2) R' F' R2 U' R' F R U' R' F",
+   "F2 R U' R' U2 R' F R2 U R'",
+   "y' (U2) R U R' U' R U2 R' U2 R U' R",
+   "(U') F R' F' R2 U2 R' U R' F R F'"
+  ]
+ },
+ {
+  "id": "LS-7 Antisune-B 1",
+  "group": "LS-7",
+  "sub": "Antisune-B",
+  "algs": [
+   "y' (U) R' F R F' U R U' R U R'",
+   "(U') F R' F' R2 U2 R' U2' R U' R'",
+   "y' (U2) R U' R U R' U R' F R F'",
+   "(U2) x y U R' U R F R' F' R U'"
+  ]
+ },
+ {
+  "id": "LS-7 Antisune-B 2",
+  "group": "LS-7",
+  "sub": "Antisune-B",
+  "algs": [
+   "(U2) F R' F R U R' F R",
+   "(U) R U R' F R' F' R2 U' R'",
+   "y' (U) R' U2 R U2 R2 F R F' R",
+   "y F' U2 R U' R' U' F"
+  ]
+ },
+ {
+  "id": "LS-7 Antisune-B 3",
+  "group": "LS-7",
+  "sub": "Antisune-B",
+  "algs": [
+   "y (U2) R2 U R' U2 R' F2 R F' R'",
+   "(U2) F R' F' R U' R U' R' F R' F' R",
+   "y' (U2) R U' R' F R F' U' F R' F' R"
+  ]
+ },
+ {
+  "id": "LS-7 Antisune-B 4",
+  "group": "LS-7",
+  "sub": "Antisune-B",
+  "algs": [
+   "R U' R' U' R U' R' U2 R' F R F'",
+   "y' R2 U R' U R' U R2 U' R2",
+   "(U) R2 U' R' F R' F2 U F"
+  ]
+ },
+ {
+  "id": "LS-7 Antisune-B 5",
+  "group": "LS-7",
+  "sub": "Antisune-B",
+  "algs": [
+   "(U2) R' U R2 U R2 U' R",
+   "y' (U2) F' R U2 R U2 R' F"
+  ]
+ },
+ {
+  "id": "LS-7 Antisune-B 6",
+  "group": "LS-7",
+  "sub": "Antisune-B",
+  "algs": [
+   "R' F R F' U2 R U R'",
+   "y' (U) R2 U' R2 U R2 U F R F'"
+  ]
+ },
+ {
+  "id": "LS-7 Antisune-C 1",
+  "group": "LS-7",
+  "sub": "Antisune-C",
+  "algs": [
+   "y F' R' F2 R U' R' F R F'"
+  ]
+ },
+ {
+  "id": "LS-7 Antisune-C 2",
+  "group": "LS-7",
+  "sub": "Antisune-C",
+  "algs": [
+   "(U) R' U2 R U2 R2 F R F' R'",
+   "(U) R U' R' U R U' R' U2 R' F R F'",
+   "(U2) R U R' U2 F R' F' R U R U' R'"
+  ]
+ },
+ {
+  "id": "LS-7 Antisune-C 3",
+  "group": "LS-7",
+  "sub": "Antisune-C",
+  "algs": [
+   "R2 U R' U R U2 R2",
+   "y R' F' R F' R U R'"
+  ]
+ },
+ {
+  "id": "LS-7 Antisune-C 4",
+  "group": "LS-7",
+  "sub": "Antisune-C",
+  "algs": [
+   "y (U') R U2 R' F U' R U' R'",
+   "R' U R' U' R U2 R' F R F' U R",
+   "(U') F R' F R F' U R' F R"
+  ]
+ },
+ {
+  "id": "LS-7 Antisune-C 5",
+  "group": "LS-7",
+  "sub": "Antisune-C",
+  "algs": [
+   "y' R' U R U' R' U2 R",
+   "y' R2 U' R' U R U' R",
+   "(U2) R2 F R F' U R U2 R2",
+   "y' (U) R2 U R' U R U' R2"
+  ]
+ },
+ {
+  "id": "LS-7 Antisune-C 6",
+  "group": "LS-7",
+  "sub": "Antisune-C",
+  "algs": [
+   "(U) R' F R2 F' R U R' U R'",
+   "(U) F R F' R U R' F R F' R'",
+   "(U2) R U R2 U R U F R' F'",
+   "y (U) R' F2 R F' R U R2 F R F' R U R'"
+  ]
+ },
+ {
+  "id": "LS-7 Pi-A 1",
+  "group": "LS-7",
+  "sub": "Pi-A",
+  "algs": [
+   "(U') R U R' U2 F R' F' R",
+   "(U') R U R' U R U R' F' U F",
+   "(U2) R U2 R' U R U R' F R' F' R"
+  ]
+ },
+ {
+  "id": "LS-7 Pi-A 2",
+  "group": "LS-7",
+  "sub": "Pi-A",
+  "algs": [
+   "(U2) F R' F' R2 U R' U R U2 R'",
+   "y (U2) F' R' F R U' R' F R2 U' R'"
+  ]
+ },
+ {
+  "id": "LS-7 Pi-A 3",
+  "group": "LS-7",
+  "sub": "Pi-A",
+  "algs": [
+   "y' (U') R' U2 R U2 R2 F R F' U R",
+   "y' R' U R' F R F' R U' R' U2 R",
+   "(U2) F R' F R U2 R U' R' F"
+  ]
+ },
+ {
+  "id": "LS-7 Pi-A 4",
+  "group": "LS-7",
+  "sub": "Pi-A",
+  "algs": [
+   "R2 U2 R U R' F R' F'",
+   "y (U2) F' R' F R2 U' R' F R U' R'",
+   "y' (U2) R2 U R' U R U' R' U R U' R'"
+  ]
+ },
+ {
+  "id": "LS-7 Pi-A 5",
+  "group": "LS-7",
+  "sub": "Pi-A",
+  "algs": [
+   "(U') R U R' U' R U R' U2 R U R'"
+  ]
+ },
+ {
+  "id": "LS-7 Pi-A 6",
+  "group": "LS-7",
+  "sub": "Pi-A",
+  "algs": [
+   "(U2) F R' F' R2 U' R' F R' F' R",
+   "y (U2) R U R' U' R U2 R' F2",
+   "y' (U) R' U R2 U' R' F R' F' R"
+  ]
+ },
+ {
+  "id": "LS-7 Pi-B 1",
+  "group": "LS-7",
+  "sub": "Pi-B",
+  "algs": [
+   "(y') R' U2 R U R' F R F' R U R'",
+   "y (U2) R' U R' F' R2 U R' F2 R",
+   "(U') R' U R' U2 R U R' U2 F R F'",
+   "y' (U2) R' F R' F' R2 U R' U2 R",
+   "y R' F2 R U' R' F R F' R U R'"
+  ]
+ },
+ {
+  "id": "LS-7 Pi-B 2",
+  "group": "LS-7",
+  "sub": "Pi-B",
+  "algs": [
+   "y (U) F U R U R' U R U' R' F'",
+   "(U2) F R' F' R U R' U2 R U R' U R",
+   "y2 z' (U2) F R' U' R2 U R' U R U2 R'"
+  ]
+ },
+ {
+  "id": "LS-7 Pi-B 3",
+  "group": "LS-7",
+  "sub": "Pi-B",
+  "algs": [
+   "y' R2 F R F' U R U' R' U R",
+   "(U2) R' U2 R U2 R' U R' U' R2",
+   "y (U') F' R' F2 R2 U' R' U' R' F R",
+   "(U2) y2 z' F R' U' R2 U' R' F R' F' R"
+  ]
+ },
+ {
+  "id": "LS-7 Pi-B 4",
+  "group": "LS-7",
+  "sub": "Pi-B",
+  "algs": [
+   "y' (U2) R' U' F R' F' R2 U R' U R",
+   "y (U') F2 R U2 R' F R U' R' U R U' R'",
+   "y F' R U R2 F' R F' R U R'"
+  ]
+ },
+ {
+  "id": "LS-7 Pi-B 5",
+  "group": "LS-7",
+  "sub": "Pi-B",
+  "algs": [
+   "y' (U') R' U' R U R' U2 R",
+   "y (U') R' F2 R U2 R' F R"
+  ]
+ },
+ {
+  "id": "LS-7 Pi-B 6",
+  "group": "LS-7",
+  "sub": "Pi-B",
+  "algs": [
+   "y' (U) R2 F R F' R U' R' U2 R",
+   "y' (U2) R2 F' R U R' U2 R' F2",
+   "(U') R' F R F' U R U' R' U R2 U R'",
+   "y F' R U R2 F R U' R' F2 R"
+  ]
+ },
+ {
+  "id": "LS-7 U 1",
+  "group": "LS-7",
+  "sub": "U",
+  "algs": [
+   "y' (U') R2 F R F' R U' R' U R",
+   "y (U2) F' R U R2 F R U' R' F R"
+  ]
+ },
+ {
+  "id": "LS-7 U 2",
+  "group": "LS-7",
+  "sub": "U",
+  "algs": [
+   "y (U) R' F R U' R U' R' F R' F' R",
+   "y' (U2) R U R U2 R' F R' F' R",
+   "y' (U) R2 U R2 U' F R F' R'"
+  ]
+ },
+ {
+  "id": "LS-7 U 3",
+  "group": "LS-7",
+  "sub": "U",
+  "algs": [
+   "(U2) R U R' U' R U' R' F R' F' R"
+  ]
+ },
+ {
+  "id": "LS-7 U 4",
+  "group": "LS-7",
+  "sub": "U",
+  "algs": [
+   "y' (U) R' U' R U R' U R",
+   "y' (U2) R U2 R U2 R'",
+   "y (U) R' F' R U R' F R"
+  ]
+ },
+ {
+  "id": "LS-7 U 5",
+  "group": "LS-7",
+  "sub": "U",
+  "algs": [
+   "R' U R' U' R U' R",
+   "(U) R U R' U' R2 U R' U' R2"
+  ]
+ },
+ {
+  "id": "LS-7 U 6",
+  "group": "LS-7",
+  "sub": "U",
+  "algs": [
+   "(U') R F' R2 F R2 F R'",
+   "(U') R2 F R F' R F R' F' R2",
+   "R U' R' U R' F R F' U2 R U R'",
+   "x (U') R U' R2' U R2 U R'"
+  ]
+ },
+ {
+  "id": "LS-7 L 1",
+  "group": "LS-7",
+  "sub": "L",
+  "algs": [
+   "y' (U2) R U2 R' F R F' R U2 R'",
+   "y (U2) F' R' F R2 U' R2 F' R F",
+   "y (U2) F' R U R2 F R2 U' R' F"
+  ]
+ },
+ {
+  "id": "LS-7 L 2",
+  "group": "LS-7",
+  "sub": "L",
+  "algs": [
+   "y (U') R' F R U' R U' R' F",
+   "R U R' U R' U2 R U2 R"
+  ]
+ },
+ {
+  "id": "LS-7 L 3",
+  "group": "LS-7",
+  "sub": "L",
+  "algs": [
+   "y' (U) R2 F' U' F R U R2",
+   "y (U) R' F R U R U' R' F R' F' R"
+  ]
+ },
+ {
+  "id": "LS-7 L 4",
+  "group": "LS-7",
+  "sub": "L",
+  "algs": [
+   "y' R U2 R U2 R' F R F'",
+   "(U2) R U R' U R U R' U' R' F R F'"
+  ]
+ },
+ {
+  "id": "LS-7 L 5",
+  "group": "LS-7",
+  "sub": "L",
+  "algs": [
+   "(U) R2 F R F' R U' R2",
+   "y' R' U2 F R F' R U R'"
+  ]
+ },
+ {
+  "id": "LS-7 L 6",
+  "group": "LS-7",
+  "sub": "L",
+  "algs": [
+   "R2 B' R' B R'",
+   "(U) F R' F' R2 U' R'"
+  ]
+ },
+ {
+  "id": "LS-7 T 1",
+  "group": "LS-7",
+  "sub": "T",
+  "algs": [
+   "y' (U) R' U' R U R2 F R F' U R",
+   "(U2) R2 U' R' U R' U' F R' F'"
+  ]
+ },
+ {
+  "id": "LS-7 T 2",
+  "group": "LS-7",
+  "sub": "T",
+  "algs": [
+   "y' (U2) R' F R' F' R F R' F' R U' R",
+   "(U') F R' F' R2 U' R' y U R' U' R",
+   "(U2) R' F R' F' R2 U R' U R' U' R"
+  ]
+ },
+ {
+  "id": "LS-7 T 3",
+  "group": "LS-7",
+  "sub": "T",
+  "algs": [
+   "y' (U') R' U' R U' F R F'",
+   "y' (U') R' F R' F' R U' R",
+   "y R' U R' F' R F' R"
+  ]
+ },
+ {
+  "id": "LS-7 T 4",
+  "group": "LS-7",
+  "sub": "T",
+  "algs": [
+   "(U) R U' R' F' U F",
+   "y R' F R U R U' R' F"
+  ]
+ },
+ {
+  "id": "LS-7 T 5",
+  "group": "LS-7",
+  "sub": "T",
+  "algs": [
+   "y (U') R' U R' F R U' R' F2 R2",
+   "(U2) R U R' U2 R U R' U R U2 R'",
+   "(U2) R U' R' F2 R U R' F"
+  ]
+ },
+ {
+  "id": "LS-7 T 6",
+  "group": "LS-7",
+  "sub": "T",
+  "algs": [
+   "R2 U' R' F R2 F' R",
+   "y R U2 R' U2 R U2 R' F2",
+   "F R' F' R2 U' R' U' R U R'"
+  ]
+ },
+ {
+  "id": "LS-7 H 1",
+  "group": "LS-7",
+  "sub": "H",
+  "algs": [
+   "(U2) R U R' U R U' R' F R' F' R",
+   "y' (U2) R2 F R F' R' F R F' U R"
+  ]
+ },
+ {
+  "id": "LS-7 H 2",
+  "group": "LS-7",
+  "sub": "H",
+  "algs": [
+   "F' U R' F R F",
+   "(U2) R' U' R' F R F' R U' R2 U2 R",
+   "y' (U') R2 F R U R U' R' F' U R"
+  ]
+ },
+ {
+  "id": "LS-7 H 3",
+  "group": "LS-7",
+  "sub": "H",
+  "algs": [
+   "y' (U) R U2 R U2 R' F R2 F'",
+   "y (U2) R' F' R U R' F R2 U' R' F"
+  ]
+ },
+ {
+  "id": "LS-7 H 4",
+  "group": "LS-7",
+  "sub": "H",
+  "algs": [
+   "(U') R U' R' U' R U R' U' R U R'",
+   "(U2) R U R2 U2 R U R' U R"
+  ]
+ },
+ {
+  "id": "LS-7 H 5",
+  "group": "LS-7",
+  "sub": "H",
+  "algs": [
+   "(U') F R' F R F' U2 R U' R' F",
+   "(U2) F R' F R2 U' R' F R' F2 R",
+   "(U') R U' R' F2 R U' R' U2 R' F R",
+   "y R' F R2 U' R' F R' F' R2 U' R' F",
+   "(U2) R U' R' F R' F' R2 U R' F R' F' R"
+  ]
+ },
+ {
+  "id": "LS-7 H 6",
+  "group": "LS-7",
+  "sub": "H",
+  "algs": [
+   "R U2 R' F' U2 R U' R' F2",
+   "(U2) R U2 R' U R U' R' y U' R' F' R",
+   "(U') R U R' U2 R U2 R' y U' R' F' R",
+   "(U') R U R' U' F R' F' R U' R U2 R'",
+   "y' F R2 F' R' U2 F R' F' R2"
+  ]
+ },
+ {
+  "id": "LS-8 Hammer 1",
+  "group": "LS-8",
+  "sub": "Hammer",
+  "algs": [
+   "y' (U) R' U R2 U R' U' R' F R F'",
+   "y' (U) R' F R F' R' U R2 U R'",
+   "(U') R U R U' R' F R' F' R U R'",
+   "R2 F R F' R U' R2 U' R U R'",
+   "(U2) R' U R U F R' F' R U R'",
+   "F R U' R' U' R U R' F' R U R'"
+  ]
+ },
+ {
+  "id": "LS-8 Hammer 2",
+  "group": "LS-8",
+  "sub": "Hammer",
+  "algs": [
+   "(U2) F R' F' R"
+  ]
+ },
+ {
+  "id": "LS-8 Hammer 3",
+  "group": "LS-8",
+  "sub": "Hammer",
+  "algs": [
+   "(U2) R' F2 R2 U' R' U2 R U' R' F",
+   "y' F' R U' F R' F2 U2 R'",
+   "y' R U R' U2 R' U R' F R F' R2",
+   "(U2) R U R2 F2 R U2 R U' R' F"
+  ]
+ },
+ {
+  "id": "LS-8 Hammer 4",
+  "group": "LS-8",
+  "sub": "Hammer",
+  "algs": [
+   "y R' F R U2 R' F R U2 R' F R",
+   "y R' F2 R2 U R' U R U2 R'",
+   "y' (U2) R2 U' R' F' R U' R' F2",
+   "y R U' R2 F2 R U R U2 R'",
+   "(U') F R F' R U2 F R' F' R2"
+  ]
+ },
+ {
+  "id": "LS-8 Hammer 5",
+  "group": "LS-8",
+  "sub": "Hammer",
+  "algs": [
+   "y R' F2 R2 U' R' F R' F' R",
+   "y' (U2) R U R' F R F' U R U R'",
+   "y' R' U2 R U2 R U' R' F R' F' R",
+   "y' (U2) R U R' F R F' R' U' R U R"
+  ]
+ },
+ {
+  "id": "LS-8 Hammer 6",
+  "group": "LS-8",
+  "sub": "Hammer",
+  "algs": [
+   "(U') R U R' U2 R U R'",
+   "(U2) R U2 R' U R U2 R'",
+   "(U2) R' U2 R2 U R2' U R"
+  ]
+ },
+ {
+  "id": "LS-8 Spaceship 1",
+  "group": "LS-8",
+  "sub": "Spaceship",
+  "algs": [
+   "(U') F R' F' R U2 R U' R'",
+   "(U') F U R U' R2 F' R",
+   "(U2) R U2 R U' R' F R' F'"
+  ]
+ },
+ {
+  "id": "LS-8 Spaceship 2",
+  "group": "LS-8",
+  "sub": "Spaceship",
+  "algs": [
+   "F' R U' R' F U2 F U' R U' R'",
+   "y (U2) R' U2 R U' R' F R' F2 R2",
+   "y (U) R U' R' F' R U' R' F2 U' F",
+   "y' (U2) R' F2 R U' R' U R' F2 R2",
+   "y2 R F' R U R2 F' R2 U' R'"
+  ]
+ },
+ {
+  "id": "LS-8 Spaceship 3",
+  "group": "LS-8",
+  "sub": "Spaceship",
+  "algs": [
+   "(U') R U' R' F R' F' R2 U R'",
+   "(U') R2 U2 R' F R F' U2 R2",
+   "y' (U2) R' U R U2 R' U2 R U R' U' R"
+  ]
+ },
+ {
+  "id": "LS-8 Spaceship 4",
+  "group": "LS-8",
+  "sub": "Spaceship",
+  "algs": [
+   "y (U) F R U R' F'",
+   "y' (U') F R F' R' U2 R",
+   "y' (U') F R2 U R2 U' F'",
+   "y' (U) F U R U' F'"
+  ]
+ },
+ {
+  "id": "LS-8 Spaceship 5",
+  "group": "LS-8",
+  "sub": "Spaceship",
+  "algs": [
+   "y (U) F2 R F' R U R2 F'",
+   "y' (U2) R U R' U R U2 R' F R2 F'",
+   "(U2) R' F2 R U R' F R2 U2 R'"
+  ]
+ },
+ {
+  "id": "LS-8 Spaceship 6",
+  "group": "LS-8",
+  "sub": "Spaceship",
+  "algs": [
+   "(U2) R U' R' F R U2 R2 F R",
+   "(U2) R U' R' F R' F' R2 U2 R'"
+  ]
+ },
+ {
+  "id": "LS-8 Two-Face 1",
+  "group": "LS-8",
+  "sub": "Two-Face",
+  "algs": [
+   "R U' R' U' F R' F' R",
+   "y (U) R U' R' F U' R' F' R"
+  ]
+ },
+ {
+  "id": "LS-8 Two-Face 2",
+  "group": "LS-8",
+  "sub": "Two-Face",
+  "algs": [
+   "y R U2 R' U' R U2 R' F",
+   "R2 U' R' F R' F' R U R'"
+  ]
+ },
+ {
+  "id": "LS-8 Two-Face 3",
+  "group": "LS-8",
+  "sub": "Two-Face",
+  "algs": [
+   "y' (U') R U2 R U2 R' U R' U2 R",
+   "(U2) x' R2 U2 R' U R U2 R2",
+   "y (U2) R' F R F R' F R F2",
+   "(U2) F2 R2 U' R' F R' F2"
+  ]
+ },
+ {
+  "id": "LS-8 Two-Face 4",
+  "group": "LS-8",
+  "sub": "Two-Face",
+  "algs": [
+   "y R' F R2 U2 R' F' R U2 R'"
+  ]
+ },
+ {
+  "id": "LS-8 Two-Face 5",
+  "group": "LS-8",
+  "sub": "Two-Face",
+  "algs": [
+   "(U2) R U R'",
+   "R U R U R2 U' R2"
+  ]
+ },
+ {
+  "id": "LS-8 Two-Face 6",
+  "group": "LS-8",
+  "sub": "Two-Face",
+  "algs": [
+   "y (U) F R F' R U R' U2 R' F",
+   "F U2 R U R' U2 R' F' R",
+   "(U) F2 U' R U R' U F2",
+   "(U2) F' R U R' F U' R U2 R' F'"
+  ]
+ },
+ {
+  "id": "LS-8 Turtle 1",
+  "group": "LS-8",
+  "sub": "Turtle",
+  "algs": [
+   "y (U) R' F' R U2 R U' R' F",
+   "y (U2) R U' R2 F' R U F"
+  ]
+ },
+ {
+  "id": "LS-8 Turtle 2",
+  "group": "LS-8",
+  "sub": "Turtle",
+  "algs": [
+   "y' (U2) R2 F2 R U2 R U' R' F R",
+   "y' (U') R U2 R U2 R' U' F R F'",
+   "(U') R U2 R' U2 F R F' R U R2"
+  ]
+ },
+ {
+  "id": "LS-8 Turtle 3",
+  "group": "LS-8",
+  "sub": "Turtle",
+  "algs": [
+   "y (U) R' F R2 U' R' F R' F' R",
+   "y (U) F R U' R' F R' F' R2 U R' F'"
+  ]
+ },
+ {
+  "id": "LS-8 Turtle 4",
+  "group": "LS-8",
+  "sub": "Turtle",
+  "algs": [
+   "(U') F R' F R F' R' F2 R",
+   "y' (U2) R' U' F R' F' R U2 R",
+   "y (U') R U2 R' F' R U R' F",
+   "y' (U2) R U' R U2 R' U R' F R F'"
+  ]
+ },
+ {
+  "id": "LS-8 Turtle 5",
+  "group": "LS-8",
+  "sub": "Turtle",
+  "algs": [
+   "y' F R' F' U' R U2 R U2 R'",
+   "y (U2) F R' F' R U2 R U2 R2 F R",
+   "y (U2) F R' F' R U2 R' F' R2 U2 R'",
+   "(U') R' F2 R F' R U' R' U R' F R"
+  ]
+ },
+ {
+  "id": "LS-8 Turtle 6",
+  "group": "LS-8",
+  "sub": "Turtle",
+  "algs": [
+   "y (U') R' F R U2 R' F R",
+   "y' (U') R' U2 R U R' U2 R"
+  ]
+ },
+ {
+  "id": "LS-8 Pinwheel-Poser A 1",
+  "group": "LS-8",
+  "sub": "Pinwheel-Poser A",
+  "algs": [
+   "y' (U) F R' F' U' R' U2 R",
+   "y (U') R' F2 R U' R U' R' F",
+   "y' (U) F R' F' R U R2 U' R'"
+  ]
+ },
+ {
+  "id": "LS-8 Pinwheel-Poser A 2",
+  "group": "LS-8",
+  "sub": "Pinwheel-Poser A",
+  "algs": [
+   "y' (U2) R U' R U' R' U2 R U' R'",
+   "y (U') R' U' R U' R' U2 F R"
+  ]
+ },
+ {
+  "id": "LS-8 Pinwheel-Poser A 3",
+  "group": "LS-8",
+  "sub": "Pinwheel-Poser A",
+  "algs": [
+   "y' (U) R U R U' R' F R F'",
+   "y' R' U R U F R F'",
+   "F' R' F' R U2 F",
+   "y' (U2) F R2 U R' U' F'"
+  ]
+ },
+ {
+  "id": "LS-8 Pinwheel-Poser A 4",
+  "group": "LS-8",
+  "sub": "Pinwheel-Poser A",
+  "algs": [
+   "y (U2) R' U2 R' F2 R2 U' R' U R",
+   "y' (U2) R' F R' F' R2 U' F R F'",
+   "R U R' U R U2 R' U2 R U2 R'",
+   "(U2) F' R U' R' F2 U' R U R'"
+  ]
+ },
+ {
+  "id": "LS-8 Pinwheel-Poser A 5",
+  "group": "LS-8",
+  "sub": "Pinwheel-Poser A",
+  "algs": [
+   "(U') R U' R' U' F R' F' R2 U R'",
+   "(U2) R' F R F' R U R' U' R U R'"
+  ]
+ },
+ {
+  "id": "LS-8 Pinwheel-Poser A 6",
+  "group": "LS-8",
+  "sub": "Pinwheel-Poser A",
+  "algs": [
+   "y' (U') R F R' F' R2 U R' U2 R2",
+   "y F' R' F2 R2 U R' U' R U' R'",
+   "y (U') R' U R' F' R2 F' R U R'"
+  ]
+ },
+ {
+  "id": "LS-8 Pinwheel-Poser B 1",
+  "group": "LS-8",
+  "sub": "Pinwheel-Poser B",
+  "algs": [
+   "y' (U') R' U R U' F R F'",
+   "(U') F' U F U' R U R'",
+   "(U2) F R F' R U2 R' U' R2"
+  ]
+ },
+ {
+  "id": "LS-8 Pinwheel-Poser B 2",
+  "group": "LS-8",
+  "sub": "Pinwheel-Poser B",
+  "algs": [
+   "y R U' R' F U2 R U' R' F",
+   "F R' F' R U2 F R' F' R"
+  ]
+ },
+ {
+  "id": "LS-8 Pinwheel-Poser B 3",
+  "group": "LS-8",
+  "sub": "Pinwheel-Poser B",
+  "algs": [
+   "y' (U2) F R F' R' F R F' R U R'",
+   "y' R' U R U' R' U R U' R' U2 R",
+   "y R' F R U' R' F R U' R' F2 R",
+   "(U) F R' F' R2 U R' U' R U' R'"
+  ]
+ },
+ {
+  "id": "LS-8 Pinwheel-Poser B 4",
+  "group": "LS-8",
+  "sub": "Pinwheel-Poser B",
+  "algs": [
+   "(U) R' F' R U' R' F R2 U2 R' F'",
+   "R' F R F' U F R' F' R2 U' R'"
+  ]
+ },
+ {
+  "id": "LS-8 Pinwheel-Poser B 5",
+  "group": "LS-8",
+  "sub": "Pinwheel-Poser B",
+  "algs": [
+   "(U) R' U2 R U' R' U2 R U' R",
+   "y (U2) R' U' R' F R2 U' R' U2 R",
+   "R' U' R U2 R' U' R U' R"
+  ]
+ },
+ {
+  "id": "LS-8 Pinwheel-Poser B 6",
+  "group": "LS-8",
+  "sub": "Pinwheel-Poser B",
+  "algs": [
+   "y (U2) F' U F U R U2 R' F",
+   "F R U' R' U' R U R2 F' R",
+   "(U2) R' U R U F R2 F' R"
+  ]
+ },
+ {
+  "id": "LS-8 Pinwheel-Poser C 1",
+  "group": "LS-8",
+  "sub": "Pinwheel-Poser C",
+  "algs": [
+   "(U') F R' F' R U' R U2 R'"
+  ]
+ },
+ {
+  "id": "LS-8 Pinwheel-Poser C 2",
+  "group": "LS-8",
+  "sub": "Pinwheel-Poser C",
+  "algs": [
+   "(U) F R F' R U2 R U' R2",
+   "R U2 R' F2 R U' R' U2 R' F R",
+   "y' (U2) R2 U R' U R U' R2 F R F'",
+   "y' (U2) F R F' R U R' U' R' F R F'"
+  ]
+ },
+ {
+  "id": "LS-8 Pinwheel-Poser C 3",
+  "group": "LS-8",
+  "sub": "Pinwheel-Poser C",
+  "algs": [
+   "y (U) R' F R F' R U R' U' R' F R",
+   "R U2 R' U' R U R' U' R U R'",
+   "y (U2) R' F' R U' R' F R2 U' R' F",
+   "(U') R U' R' F R' F' R F R' F' R"
+  ]
+ },
+ {
+  "id": "LS-8 Pinwheel-Poser C 4",
+  "group": "LS-8",
+  "sub": "Pinwheel-Poser C",
+  "algs": [
+   "F R' F' U R' U' R U' R",
+   "y (U2) R2 U R U2 R' F R'",
+   "R' F R F' R2 U R' U' R2",
+   "y (U2) R U' R2 U R U F R'",
+   "R' F R F' R U' R' U' R U R'"
+  ]
+ },
+ {
+  "id": "LS-8 Pinwheel-Poser C 5",
+  "group": "LS-8",
+  "sub": "Pinwheel-Poser C",
+  "algs": [
+   "y' (U') F R F' U R' U R",
+   "(U') R U R' U F' U F"
+  ]
+ },
+ {
+  "id": "LS-8 Pinwheel-Poser C 6",
+  "group": "LS-8",
+  "sub": "Pinwheel-Poser C",
+  "algs": [
+   "y' R' U2 F2 R U R' F R",
+   "y R' F2 U2 R U R' U R"
+  ]
+ },
+ {
+  "id": "LS-8 Gun-A 1",
+  "group": "LS-8",
+  "sub": "Gun-A",
+  "algs": [
+   "y' F R F' U' R U2 R' U2 R'",
+   "(U') R U R2 F R F' U2 F R' F' R",
+   "R' F' R U R' U' R U2 R' F' R2",
+   "y' R U R2 F R F' R' U' R U2 R",
+   "(U) R' U' R2 U2 R' F R' F' R U' R"
+  ]
+ },
+ {
+  "id": "LS-8 Gun-A 2",
+  "group": "LS-8",
+  "sub": "Gun-A",
+  "algs": [
+   "(U2) R U' R' U2 F' U' F",
+   "(U2) R U' F R' F' U2 R'",
+   "y' (U) R U' R2 U2 R F R' F' R",
+   "y' (U2) F R' F' U2 R' U' R",
+   "y' (U2) F R2 U' R' U' R U R' F'"
+  ]
+ },
+ {
+  "id": "LS-8 Gun-A 3",
+  "group": "LS-8",
+  "sub": "Gun-A",
+  "algs": [
+   "y R U2 R' F R U2 R2 F2 R",
+   "(U') R U R' U R' U' F R F' U R",
+   "(U2) R U2 R' F R F' R' U2 R2 U R2",
+   "y (U) R U' R' F' R U R' F' U' F2",
+   "y R U2 R' F R' F' R2 U2 R2 F R",
+   "y' (U2) R' U R U2 R' U R' F R F' R"
+  ]
+ },
+ {
+  "id": "LS-8 Gun-A 4",
+  "group": "LS-8",
+  "sub": "Gun-A",
+  "algs": [
+   "y' (U2) R2 U2 F R F' U R'",
+   "y' R2 U2 R2 F R F' U R'",
+   "R2 U' R2 U' R2 U R' U R'",
+   "R U2 R' F R' F' R F R' F' R"
+  ]
+ },
+ {
+  "id": "LS-8 Gun-A 5",
+  "group": "LS-8",
+  "sub": "Gun-A",
+  "algs": [
+   "y' (U) R' U R"
+  ]
+ },
+ {
+  "id": "LS-8 Gun-A 6",
+  "group": "LS-8",
+  "sub": "Gun-A",
+  "algs": [
+   "(U') R' F2 R F' R U' R2 F2 R"
+  ]
+ },
+ {
+  "id": "LS-8 Gun-B 1",
+  "group": "LS-8",
+  "sub": "Gun-B",
+  "algs": [
+   "R' U R' U' F R F' R U R' U2 R",
+   "(U) R' U' R U2 R U2 R2 F R F' R",
+   "(U) F R' F' R2 U' R2 F R F' R U R'",
+   "R' U' F R F' U2 R' U2 R U' R",
+   "R' U2 R' U2 R U' F' U F",
+   "(U') R' F2 R F' R' F U' F R U R",
+   "R' U F' R' F R U R' U' R F U R'",
+   "y (U) R U' R' U R' F R U F' R U' R'",
+   "(U2) F R' F R F' R' F2 R2 U' R'",
+   "(U2) y' R2 F' R U R U' R2 U R U F"
+  ]
+ },
+ {
+  "id": "LS-8 Gun-B 2",
+  "group": "LS-8",
+  "sub": "Gun-B",
+  "algs": [
+   "(U') F R2 F' R U2 R' U' R",
+   "y (U') R' F R2 U2 R' F R U2 R'",
+   "y' R U' R' U R U' R U R' F R F'",
+   "y' (U') R2 U' R2 U R2 U2 F R F'",
+   "(U2) x R U' R U' R' U R' U"
+  ]
+ },
+ {
+  "id": "LS-8 Gun-B 3",
+  "group": "LS-8",
+  "sub": "Gun-B",
+  "algs": [
+   "y' (U) R' F R' F' R U R",
+   "y (U) R' U R' F' R F R",
+   "y R U R' U' R U2 R' F R U R'",
+   "(U2) R' F' U' F R U R",
+   "(U') R U R F' U' F R'"
+  ]
+ },
+ {
+  "id": "LS-8 Gun-B 4",
+  "group": "LS-8",
+  "sub": "Gun-B",
+  "algs": [
+   "(U) R' U R U2 F R F' R",
+   "y' (U2) R' U R U2 R2 U' R2 U R2",
+   "(U2) R U R2 F' R U R U' R' F"
+  ]
+ },
+ {
+  "id": "LS-8 Gun-B 5",
+  "group": "LS-8",
+  "sub": "Gun-B",
+  "algs": [
+   "y (U2) R U' R' U2 R' F R U2 F",
+   "(U) R U R2 U' F R F' U R",
+   "(U) R2 U F' U F U' R2",
+   "(U) R U' R2' U' R F R' F' R U R"
+  ]
+ },
+ {
+  "id": "LS-8 Gun-B 6",
+  "group": "LS-8",
+  "sub": "Gun-B",
+  "algs": [
+   "(U') F2 R U R' F R U R'",
+   "y (U) R2 F' R2 U R' U' R' F R2"
+  ]
+ },
+ {
+  "id": "LS-9 Hammer-A 1",
+  "group": "LS-9",
+  "sub": "Hammer-A",
+  "algs": [
+   "y' (U2) R2 U R' U' R U' R2 F R F'",
+   "y R' F2 R2 U R' U' R' F R F'",
+   "y R2 F2 R U' R' F2 R F' R",
+   "y R U' R2 F2 R U' R' F R F'"
+  ]
+ },
+ {
+  "id": "LS-9 Hammer-A 2",
+  "group": "LS-9",
+  "sub": "Hammer-A",
+  "algs": [
+   "(U2) R U' R2 F R F' R U2 R'",
+   "(U') R' U R U F R' F' R U' R'",
+   "y (U') F2 U' R U' R' U2 F"
+  ]
+ },
+ {
+  "id": "LS-9 Hammer-A 3",
+  "group": "LS-9",
+  "sub": "Hammer-A",
+  "algs": [
+   "y' (U2) R U2 R U' F R' F' R'",
+   "y' (U) R' U' R U R' F R' F' R U R",
+   "y' (U') R U2 R U2 R' F R F' R' U2 R"
+  ]
+ },
+ {
+  "id": "LS-9 Hammer-A 4",
+  "group": "LS-9",
+  "sub": "Hammer-A",
+  "algs": [
+   "(U) R' U R U2 R2 F R2 F'",
+   "y' R' F2 R U R' F U' R",
+   "y' (U') R U R' U R U2 R' U R' U' R",
+   "(U) R' F R F' R' U2 R U2 R",
+   "(U2) F R' F' R U' R' F R F' R U R'"
+  ]
+ },
+ {
+  "id": "LS-9 Hammer-A 5",
+  "group": "LS-9",
+  "sub": "Hammer-A",
+  "algs": [
+   "y R2 F2 R U2 R' F2 R2",
+   "y' R2 F2 R F2 R' F2 R2"
+  ]
+ },
+ {
+  "id": "LS-9 Hammer-A 6",
+  "group": "LS-9",
+  "sub": "Hammer-A",
+  "algs": [
+   "y F R' F' R U R U' R2 F' R",
+   "y F R' F2 R U2 R U' R'",
+   "y' R' U' R U' R' U' R' F R F' R",
+   "y' R' U2 F' R U R U' R' F"
+  ]
+ },
+ {
+  "id": "LS-9 Hammer-B 1",
+  "group": "LS-9",
+  "sub": "Hammer-B",
+  "algs": [
+   "y' (U2) R' F R U2 R2 F R U R",
+   "y' (U') F' R U R' U' R' F U' R",
+   "y (U) R' F R2 U2 R' U2 R' F R F'",
+   "y' (U2) R' F R U R' U' R' F' R2",
+   "y' (U2) R' F R' F' R2 U2 R' U R"
+  ]
+ },
+ {
+  "id": "LS-9 Hammer-B 2",
+  "group": "LS-9",
+  "sub": "Hammer-B",
+  "algs": [
+   "y' (U') R' F R F' R U R2 U2 R",
+   "y R U2 R' F' R U2 R' U R' F R"
+  ]
+ },
+ {
+  "id": "LS-9 Hammer-B 3",
+  "group": "LS-9",
+  "sub": "Hammer-B",
+  "algs": [
+   "y' R' U2 R",
+   "y R' F2 R",
+   "F' U2 F"
+  ]
+ },
+ {
+  "id": "LS-9 Hammer-B 4",
+  "group": "LS-9",
+  "sub": "Hammer-B",
+  "algs": [
+   "R U2 R' F R' F' R2 U R'",
+   "y (U2) F R' F R F' R U R' F'",
+   "(U2) R U R' F R F' U' R' U' R",
+   "(U) R' U2' F R F' U R2"
+  ]
+ },
+ {
+  "id": "LS-9 Hammer-B 5",
+  "group": "LS-9",
+  "sub": "Hammer-B",
+  "algs": [
+   "y (U) R' F2 R F' R U R'"
+  ]
+ },
+ {
+  "id": "LS-9 Hammer-B 6",
+  "group": "LS-9",
+  "sub": "Hammer-B",
+  "algs": [
+   "(U) F R' F' R2 U2 R' F R' F' R",
+   "y F' R U' R' U R' F2 R F'",
+   "y' R U' R' F R' F' R U R' U2 R",
+   "R U' R' F R' F' R U2 R U' R'"
+  ]
+ },
+ {
+  "id": "LS-9 Spaceship-A 1",
+  "group": "LS-9",
+  "sub": "Spaceship-A",
+  "algs": [
+   "y' R' U' R U2 R2 F R F' R",
+   "y' (U) R' U F' R U R U' R' F",
+   "y' (U) R2 F R U R U' R' F' R"
+  ]
+ },
+ {
+  "id": "LS-9 Spaceship-A 2",
+  "group": "LS-9",
+  "sub": "Spaceship-A",
+  "algs": [
+   "y (U2) R U R' U2 R' F2 R F'",
+   "y (U) R' F R2 U R' U' R' F R F'",
+   "R U' R' U R U' R' U' F R' F' R",
+   "y' R U R2 U R U2 R' F R F'"
+  ]
+ },
+ {
+  "id": "LS-9 Spaceship-A 3",
+  "group": "LS-9",
+  "sub": "Spaceship-A",
+  "algs": [
+   "y (U') R' F' R U' R U' R' F",
+   "y' R U2 R2 F R F' U2 R'"
+  ]
+ },
+ {
+  "id": "LS-9 Spaceship-A 4",
+  "group": "LS-9",
+  "sub": "Spaceship-A",
+  "algs": [
+   "R U' R' U' R U R'",
+   "(U2) R U' R' U' R U' R'",
+   "R2 U R' U' R2"
+  ]
+ },
+ {
+  "id": "LS-9 Spaceship-A 5",
+  "group": "LS-9",
+  "sub": "Spaceship-A",
+  "algs": [
+   "y (U') R' F U' R U' R' U2 F R",
+   "y' (U) R' U' F2 R U R' F U' R",
+   "(U') x' U' R2 U F R2 U' R' U R'",
+   "(U2) y' x R' F R' F' R U' R U R' U"
+  ]
+ },
+ {
+  "id": "LS-9 Spaceship-A 6",
+  "group": "LS-9",
+  "sub": "Spaceship-A",
+  "algs": [
+   "(U') F R' F' R U R' F R F'",
+   "(U2) R U R' U R' F R F' R U R'"
+  ]
+ },
+ {
+  "id": "LS-9 Spaceship-B 1",
+  "group": "LS-9",
+  "sub": "Spaceship-B",
+  "algs": [
+   "y' F R F' R U R' U R' U2 R'",
+   "y (U') R U R' F' R' F' R2 U R'",
+   "F' U' R U' R' F2 R U' R'",
+   "y (U2) F R U R' U' R U' R' U F'",
+   "y' R2 U' R' U' R U' R2 F R F' R'"
+  ]
+ },
+ {
+  "id": "LS-9 Spaceship-B 2",
+  "group": "LS-9",
+  "sub": "Spaceship-B",
+  "algs": [
+   "y' (U2) R U' R U' R' U R' F R F'",
+   "y R U2 R' U R' F2 R F'",
+   "y' (U2) F R' F' R U' R U R' U R'"
+  ]
+ },
+ {
+  "id": "LS-9 Spaceship-B 3",
+  "group": "LS-9",
+  "sub": "Spaceship-B",
+  "algs": [
+   "y R U' R' F R' F2 R"
+  ]
+ },
+ {
+  "id": "LS-9 Spaceship-B 4",
+  "group": "LS-9",
+  "sub": "Spaceship-B",
+  "algs": [
+   "y' R U2 R2 F R F' R' U' R U' R'",
+   "y' (U) R' U2 R U' F R F' U R' U' R",
+   "y' (U) R U R' U R' U2 R' F R' F'",
+   "y R' F2 R F' R U R' U' R' F R"
+  ]
+ },
+ {
+  "id": "LS-9 Spaceship-B 5",
+  "group": "LS-9",
+  "sub": "Spaceship-B",
+  "algs": [
+   "y (U) R' F U' R U' R' U2 R",
+   "(U2) F U2 R2 F R U' R",
+   "(U2) F R2 F' R2 U2 R' U' R",
+   "R' U2 R' U2 R F R' F' R",
+   "R U' R' F R' F' R U R' F R F'"
+  ]
+ },
+ {
+  "id": "LS-9 Spaceship-B 6",
+  "group": "LS-9",
+  "sub": "Spaceship-B",
+  "algs": [
+   "(U) R U' R' U R U R'",
+   "(U) R U R' U R U R'",
+   "(U) R2 U R U' R2"
+  ]
+ },
+ {
+  "id": "LS-9 Stollery 1",
+  "group": "LS-9",
+  "sub": "Stollery",
+  "algs": [
+   "R U R' U2 R U R2 F R F'",
+   "(U') R U2 R' U R U2 R2 F R F'"
+  ]
+ },
+ {
+  "id": "LS-9 Stollery 2",
+  "group": "LS-9",
+  "sub": "Stollery",
+  "algs": [
+   "y (U2) R U2 R' F2 R U2 R'",
+   "y' (U) F R F' U' R' U2 R",
+   "R' F R F' U2 F R' F' R"
+  ]
+ },
+ {
+  "id": "LS-9 Stollery 3",
+  "group": "LS-9",
+  "sub": "Stollery",
+  "algs": [
+   "y (U) R U2 R' F' R U2 R'",
+   "y' (U') R F R' F' R2 U' R2",
+   "y' F R' F' U2 R' U R",
+   "(U') R' U' F R' F' U R",
+   "R F' R' U' R F R'",
+   "y' (U2) R' F' R U R' U' R' F R2"
+  ]
+ },
+ {
+  "id": "LS-9 Stollery 4",
+  "group": "LS-9",
+  "sub": "Stollery",
+  "algs": [
+   "y (U') R' U R U2 R2 F2 R U' R",
+   "F' R U2 R' F2 R U2 R' F",
+   "R2 U R' U2 R U2 R' U2 R U' R2",
+   "y F' R' F2 R2 U2' R' F R' F' R"
+  ]
+ },
+ {
+  "id": "LS-9 Stollery 5",
+  "group": "LS-9",
+  "sub": "Stollery",
+  "algs": [
+   "y' R' U R2 U R' U2 R U2 R' U R'",
+   "(U2) y' R F2 R U R' F U' R U R'",
+   "(U2) y R U' R' F U R U2 R' U2 R' F R F'",
+   "y' R' U R U' R U2 R' U R U' R' U R'",
+   "F R' F' R U2 R U' R' U2 R' F R F'",
+   "F U R U' R2' F' R U' R' F R F'"
+  ]
+ },
+ {
+  "id": "LS-9 Stollery 6",
+  "group": "LS-9",
+  "sub": "Stollery",
+  "algs": [
+   "y (U') R U2 R' F R U2 R'",
+   "(U) R' U' F R F' U R",
+   "y' (U) R' U' R U2 F R F'"
+  ]
+ },
+ {
+  "id": "LS-9 Pinwheel 1",
+  "group": "LS-9",
+  "sub": "Pinwheel",
+  "algs": [
+   "(U2) R U R2 F R F' R U R'",
+   "y' (U2) F' R U R' F2 R F2"
+  ]
+ },
+ {
+  "id": "LS-9 Pinwheel 2",
+  "group": "LS-9",
+  "sub": "Pinwheel",
+  "algs": [
+   "y' (U2) R' F R F' R U' R' U2 R'",
+   "(U) y' z' U' R2 U R' U2 R' F2 R"
+  ]
+ },
+ {
+  "id": "LS-9 Pinwheel 3",
+  "group": "LS-9",
+  "sub": "Pinwheel",
+  "algs": [
+   "y' (U') F' U F U2 R' U2 R'",
+   "(U2) R U R2 F' R U' R' F2 R"
+  ]
+ },
+ {
+  "id": "LS-9 Pinwheel 4",
+  "group": "LS-9",
+  "sub": "Pinwheel",
+  "algs": [
+   "(U') R U R2 F R F' U2 R U R'",
+   "y F' U R' F2 R F' R U' R'",
+   "R U R' U' R' F R F' U' R' F R F'",
+   "(U') y2 x' R F' R U R2 F' R U R'",
+   "(U) R U2 R' F R' F' R U' R' F R F'"
+  ]
+ },
+ {
+  "id": "LS-9 Pinwheel 5",
+  "group": "LS-9",
+  "sub": "Pinwheel",
+  "algs": [
+   "(U2) R U' R' U2 R' F R F'",
+   "y' F R' F' U R' U2 R",
+   "y' R' U R' F R F' U R"
+  ]
+ },
+ {
+  "id": "LS-9 Pinwheel 6",
+  "group": "LS-9",
+  "sub": "Pinwheel",
+  "algs": [
+   "y (U') R U2 R' F U2 R' F R F'",
+   "y' (U) R2 U2 R' U2 R U' R",
+   "y' (U') R U2 R' U' R U R' U2 R'"
+  ]
+ },
+ {
+  "id": "LS-9 Turtle-A 1",
+  "group": "LS-9",
+  "sub": "Turtle-A",
+  "algs": [
+   "R U R' U' R' F R F' R U' R'"
+  ]
+ },
+ {
+  "id": "LS-9 Turtle-A 2",
+  "group": "LS-9",
+  "sub": "Turtle-A",
+  "algs": [
+   "R U R' U R U2 R2 F R F'",
+   "y' R' U2 R U' R' F R F' R U R'",
+   "y2 (U2) R B R2 F R F' R U R'"
+  ]
+ },
+ {
+  "id": "LS-9 Turtle-A 3",
+  "group": "LS-9",
+  "sub": "Turtle-A",
+  "algs": [
+   "y' R' U R U' R' U R' F R F' U R",
+   "y' (U') F R F' U' R' U2 R U2 R' U R",
+   "(U2) y x R' F R' F' R U2 R U2"
+  ]
+ },
+ {
+  "id": "LS-9 Turtle-A 4",
+  "group": "LS-9",
+  "sub": "Turtle-A",
+  "algs": [
+   "(U) F R' F' R U' R' F R F'"
+  ]
+ },
+ {
+  "id": "LS-9 Turtle-A 5",
+  "group": "LS-9",
+  "sub": "Turtle-A",
+  "algs": [
+   "y' (U2) R U' R U R' U' R U2 R'",
+   "y' F R' F' R F R' F' R2 U' R2"
+  ]
+ },
+ {
+  "id": "LS-9 Turtle-A 6",
+  "group": "LS-9",
+  "sub": "Turtle-A",
+  "algs": [
+   "(U) R' U R' U2 R U' R"
+  ]
+ },
+ {
+  "id": "LS-9 Turtle-B 1",
+  "group": "LS-9",
+  "sub": "Turtle-B",
+  "algs": [
+   "y (U2) R U2 R' F' R U2 R2 F R",
+   "y (U2) R U' R2 F R F R U' R'",
+   "y (U) F U' R U R' U R U' R' F'"
+  ]
+ },
+ {
+  "id": "LS-9 Turtle-B 2",
+  "group": "LS-9",
+  "sub": "Turtle-B",
+  "algs": [
+   "y R U2 R' F U' R U2 R' F"
+  ]
+ },
+ {
+  "id": "LS-9 Turtle-B 3",
+  "group": "LS-9",
+  "sub": "Turtle-B",
+  "algs": [
+   "y' R F R F' U R' U2 R'",
+   "y' (U') R2 U R' U' R U' R2 F R2 F'",
+   "y' (U') R' U' R' F R F' R U' R' U R"
+  ]
+ },
+ {
+  "id": "LS-9 Turtle-B 4",
+  "group": "LS-9",
+  "sub": "Turtle-B",
+  "algs": [
+   "y' R U2 R' U R U' R' U R'",
+   "y' (U) R U R' U2 R U2 R' U R'",
+   "(U2) y' R2 U R2 F R F' R' F R F'",
+   "y' R' U2 R2 U R' U R U2 R'",
+   "y (U2) R U R' U R U2 R2 F2 R"
+  ]
+ },
+ {
+  "id": "LS-9 Turtle-B 5",
+  "group": "LS-9",
+  "sub": "Turtle-B",
+  "algs": [
+   "y' R' U2 R2 U' R' F R' F' R"
+  ]
+ },
+ {
+  "id": "LS-9 Turtle-B 6",
+  "group": "LS-9",
+  "sub": "Turtle-B",
+  "algs": [
+   "y F' R U R' U R' F R",
+   "(U2) R2 U' R' U R' F R2 F'"
+  ]
+ },
+ {
+  "id": "LS-9 Pinwheel-Poser 1",
+  "group": "LS-9",
+  "sub": "Pinwheel-Poser",
+  "algs": [
+   "(U) R U' R' F R' F' R2 U' R'",
+   "y' F2 R' F2 R U' R' F"
+  ]
+ },
+ {
+  "id": "LS-9 Pinwheel-Poser 2",
+  "group": "LS-9",
+  "sub": "Pinwheel-Poser",
+  "algs": [
+   "y' (U2) R U2 R U R' F R' F' R",
+   "y' (U2) R' F R F' R U' R2 U' R U' R'",
+   "R U R' U R F R F' U R'"
+  ]
+ },
+ {
+  "id": "LS-9 Pinwheel-Poser 3",
+  "group": "LS-9",
+  "sub": "Pinwheel-Poser",
+  "algs": [
+   "F U2 F U2 R' F' R",
+   "y' R' U2 R F' R U R' U' R' F R",
+   "R U R' U R U2 R' U R U' R'"
+  ]
+ },
+ {
+  "id": "LS-9 Pinwheel-Poser 4",
+  "group": "LS-9",
+  "sub": "Pinwheel-Poser",
+  "algs": [
+   "y' (U) R' U R' U2 R U2 R2",
+   "y R U R' U R U2 R2 F' R",
+   "y (U2) F R' F' R U2 F' R U2 R'"
+  ]
+ },
+ {
+  "id": "LS-9 Pinwheel-Poser 5",
+  "group": "LS-9",
+  "sub": "Pinwheel-Poser",
+  "algs": [
+   "y' (U') R' U2 R U' F R F'",
+   "F R' F' R U2 R U R'",
+   "y' (U') R' U' F R' F' R U' R"
+  ]
+ },
+ {
+  "id": "LS-9 Pinwheel-Poser 6",
+  "group": "LS-9",
+  "sub": "Pinwheel-Poser",
+  "algs": [
+   "y (U2) R U' R' U R U' R' F2 R U' R'",
+   "(U) F R' F' R U R' F R F' R U2 R'",
+   "R U' R' U2 F R' F' R2 U' R'",
+   "y2 x' R U' R' F R2 U' R' F R'",
+   "(U2) F R' F' R2 F' U' R' U' R F"
+  ]
+ }
+]

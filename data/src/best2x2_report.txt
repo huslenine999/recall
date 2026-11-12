@@ -1,0 +1,11 @@
+PBL Diag col B row 34: starts from a different position than the rest of its column (6 agree): R U' R U R' F2 R' U' R' U F2/D R2
+== PBL: 9 cases, 69 algs, every alg of a case starts from the same position
+CLL T col B row 58: starts from a different position than the rest of its column (6 agree): (U) R' F' R' U F U F'
+== CLL: 40 cases, 294 algs, every alg of a case starts from the same position
+== EG-1: 40 cases, 213 algs, notation checked only (see the note in make_best2x2.js)
+== EG-2: 40 cases, 141 algs, every alg of a case starts from the same position
+== LEG-1: 40 cases, 157 algs, notation checked only (see the note in make_best2x2.js)
+== TCLL+: 43 cases, 181 algs, notation checked only (see the note in make_best2x2.js)
+== TCLL-: 43 cases, 155 algs, notation checked only (see the note in make_best2x2.js)
+== LS: 486 cases, 1532 algs, notation checked only (see the note in make_best2x2.js)
+== TEG2+: 43 cases, 171 algs, notation checked only (see the note in make_best2x2.js)

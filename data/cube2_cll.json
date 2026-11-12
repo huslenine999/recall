@@ -1,0 +1,750 @@
+[
+ {
+  "id": "Sune 1",
+  "group": "Sune",
+  "algs": [
+   "R U R' U R U2 R'",
+   "(U') R' U2 R U R' U R",
+   "R U R2 U' R2 U R",
+   "(U') R' U2 R U2 R U R U' R'",
+   "(U2) R U2 R' F2 R U R' F"
+  ],
+  "cls": [
+   "ob89f9",
+   "1mjlncz"
+  ]
+ },
+ {
+  "id": "Sune 2",
+  "group": "Sune",
+  "algs": [
+   "(U') R' F R2 F' U' R' U' R2 U R'",
+   "(U') R' F R2 F' R U2 R' U' R2",
+   "(U2) R U R' U R' F R F' R U2 R'",
+   "(U2) R' F R' F' R2 U R' U' R' F R F' R",
+   "x' U R' F R U2 R' F U' R U R"
+  ],
+  "cls": [
+   "18l4431",
+   "oydtqb",
+   "1jn7i7h"
+  ]
+ },
+ {
+  "id": "Sune 3",
+  "group": "Sune",
+  "algs": [
+   "F R' F' R U2 R U2 R'",
+   "R U' R2 U R U F R' F' R U R'",
+   "(U2) R2 U R2 F' U' F R2 U' R2"
+  ],
+  "cls": [
+   "y1pujx",
+   "hkm4x7"
+  ]
+ },
+ {
+  "id": "Sune 4",
+  "group": "Sune",
+  "algs": [
+   "R U' R' F R' F' R",
+   "(U2) R2 U R' U' R' F R F' R'",
+   "(U) F U' F' R U' R' F",
+   "(U2) x' R U' R' U R' F' R"
+  ],
+  "cls": [
+   "1j1qweb",
+   "i9agsz",
+   "1ds9lxn",
+   "eu631z"
+  ]
+ },
+ {
+  "id": "Sune 5",
+  "group": "Sune",
+  "algs": [
+   "(U2) R U' R U' R' U R' U' F R' F'",
+   "(U2) R U' R U' R' U R' U' y R U' R'",
+   "R U2 R' F R U2 R' U R U' R' F",
+   "(U) R' F' R2 U R' F' R' F R2 U' R'",
+   "R U R' U' R' F R F' R U R' U R U2 R'"
+  ],
+  "cls": [
+   "j7d5cf",
+   "1ngmn55",
+   "10368fn"
+  ]
+ },
+ {
+  "id": "Sune 6",
+  "group": "Sune",
+  "algs": [
+   "R' F2 R U2 R U' R' F",
+   "F R' F' R U R U2' R' F R' F' R",
+   "(U) R2 U' R2 F R' F' R2 U R2",
+   "F U R U2 R' U' R U R' F'"
+  ],
+  "cls": [
+   "rheazl",
+   "1vizm69"
+  ]
+ },
+ {
+  "id": "Anti-Sune 1",
+  "group": "Anti-Sune",
+  "algs": [
+   "(U2) R' F' R U' R' F2 R",
+   "R' U' R U' R' U2 R",
+   "(U) R U2 R' U' R U' R'",
+   "R' U' R2 U R2 U' R'",
+   "(U) F' R U' R' F2 R U2 R'"
+  ],
+  "cls": [
+   "imv4z1",
+   "d2ia7",
+   "1bso6pt",
+   "fhhw8r"
+  ]
+ },
+ {
+  "id": "Anti-Sune 2",
+  "group": "Anti-Sune",
+  "algs": [
+   "R U2 R' F R' F' R U' R U' R'",
+   "(U2) R' U R U' R2 F R F' R U R' U' R",
+   "(U') R U' R2 U R U F R2 F' R",
+   "(U2) R' F R' F' R U R U' R2' F R F' R",
+   "(U2) R U' R' U R U R2 F R F' U2' R U R'",
+   "(U) R' F R U' R' U F2 U' F2 U' R",
+   "(U2) z U R2 U' R' U R' F R F' R' U'"
+  ],
+  "cls": [
+   "1xjtb3x",
+   "1qbhfuj",
+   "ll3ygl"
+  ]
+ },
+ {
+  "id": "Anti-Sune 3",
+  "group": "Anti-Sune",
+  "algs": [
+   "(U2) F' R U R' U2 R' F2 R",
+   "(U) R' F R F' R U2' R' U' R' F R F'",
+   "(U2) R' F R2 F' U' R' U' R F R' F' R",
+   "(U2) R2 U' R2 F R F' R2 U R2",
+   "(U2) F U' R' F R F' R U2 R' U' F'",
+   "R' U R2 U' R2 U' R F R' F' R",
+   "z U' R U R' F R F' R U' R' U"
+  ],
+  "cls": [
+   "2ajcj1",
+   "s4ua4p",
+   "daukbf"
+  ]
+ },
+ {
+  "id": "Anti-Sune 4",
+  "group": "Anti-Sune",
+  "algs": [
+   "(U2) R' F R F' R U R'",
+   "(U) R F R' F' R U R U' R2",
+   "R' U R F' U F R'",
+   "z U' F R F' U R U'"
+  ],
+  "cls": [
+   "74pw3z",
+   "yo3vdb"
+  ]
+ },
+ {
+  "id": "Anti-Sune 5",
+  "group": "Anti-Sune",
+  "algs": [
+   "(U) R U R2 F' R F R U' R2 F R",
+   "F R F' U R U' R U R' U R'",
+   "(U2) R' F2 R F' R' F2 R U' R' F R F'",
+   "R2 F R U2 R U' R' U2 F' R",
+   "(U2) z U' F R F' R U' R' F R' F' R U",
+   "(U) R' F2 R2 U2 R' F' R U2 R2 F2 R"
+  ],
+  "cls": [
+   "sy2e67",
+   "bpp3yn",
+   "7xy2ej",
+   "uv8r7r"
+  ]
+ },
+ {
+  "id": "Anti-Sune 6",
+  "group": "Anti-Sune",
+  "algs": [
+   "(U2) R U2 R' U2 R' F R F'",
+   "(U') R U' R' F R F' U' R' U' R2 U R'",
+   "(U') R2 U R2' F' U F R2 U' R2'",
+   "R U R' U' R' F R F' R U2 R' U' R U' R'",
+   "z U R2 U' R2 U' F R F'"
+  ],
+  "cls": [
+   "1fs7kb1",
+   "1pwyju9"
+  ]
+ },
+ {
+  "id": "Pi 1",
+  "group": "Pi",
+  "algs": [
+   "R U' R2 U R2 U R2 U' R",
+   "R' U R2 U' R2 U' R2 U R'",
+   "F R U R' U' R U R' U' F'",
+   "(U2) F U R U' R' U R U' R' F'",
+   "R U2 R' U R U' R' U2 R U' R'",
+   "R U2' R2' U' R2 U' R2' U2' R",
+   "(U') F' R U2 R' U2 R' F2 R F'",
+   "(U2) R' F2 R U' R' F2 R U R' F2 R",
+   "(U2) x' U R U R' F' R U R' F' U'",
+   "(U2) z U R' U2 R U2 R U2 R' U"
+  ],
+  "cls": [
+   "1hcqchf",
+   "vqt12f",
+   "xbanr5",
+   "1tcz6v3"
+  ]
+ },
+ {
+  "id": "Pi 2",
+  "group": "Pi",
+  "algs": [
+   "(U') R' U' R' F R F' R U' R' U2 R",
+   "(U2) R2 U' R2 F R2 F' R2 U R2",
+   "(U) R' U2 R U R' F R' F' R U R",
+   "(U2) R U R' U R U' B U' B' R'",
+   "R U' R' U2 R' F R F' U2 R U R'",
+   "(U2) R U' R' U2 F R' F' R U2 R U R'",
+   "R' F R U2 F' R U R' U2 R' F' R",
+   "(U2) R' F R U2 R U' R' F U2 R' F' R",
+   "(U) x R U2 R' F R U' R' U2 R U' R'",
+   "R' F' U' F U' R U R' U R"
+  ],
+  "cls": [
+   "1hgc07d",
+   "qgzq7r",
+   "1sget23",
+   "1va57br"
+  ]
+ },
+ {
+  "id": "Pi 3",
+  "group": "Pi",
+  "algs": [
+   "(U2) R' F R F' R U' R' U' R U' R'",
+   "R U' R' F R' F R U R' F R",
+   "(U) R' F R' U R U' R2 F2 U2 F",
+   "(U) F' R U' R' F2 U2 R' F R F'",
+   "(U') F' U' F R2 U2 R' U' R2 U' R2",
+   "(U2) R' U R' F' R2 U2 F' R U R'",
+   "x' R' F' R2 U' R' U F' U' R U R'"
+  ],
+  "cls": [
+   "1x33mcl",
+   "9bpwut",
+   "1gkzoub",
+   "1xg70or"
+  ]
+ },
+ {
+  "id": "Pi 4",
+  "group": "Pi",
+  "algs": [
+   "(U) F R2 U' R2 U R2 U R2 F'",
+   "(U') R U' R U' R' U R' F R2 F'",
+   "(U') F R' F' R U' R U R' U R' F R F'",
+   "(U) F R' F' R U2 R U R' F R' F' R",
+   "(U) F R' U R U' R U R' U' R F'",
+   "(U) R F' U' R' U' R U' R' F R F",
+   "(U') x2 R2 U R' U R' F2 U' R U R'",
+   "(U') F U' R U R' U R U' R' U F'"
+  ],
+  "cls": [
+   "w2lmtb",
+   "u3e1ut",
+   "1ujuw3v"
+  ]
+ },
+ {
+  "id": "Pi 5",
+  "group": "Pi",
+  "algs": [
+   "R U2 R' U' R U R' U2 R' F R F'",
+   "(U) F' R U R' U2 R' F R U' R' F2 R",
+   "(U') F R U' R' U' R U' R' F R' F' R2 U R' F'",
+   "(U') R' U2 R U R' U R2 U' R' F R' F' R",
+   "x R U2 R' F2 U2 R F' U' R' U2",
+   "(U2) R U2 R' F U2 R' F R U F'"
+  ],
+  "cls": [
+   "5pnbdl",
+   "2eqfxz",
+   "1hyrf7d",
+   "1bcma1b"
+  ]
+ },
+ {
+  "id": "Pi 6",
+  "group": "Pi",
+  "algs": [
+   "(U) F R' F' R U2 R U' R' U R U2 R'",
+   "(U2) R' F2 R U R' F' R U2 R U' R' F",
+   "R U' R' F R' F' R U' R U' R' F R' F' R",
+   "R' F2 R F' U2 R U' R' U' F",
+   "(U) R' F R F' R U R2 U' R U' R' U2 R",
+   "(U') R' F R F' R U' R2 F R F' U' R U' R'",
+   "x2 F R' F R F' R U' R2 F U R2"
+  ],
+  "cls": [
+   "1xeganv",
+   "1bapabz",
+   "l83lml",
+   "38wd3b"
+  ]
+ },
+ {
+  "id": "U 1",
+  "group": "U",
+  "algs": [
+   "F R U R' U' F'",
+   "(U2) F U R U' R' F'",
+   "(U) R' F' U' F U R",
+   "(U2) R' U' R' F R F' U R",
+   "(U') R' U' F' U F R",
+   "(U') R F R F' U' R'",
+   "R' U' F R' F' R U R",
+   "F R F' R' U2 R F R' F'",
+   "(U2) F' R' F' R U F",
+   "F' U' R' F R F",
+   "(U') F R2 U R2 U' R2 F'"
+  ],
+  "cls": [
+   "12bsxfx",
+   "vx0hqj",
+   "xmevrf",
+   "jvdgqn"
+  ]
+ },
+ {
+  "id": "U 2",
+  "group": "U",
+  "algs": [
+   "R2 F2 R U R U2 R2 F' R U' R",
+   "(U2) F U' R U R2 F R F' U F'",
+   "(U') R2 F2 R U R' F U' R U R2",
+   "(U') R U R2 U' R U2 R' U2 R U' R",
+   "(U) R U R' U R U2 R2 U' R U' R' U2 R",
+   "(U2) R U R' U' R U R2 F R F' R' F R F'",
+   "(U) R U' R' F' R U' R' F2 U' R U R'",
+   "(U) R' U' R2 U R' U2 R U2 R' U R'",
+   "(U') R' U F' R U' R' F2 U2 R",
+   "F2 R2 U' R' F R' F U' F",
+   "R2 F2 R U R' F R2 U2 R' U' R",
+   "z2 F2 R2 U' R' U R' F U' R"
+  ],
+  "cls": [
+   "1i5254v",
+   "1uhpgwl",
+   "1ech8kl"
+  ]
+ },
+ {
+  "id": "U 3",
+  "group": "U",
+  "algs": [
+   "(U') F R U R' U2 F' R U' R' F",
+   "F R U' R2 F R F' R U2 R' F'",
+   "R U2 R U' R' F R' F2 U' F",
+   "F R U' R' U' F2 U' R U R' U F",
+   "z' U2 R' U' R2 U' R' U' R U' R'",
+   "R2' F2 R U R U2 R2' F R F' R' F2 R2",
+   "x2 R U' R' U' R2 U' R' U2 R' U'",
+   "R' U' F2 U' R U R' U F2 R",
+   "(U2) R U' R' F R' F2 U' F U R",
+   "(U') F' R' F' R U2 F R' F R F'",
+   "R U R' U' R' F R U2 R U' R' U2 F'",
+   "(U) F R' F' R U2 R U' R' U' F' U' F",
+   "(U2) F R U2 R' F R' F' R2 U R' F'"
+  ],
+  "cls": [
+   "mwo61f",
+   "gohl5h",
+   "taflz9",
+   "x2k88b"
+  ]
+ },
+ {
+  "id": "U 4",
+  "group": "U",
+  "algs": [
+   "F R' F' R U' R U' R' U2 R U' R'",
+   "(U) x R U' R U' R' U R' F' R",
+   "(U2) R U R' U R U' R U' R' F R' F'",
+   "(U2) F' R U R' U' R' F R2 U R' U R U2' R'",
+   "(U') R U R' U' R' F R2 U' R' F' R' F R",
+   "(U) R2 F R F' R' F2 R U R' F R2",
+   "(U') R' F' R U R U' R2 F R F R U' R'",
+   "(U') R U2 R' F R' F' R U2 R' F R F'",
+   "(U) x2 R' U R' F R U' R U R'"
+  ],
+  "cls": [
+   "lgmo85",
+   "1yna3yh",
+   "1h9vn59"
+  ]
+ },
+ {
+  "id": "U 5",
+  "group": "U",
+  "algs": [
+   "(U) R U' R2 F R F' R U R' U' R U R'",
+   "(U') R U2 R' U R' F2 R F' R' F2 R",
+   "R U R2 U R U2 R' F R2 F'",
+   "(U2) R2 U' R' U R' F R F' R2 U' R'",
+   "(U') R U2 R' U' R U R' U2 F' U' F",
+   "(U) R2' U2' R U R' U F R F' R"
+  ],
+  "cls": [
+   "16enzmn",
+   "b7ihtl",
+   "bu7489"
+  ]
+ },
+ {
+  "id": "U 6",
+  "group": "U",
+  "algs": [
+   "(U) R' U R' F R F' R U2 R' U R",
+   "(U) R' F R2 U' R' F R' F' R U R' F' R",
+   "(U') R2 U R' U' R' F R2 F' U' R'",
+   "(U') R2 U R' U' R2 U' F' U2 F",
+   "(U) R F' U' R' U' R2 U R' U' R' F R",
+   "(U2) F' R U R' U' R' F R2 U' R' F R' F' R"
+  ],
+  "cls": [
+   "1qsjmxf",
+   "15ag9td",
+   "tpi5"
+  ]
+ },
+ {
+  "id": "L 1",
+  "group": "L",
+  "algs": [
+   "(U) F' R U R' U' R' F R",
+   "F R U' R' U' R U R' F'",
+   "(U') R U R U' R' F R' F'",
+   "F R U' R' F R' F' R U F'",
+   "R' F R' F' U' R U R2",
+   "(U') x R U2 R' U2 F' U' R"
+  ],
+  "cls": [
+   "1hnq6d1",
+   "tkz8r7",
+   "1octds5",
+   "eabt0n"
+  ]
+ },
+ {
+  "id": "L 2",
+  "group": "L",
+  "algs": [
+   "F R' F' R U R U' R'",
+   "R' U' R' U R F' U F",
+   "(U') R F' U' R' U' R F",
+   "(U) F' R' F R F' R U R' U' F"
+  ],
+  "cls": [
+   "wc1dj9",
+   "1t56tun",
+   "1asgx7z"
+  ]
+ },
+ {
+  "id": "L 3",
+  "group": "L",
+  "algs": [
+   "R U2 R2 F R F' R U2 R'",
+   "R' U2 R U R2 F R F' U R",
+   "(U) R' F2 R2 U' R' F R' F2 R",
+   "(U') R U2 R' F R' F' R2 U2 R'",
+   "(U2) R' U' R U R' F' R U R' U' R' F R2",
+   "(U2) R' F2 R F' R' F2 R2 U' R'"
+  ],
+  "cls": [
+   "ydrhp1",
+   "yma0i5",
+   "4dw6gh",
+   "16ws5al"
+  ]
+ },
+ {
+  "id": "L 4",
+  "group": "L",
+  "algs": [
+   "(U) R' U R' U2 R U' R' U R U' R2",
+   "(U) R2 U' R U2 R' U2 R U' R2",
+   "(U2) R2 U R' U2 R U2 R' U R2",
+   "(U2) R2 U R' U' R U R' U2 R U' R",
+   "R U' R U' R U2 R' U R' U R'",
+   "(U2) R U R2 U' R2 U R' U2 R U2 R2",
+   "R2 U2 R' U2 R U' R2 U R2 U' R'",
+   "(U2) R U R2 U' R2 U R' U2 R' U2 R2",
+   "(U2) R U' R2 F R2 U' R' U R U' R2 F R2 U' R'",
+   "(U2) z F' R2 U' R' U R' F U' R U F'",
+   "(U2) R U2 R2 F' R U' R' F2 R2 U R'"
+  ],
+  "cls": [
+   "ethco1",
+   "cbnsut",
+   "1frrnnx",
+   "k690f1"
+  ]
+ },
+ {
+  "id": "L 5",
+  "group": "L",
+  "algs": [
+   "(U') R U' R' U R U' R' F R' F' R2 U R'",
+   "R U R' U' R' F R2 F' U' R' U' R",
+   "(U') x2 R' U2 R' F' R U2 R' U R2",
+   "(U') R' U2 R' U' F R2 F' U R2",
+   "(U') R U' R' F R' F' R2 U R' U' R' F R F'",
+   "R U R' U' R' F R2 U' R' U R U R' F'",
+   "(U') F R2 F' U' R' U' R2 U R' U' R'",
+   "(U) R U2 R2 F2 R U R' F2 R F'",
+   "(U') R U' R2 F R F' U' F R' F' R2 U R'"
+  ],
+  "cls": [
+   "wch6jj",
+   "1k6mlrv",
+   "iptph1",
+   "1d99j3b"
+  ]
+ },
+ {
+  "id": "L 6",
+  "group": "L",
+  "algs": [
+   "R' U' R U2 R' F R' F' R U' R",
+   "(U') R' F' R U R' U' R' F R2 U' R' U2 R",
+   "R U R2 F' R U R U' R2 F' R F",
+   "(U') F R F' R U R2 U' R' F R F'",
+   "(U2) R' F R U' R' F R F' R U R2' F' R",
+   "(U2) R U R' U R' F R F' U2 R' F R F'",
+   "R U2 R' F' R U2 R' U R' F2 R",
+   "F R U' R' U2 R U R' F' R U R' U' R' F R F'",
+   "(U2) z U F R2 U' R' U F' R' F U'"
+  ],
+  "cls": [
+   "iej5id",
+   "1sm79gj",
+   "rz99a5",
+   "o0fzo9"
+  ]
+ },
+ {
+  "id": "T 1",
+  "group": "T",
+  "algs": [
+   "R U R' U' R' F R F'",
+   "(U') R' U' R U F R F'",
+   "F' U' F U R U R'",
+   "(U2) F' L' F L' U' L U L",
+   "(U2) F' R' U F' U' R F R",
+   "(U) F' U R U' R' F R' F' R F"
+  ],
+  "cls": [
+   "1r6xnlv",
+   "i85417",
+   "1wlsesz"
+  ]
+ },
+ {
+  "id": "T 2",
+  "group": "T",
+  "algs": [
+   "(U2) R' F' R U R U' R' F",
+   "F R F' R U R' U' R'",
+   "F R F' U' R' U' R",
+   "(U) R U2 F R F' U2 R'",
+   "R' U' R U R F' U' F",
+   "(U) R U R' U' F' U' F",
+   "(U2) F U F' U' R' F' R",
+   "R' U' R F R F' R' U R",
+   "(U) F U' R' F R F' R U R' F'",
+   "(U') z U R U' R' F' U' F"
+  ],
+  "cls": [
+   "pked83",
+   "149nqad",
+   "1lrajur",
+   "30bgkz"
+  ]
+ },
+ {
+  "id": "T 3",
+  "group": "T",
+  "algs": [
+   "(U') R U F R' F' R U2 R U2 R2",
+   "(U) F U' R U2 R' U' F2 R U R'",
+   "(U2) R U2 R2 F R F' R U' R' U R U2 R'",
+   "R U' F R2 F' U' R2 F R F'",
+   "R2 U2 R' U2 R' F R F' U' R'",
+   "(U2) R2 U R' F R' F' R U' R U R",
+   "(U') x' R U' R' U2 F R U2 R' F U'",
+   "(U') R U' R' U' R2 F R F' R U' R2",
+   "R' U' R' F R F' R U' R' U R U' R' U2 R",
+   "(U') x' U2 R2 F' R U R' U' F R2 U2",
+   "(U) F R U' R' F R F' U' R' U' R2 U R' F'"
+  ],
+  "cls": [
+   "1x1zfpn",
+   "1uojkfj",
+   "7b5sz5",
+   "q636b9"
+  ]
+ },
+ {
+  "id": "T 4",
+  "group": "T",
+  "algs": [
+   "(U') R' U R' U2 R U2 R' U R2 U' R'",
+   "R U R' U R U2 R2 F' R U' R' F2 R",
+   "(U) R' U R U2' R2' F' R U' R' F2 R2",
+   "(U') F R' F' R F R' F' R2 U' R' U R U' R'",
+   "(U2) R' U2 F2 R U R' F U' R",
+   "(U2) R' U R' F U' R U F2 R2",
+   "(U) F R' F R2 U' R' U' R U R' F2",
+   "(U) R' F R F' R U R' U' R U R' U' R' F R F'"
+  ],
+  "cls": [
+   "18v3gzv",
+   "8thj9v",
+   "tfde9r",
+   "a612hh"
+  ]
+ },
+ {
+  "id": "T 5",
+  "group": "T",
+  "algs": [
+   "(U2) R U R' U2 R U R' U R' F R F'",
+   "(U') F R F' R U R' U R' U' R U' R'",
+   "(U') F R U R' U' R U' R' U' R U R' F'",
+   "(U2) x2 R U' R' U R' F' R U' R",
+   "(U') F U' R' U F' R' F U' R",
+   "(U) R U2 R' U R U2 R' U R' F R F'",
+   "(U) R U R' U' R U' R' F R F' R U R2",
+   "R U R' U' R U' R' F' U' F R U R'",
+   "(U2) R F R F' R U' R' F R' F'",
+   "x2 R' F R U' R U R' U R'",
+   "(U) R' U' F R F' U R U' R U R'"
+  ],
+  "cls": [
+   "1vc06r",
+   "1g6nict",
+   "1bgye9b",
+   "1r800l5"
+  ]
+ },
+ {
+  "id": "T 6",
+  "group": "T",
+  "algs": [
+   "(U) R' U R U2 R2 F R F' R",
+   "R U2 R' U' R2 U' R' F R' F'",
+   "(U') R' F R U2 R2 F R U' R",
+   "(U') R' F R' F' R2 U2 R' U' R",
+   "(U) R U R2' F R F' U R U R'",
+   "(U') R U' R' U' F R' F' R2 U' R'",
+   "(U) x R U' R' U' F R2 U' R' U R' F'",
+   "R' U F R F' R U R2 U R"
+  ],
+  "cls": [
+   "7lm32f",
+   "11pn1hf",
+   "8gqclp",
+   "13riqun"
+  ]
+ },
+ {
+  "id": "H 1",
+  "group": "H",
+  "algs": [
+   "R2 U2 R U2 R2",
+   "R2 U2 R' U2 R2",
+   "R U' R' U' R U' R' U R U R'",
+   "(U') R U R' U R U' R' U R U2 R'",
+   "x2 R2 U2 R' F2 R2"
+  ],
+  "cls": [
+   "8h1lrh",
+   "mu90gh"
+  ]
+ },
+ {
+  "id": "H 2",
+  "group": "H",
+  "algs": [
+   "x' U2 R' F2 R2 U2 R' U2",
+   "(U) (R' F R F' R U R')2",
+   "(U) (R U' R' F R' F' R)2",
+   "(U) R2 F' U2 F2 R2 F' R2",
+   "x' U2 R U2 R2 F2 R U2",
+   "F (R U R' U')3 F'",
+   "F (U R U' R')3 F'",
+   "(U) R2 F U2 F2 R2 F R2"
+  ],
+  "cls": [
+   "1t1e8wd",
+   "cs59i1",
+   "1jcmki5",
+   "13pryst"
+  ]
+ },
+ {
+  "id": "H 3",
+  "group": "H",
+  "algs": [
+   "R U R' U R U R' F R' F' R",
+   "(U2) R' F' R U' R' F' R F' R U R'",
+   "R U' R' U R U R' U2 F R' F' R",
+   "(U') R U R2 F R F' R U R' U R U R'",
+   "(U2) R U' R' F R' F' R2 U R' U R U2 R'",
+   "(U) R U' R' F U2 R2 F R U' R",
+   "(U) R' F R F' U' F R' F' R2 U' R'"
+  ],
+  "cls": [
+   "9vy45v",
+   "12fl36f"
+  ]
+ },
+ {
+  "id": "H 4",
+  "group": "H",
+  "algs": [
+   "(U) F R2 U' R2 U' R2 U R2 F'",
+   "(U) F' U2 F R' U R' U' R U' R",
+   "(U') F R' F' R U' R U' R' U R' F R F'",
+   "(U) R U2 R2 F R F' U2 R' F R F'",
+   "(U') F U2 R' U2 R' U2 R U2 F'",
+   "(U') F R U R' U' R F' R U R' U' R'",
+   "(U) R U' R' F R' F R U2 R U' R' F",
+   "(U) R' F R F' R U' R' U2 R' F R F'",
+   "(U2) x R U' R' U F2 R U' R U' R2",
+   "(U) F U R2 U R2 U F U2 R2"
+  ],
+  "cls": [
+   "jvtzyt",
+   "c7uk0t",
+   "1tu9egx"
+  ]
+ }
+]

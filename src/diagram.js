@@ -279,6 +279,7 @@
   // ---------- Skewb and Pyraminx: drawn from the simulator's sticker colours, two views each ----------
   const SK = root.Skewb || require('./skewb.js');
   const PY = root.Pyraminx || require('./pyraminx.js');
+  const C2 = root.Cube2 || require('./cube2.js');
   const SKEWB_COLORS = ['#f04a3c', '#f58a24', '#f4f4f1', '#f7cf3d', '#2fbf6b', '#4a86f5']; // by face R L U D F B: red, orange, white, yellow, green, blue
   const PYRA_COLORS = ['#2fbf6b', '#f04a3c', '#4a86f5', '#f7cf3d']; // green, red, blue, yellow
   const vsub = (a, b) => a.map((x, i) => x - b[i]);
@@ -335,6 +336,27 @@
     return viewsSvg([make(1), make(-1)], 46, 0.55, opts.label || 'Pyraminx case', 'pyra', 1.6, 1.5);
   }
 
-  const api = { skewbDiagram, pyraminxDiagram, SKEWB_COLORS, PYRA_COLORS, oblDiagram, megaminxDiagram, megaminxOllDiagram, square1Diagram, cspDiagram, pblDiagram, MM_DEFAULT_COLORS, SQ_COLORS, MM_CFG };
+
+  // 2x2: the top layer seen from above with its side stickers around it, and the bottom layer seen from below (front at the top, like turning the cube over)
+  const CUBE2_COLORS = ['#f04a3c', '#f58a24', '#f7cf3d', '#f4f4f1', '#2fbf6b', '#4a86f5']; // R L U D F B: red, orange, yellow, white, green, blue
+  function cube2Diagram(state, opts) {
+    opts = opts || {};
+    const GAP = 0.05, T = 0.3, pal = opts.colors || CUBE2_COLORS;
+    const view = top => {
+      const out = [], sy = top ? 1 : -1, zf = top ? 1 : -1; // screen y = zf * z
+      C2.stickers.forEach((st, i) => {
+        const [px, py, pz] = st.p, n = st.n; if (py !== sy) return; // the layer being looked at
+        const cx = px / 2, cz = pz / 2; let r;
+        if (n[1]) r = [cx - .5, zf * cz - .5, cx + .5, zf * cz + .5]; // the face looked at
+        else if (n[2]) { const edge = zf * pz; r = edge > 0 ? [cx - .5, 1 + GAP, cx + .5, 1 + GAP + T] : [cx - .5, -1 - GAP - T, cx + .5, -1 - GAP]; } // front and back
+        else { const e = px > 0 ? [1 + GAP, 1 + GAP + T] : [-1 - GAP - T, -1 - GAP], y = zf * cz; r = [e[0], y - .5, e[1], y + .5]; } // right and left
+        out.push({ poly: [[r[0], r[1]], [r[2], r[1]], [r[2], r[3]], [r[0], r[3]]], fill: pal[state[i]] });
+      });
+      return out;
+    };
+    return viewsSvg([view(true), view(false)], 46, 0.5, opts.label || '2x2 case', 'cube2', 2, 2.2);
+  }
+
+  const api = { cube2Diagram, CUBE2_COLORS, skewbDiagram, pyraminxDiagram, SKEWB_COLORS, PYRA_COLORS, oblDiagram, megaminxDiagram, megaminxOllDiagram, square1Diagram, cspDiagram, pblDiagram, MM_DEFAULT_COLORS, SQ_COLORS, MM_CFG };
   if (typeof module !== 'undefined') module.exports = api; else root.Diagram = api;
 })(typeof window !== 'undefined' ? window : globalThis);

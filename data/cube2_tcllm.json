@@ -1,0 +1,415 @@
+[
+ {
+  "id": "Hammer 1",
+  "group": "Hammer",
+  "algs": [
+   "(U') x U R' U' R U R' U' R x'",
+   "(U') F R' F' R F R' F' R"
+  ]
+ },
+ {
+  "id": "Hammer 2",
+  "group": "Hammer",
+  "algs": [
+   "y' (U') F R2 F' U R' U R",
+   "y (U') F U2 F' U R' F R",
+   "F2 R F' U R' U' F U' R'"
+  ]
+ },
+ {
+  "id": "Hammer 3",
+  "group": "Hammer",
+  "algs": [
+   "(U2) R U R' U2 F R' F' R2 U' R'",
+   "R2 U' R' U2 R' U2 F R' F'",
+   "y' R2' F R F' R U2 R' U' R",
+   "(U') y' F' U F R U' R2 U R2"
+  ]
+ },
+ {
+  "id": "Hammer 4",
+  "group": "Hammer",
+  "algs": [
+   "(U') R U R' F R' F' R U' R U2 R'",
+   "(U) F R F' U2 F' U' F R2"
+  ]
+ },
+ {
+  "id": "Hammer 5",
+  "group": "Hammer",
+  "algs": [
+   "R' U2 R' U2 R U' R' F R F'",
+   "(U') R' F R F' R2 U R2 U' R2",
+   "(U') F R U R' U' R' F' R2 U R'",
+   "y (U2) F U' R U2 R2 F' R U R U' R'",
+   "(U2) R' F2 R U' R U2 R' U2 F"
+  ]
+ },
+ {
+  "id": "Hammer 6",
+  "group": "Hammer",
+  "algs": [
+   "R U' R U' R' F R' F' R U' R'",
+   "y' (U') R' U R U' R2 F R F' U R",
+   "y' (U2) R2 F R F' R U R' U' R' F R F' R",
+   "(U) R U2 R2 F R F' U2 R U R'"
+  ]
+ },
+ {
+  "id": "Spaceship 1",
+  "group": "Spaceship",
+  "algs": [
+   "R U R' U' R U R'",
+   "(U2) R' U2 R' U2 R2 U' R'",
+   "(U2) y R2 F R U' R' F R U' R"
+  ]
+ },
+ {
+  "id": "Spaceship 2",
+  "group": "Spaceship",
+  "algs": [
+   "y F U' R U R' U R U R' F'",
+   "(U2) F R U R' U' R' F' R F R' F' R",
+   "y F U' R U R' U' F' R' F R",
+   "(U) R U2 R2 F R F' R U' R' U' R U R'",
+   "(U2) R2 U' R' U2 R' F R U R' U' R F'",
+   "R U' R' U F R F' R U R' U R'",
+   "(U2) R U R' U R' F R F' U2 R U R'"
+  ]
+ },
+ {
+  "id": "Spaceship 3",
+  "group": "Spaceship",
+  "algs": [
+   "(U') R U R' F R' F' R U R' F R F'",
+   "(U') R' U2 R U2 R F R' F' R",
+   "(U') F R U R' F R U' R2 F' R",
+   "(U2) R U R' U' F R' F R U R' F R",
+   "R U R' U R U' R' U' F R' F' R"
+  ]
+ },
+ {
+  "id": "Spaceship 4",
+  "group": "Spaceship",
+  "algs": [
+   "(U') R' F R F' U R U2 R2 F R F'",
+   "y (U) R' F R2 U' R' U' R' F R F",
+   "y' (U) R2 U' R2 U R2 U2 F R2 F'"
+  ]
+ },
+ {
+  "id": "Spaceship 5",
+  "group": "Spaceship",
+  "algs": [
+   "y' (U) R' U R U R' F R' F' R U' R",
+   "(U) F2 R U' R' U2 R' F R",
+   "y' (U) R2 U' R U R2 U' F R F'",
+   "(U') R' F R F' U' R' F R F' R U' R'",
+   "y (U') F2 R' F' R U' R U' R' F'"
+  ]
+ },
+ {
+  "id": "Spaceship 6",
+  "group": "Spaceship",
+  "algs": [
+   "y (U') R' F U' R' F R2 U' R' U2 R",
+   "R U R' U' F R' F2 R U' R' F2 R",
+   "y' (U') R' F R' F' R U F R' F' R U R",
+   "R U R' U R2 U' R' F R' F' R U R'"
+  ]
+ },
+ {
+  "id": "Stollery 1",
+  "group": "Stollery",
+  "algs": [
+   "(U) R2 U R2 U' R U2 R' U2 R",
+   "y' (U2) R U2 R' U2 R U' R2 U R2",
+   "(U2) F2 R U R' F U' R U' R'",
+   "(U) R2 U R' U R U2 R2 U' R U' R'"
+  ]
+ },
+ {
+  "id": "Stollery 2",
+  "group": "Stollery",
+  "algs": [
+   "y' R2 F R' F' U' R U R'",
+   "F2 R U2 R' F U R' F' R",
+   "y' R' U F' R U R' U' R' F R2",
+   "(U2) R U R' U2 R' U' F R F' U R",
+   "(U') R' F2 R F R' F2 R F' U F"
+  ]
+ },
+ {
+  "id": "Stollery 3",
+  "group": "Stollery",
+  "algs": [
+   "F R' F' U R2 U R2' U' R",
+   "(U2) R F' R U R' U' R' F R U R'"
+  ]
+ },
+ {
+  "id": "Stollery 4",
+  "group": "Stollery",
+  "algs": [
+   "(U2) R U' R' U' R' F R F' R U' R'",
+   "R' F R U R U' R' F' R U' R'"
+  ]
+ },
+ {
+  "id": "Stollery 5",
+  "group": "Stollery",
+  "algs": [
+   "y' R2 F' R U2 R U2 R' F R",
+   "R2 U R' U R' U' F R' F' R2",
+   "(U2) R' F2 R F2 R' F2 R2 U R'",
+   "y' R' F R' F' R U R U' R' U2 R"
+  ]
+ },
+ {
+  "id": "Stollery 6",
+  "group": "Stollery",
+  "algs": [
+   "(U2) R U' R' U R U2 R2 F R F'",
+   "y F' R' F2 R2 U' R' U R' F' R",
+   "(U) R2 U' R' F R' F' U' R U' R'",
+   "(U') F R' F' R U' R U' R' U R U R'"
+  ]
+ },
+ {
+  "id": "Pinwheel 1",
+  "group": "Pinwheel",
+  "algs": [
+   "R2 U R' U R' U2 R U2 R' U2 R",
+   "F U' F' R U' R2 F2 R U' F",
+   "F R' U2 R2 U F R2 U R2 U2 R'",
+   "F' R U2 R2 F2 R U R' F' R F'",
+   "y F R U' R' F R U2 R' U2 R U2 R'",
+   "F R U2' R' F' U' R U R' U' F"
+  ]
+ },
+ {
+  "id": "Pinwheel 2",
+  "group": "Pinwheel",
+  "algs": [
+   "R' U2 R' U2 R2 F R' F' R'",
+   "y' R' U' R' F R F' U2 R U' R' U R",
+   "R U R' U2 R' U' R F' U F R",
+   "R' U2 R' U R2 F' U F R",
+   "R U R' U' R U R2 U' F R' F' R U R"
+  ]
+ },
+ {
+  "id": "Pinwheel 3",
+  "group": "Pinwheel",
+  "algs": [
+   "y' R2 F' R U2 R U R' F2 R",
+   "R U' F R2 U' F R F2 R'",
+   "(U2) F R' F' R2 U R2 U2 R U R' U R",
+   "R U' F R2 U' F L U2 L'"
+  ]
+ },
+ {
+  "id": "Two-Face 1",
+  "group": "Two-Face",
+  "algs": [
+   "R2 U R' U R U2 R' U2 R'",
+   "R2 U R2 U' R2 U R U' R'",
+   "R2 U R2 U' R U' R' U R"
+  ]
+ },
+ {
+  "id": "Two-Face 2",
+  "group": "Two-Face",
+  "algs": [
+   "(U2) R2 U' R' F R' F' R U2 R'",
+   "y (U') R U2 R' U R' F' R F2",
+   "y2 L U2 L F' L' F L'",
+   "R2 U R2 U F' U' F U' R",
+   "y (U2) F U2 F R' F' R F'"
+  ]
+ },
+ {
+  "id": "Two-Face 3",
+  "group": "Two-Face",
+  "algs": [
+   "(U) F' R' F R F U' R U R'",
+   "y (U) R' F R U' F R U R' F'",
+   "y (U) R' U R U' R' F' U F R"
+  ]
+ },
+ {
+  "id": "Two-Face 4",
+  "group": "Two-Face",
+  "algs": [
+   "(U) R' F R F' R U2 R' U' R U R'",
+   "(U2) F' U' F R2 U' R2 U' R2 U R2",
+   "(U2) R U' R' U' F R' F' R U' R U R'"
+  ]
+ },
+ {
+  "id": "Turtle 1",
+  "group": "Turtle",
+  "algs": [
+   "y (U') L' U L U' L' U L",
+   "y' (U') R' U R U' R' U R",
+   "y' (U2) R' U R2 U2 R U2 R'",
+   "y' (U') R' U R2 U R U' R'"
+  ]
+ },
+ {
+  "id": "Turtle 2",
+  "group": "Turtle",
+  "algs": [
+   "R U2 R' U R' U' F R F' U R",
+   "y' (U) R' U R U' R2' F R F' R U' R' U2 R"
+  ]
+ },
+ {
+  "id": "Turtle 3",
+  "group": "Turtle",
+  "algs": [
+   "y' (U2) R' U' R U R' U R' F R F' R",
+   "(U) F R F' R U R2 U' R U R'",
+   "R' F' R F R' F' R2 U R2 F' R",
+   "y' (U') R U2 R F R' F' R U2 R'"
+  ]
+ },
+ {
+  "id": "Turtle 4",
+  "group": "Turtle",
+  "algs": [
+   "(U) R U R' U y L' U2 L",
+   "y' (U) F R F' U R' U2 R",
+   "(U2) R' F' R U2 R U2 R' U2 F",
+   "(U) R U R' U' R U2 R' U' R' F R F'"
+  ]
+ },
+ {
+  "id": "Turtle 5",
+  "group": "Turtle",
+  "algs": [
+   "(U') R U2 R' U2 F R' F' R",
+   "R U' F R' F' U' R'"
+  ]
+ },
+ {
+  "id": "Turtle 6",
+  "group": "Turtle",
+  "algs": [
+   "R U' R' U2 R U R2 F R F'",
+   "y' (U) R' F R' F' R2 U R' U R",
+   "R2 U R2 U' R F R F'"
+  ]
+ },
+ {
+  "id": "Pinwheel Poser 1",
+  "group": "Pinwheel Poser",
+  "algs": [
+   "y (U') R U' R' U F R U2 R' F2",
+   "(U) R2 F U' R U F2 U R'",
+   "(U') F R' F' U R F R2 F' R2",
+   "(U) R2 U' R U' R' U2 R U' R' U R'",
+   "(U') F' U2 F2 R F' R U R2"
+  ]
+ },
+ {
+  "id": "Pinwheel Poser 2",
+  "group": "Pinwheel Poser",
+  "algs": [
+   "R U2 R U' R' F R2 F' R",
+   "(U) F U R U' R2 F' R F R' F' R"
+  ]
+ },
+ {
+  "id": "Pinwheel Poser 3",
+  "group": "Pinwheel Poser",
+  "algs": [
+   "y' (U') R' U2' F R' F' R2",
+   "y' (U') x' R' F R2 U' R' U",
+   "y (U') R' F R2 U' R' F",
+   "(U') F' U2 R U' R' F2"
+  ]
+ },
+ {
+  "id": "Pinwheel Poser 4",
+  "group": "Pinwheel Poser",
+  "algs": [
+   "(U) F R' F' R2 U R'",
+   "y F U' R' F U2 R U2 R"
+  ]
+ },
+ {
+  "id": "Pinwheel Poser 5",
+  "group": "Pinwheel Poser",
+  "algs": [
+   "(U) R U R' F R' F' R U2 R U' R'",
+   "R U' R' U2 R' U F R F' U2 R",
+   "R' U2 F R' F' U' R2 U2 R'",
+   "y2 (U2) R' U F2 R U' R' U' R2 U",
+   "y (U) F U' R U R' F R F' R U R2 F'"
+  ]
+ },
+ {
+  "id": "Pinwheel Poser 6",
+  "group": "Pinwheel Poser",
+  "algs": [
+   "F' R' F2 R U' F",
+   "y (U) F U' R U2 R' F'",
+   "(U) R U2 R' F' U2 F"
+  ]
+ },
+ {
+  "id": "Gun 1",
+  "group": "Gun",
+  "algs": [
+   "(U) R U2 R' U2 R U R'",
+   "(U) R U' R U R2 U' R2",
+   "y (U) R' U R U2 R' U2 R",
+   "y (U) R2 U' R2 U R U' R'"
+  ]
+ },
+ {
+  "id": "Gun 2",
+  "group": "Gun",
+  "algs": [
+   "(U2) F R U2 R' F R U' R2 F R",
+   "y' (U) R' U2 F R F' R U R2 U' R",
+   "R F2 R F2 R' F2 R U' R'"
+  ]
+ },
+ {
+  "id": "Gun 3",
+  "group": "Gun",
+  "algs": [
+   "(U) R U R' U' F R' F' R",
+   "(U) R2' F R F' U' R' U R'",
+   "y' R' U R F R F'"
+  ]
+ },
+ {
+  "id": "Gun 4",
+  "group": "Gun",
+  "algs": [
+   "(U2) F R' F' R2 U' R' U' R U' R'",
+   "y' (U') R' U' R U' R' F R' F' R2",
+   "(U) R U2 R U' R' F R' F' R U R'"
+  ]
+ },
+ {
+  "id": "Gun 5",
+  "group": "Gun",
+  "algs": [
+   "y' (U') R' F R' F' R U2 R",
+   "F2 R U' R' U R' F2 R"
+  ]
+ },
+ {
+  "id": "Gun 6",
+  "group": "Gun",
+  "algs": [
+   "R2 U R' F R F' R' U' R",
+   "R U' R' U2 F R F' R U R2",
+   "(U') R' F R F' U R U2' R' U R U' R'"
+  ]
+ }
+]

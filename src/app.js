@@ -1,5 +1,5 @@
 (function () {
-  const M = Megaminx, S = Square1, D = Diagram, X = Scramble, SK = Skewb, PX = Pyraminx;
+  const M = Megaminx, S = Square1, D = Diagram, X = Scramble, SK = Skewb, PX = Pyraminx, C2 = Cube2;
   const $ = (s, el) => (el || document).querySelector(s);
   const $$ = (s, el) => Array.from((el || document).querySelectorAll(s));
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -18,9 +18,13 @@
   // Sets that come from a simulator (Skewb, Pyraminx): a case is the position its alg starts from, and an alg is accepted when it starts from that position.
   // start(alg) is the state the alg solves from, scr(alg) the moves that set it up, draw(state) the picture.
   const skStart = cfg => a => SK.run(SK.invert(a, cfg), null, cfg);
+  // 2x2: an alg is accepted when it starts from the same position as one of the case's sheet algs, whatever turn the layers have (sets with no stored position only get their notation checked)
+  const c2 = (set, label, name, rows) => ({ puzzle: 'c2', set, label, name: '2x2 ' + name, rows, eng: C2, start: a => C2.run(C2.invert(a)), scr: a => C2.invert(a), draw: (st, l) => D.cube2Diagram(st, { label: l }), verify: (st, c) => !c.cls || C2.fits(st, c.cls) });
   const GEN = {
     skns: { puzzle: 'sk', set: 'ns', label: 'NS', name: 'Skewb NS', rows: () => DATA_SKNS, eng: SK, start: skStart(SK.NS), scr: a => SK.scramble(a, SK.NS), draw: (st, l) => D.skewbDiagram(st, { label: l }) },
     sksa: { puzzle: 'sk', set: 'sa', label: 'Sarah\'s Advanced', name: 'Skewb Sarah\'s Advanced', rows: () => DATA_SKSA, eng: SK, start: skStart(SK.SA), scr: a => SK.scramble(a, SK.SA), draw: (st, l) => D.skewbDiagram(st, { label: l }) },
+    c2pbl: c2('pbl', 'PBL', 'PBL', () => DATA_C2PBL), c2cll: c2('cll', 'CLL', 'CLL', () => DATA_C2CLL), c2eg1: c2('eg1', 'EG-1', 'EG-1', () => DATA_C2EG1), c2eg2: c2('eg2', 'EG-2', 'EG-2', () => DATA_C2EG2),
+    c2leg1: c2('leg1', 'LEG-1', 'LEG-1', () => DATA_C2LEG1), c2tcllp: c2('tcllp', 'TCLL+', 'TCLL+', () => DATA_C2TCLLP), c2tcllm: c2('tcllm', 'TCLL-', 'TCLL-', () => DATA_C2TCLLM), c2ls: c2('ls', 'LS', 'LS', () => DATA_C2LS), c2teg2p: c2('teg2p', 'TEG2+', 'TEG2+', () => DATA_C2TEG2P),
     pyl4e: { puzzle: 'px', set: 'l4e', label: 'L4E', name: 'Pyraminx L4E', rows: () => DATA_PYL4E, eng: PX, start: a => PX.run(PX.invert(a)), scr: a => PX.invert(a), draw: (st, l) => D.pyraminxDiagram(st, { label: l }) }
   };
   const KEYS = ['mm', 'oll', 'sq', 'csp', 'pbl', 'obl', ...Object.keys(GEN)]; // data keys: Megaminx PLL and OLL, Square-1 EP, CSP, PBL and OBL, and the simulator sets
@@ -31,7 +35,7 @@
   function verifyAlg(p, a, c) {
     const flip = c.flip;
     try {
-      if (GEN[p]) { const g = GEN[p], same = g.eng.classOf(g.start(a)) === c.cls; return { ok: same, why: same ? '' : 'This alg starts from a different case than ' + c.id }; }
+      if (GEN[p]) { const g = GEN[p], st = g.start(a), same = g.verify ? g.verify(st, c) : g.eng.classOf(st) === c.cls; return { ok: same, why: same ? '' : 'This alg starts from a different case than ' + c.id }; }
       if (p === 'obl') {
         const st = S.cspState(a, CUBE_SHAPE), cl = st && S.oblClass(st);
         if (!cl) return { ok: false, why: 'This alg does not start from a cube shape' };
@@ -155,7 +159,8 @@
     { id: 'mm', name: 'Megaminx', icon: ICON('<path d="M12 2.5l9 6.6-3.4 10.4H6.4L3 9.1z"/><path d="M12 8.2l4.6 3.3-1.8 5.3H9.2l-1.8-5.3z" stroke-width="1.5"/>') },
     { id: 'sq', name: 'Square-1', icon: ICON('<circle cx="12" cy="12" r="9.5"/><path d="M8.3 8.3l7.4 0 0 7.4-7.4 0z" stroke-width="1.5" transform="rotate(15 12 12)"/>') },
     { id: 'sk', name: 'Skewb', icon: ICON('<path d="M12 2.5l8.5 4.9v9.2L12 21.5l-8.5-4.9V7.4z"/><path d="M12 8.2l4.3 2.4v2.9L12 15.9l-4.3-2.4v-2.9z" stroke-width="1.5"/>') },
-    { id: 'px', name: 'Pyraminx', icon: ICON('<path d="M12 3l9 16.5H3z"/><path d="M7.5 11.2h9M10 15.4l2-3.7 2 3.7" stroke-width="1.5"/>') }
+    { id: 'px', name: 'Pyraminx', icon: ICON('<path d="M12 3l9 16.5H3z"/><path d="M7.5 11.2h9M10 15.4l2-3.7 2 3.7" stroke-width="1.5"/>') },
+    { id: 'c2', name: '2x2', icon: ICON('<rect x="3.5" y="3.5" width="17" height="17" rx="2.5"/><path d="M12 3.5v17M3.5 12h17" stroke-width="1.6"/>') }
   ].filter(z => SETS[z.id]);
   const PUZZLE_NAME = {}; PUZZLES.forEach(z => { PUZZLE_NAME[z.id] = z.name; });
   const DK_NAME = { mm: 'Megaminx PLL', oll: 'Megaminx OLL', sq: 'Square-1 EP', csp: 'Square-1 CSP', pbl: 'Square-1 PBL', obl: 'Square-1 OBL' };
@@ -240,6 +245,7 @@
     stopRaf(); ensure(dk());
     $$('.tab').forEach(b => b.setAttribute('aria-selected', b.dataset.p === ui.puzzle));
     $('#sets').innerHTML = SETS[ui.puzzle].map(x => `<button class="set" role="tab" data-set="${x.id}" aria-selected="${ui.set[ui.puzzle] === x.id}">${x.label}${x.ready ? '' : '<i>soon</i>'}</button>`).join('');
+    { const box = $('#sets'), on = $('.set[aria-selected="true"]', box); if (box && on && box.scrollWidth > box.clientWidth) box.scrollLeft = on.offsetLeft - (box.clientWidth - on.offsetWidth) / 2; } // a long row of sets scrolls to the chosen one
     $$('.sub').forEach(b => b.setAttribute('aria-selected', b.dataset.s === ui.screen));
     const main = $('#main'), key = ui.puzzle + ui.set[ui.puzzle] + ui.screen, y = window.scrollY;
     const soon = !ready() && ui.screen !== 'settings';
@@ -632,7 +638,7 @@
   function previewOne(p, a) {
     try {
       if (GEN[p]) {
-        const g = GEN[p], c = byId[p][ui.edit], st = g.start(a), inv = g.scr(a), same = c && g.eng.classOf(st) === c.cls;
+        const g = GEN[p], c = byId[p][ui.edit], st = g.start(a), inv = g.scr(a), same = c && (g.verify ? g.verify(st, c) : g.eng.classOf(st) === c.cls);
         return { inv, st: same ? `<div>This alg solves <b>${esc(c.id)}</b>.</div>` : `<div class="bad">This alg solves a different case than ${esc(c ? c.id : '')}.</div>`, svg: g.draw(st) };
       }
       if (p === 'mm') {

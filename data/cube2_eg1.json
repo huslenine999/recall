@@ -1,0 +1,455 @@
+[
+ {
+  "id": "Sune 1",
+  "group": "Sune",
+  "algs": [
+   "(U') F' L U2 F2 R U'",
+   "(U2) R U R' U F R U' R2 F' R",
+   "y' (U') R' F R2 F' R2 U2 R",
+   "(U') F' R U2 R' F2 U2 F",
+   "(U) R U' R2 F' R F U R' F R",
+   "(U') F' R F2 U2 R F'"
+  ]
+ },
+ {
+  "id": "Sune 2",
+  "group": "Sune",
+  "algs": [
+   "R U R' F2 U F R U R'",
+   "(U) F R' F' R F R U' R' U R' F' R",
+   "(U2) F R2 U' R2 F U' F2 U' R",
+   "(U') R' U R' U2 R U' F2 U' R U R",
+   "(U2) R2 U' R2 F R2 U' R2 U' F2 U' R",
+   "(U2) R2 U R2 F' R2 U R2 U' F2 U' R",
+   "(U2) R' F2 R2 U R' F2 U F",
+   "(U2) F' R2 U R2' F' U' F2 U' R"
+  ]
+ },
+ {
+  "id": "Sune 3",
+  "group": "Sune",
+  "algs": [
+   "(U2) F R' F' R U R' F' R2 U R'",
+   "(U') R' F R U2 R U' R2 F2 R F'",
+   "R2 F2 U' R U' F R' F R2",
+   "R U' R' F2 U F' R U2 R' U' F'"
+  ]
+ },
+ {
+  "id": "Sune 4",
+  "group": "Sune",
+  "algs": [
+   "F' U R U' R' U F R U R'",
+   "(U') R U' R' F U' R' F R2 U R' F'",
+   "R U R' F' U R U2 R' U2 R U R'",
+   "(U) F' R' F R2 U R' U' F R' F' R",
+   "(U2) F U' R U2 R' F2 R' F R"
+  ]
+ },
+ {
+  "id": "Sune 5",
+  "group": "Sune",
+  "algs": [
+   "(U) R U' R' U R U' R' U F R U' R'",
+   "(U') R2' F U' R U' R U' B2",
+   "(U) R U' R' U R U' R' U' R' F' R F",
+   "(U') R' F' R F U R' F' R U R' F' R",
+   "(U2) R U2 R' U R' F' R F R' F R",
+   "R U R' F R U' R' U R' F2 R",
+   "R' U' F R2 U' R2 U2 F R",
+   "(U) F2 U' R F' U R' F R2"
+  ]
+ },
+ {
+  "id": "Sune 6",
+  "group": "Sune",
+  "algs": [
+   "R' F R2 U' R' U R U' R' F",
+   "(U) R' F U R2 U R2 F' U' R2",
+   "(U2) R' F' U' F2 R2 U' R2 U2 F R"
+  ]
+ },
+ {
+  "id": "Anti-Sune 1",
+  "group": "Anti-Sune",
+  "algs": [
+   "(U') B U' R2 F2 U' F",
+   "(U) R' F R2 U R' F' U' R U' R'",
+   "R' F' R U' F' R' F R2 U R'",
+   "(U') F' U2 F2 R U2 R' F",
+   "(U') F R' U2 F2 R' F"
+  ]
+ },
+ {
+  "id": "Anti-Sune 2",
+  "group": "Anti-Sune",
+  "algs": [
+   "(U) R U' R' F' U' F2 R U' R'",
+   "R' F R U' R U R' F' R' F R F'",
+   "R U' F2 R U2 R U' B",
+   "F R U' R' U R' F' R U F' R U R'"
+  ]
+ },
+ {
+  "id": "Anti-Sune 3",
+  "group": "Anti-Sune",
+  "algs": [
+   "F' R U R' U' R U R2 F' R",
+   "(U2) F U R U' R' U' R U2 R' F' R U R' F'",
+   "(U') R2 U F' R F' U R2 U R2"
+  ]
+ },
+ {
+  "id": "Anti-Sune 4",
+  "group": "Anti-Sune",
+  "algs": [
+   "R U' R' F' U' R U R' U' F",
+   "(U') R' F R F' U R U' R2 F' R F",
+   "(U) F R U' R2' F' R U F' R U R'",
+   "(U') R U R' F R U' R' U2 R' F R",
+   "x2 y F R F' U' R' F' R U' R' F"
+  ]
+ },
+ {
+  "id": "Anti-Sune 5",
+  "group": "Anti-Sune",
+  "algs": [
+   "(U') R U R' F' U' R U R' U' R U R'",
+   "(U) F' R' F R U R U R' U' R U R'",
+   "(U2) R U F' R U R2 U' R U R'",
+   "R' F2 R U' R U R' F' R U' R'",
+   "(U') R2 F' R U' F R' U F2"
+  ]
+ },
+ {
+  "id": "Anti-Sune 6",
+  "group": "Anti-Sune",
+  "algs": [
+   "(U2) R U' R2 F R U' R' F R F'",
+   "(U) F R' F2 R2 U R' U2 R' F' R"
+  ]
+ },
+ {
+  "id": "Pi 1",
+  "group": "Pi",
+  "algs": [
+   "(U2) F2 R U R' U2 R U R' U' F",
+   "(U2) R2 B2 R' U R' U' R U2 R U' R2",
+   "y2 (U) R U' R2 F R2 U' R B2 R2",
+   "(U) F U' R' F R U' F2 R U R'",
+   "R U2 R2 F R F' R U' R2 F' R2 U R'",
+   "(U2) R2 B2 U R' U2 R' U R U' R'",
+   "y2 R2 F2 U' R U2 R U' R' U R",
+   "F U' R' F R U R U R' U F'"
+  ]
+ },
+ {
+  "id": "Pi 2",
+  "group": "Pi",
+  "algs": [
+   "(U') R U' R2 F R2 U' R'",
+   "(U') R U R2 F' R2 U R'",
+   "(U') R' F R2 U' R2 F R",
+   "(U') R' F' R2 U R2 F' R"
+  ]
+ },
+ {
+  "id": "Pi 3",
+  "group": "Pi",
+  "algs": [
+   "(U') F R' F U' F2 R U R",
+   "(U') F' R U2 R' F' U2 F R' F' R",
+   "R U' R2 F' R F U2 F U F'",
+   "(U') F U R' U' R U2 F' R U' R2 F"
+  ]
+ },
+ {
+  "id": "Pi 4",
+  "group": "Pi",
+  "algs": [
+   "(U') R U' R' U R U' R' F R U' R'",
+   "(U') R' F R U' R' F R F' R' F R",
+   "(U') F' R U R' U' R U R' F' R U R'",
+   "(U') F R' F' R U R' F' R F R' F' R",
+   "R U' R2' F R3 U' R' F R' F'",
+   "F' R U' R' U F' U2 F'"
+  ]
+ },
+ {
+  "id": "Pi 5",
+  "group": "Pi",
+  "algs": [
+   "(U) F U' R U2 R' F' R U R' F'",
+   "(U') R U R' U R U' R2' F' R F R' F' R",
+   "R U' R2 F R U R U' R' U' R' F R F'",
+   "F R U' R' U' F' R U R2' F' R",
+   "(U2) F' R' F R F' R' F2 R U' F",
+   "R U' R2 F R F' U' R' F' R F"
+  ]
+ },
+ {
+  "id": "Pi 6",
+  "group": "Pi",
+  "algs": [
+   "F R U' R' F R U2 R' U F'",
+   "(U') R' F R F' R' F R2 U R' U' R U' R'",
+   "(U') R' F' R U' R' F R2 U R' F' R U R'",
+   "(U') F R' F' R U R U R' U' R' F' R2 U R'",
+   "(U2) F' R' F R U F R' F' R2 U R'",
+   "(U) F' U R' F2 R F R' F' R F",
+   "R F' R U' R' F R2 U2 R' U' R'",
+   "(U2) R' U2 R U2 F2 U' F2 R U R",
+   "R U R' F' U' F R' F' R2 U R'"
+  ]
+ },
+ {
+  "id": "U 1",
+  "group": "U",
+  "algs": [
+   "R U R' U R U' R2 F' R2 U R'",
+   "R U' R2 F R2 U R' U' R U' R'",
+   "R U R2' F' R2 U' R' U' R U' R'",
+   "B' R2 F' R2 B' U' R2",
+   "R U R' U R U R2 F R2 U' R'"
+  ]
+ },
+ {
+  "id": "U 2",
+  "group": "U",
+  "algs": [
+   "(U') y R' U R' U' R U' R' U' F2 R2",
+   "F R2 B R2' F U F2 R2",
+   "R U R' F' U' R U R' U' F R' F' R",
+   "(U') x U' R' U R U' F R U R U'",
+   "(U2) F' R' F R U R U R' U' F R' F' R",
+   "(U2) F' R' F R F' U F R U R'"
+  ]
+ },
+ {
+  "id": "U 3",
+  "group": "U",
+  "algs": [
+   "(U) F' U2 R U2 R' U2 F",
+   "(U') R U' R2 F2 R F' U R U R'",
+   "(U) F U2 R' F2 R U2 F'",
+   "(U) R U R' U F R U R' U R U' R2 F2 R",
+   "F R U2 R' F2 R U2 R' F'",
+   "(U') R' F R2 U2 R' F U' R' F' R",
+   "(U) R U' R' U' F R' F2 R2 U R'"
+  ]
+ },
+ {
+  "id": "U 4",
+  "group": "U",
+  "algs": [
+   "(U2) R' F R F' R' F R2 U' R'",
+   "R U' R' F R U' R2 F R",
+   "R U' R' F R U2 F' R U R2 F"
+  ]
+ },
+ {
+  "id": "U 5",
+  "group": "U",
+  "algs": [
+   "(U2) R' F R F' U R U' R' F R U' R'",
+   "(U') R U' R' U R U' R' U' F R U' R'",
+   "(U') R U' R' U R U' R' U R' F' R F",
+   "(U2) F' U' F U R' F R2 U' R'",
+   "(U2) R' F R U' R U R' F' U R U' R'",
+   "(U) F U' R' F2 R F' U2 F'",
+   "(U') R U2 F' R U R2' U' F",
+   "z' y (U) R U' R' U2 R U' R2 U'"
+  ]
+ },
+ {
+  "id": "U 6",
+  "group": "U",
+  "algs": [
+   "(U') R' F R U' R' F R U' R U R' F'",
+   "(U') R' F R2 U' R' U F U F'",
+   "(U) F' U R U2 R' F U2 F",
+   "R U' R' F U' R' F R F' R' F R",
+   "(U') R' F R U' R' F R U F' R' F R",
+   "(U2) R U R' F' R U2 R' U2 F R' F' R"
+  ]
+ },
+ {
+  "id": "L 1",
+  "group": "L",
+  "algs": [
+   "R U' R' U R U' R2 F' R F",
+   "(U) R U' R' F R U R' F' R U2 R'",
+   "(U) F R U' R' F' R U R' F' R U R'",
+   "(U) R U R' F' R U2 R' U2 R U R'"
+  ]
+ },
+ {
+  "id": "L 2",
+  "group": "L",
+  "algs": [
+   "(U) R' F R U' R' F R2 U R' F'",
+   "(U2) R' F R F' R' F R U R U2 R'",
+   "x U' R' U R U R' U' R U R' U' R",
+   "(U2) F R' F' R U2 R U' R2' F' R2 U R'",
+   "F' R' F R F R' F' R F R' F' R",
+   "R' F' R F R' F2 R U2 R' F' R",
+   "(U') F2 R U' R' F2 R U' R' U' F"
+  ]
+ },
+ {
+  "id": "L 3",
+  "group": "L",
+  "algs": [
+   "R' U R2 U' R2 U' F R2 U' R'",
+   "(U2) F' R' F R2 U R' U F' U R' F R F",
+   "(U') z2 U' R2 U F R2 U' R' U R' F"
+  ]
+ },
+ {
+  "id": "L 4",
+  "group": "L",
+  "algs": [
+   "R' F R2 U R' F' R U2 R'",
+   "R U2 R' F R U' R2 F' R",
+   "(U) R' F2 R F' R' F R2 U R'",
+   "(U) R U' R2 F' R F R' F2 R",
+   "R' U2 R' U F U F R2 U2 R'",
+   "(U2) F U2 R' F2 R2 U' R' U2 F'"
+  ]
+ },
+ {
+  "id": "L 5",
+  "group": "L",
+  "algs": [
+   "(U) R U R' F' R U R' U' F R' F' R",
+   "(U2) F' R' F R U' R U R' U' R U R'",
+   "R U' R2' F R U' R' F R2 F' U' R' U' R",
+   "R U R' F' U R U R' U' R U R'",
+   "(U2) y2 x U R2 U R' U2 R U R'",
+   "(U) R U R' F R F' R' F2 U' R2"
+  ]
+ },
+ {
+  "id": "L 6",
+  "group": "L",
+  "algs": [
+   "(U) R' U2 F R U2 R U' R2 F",
+   "(U') F R U' R' U R' F' R U R' F' R",
+   "(U') F' U2 F' R U2 R' U' F",
+   "(U) R' F' R F U' R' F' R U R' F' R",
+   "R' F' R U F' R' F R U' R U R'"
+  ]
+ },
+ {
+  "id": "T 1",
+  "group": "T",
+  "algs": [
+   "(U) F R U' R2 F' R U R' F' R",
+   "R U' R2 F R2 U R' U2 R' F R F'",
+   "R U' R2 F R U R U R' F R' F' R",
+   "R U R' U R U R2 F R U' R' F R F'",
+   "R' F R U2 R' F2 R F' R' F R"
+  ]
+ },
+ {
+  "id": "T 2",
+  "group": "T",
+  "algs": [
+   "(U) F' R' F R2 U R' U' R U R'",
+   "(U2) R U' R' U2 R U2 R' F R U' R'",
+   "(U') R U2 R' F R U' R' F' R U R'",
+   "(U') R U R' F' U2 R U R' U' R U R'"
+  ]
+ },
+ {
+  "id": "T 3",
+  "group": "T",
+  "algs": [
+   "(U2) R U' R2 F R U R U2 R'",
+   "R' F R2 U' R' U' R' F2 R",
+   "(U2) R U2 R' U' R' F' R2 U R'",
+   "R' F2 R U R U R2 F' R"
+  ]
+ },
+ {
+  "id": "T 4",
+  "group": "T",
+  "algs": [
+   "(U') R U' R' F' U' F R' F' R F",
+   "(U2) R' F R F' U R U' R' U' R' F' R F",
+   "(U') R' F R F' R U2 R' F' R U R' U' R U R'",
+   "R2 B2 U' R' U' R U' R' U R'",
+   "(U') R' U F R2 U' R2 U' F U' R",
+   "(U') R2 B2 U' R' U2 R' U2 R'",
+   "R U' R' U' R' F2 U' F R F' U R"
+  ]
+ },
+ {
+  "id": "T 5",
+  "group": "T",
+  "algs": [
+   "R' F' R2 U R' F' R U R'",
+   "(U2) R U R2 F' R F R' F' R",
+   "R U2 R2' F R2 U' R' F' R U R'",
+   "R' F R2 U' R2 F2 R F' R U R'"
+  ]
+ },
+ {
+  "id": "T 6",
+  "group": "T",
+  "algs": [
+   "(U') R U' R' U2 F R U2 R' F",
+   "(U') R' F R U2 F' R' F2 R F'",
+   "(U') R' F R2 U R' F' U2' R' F R F'",
+   "(U) R' U' R U F2 U' F2 R U R",
+   "(U2) R U R' U F R U' R' F' R U R'",
+   "(U) z2 y R U' R' U R' F R F' R"
+  ]
+ },
+ {
+  "id": "H 1",
+  "group": "H",
+  "algs": [
+   "R' F R2 U' R2 U' F U R",
+   "R' F R2 U' R' F R U R' F'",
+   "R U' R2 F R F' R' F' R F",
+   "(U) R U R' F R U' R' U' R U' R' F",
+   "(U) F' R' F R F R' F' R2 U R'",
+   "(U) F R U' R' F' R U R2' F' R"
+  ]
+ },
+ {
+  "id": "H 2",
+  "group": "H",
+  "algs": [
+   "F' U R U' R2 F2 R U' F",
+   "(U) F R U' R2 F U' F2 U R",
+   "(U) F' R' F R2 U2 R' F' U2 F",
+   "F U' R U2 R2 F' R U F'",
+   "F U' R' F R2 U2 R' U F'",
+   "F U2 F' R U' R2 F2 R F'"
+  ]
+ },
+ {
+  "id": "H 3",
+  "group": "H",
+  "algs": [
+   "R' U' R' F2 U F' R F'",
+   "(U) R' F R F' U2 F R U2 R' F",
+   "(U') x2 y F' R U2 R2 F R2 U' R' F",
+   "(U2) R U R2 F2 U2 F R U R2",
+   "(U2) F R F R' U' F2 R U2 R' U' R2"
+  ]
+ },
+ {
+  "id": "H 4",
+  "group": "H",
+  "algs": [
+   "R U R' F' R U R' U' R U R'",
+   "(U) R' F R F' R' F R U' R' F R F'",
+   "(U2) R' F' R F R' F' R U R' F' R",
+   "(U) R U' R' F R U' R' U R U' R' F",
+   "(U') F R F' R U R F' R2 U R'"
+  ]
+ }
+]
