@@ -34,7 +34,6 @@ Progress is stored in each browser's localStorage, so laptop and phone do not sy
 | `data/square1_csp.json` | 179 CSP cases (90 cube shapes x even/odd): `{n, name, section, parity, alg, key}`; `key` is the shape (corner/edge pattern of both layers) the alg starts from |
 | `data/square1_ep.json` | 99 EP rows: `{u, d, parity, algsNoFlip, algsFlip, prob, count, note}` (becomes 146 cases: no-flip + flip) |
 | `data/verification_report.md`, `tools/` | Scripts used to parse the PDFs and verify every alg against the simulators |
-| `backup-before-redesign/` | The original Sonnet build, before the redesign (reference only) |
 | `Alg Trainer Build Plan ... .md` | The original build plan |
 
 ## Current state
@@ -222,3 +221,55 @@ live diagram preview), Settings (theme, show diagram, Megaminx sticker colours, 
 - Data key `obl`; filters by number of slashes. Scrambles use `cspSetup(alg, CUBE_SHAPE)` like PBL.
 - `tools/verify_obl.js` (in `npm test`): class matches, no duplicates, scramble + alg orients both layers.
 - Names cut off in the PDF's text were restored (Pinwheel, Snoopy).
+
+## 2026-11-12: visual refresh
+
+Colours, fonts and the icon are unchanged on purpose; the refresh is structure and shape.
+
+- **Header is one row**: a "Recall" wordmark (`#brand`, goes to Train), puzzle switch, alg sets, then the screens on the right. `#sets` now lives inside `.top-in`; `.sets-row` is gone.
+  On a phone the wordmark hides and puzzle and sets each take a full row, as before.
+- **The mat**: scramble and timer are one framed surface (`.scramble` + `.pad`, joined by a negative margin equal to the stage gap: 12px, 14px on a phone).
+  It sits on `--well`, a new token darker than the page in dark themes and white in light ones; palettes set it in `applyTheme` (`PAL_VARS` includes it).
+  Hold and armed still flood the timer red and green. Digits are lighter and wider (weight 500, stretch 84%).
+- **Rail**: the case picture stands on the page with no card or heading. The session is a scorecard: ruled stat cells and numbered solves (`.ix`).
+- **Cases**: a case you train is a solid card with a strip of its group colour on top; a case you skip is an empty dashed outline, dimmed. The full coloured outlines are gone.
+- **Radii by role**: framed surfaces 16 to 20px, buttons and selects 10px, small buttons 8px, chips stay pills.
+- After "I forgot it" the page scrolls to the top so the answer is in view on a phone.
+
+## 2026-11-13: renovation ("black plastic and stickers")
+
+Reference for the look: the puzzles themselves, black plastic with bright stickers. Fonts are unchanged (Bricolage, Martian Mono) but used at their extremes.
+
+- **Colour tokens** (top of `src/index.template.html`): near-black `--bg`/`--panel`/`--raise`/`--line`, sticker yellow `--pri-bg` (#FFD60A), red `--hold`, green `--go`.
+  New tokens: `--pri-edge` (the darker edge under yellow keys), `--glow2`, `--glow3`, `--glow-a` (background lights), `--ease`. Palettes set the glow tokens in `applyTheme`.
+  `theme-color` metas and the manifest colours in `build.js` follow the new background. The app icons still have the old indigo background (`tools/make_icons.js` would redo them).
+- **Background**: `body::before` is a fixed layer with three soft coloured lights and a grain texture.
+- **Header and Cases toolbar are frosted** (see-through with blur). The header's blur lives on `.top::before`, not on `.top`: a backdrop-filter or transform on `.top`
+  itself makes it the containing block for the phone's fixed bottom nav and drags the nav up into the header. The opening animation of `.top` is opacity-only on phones for the same reason.
+  `tools/smoke.js` checks the nav sits at the bottom.
+- **Type**: headings 800 with tight tracking; timer digits thin (200) and wide, heavier (500) while the pad is red or green; stats numbers 300.
+- **Yellow key**: `.btn.primary` and the selected alg set have a hard darker edge and press down when clicked.
+- **Timer**: holding and armed add a glow ring; while running, the frame disappears and only the digits remain.
+- **Motion**: one entrance when the app opens (`body.boot`, removed after 1.4 s in app.js), a 220 ms fade between screens (`main.animate` in `render`), a pop on the tick when a case is switched on (`.tile.pop`).
+  All of it is off under prefers-reduced-motion.
+- **Lost and restored on 2026-11-13**: the 2026-11-12 visual refresh was written over `src/app.js` and `src/index.template.html` from a copy that predated the OBL commit (64c4040),
+  so OBL showed "soon" in the working tree until this session merged the two again. HEAD always had OBL.
+
+## 2026-11-13: polish pass (same look, pushed further)
+
+
+- **Fixed.** Below 861px the "Select cases" menu opened behind the cards (`.cases-top` now has its own layer: `position:relative;z-index:10`).
+  On 320px phones the Cases screen was wider than the screen (single-column grids now use `minmax(0,1fr)`, not `1fr`, so a long alg cannot widen a card).
+  `tools/smoke.js` now checks seven screens at 320px.
+- **Times read like cstimer**: `12.34`, then `1:02.34` from a minute (`fmt` in app.js). The idle timer shows `0.00`.
+- **Timer feedback.** A solve that beats that case's best (and is not its first time) turns the digits yellow (`--best`) with a "New best on <case>" badge on the pad, and a "Best" tag in the last-solve row (`lastBest()`).
+  After "I forgot it" the pad says "Forgot" in red instead of a dash. The session list colours the session's fastest solve.
+  Hold and armed draw a solid outline ring, not a glow.
+- **Cases progress.** A bar over the set: learned (green), learning (yellow), new, with counts (`progHtml`); it updates when a card's status changes.
+- **Light theme** uses the sticker yellow for the primary key, the selected set and switches, like dark. `--best` is dark amber there for contrast.
+- **Browser surfaces** are themed: text selection, caret, scrollbars, accent colour.
+- **Layout.** Tablets (761 to 1100px): brand, puzzle and screens on one row, alg sets on the next. Wide screens: Settings in two columns, Appearance on the right.
+  The scramble shows a copy mark on hover and focus.
+- **Icons** regenerated in black and sticker yellow (`node tools/make_icons.js`).
+
+Old design copies (`backup-before-redesign/` and the dated backup folders) were removed on 2026-11-13; only the current design is kept. The original build is still in git history before that commit.

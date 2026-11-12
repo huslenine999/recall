@@ -26,7 +26,7 @@ fs.writeFileSync('dist/index.html', html);
 const buildId = require('crypto').createHash('sha1').update(html).digest('hex').slice(0, 10);
 const manifest = {
   id: './', name: 'Recall: Algorithm Trainer', short_name: 'Recall', description: 'Alg trainer for Megaminx and Square-1.',
-  start_url: './', scope: './', display: 'standalone', background_color: '#1B1A2B', theme_color: '#1B1A2B',
+  start_url: './', scope: './', display: 'standalone', background_color: '#100F14', theme_color: '#100F14',
   icons: [{ src: 'icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' }, { src: 'icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' }, { src: 'icon-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' }]
 };
 fs.writeFileSync('dist/manifest.webmanifest', JSON.stringify(manifest, null, 1));

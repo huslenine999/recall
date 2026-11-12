@@ -1,6 +1,6 @@
 // Recall service worker: the whole app is one page, so it is cached when first visited and then works with no connection.
 // BUILD is replaced by build.js, so every new build gets a new cache and the old one is deleted.
-const CACHE = 'recall-0a282b5686';
+const CACHE = 'recall-ae148d8509';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './favicon.svg', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => {

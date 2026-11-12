@@ -68,7 +68,7 @@
   const settings = Object.assign({ showDiagram: { mm: true, oll: true, sq: true, csp: true, pbl: true, obl: true }, showCase: true, mmArrows: false, triggers: 'boxes', trigNames: true, theme: 'system' }, store.get('at.settings.v1', {}));
   const saveSettings = () => store.set('at.settings.v1', settings);
   // A chosen palette (settings.palette = its name) sets the color tokens inline, which beats the stylesheet's light/dark blocks.
-  const PAL_VARS = ['--bg', '--text', '--mute', '--pri-bg', '--pri-fg', '--focus', '--bad', '--ok', '--warn', '--panel', '--raise', '--line', '--scrim'];
+  const PAL_VARS = ['--well', '--glow2', '--glow3', '--glow-a', '--hold', '--hold-ink', '--bg', '--text', '--mute', '--pri-bg', '--pri-fg', '--focus', '--bad', '--ok', '--warn', '--panel', '--raise', '--line', '--scrim'];
   const palLum = h => { const c = [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16) / 255).map(v => v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4)); return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]; };
   const palContrast = (x, y) => { const a = palLum(x), b = palLum(y); return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05); };
   const metaOrig = $$('meta[name="theme-color"]').map(m => m.content);
@@ -82,7 +82,7 @@
       let sub = sub0; for (let t = 0.1; palContrast(sub, bg) < 4.5 && t <= 1; t += 0.1) sub = blend(sub0, text, t);
       const onMain = [bg, '#000000', '#ffffff'].find(c => palContrast(c, main) >= 4.5) || (palContrast('#000000', main) > palContrast('#ffffff', main) ? '#000000' : '#ffffff');
       const mix = n => `color-mix(in srgb, ${bg} ${n}%, ${text})`;
-      const v = { '--bg': bg, '--text': text, '--mute': sub, '--pri-bg': main, '--pri-fg': onMain, '--focus': main, '--bad': err, '--ok': dark ? '#5FD99A' : '#0F7A45', '--warn': dark ? '#FFC93C' : '#946400', '--panel': mix(92), '--raise': mix(84), '--line': mix(76), '--scrim': dark ? 'rgba(0,0,0,.65)' : 'rgba(10,10,12,.5)' };
+      const v = { '--bg': bg, '--text': text, '--mute': sub, '--pri-bg': main, '--pri-fg': onMain, '--focus': main, '--bad': err, '--ok': dark ? '#5FD99A' : '#0F7A45', '--warn': dark ? '#FFC93C' : '#946400', '--well': dark ? `color-mix(in srgb, ${bg} 78%, #000)` : mix(96), '--glow2': sub0, '--glow3': err, '--glow-a': dark ? '10%' : '7%', '--panel': mix(92), '--raise': mix(84), '--line': mix(76), '--scrim': dark ? 'rgba(0,0,0,.65)' : 'rgba(10,10,12,.5)' };
       Object.keys(v).forEach(k => r.style.setProperty(k, v[k]));
       r.style.colorScheme = dark ? 'dark' : 'light'; r.setAttribute('data-theme', dark ? 'dark' : 'light');
     } else if (settings.theme === 'light' || settings.theme === 'dark') r.setAttribute('data-theme', settings.theme); else r.removeAttribute('data-theme');
@@ -126,7 +126,7 @@
   const avgOf = (t, n) => (t.length >= n ? mean(t.slice(-n)) : null);
 
   // ---- timer formatting ----
-  const fmt = ms => { const cs = Math.floor(ms / 10), m = Math.floor(cs / 6000), s = Math.floor(cs / 100) % 60; return m + ':' + String(s).padStart(2, '0') + '.' + String(cs % 100).padStart(2, '0'); };
+  const fmt = ms => { const cs = Math.floor(ms / 10), m = Math.floor(cs / 6000), s = Math.floor(cs / 100) % 60, c = String(cs % 100).padStart(2, '0'); return m ? m + ':' + String(s).padStart(2, '0') + '.' + c : s + '.' + c; }; // cstimer style: 12.34, then 1:02.34
   const fmtN = ms => (ms == null ? '–' : fmt(ms));
 
   // ---- app state ----
@@ -224,7 +224,7 @@
     main.innerHTML = soon ? viewSoon() : ui.screen === 'train' ? viewTrain() : ui.screen === 'cases' ? viewCases() : viewSettings();
     if (soon) { /* nothing to wire */ } else if (ui.screen === 'train') wireTrain(); else if (ui.screen === 'cases') wireCases(); else wireSettings();
     document.body.classList.toggle('lock', ui.screen === 'cases' && !!ui.edit);
-    if (main.dataset.key === key) window.scrollTo(0, y); else window.scrollTo(0, 0);
+    if (main.dataset.key === key) window.scrollTo(0, y); else { window.scrollTo(0, 0); if (main.dataset.key && main.animate && !matchMedia('(prefers-reduced-motion: reduce)').matches) main.animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }], { duration: 220, easing: 'cubic-bezier(.16,1,.3,1)' }); }
     main.dataset.key = key;
     if (!soon) updateTimer();
     writeRoute();
@@ -291,7 +291,8 @@
   function sessionHtml(p) {
     const ss = sess[p], times = ss.filter(x => x.time != null).map(x => x.time);
     if (!ss.length) return `<section class="panel session"><h2>This session</h2><p class="note">Your solves from this visit are listed here with their case.</p></section>`;
-    const rows = ss.slice(-8).reverse().map(x => `<li class="${x.time == null ? 'miss' : ''}">${sticker((byId[p][x.id] || {}).group)}<span class="nm">${esc(x.id)}</span><span class="tm">${x.time == null ? 'Forgot' : fmt(x.time)}</span></li>`).join('');
+    const sb = times.length > 1 ? Math.min(...times) : null; // the session's fastest solve is marked in the list
+    const rows = ss.slice(-8).reverse().map((x, i) => `<li class="${x.time == null ? 'miss' : x.time === sb ? 'sbest' : ''}"><span class="ix">${ss.length - i}</span>${sticker((byId[p][x.id] || {}).group)}<span class="nm">${esc(x.id)}</span><span class="tm">${x.time == null ? 'Forgot' : fmt(x.time)}</span></li>`).join('');
     return `<section class="panel session"><h2>This session</h2>
       <dl class="stats"><div><dd>${times.length}</dd><dt>Solved</dt></div><div><dd>${ss.length - times.length}</dd><dt>Forgot</dt></div><div><dd>${fmtN(times.length ? mean(times) : null)}</dd><dt>Mean</dt></div><div><dd>${fmtN(times.length ? Math.min(...times) : null)}</dd><dt>Best</dt></div><div><dd>${aoText(ss, 5)}</dd><dt>Ao5</dt></div><div><dd>${aoText(ss, 12)}</dd><dt>Ao12</dt></div></dl>
       <ul class="solves">${rows}</ul></section>`;
@@ -333,11 +334,11 @@
     const prog = run.mode === 'recap' ? `${run.total - run.queue.length} of ${run.total}` : `${nSel} ${nSel === 1 ? 'case' : 'cases'}`;
     const shown = run.revealed, ss = sess[p], lr = ss[ss.length - 1], pc = lr && byId[p][lr.id];
     // the case being solved: its picture only. The answer appears only when you ask for it.
-    const caseCard = settings.showCase && !shown && matFor(p, c) ? `<section class="panel casecard" aria-label="Case"><h2>Case</h2>${matFor(p, c)}</section>` : '';
+    const caseCard = settings.showCase && !shown && matFor(p, c) ? `<section class="panel casecard" aria-label="Case">${matFor(p, c)}</section>` : '';
     const peek = !shown && ui.peek && pc ? revealPanel(p, pc, 'Last case') : '';
     const rail = shown ? revealPanel(p, c, 'Case answer') : peek + caseCard;
     const last = !shown && lr ? `<div class="last">
-        <div class="lt"><b>${esc(lr.id)}</b><span class="lv ${lr.time == null ? 'miss' : ''}">${lr.time == null ? 'Forgot' : fmt(lr.time)}</span></div>
+        <div class="lt"><b>${esc(lr.id)}</b><span class="lv ${lr.time == null ? 'miss' : lastBest() ? 'best' : ''}">${lr.time == null ? 'Forgot' : fmt(lr.time)}</span>${lr.time != null && lastBest() ? '<span class="pb">Best</span>' : ''}</div>
         <div class="lb"><button class="btn sm" id="peek" ${pc ? '' : 'disabled'}>${ui.peek ? 'Hide alg' : 'Show alg'}</button><button class="btn sm" id="lsoon">Again soon</button><button class="btn sm" id="undo" title="Delete the last solve">Delete <kbd>${MOD}Z</kbd></button></div>
       </div>` : '';
     const actions = shown
@@ -405,8 +406,11 @@
     t.className = 'pad ' + run.phase;
     const d = $('#digits'), h = $('#hint'); if (h) h.textContent = hintText();
     if (run.phase === 'running') { d.textContent = fmt(performance.now() - run.t0); stopRaf(); raf = requestAnimationFrame(updateTimer); }
-    else if (run.phase !== 'idle') d.textContent = '0:00.00';
-    else d.textContent = run.revealed ? '—' : run.time != null ? fmt(run.time) : '0:00.00'; // idle: the last solve's time stays until the next one starts
+    else if (run.phase !== 'idle') d.textContent = '0.00';
+    else d.textContent = run.revealed ? 'Forgot' : run.time != null ? fmt(run.time) : '0.00'; // idle: the last solve's time stays until the next one starts
+    const best = run.phase === 'idle' && !run.revealed && run.time != null && lastBest();
+    t.classList.toggle('missed', run.phase === 'idle' && run.revealed); t.classList.toggle('best', !!best);
+    const bd = $('.badge', t); if (best && !bd) t.insertAdjacentHTML('afterbegin', `<span class="badge">${STAR}New best on ${esc(best)}</span>`); else if (!best && bd) bd.remove();
   }
   function press() { // hold start (Space down / pointer down on timer)
     if (run.phase !== 'idle' || run.revealed || !run.cur) return;
@@ -433,8 +437,10 @@
     const p = dk(), s = stat(p, run.cur.id);
     s.att.push(1); if (s.att.length > 10) s.att.shift(); s.fails++; s.last = Date.now(); if (s.status === 'New') s.status = 'Learning';
     sess[p].push({ id: run.cur.id, time: null });
-    run.phase = 'idle'; run.time = null; run.revealed = true; ui.peek = false; save(p); render();
+    run.phase = 'idle'; run.time = null; run.revealed = true; ui.peek = false; save(p); render(); window.scrollTo(0, 0);
   }
+  // the case id when the last solve was the best time ever on that case (and not its first time), else ''
+  function lastBest() { const e = sess[dk()].slice(-1)[0]; if (!e || e.time == null) return ''; const t = stat(dk(), e.id).times; return t.length > 1 && e.time <= Math.min(...t) ? e.id : ''; }
   function lastTime() { const l = sess[dk()].slice(-1)[0]; return l && l.time != null ? l.time : null; }
   function doUndo() { // delete the last solve (cstimer: Alt+Z). Taking back a forgot mark also lets you try that case again.
     if (run.phase === 'running') return;
@@ -530,6 +536,12 @@
       <div class="tile-f"><div class="st">${stats}</div><button type="button" class="btn quiet" data-edit="${esc(c.id)}">Edit</button></div>
     </article>`;
   }
+  function progHtml(p) { // how much of the whole set is learned, learning and new
+    const n = { Learned: 0, Learning: 0, New: 0 }; cases[p].forEach(c => { n[stat(p, c.id).status]++; });
+    const seg = k => `<i class="p-${k}" style="flex-grow:${n[k]}"></i>`;
+    return `<div class="prog" id="prog"><div class="prog-bar" aria-hidden="true">${seg('Learned')}${seg('Learning')}${seg('New')}</div>
+      <div class="prog-key">${['Learned', 'Learning', 'New'].map(k => `<span class="s-${k}">${statusGlyph(k)}<span><b>${n[k]}</b> ${k.toLowerCase()}</span></span>`).join('')}</div></div>`;
+  }
   const countText = p => `${cases[p].filter(c => c.ok && selected(p, c)).length} of ${cases[p].length} selected for training`;
   function filterCases(p) { // the cases the chips, the selects and the search box leave, in the chosen order
     let list = cases[p];
@@ -574,7 +586,7 @@
       : `<div class="chips" role="group" aria-label="Parity and flip">${[['all', 'All'], ['yes', 'Parity'], ['no', 'No parity']].map(([v, l]) => chip('sqParity', v, ui.sqParity === v, l, null, v === 'yes' ? 'parity' : v === 'no' ? 'no parity' : null)).join('')}<span class="div" aria-hidden="true"></span>${[['both', 'Both algs'], ['noflip', 'Without flip'], ['flip', 'With flip']].map(([v, l]) => chip('sqCol', v, ui.sqCol === v, l)).join('')}</div>`;
     const layerSel = (id, label, key, names) => `<select id="${id}" aria-label="${label}"><option value="any">${label}: any</option>${names.map(n => `<option value="${esc(n)}" ${ui[key] === n ? 'selected' : ''}>${label}: ${esc(n)}</option>`).join('')}</select>`;
     const pblSel = p === 'pbl' ? layerSel('pblTop', 'Top', 'pblTop', [...new Set(cases.pbl.map(c => c.top))]) + layerSel('pblBot', 'Bottom', 'pblBot', [...new Set(cases.pbl.map(c => c.bot))].sort()) : '';
-    return `<div class="cases-top">${chips}
+    return `<div class="cases-top">${chips}${progHtml(p)}
       <div class="tools"><span class="count" role="status">${countText(p)}${shownText(p, list)}</span><input type="search" class="txt search" id="q" value="${esc(ui.q)}" placeholder="Search name or alg" aria-label="Search cases by name or alg" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search">${pblSel}
         <details class="menu"><summary class="btn">Select cases <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1.5l5 5 5-5"/></svg></summary>
           <div class="menu-pop"><button id="selAll">Select all shown</button><button id="selNone">Deselect all shown</button><button id="selLearning">Only the ones I am learning</button><button id="selNotLearned">Only the ones not learned yet</button></div></details>
@@ -690,7 +702,7 @@
         const ch = e.target.closest('[data-chip]');
         if (ch) { // a status change only touches its own card
           const c = byId[p][ch.dataset.chip], s = stat(p, c.id); s.status = { New: 'Learning', Learning: 'Learned', Learned: 'New' }[s.status]; save(p);
-          ch.closest('.tile').outerHTML = tileHtml(p, c); return;
+          ch.closest('.tile').outerHTML = tileHtml(p, c); const pg = $('#prog'); if (pg) pg.outerHTML = progHtml(p); return;
         }
         if (e.target.closest('button, a, input, select, textarea')) return;
         const tile = e.target.closest('.tile'), box = tile && tile.querySelector('input[data-sel]');
@@ -699,7 +711,7 @@
       grid.addEventListener('change', e => {
         const box = e.target.closest('input[data-sel]'); if (!box) return;
         db[p].sel[box.dataset.sel] = box.checked ? 1 : 0; run.queue = []; run.cur = null; save(p);
-        box.closest('.tile').classList.toggle('is-on', box.checked);
+        box.closest('.tile').classList.toggle('is-on', box.checked); box.closest('.tile').classList.toggle('pop', box.checked);
         const cn = $('.count'); if (cn) cn.textContent = countText(p) + shownText(p, ui.shown);
       });
     }
@@ -739,7 +751,7 @@
           <li><span>Mark the last solve as forgot</span><span><kbd>${MOD}3</kbd></span></li>
         </ul>
       </section>
-      <section class="group"><h2>Appearance</h2>
+      <section class="group look"><h2>Appearance</h2>
         ${settings.palette && PALETTES.some(x => x[0] === settings.palette) ? '' : `<div class="line"><span>Theme</span><div class="seg" role="group" aria-label="Theme">${[['system', 'System'], ['light', 'Light'], ['dark', 'Dark']].map(([v, l]) => `<button data-theme="${v}" aria-pressed="${settings.theme === v}">${l}</button>`).join('')}</div></div>`}
         <div class="line" style="display:block;cursor:default"><span>Color palette<small>Pick a look for the whole site. Default uses the System, Light or Dark theme.</small></span><div class="pals">${palBtn(null)}${PALETTES.map(palBtn).join('')}</div></div>
         ${p !== 'mm' && p !== 'oll' ? `<div class="line" style="display:block;cursor:default"><span>Square-1 colors<small>Used by the EP, PBL and OBL diagrams. Sides 1 to 4 go clockwise seen from above, starting on the right. ${p === 'csp' ? 'CSP cases are about shape only, so they are drawn without colors.' : 'Match them to your puzzle.'}</small></span><div class="swatches">${sqSw}</div><button class="btn" id="resetSqCol">Reset colors</button></div>` : ''}
@@ -811,6 +823,7 @@
     if (ui.screen === 'train' && ready() && !run.cur) newRound();
     render(); focusEdit();
   });
+  $('#brand').addEventListener('click', () => go(ui.puzzle, 'train'));
   $('#tab-mm').addEventListener('click', () => go('mm', ui.screen));
   $('#tab-sq').addEventListener('click', () => go('sq', ui.screen));
   $$('.sub').forEach(b => b.addEventListener('click', () => go(ui.puzzle, b.dataset.s)));
@@ -949,6 +962,7 @@
 
   if (settings.seenIntro === undefined && KEYS.some(p => Object.keys(db[p].st).length)) settings.seenIntro = true;
   newRound(); render();
+  setTimeout(() => document.body.classList.remove('boot'), 1400); // the entrance plays once, not on every redraw
   KEYS.forEach(warm);
   if (sync.code) syncPull();
   // offline: the service worker keeps the app on the device; a new version shows up on the next open

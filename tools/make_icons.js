@@ -1,6 +1,6 @@
 // Renders the app icons (src/icons/*.png and favicon.svg) from one SVG. Needs Playwright:  node tools/make_icons.js
 const fs = require('fs'), path = require('path');
-const INK = '#1B1A2B', GOLD = '#FFC93C';
+const INK = '#100F14', GOLD = '#FFD60A'; // black plastic and sticker yellow, as the app's dark theme
 // a "recall" ring (an arrow that loops back) around a pentagon (Megaminx) and a turned square (Square-1)
 const glyph = `
   <g fill="none" stroke="${GOLD}" stroke-width="30" stroke-linecap="round" stroke-linejoin="round">

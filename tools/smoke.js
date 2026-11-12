@@ -70,14 +70,25 @@ async function phone(browser) {
   const gap = await page.evaluate(() => document.querySelector('#hint').getBoundingClientRect().top - (r => r.top + r.height * 0.86)(document.querySelector('#digits').getBoundingClientRect()));
   check('timer hint sits clear of the digits', gap >= 0, gap);
   check('no sideways scroll', await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+  check('screen tabs sit at the bottom of the phone', await page.evaluate(() => { const r = document.querySelector('.nav').getBoundingClientRect(); return Math.abs(r.bottom - innerHeight) < 2; }));
   await page.tap('[data-s="cases"]');
   check('cases screen has no sideways scroll', await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
   check('no script errors', errors.length === 0, errors.join(' | '));
 }
 
+async function smallPhone(browser) {
+  console.log('small phone (320px)');
+  const page = await (await browser.newContext({ ...devices['iPhone SE'] })).newPage();
+  await page.goto(url + '#mm/pll/train'); await page.tap('#introOk');
+  for (const h of ['#mm/pll/train', '#mm/pll/cases', '#mm/oll/cases', '#sq/pbl/cases', '#sq/obl/cases', '#sq/csp/cases', '#sq/ep/settings']) {
+    await page.goto(url + h); await page.waitForTimeout(150);
+    check(h + ' fits 320px with no sideways scroll', await page.evaluate(() => document.documentElement.scrollWidth <= 320), await page.evaluate(() => document.documentElement.scrollWidth));
+  }
+}
+
 (async () => {
   const browser = await chromium.launch();
-  try { await desktop(browser); await phone(browser); } finally { await browser.close(); }
+  try { await desktop(browser); await phone(browser); await smallPhone(browser); } finally { await browser.close(); }
   console.log(fails.length ? `\n${fails.length} failed` : '\nall passed');
   process.exit(fails.length ? 1 : 0);
 })().catch(e => { console.error(e); process.exit(1); });
