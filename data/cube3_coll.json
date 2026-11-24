@@ -1,0 +1,482 @@
+[
+ {
+  "id": "AS 1",
+  "group": "Anti Sune",
+  "algs": [
+   "y R U2 R' U' R U' R'",
+   "R' U' R U' R' U2 R",
+   "y2 L' U' L U' L' U2 L",
+   "y' L U2 L' U' L U' L'"
+  ],
+  "setup": "R' U2' R U R' U R",
+  "cls": "1b5j907"
+ },
+ {
+  "id": "AS 2",
+  "group": "Anti Sune",
+  "algs": [
+   "y2 R2 D R' U R D' R' U R' U' R U' R'",
+   "y R' U' R U' R' U R' D' R U R' D R2",
+   "U2 R2 D R' U R D' R' U R' U' R U' R'",
+   "R U R' f' U' R U2 R' U' R U' R' f R U' R'"
+  ],
+  "setup": "R2' D' R U' R' D R U' R U R' U R y'",
+  "cls": "1shm2jv"
+ },
+ {
+  "id": "AS 3",
+  "group": "Anti Sune",
+  "algs": [
+   "y2 R2 D R' U2 R D' R2 U' R U' R'",
+   "R' U' F' R U R' U' R' F R2 U' R' U R",
+   "y2 M F' r U R' U2 r' F2 r",
+   "U2 f' L F L' U2 L' U2 L U2 S"
+  ],
+  "setup": "R' U2' R U2' L U' R' U R L'",
+  "cls": "1blpdt9"
+ },
+ {
+  "id": "AS 4",
+  "group": "Anti Sune",
+  "algs": [
+   "y2 R' U' R U' R2 D' R U2 R' D R2",
+   "y2 R U2 R' U2 r' F R F' M'",
+   "R' U' R U R' F R U R' U' R' F' R2",
+   "y2 R U2 R' U2 L' U R U' R' L"
+  ],
+  "setup": "R2' F R U R U' R' F' R U' R' U R",
+  "cls": "1ct2543"
+ },
+ {
+  "id": "AS 5",
+  "group": "Anti Sune",
+  "algs": [
+   "y2 r' F R F' r U R'",
+   "R' U L U' R U L'",
+   "y2 L' U R U' L U R'",
+   "U2 R' F R F' r U R' U' M"
+  ],
+  "setup": "L U' R' U L' U' R",
+  "cls": "kli1ph"
+ },
+ {
+  "id": "AS 6",
+  "group": "Anti Sune",
+  "algs": [
+   "R U' R' U2 R U' R' U2 R' D' R U R' D R",
+   "R U2 r' F R' F' r U' R U' R'",
+   "R U R' F' R U2 R' U' R U' R' F R U' R'",
+   "y2 L U2 R' U L' U' R U' L U' L'"
+  ],
+  "setup": "R' D' R U' R' D R U2' R U R' U2' R U R'",
+  "cls": "fdja8b"
+ },
+ {
+  "id": "S 1",
+  "group": "Sune",
+  "algs": [
+   "R U R' U R U2 R'",
+   "y' R' U2 R U R' U R",
+   "y L' U2 L U L' U L",
+   "y2 L U L' U L U2 L'"
+  ],
+  "setup": "R U2' R' U' R U' R'",
+  "cls": "3w1kk7"
+ },
+ {
+  "id": "S 2",
+  "group": "Sune",
+  "algs": [
+   "y2 R U R' U R2 D R' U2 R D' R2",
+   "r' F2 r U2 R U' r' F M'",
+   "L' U2 L U2 R U' L' U L R'",
+   "L' U2 L U2 l F' L' F M'"
+  ],
+  "setup": "R L' U' L U R' U2' L' U2' L",
+  "cls": "l9qkah"
+ },
+ {
+  "id": "S 3",
+  "group": "Sune",
+  "algs": [
+   "L' R U R' U' L U2 R U2 R'",
+   "M F R' F' r U2 R U2 R'",
+   "y2 R2 D' R U2 R' D R2 U R' U R",
+   "f R' F' R U2 R U2 R' U2 S'"
+  ],
+  "setup": "R U2' R' U2' L' U R U' R' L",
+  "cls": "scp2zj"
+ },
+ {
+  "id": "S 4",
+  "group": "Sune",
+  "algs": [
+   "y' R U R' U R U' R D R' U' R D' R2",
+   "R U R' U' R' F R F' r U R' U R U2 r'",
+   "L F' U2 F L' F' L U2 L' F",
+   "r U R' U' r' F R F' R U R' U R U2 R'"
+  ],
+  "setup": "R2' D R' U R D' R' U R' U' R U' R' y",
+  "cls": "acv7sp"
+ },
+ {
+  "id": "S 5",
+  "group": "Sune",
+  "algs": [
+   "R U' L' U R' U' L",
+   "R U' r' F R' F' r",
+   "l F' L' F l' U' L",
+   "r U' r' F R' F' r U M"
+  ],
+  "setup": "L' U R U' L U R'",
+  "cls": "14ecqmn"
+ },
+ {
+  "id": "S 6",
+  "group": "Sune",
+  "algs": [
+   "y2 R U R' F' R U R' U R U2 R' F R U' R'",
+   "y2 R U R' U r' F R F' r U2 R'",
+   "y2 R U R' U L' U R U' L U2 R'",
+   "F' R U2 R' U2 R' F2 R U R U' R' F'"
+  ],
+  "setup": "F R U R' U' R' F2' R U2' R U2' R' F",
+  "cls": "1166z1v"
+ },
+ {
+  "id": "L 1",
+  "group": "L",
+  "algs": [
+   "y' R U R' U R U' R' U R U' R' U R U2 R'",
+   "y' R U2 R' U' R U R' U' R U R' U' R U' R'",
+   "y2 R' U2 R U R' U' R U R' U' R U R' U R",
+   "R' U' R U' R' U2 R U' R U R' U R U2 R'"
+  ],
+  "setup": "R U R' U R U' R' U R U' R' U R U2' R' y",
+  "cls": "uxk9qj"
+ },
+ {
+  "id": "L 2",
+  "group": "L",
+  "algs": [
+   "R' U2 R' D' R U2 R' D R2",
+   "R U R' U2 L U' R U L' U R'",
+   "y2 L' U2 L' D' L U2 L' D L2",
+   "y' R' U2 R U R2 D' R U R' D R2"
+  ],
+  "setup": "R2' D' R U2' R' D R U2' R",
+  "cls": "j0zvhh"
+ },
+ {
+  "id": "L 3",
+  "group": "L",
+  "algs": [
+   "y R U2 R D R' U2 R D' R2",
+   "U2 R U2 R2 D' R U' R' D R2 U' R'",
+   "R' F' R U R' U' R' F R2 U' R' U2 R",
+   "y R' U' R U2 L' U R' U' L U' R"
+  ],
+  "setup": "R2' D R' U2' R D' R' U2' R' y'",
+  "cls": "oigdxf"
+ },
+ {
+  "id": "L 4",
+  "group": "L",
+  "algs": [
+   "y F R' F' r U R U' r'",
+   "y2 R2 D R' U R D' R' U' R'",
+   "R U R' U' R' F R U R U' R' F'",
+   "y F l' U' L U R U' r'"
+  ],
+  "setup": "R U R D R' U' R D' R2' y2'",
+  "cls": "123bvnb"
+ },
+ {
+  "id": "L 5",
+  "group": "L",
+  "algs": [
+   "y2 F' r U R' U' r' F R",
+   "y x R' U R D' R' U' R D x'",
+   "r U R U' r' F R' F'",
+   "y' R2 D' R U' R' D R U R"
+  ],
+  "setup": "R' F' r U R U' r' F y2'",
+  "cls": "a30vnx"
+ },
+ {
+  "id": "L 6",
+  "group": "L",
+  "algs": [
+   "y r U2 R2 F R F' R U2 r'",
+   "y' R' U' R U R' F' R U R' U' R' F R2",
+   "U' R' U' R U R' F' R U R' U' R' F R2",
+   "y F R U R2 F R F' R U' R' F'"
+  ],
+  "setup": "R2' F' R U R U' R' F R U' R' U R y",
+  "cls": "hl1baf"
+ },
+ {
+  "id": "U 1",
+  "group": "U",
+  "algs": [
+   "R' U' R U' R' U2 R2 U R' U R U2 R'",
+   "y2 R U R' U R U2 R2 U' R U' R' U2 R",
+   "y R U2 R' U' R U' R' U' R U R' U R U2 R'",
+   "y' R U R' U' R U' R' U2 R U' R' U2 R U R'"
+  ],
+  "setup": "R U2' R' U' R U' R2' U2' R U R' U R",
+  "cls": "n6dnnp"
+ },
+ {
+  "id": "U 2",
+  "group": "U",
+  "algs": [
+   "R' F R U' R' U' R U R' F' R U R' U' R' F R F' R",
+   "y' r U R' U' r' F R2 U' R' U' R U2 R' U' F'",
+   "y' R' U' R F R2 D' R U R' D R2 U' F'",
+   "y F U R U2 R' U R U R2 F' r U R U' r'"
+  ],
+  "setup": "R' F R' F' R U R U' R' F R U' R' U R U R' F' R",
+  "cls": "4hdfxp"
+ },
+ {
+  "id": "U 3",
+  "group": "U",
+  "algs": [
+   "y2 R2 D R' U2 R D' R' U2 R'",
+   "L2 D L' U2 L D' L' U2 L'",
+   "R U' R' U' R U2 R' U' R' D' R U2 R' D R",
+   "R' U R U R' F' R U R' U' R' F R2 U' R' U' R"
+  ],
+  "setup": "R U2' R D R' U2' R D' R2' y2'",
+  "cls": "1vx8dr5"
+ },
+ {
+  "id": "U 4",
+  "group": "U",
+  "algs": [
+   "F R U' R' U R U R' U R U' R' F'",
+   "y2 R' F2 R U2 R U2 R' F2 R U2 R'",
+   "y' F U2 R' D' R U2 R' D R F'",
+   "y2 R U2 R' U2 L' U2 R U2 R' U2 L"
+  ],
+  "setup": "F R U R' U' R U' R' U' R U R' F'",
+  "cls": "1pmhabv"
+ },
+ {
+  "id": "U 5",
+  "group": "U",
+  "algs": [
+   "R2 D' R U2 R' D R U2 R",
+   "y2 L2 D' L U2 L' D L U2 L",
+   "L U' R U' L' U R' U2 L U' L'",
+   "y2 x R' U R D' R' U2 R D R' U R x'"
+  ],
+  "setup": "R' U2' R' D' R U2' R' D R2'",
+  "cls": "1flyesp"
+ },
+ {
+  "id": "U 6",
+  "group": "U",
+  "algs": [
+   "R2 D' R U R' D R U R U' R' U' R",
+   "R' U2 R F U' R' U' R U F'",
+   "R U' R' U' R U R D R' U R D' R2",
+   "R' U2 R U2 R' F' R U R' U' R' F R2"
+  ],
+  "setup": "F U' R' U R U F' R' U2' R",
+  "cls": "19soi9z"
+ },
+ {
+  "id": "T 1",
+  "group": "T",
+  "algs": [
+   "R U2 R' U' R U' R2 U2 R U R' U R",
+   "y' R U R2 U' R2 U' R2 U2 R U' R U' R'",
+   "R U2 R' r' F2 r U' R U' R' U' r' F r",
+   "y' R U R' U R U2 R' L' U' L U' L' U2 L"
+  ],
+  "setup": "R' U' R U' R' U2' R2' U R' U R U2' R'",
+  "cls": "1e1mzmf"
+ },
+ {
+  "id": "T 2",
+  "group": "T",
+  "algs": [
+   "R' U R U2 R' L' U R U' L",
+   "R' U R U2 r' R' F R F' r",
+   "y2 R' F R U R' U' R' F' R2 U' R' U2 R",
+   "y2 R U' R' U2 L R U' R' U L'"
+  ],
+  "setup": "L' U R' U' L R U2' R' U' R",
+  "cls": "13pudlj"
+ },
+ {
+  "id": "T 3",
+  "group": "T",
+  "algs": [
+   "y R' F' r U R U' r' F",
+   "y l' U' L U R U' r' F",
+   "y2 R' U' R' D' R U R' D R2",
+   "y l' U' L U l F' L' F"
+  ],
+  "setup": "F' r U R' U' L' U l y'",
+  "cls": "13lqjix"
+ },
+ {
+  "id": "T 4",
+  "group": "T",
+  "algs": [
+   "y2 F R U R' U' R U' R' U' R U R' F'",
+   "y2 R F R' U R U2 R' U R U F' R'",
+   "y R U2 R' F2 R U2 R' U2 R' F2 R",
+   "x U R2 U L2 U' R2 U L2 U2 x'"
+  ],
+  "setup": "F R U' R' U R U R' U R U' R' F' y2'",
+  "cls": "nd6j8d"
+ },
+ {
+  "id": "T 5",
+  "group": "T",
+  "algs": [
+   "y' r U R' U' r' F R F'",
+   "R U R D R' U' R D' R2",
+   "y2 x' D R U' R' D' R U R' x",
+   "R U R' U R' D' R U' R' D R2 U' R'"
+  ],
+  "setup": "F R' F' r U R U' r' y",
+  "cls": "1g7jg21"
+ },
+ {
+  "id": "T 6",
+  "group": "T",
+  "algs": [
+   "R' U R2 D r' U2 r D' R2 U' R",
+   "y2 R U' R2 D' r U2 r' D R2 U R'",
+   "y R' U' R U R2 D' R U2 R' D R2 U' R' U R",
+   "y R U R' U' R2 D R' U2 R D' R2 U R U' R'"
+  ],
+  "setup": "R' U R2' D r' U2' r D' R2' U' R",
+  "cls": "lodsg1"
+ },
+ {
+  "id": "Pi 1",
+  "group": "Pi",
+  "algs": [
+   "R U2 R2 U' R2 U' R2 U2 R",
+   "R' U2 R2 U R2 U R2 U2 R'",
+   "y2 L' U2 L2 U L2 U L2 U2 L'",
+   "R U R' U R U2 R' U' R U R' U R U2 R'"
+  ],
+  "setup": "R' U2' R2' U R2' U R2' U2' R'",
+  "cls": "xl307t"
+ },
+ {
+  "id": "Pi 2",
+  "group": "Pi",
+  "algs": [
+   "y F U R U' R' U R U' R2 F' R U R U' R'",
+   "R' F2 R U2 R U2 R' F2 U' R U' R'",
+   "y2 L' U' L U L F' L2 U' L U L' U' L U F",
+   "R U R' U R' F R2 U' R' U' R U R' F' U R U' R'"
+  ],
+  "setup": "R U R' U F2' R U2' R' U2' R' F2' R",
+  "cls": "mznw33"
+ },
+ {
+  "id": "Pi 3",
+  "group": "Pi",
+  "algs": [
+   "R' U' F' R U R' U' R' F R2 U2 R' U2 R",
+   "y F U R U' R' U R U2 R' U' R U R' F'",
+   "y F R2 U' R2 U R2 U S R2 f'",
+   "y' R U R' U R U2 R2 F' r U R U' r' F"
+  ],
+  "setup": "R' U2' R U2' R2' F' R U R U' R' F U R",
+  "cls": "5x31ft"
+ },
+ {
+  "id": "Pi 4",
+  "group": "Pi",
+  "algs": [
+   "R U R' U' R' F R2 U R' U' R U R' U' F'",
+   "R U2 R' U' R U R' U2 r' F R F' M'",
+   "y F' R U R' U R U' R' U' R' F R U' R U' R' U R U R'",
+   "y' R' U2 R U R' U R2 U' L' U R' U' L"
+  ],
+  "setup": "F U R U' R' U R U' R2' F' R U R U' R'",
+  "cls": "18rhzib"
+ },
+ {
+  "id": "Pi 5",
+  "group": "Pi",
+  "algs": [
+   "R U' L' U R' U L U L' U L",
+   "y' R U2 R' U R' D' R U2 R' D R2 U' R'",
+   "y' R U R' U F' R U2 R' U2 R' F R",
+   "y2 L' U R U' L U' R' U' R U' R'"
+  ],
+  "setup": "L' U' L U' L' U' R U' L U R'",
+  "cls": "x3939p"
+ },
+ {
+  "id": "Pi 6",
+  "group": "Pi",
+  "algs": [
+   "R' F' U' F U' R U S' R' U R S",
+   "y' r U R' U R' F R F' R U' R' U R U2 r'",
+   "R U D' R U R' D R2 U' R' U' R2 U2 R",
+   "R2 D' R U R' D R U R U' R' U R U R' U R"
+  ],
+  "setup": "R' U2' R2' U R U R2' D' R U' R' D U' R'",
+  "cls": "1p005s1"
+ },
+ {
+  "id": "H 1",
+  "group": "H",
+  "algs": [
+   "R U R' U R U' R' U R U2 R'",
+   "y' R U2 R' U' R U R' U' R U' R'",
+   "y R U2 R' U' R U R' U' R U' R'",
+   "y' R' U2 R U R' U' R U R' U R"
+  ],
+  "setup": "R U2' R' U' R U R' U' R U' R'",
+  "cls": "1w02ndn"
+ },
+ {
+  "id": "H 2",
+  "group": "H",
+  "algs": [
+   "F R U' R' U R U2 R' U' R U R' U' F'",
+   "f R2 S' U' R2 U' R2 U R2 F'",
+   "y2 f R U R' U' R F' R U R' U' R' S'",
+   "f R U R' U' f' R U R' U' R' F R F'"
+  ],
+  "setup": "F U R U' R' U R U2' R' U' R U R' F'",
+  "cls": "ly4c5n"
+ },
+ {
+  "id": "H 3",
+  "group": "H",
+  "algs": [
+   "R U R' U R U L' U R' U' L",
+   "R' F' R U2 R U2 R' F U' R U' R'",
+   "R U R' U R U r' F R' F' r",
+   "R U R2 D' R U2 R' D R U' R U2 R'"
+  ],
+  "setup": "L' U R U' L U' R' U' R U' R'",
+  "cls": "1w3qtfx"
+ },
+ {
+  "id": "H 4",
+  "group": "H",
+  "algs": [
+   "y F R U R' U' R U R' U' R U R' U' F'",
+   "y F U R U' R' U R U' R' U R U' R' F'",
+   "U F R U R' U' R U R' U' R U R' U' F'",
+   "y' F R U R' U' R U R' U' R U R' U' F'"
+  ],
+  "setup": "F U R U' R' U R U' R' U R U' R' F' y'",
+  "cls": "1d8lhqj"
+ }
+]

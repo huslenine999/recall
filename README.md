@@ -1,6 +1,6 @@
 # Recall
 
-An alg trainer for **Megaminx** (PLL, OLL) and **Square-1** (EP, PBL, CSP). It shows a scramble that sets up one case,
+An alg trainer for **Megaminx** (PLL, OLL), **Square-1** (EP, PBL, OBL, CSP), **Skewb**, **Pyraminx**, **2x2** and **3x3** (F2L, Advanced F2L, OLL, PLL, COLL, WV, VLS, ZBLL). It shows a scramble that sets up one case,
 times the solve cstimer-style, and brings back the cases you forget more often. Every alg is checked against a puzzle
 simulator, and the case pictures are drawn from the simulator state.
 
@@ -59,5 +59,5 @@ without it the Sync section says it is not set up and everything else works.
 ## Credits
 
 Algorithms come from the cubing community: Raul Low Beattie's Megaminx PLL sheet (James Macdiarmid's case system),
-SpeedcubeQuest's Megaminx OLL, Daniel's Public PBL Doc and the Squanmate cube shape + parity sheet.
+SpeedcubeQuest's Megaminx OLL, Daniel's Public PBL Doc, the Squanmate cube shape + parity sheet and SpeedCubeDB's 3x3 algs (the full list is in the page footer).
 Fonts: Bricolage Grotesque and Martian Mono (licences in `src/fonts/`).

@@ -217,6 +217,8 @@ body.boot .foot{animation:rise .7s var(--ease) .35s both}
 .mat{background:transparent;color:var(--text);border-radius:14px;padding:4px 0;display:grid;place-items:center}
 .mat svg{width:100%;height:auto;max-height:340px}
 .mat svg.sq{max-height:340px}
+/* 3x3 pictures are one tall square: in the case grid they all get the same height, about that of the 2x2 and Skewb pictures (which are two views side by side) */
+.tile .mat svg.cube3{width:auto;height:124px;max-width:100%}
 .reveal .mat{max-width:420px}
 .algs{display:flex;flex-direction:column;gap:8px}
 .trg{display:inline-block;white-space:nowrap;margin:1px 2px;vertical-align:top;text-align:center}
@@ -284,6 +286,7 @@ body.boot .foot{animation:rise .7s var(--ease) .35s both}
 .prog-key .s-Learned{color:var(--ok)}
 .prog-key .s-Learning{color:var(--warn)}
 .tools .count{margin-right:auto;font-weight:600}
+.tools .extra{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:14px;cursor:pointer;min-height:44px}
 .menu{position:relative}
 .menu summary{list-style:none;cursor:pointer}
 .menu summary::-webkit-details-marker{display:none}
@@ -430,6 +433,11 @@ body[data-phase="running"] .intro{opacity:0;pointer-events:none}
   .train.revealed .actions .primary{min-height:50px}
   .train.revealed .session{order:4}
 }
+@media (max-width:380px){
+  .puzzles{gap:1px;padding:2px}
+  .puzzles .tab{padding-inline:4px;gap:5px;font-size:14px}
+  .puzzles .tab svg{width:18px;height:18px}
+}
 @media (max-width:760px){
   :root{--nav-h:68px}
   .top-in{padding-block:10px;gap:8px}
@@ -439,6 +447,8 @@ body[data-phase="running"] .intro{opacity:0;pointer-events:none}
   .tab{flex:1;justify-content:center;padding-inline:8px}
   .tab:not([aria-selected="true"]) span{display:none}
   .tab[aria-selected="true"]{flex:2.4}
+  .tab{min-width:0}
+  .tab[aria-selected="true"]{min-width:max-content}
   .set{padding:6px 12px;gap:5px}
   .nav{position:fixed;left:0;right:0;bottom:0;z-index:30;gap:0;background:var(--panel);border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(3,1fr)}
   .sub{position:relative;flex-direction:column;gap:3px;font-size:12.5px;padding:8px 4px}
@@ -507,6 +517,7 @@ body[data-phase="running"] .intro{opacity:0;pointer-events:none}
     <li><b>Square-1 CSP</b> &ndash; the &ldquo;Squanmate cube shape + parity&rdquo; sheet.</li>
     <li><b>Skewb NS and Sarah&rsquo;s Advanced, Pyraminx L4E</b> &ndash; HCubist&rsquo;s sheets by Hitesh Kumar Bhuwalka (hcubist.com).</li>
     <li><b>2x2 PBL, CLL, EG-1, EG-2, LEG-1, TCLL+, TCLL-, LS and TEG2+</b> &ndash; the &ldquo;Best 2x2 Algs&rdquo; spreadsheet kept by its editors (best2x2algs.com). Chris Olson (cyotheking.com) made many of the first LEG-1 and TCLL algs; TEG2+ was created by Vilius Ribinskas.</li>
+    <li><b>3x3 F2L, Advanced F2L, OLL, PLL, COLL, WV, VLS and ZBLL</b> &ndash; algorithms selected from SpeedCubeDB (speedcubedb.com), which collects them from many cubers and credits their authors on its pages.</li>
   </ul></details>
 </div></footer>
 <div id="toast" role="status" aria-live="polite"></div>

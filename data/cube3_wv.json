@@ -1,0 +1,319 @@
+[
+ {
+  "id": "WV 1",
+  "group": "Winter Variation",
+  "algs": [
+   "U L' U2 R U R' U2 L",
+   "L' U2 R U2 R' U2 L",
+   "f' L U L' U' L' f",
+   "U R' D' R U R' D R U' R U' R'"
+  ],
+  "setup": "L' U2' R U' R' U2' L U'",
+  "cls": "nznqo6"
+ },
+ {
+  "id": "WV 2",
+  "group": "Winter Variation",
+  "algs": [
+   "U R U' R'",
+   "R U R' U' R U R' U' R U R' U' R U R' U' R U R' U'",
+   "U l F' l'",
+   "U R u' b2 u2 U d' D2 l2 E' f2 B' M2 F2 R2 S2 r2 L2 S2 R2 F2 M2 f2 y' z2"
+  ],
+  "setup": "R U R' U'",
+  "cls": "uwzz8i"
+ },
+ {
+  "id": "WV 3",
+  "group": "Winter Variation",
+  "algs": [
+   "R' F R U R U' R' F'",
+   "U' L U' R U L' U R'",
+   "U R U' R' U F R' F' r U R U' r'",
+   "U' R2 U R2 U' R' U2 R U2 R' U2 R2"
+  ],
+  "setup": "F R U R' U' R' F' R",
+  "cls": "hh9m1y"
+ },
+ {
+  "id": "WV 4",
+  "group": "Winter Variation",
+  "algs": [
+   "U R2 D R' U' R D' R2",
+   "U2 R' D' R U' R' D R2 U' R'",
+   "U2 R U' R' L' U2 R U R' U2 L",
+   "U R U R' U' R U' R2 U2 R U R' U R"
+  ],
+  "setup": "R2' D R' U R D' R2' U'",
+  "cls": "cktd3y"
+ },
+ {
+  "id": "WV 5",
+  "group": "Winter Variation",
+  "algs": [
+   "U R U' R' U R' U' R U' R' U2 R",
+   "y' U2 S R2 F R F' R S'",
+   "U R U' R' U2 R U2 R' U' R U' R'",
+   "U R U R' U' R U R D R' U2 R D' R2"
+  ],
+  "setup": "R' U2' R U R' U R U' R U R' U'",
+  "cls": "mexfta"
+ },
+ {
+  "id": "WV 6",
+  "group": "Winter Variation",
+  "algs": [
+   "R U' R' U2 R U' R' U2 R U R'",
+   "U' R' D' R U2 R' D R2 U' R'",
+   "U R U' R' U' R2 D R' U2 R D' R' U2 R'"
+  ],
+  "setup": "R U' R' U2' R U R' U2' R U R'",
+  "cls": "1z05kme"
+ },
+ {
+  "id": "WV 7",
+  "group": "Winter Variation",
+  "algs": [
+   "U R U R' U' R U' R'",
+   "R' U' R U R U' R' U' R' U R"
+  ],
+  "setup": "R U R' U R U' R' U'",
+  "cls": "1iza7f6"
+ },
+ {
+  "id": "WV 8",
+  "group": "Winter Variation",
+  "algs": [
+   "U2 R U' R' U R U2 R'",
+   "U2 R U L' U R' U' L"
+  ],
+  "setup": "R U2' R' U' R U R' U2'",
+  "cls": "1bxbtow"
+ },
+ {
+  "id": "WV 9",
+  "group": "Winter Variation",
+  "algs": [
+   "U2 F' R U2 R' U2 R' F R",
+   "y2 U2 r B2 U R' U' r' F R F'",
+   "U2 L' R U R' U' R U R' U' L U' R U' R'",
+   "U2 F2 R U2 R' U2 R' F2 R"
+  ],
+  "setup": "R' F' R U2' R U2' R' F U2'",
+  "cls": "l0eob6"
+ },
+ {
+  "id": "WV 10",
+  "group": "Winter Variation",
+  "algs": [
+   "U R U R2 U' R2 U' R2 U2 R",
+   "R' U2 R U R' U R2 U2 R'",
+   "R' F R2 U R' U' R U R' U' F'",
+   "U2 F2 L' U L U L' U' L F2"
+  ],
+  "setup": "F U R U' R' U R U' R2' F' R",
+  "cls": "1j6kl2y"
+ },
+ {
+  "id": "WV 11",
+  "group": "Winter Variation",
+  "algs": [
+   "U2 R' U' R2 U' R2 U2 R",
+   "U R U' R' L' U' L U' L' U2 L",
+   "U R U' R' U' R U2 R' U' R U' R'",
+   "U R U R' U' R U R' U2 R' F R U R U' R' F'"
+  ],
+  "setup": "R' U2' R2' U R2' U R U2'",
+  "cls": "lsxp0"
+ },
+ {
+  "id": "WV 12",
+  "group": "Winter Variation",
+  "algs": [
+   "Lw' U2 Lw F2 U L' U L",
+   "R' F2 R F2 U L' U L",
+   "U R U' R2 U' R' D' R U R' D R2",
+   "U R U' R' U' l' U' L U R U' r' F"
+  ],
+  "setup": "L' U' L U' F2' R' F2' R",
+  "cls": "1kfbqgg"
+ },
+ {
+  "id": "WV 13",
+  "group": "Winter Variation",
+  "algs": [
+   "U2 R U2 R2 U' R U' R' U2 R",
+   "R' F R F' R' U' F' U F R",
+   "U R U' R D R' U2 R D' R' U2 R'",
+   "R2 D R' U' R D' R2 U R U' R'"
+  ],
+  "setup": "R' U2' R U R' U R2' U2' R' U2'",
+  "cls": "1l42o4a"
+ },
+ {
+  "id": "WV 14",
+  "group": "Winter Variation",
+  "algs": [
+   "U2 R2 D R' U2 R D' R2",
+   "M' U2 R' F R F' R U2 r'",
+   "U2 L' U R U' L U2 R'",
+   "U R U' R' U2 R U R' U R U2 R'"
+  ],
+  "setup": "R2' D R' U2' R D' R2' U2'",
+  "cls": "16xsxgq"
+ },
+ {
+  "id": "WV 15",
+  "group": "Winter Variation",
+  "algs": [
+   "L' U R U' R' L",
+   "r' F R F' M'",
+   "L' U R U' M' x'",
+   "R' U R U2 R U2 R' U R' U2 R"
+  ],
+  "setup": "L' R U R' U' L",
+  "cls": "1tw58sg"
+ },
+ {
+  "id": "WV 16",
+  "group": "Winter Variation",
+  "algs": [
+   "U R' D' R U R' D R2 U2 R'",
+   "U2 R U' R' U' R' F R U R U' R' F'",
+   "U R U' R' U' R2 D' R U2 R' D R U2 R",
+   "U2 L' R U R' U' L R U2 R'"
+  ],
+  "setup": "R U2' R2' D' R U' R' D R U'",
+  "cls": "7lnq90"
+ },
+ {
+  "id": "WV 17",
+  "group": "Winter Variation",
+  "algs": [
+   "R' F' R U2 R U2 R' F",
+   "y2 U L U' F l' U' r' F R F'",
+   "U R U' R' l' U' L U l F' L' F",
+   "U L' U2 R U' R' U2 L U R U' R'"
+  ],
+  "setup": "F' R U2' R' U2' R' F R",
+  "cls": "hl1kl2"
+ },
+ {
+  "id": "WV 18",
+  "group": "Winter Variation",
+  "algs": [
+   "U2 R U2 R'",
+   "U2 l F2 l'",
+   "U R U' U R' U R U2 R'",
+   "M2 S2 M2 S2 U2 R U2 r' l b2 d D' u2 U2 E f2 F2 B2 R2 L"
+  ],
+  "setup": "R U2' R' U2'",
+  "cls": "1lv2svi"
+ },
+ {
+  "id": "WV 19",
+  "group": "Winter Variation",
+  "algs": [
+   "R' F2 R2 U' R' U' R U R' F2",
+   "U L' U2 R U' R' U' R U' R' L",
+   "U2 L' U R U' R' L U' R U' R'",
+   "U R U' R D' R U2 R' D R U2 R"
+  ],
+  "setup": "F2' R U' R' U R U R2' F2' R",
+  "cls": "2i5b2g"
+ },
+ {
+  "id": "WV 20",
+  "group": "Winter Variation",
+  "algs": [
+   "U R U' R' U' R U R' U R U2 R'",
+   "U2 R U' R' U R U' R' U' R' F R U R U' R' F'",
+   "U L' U2 L R U R' U L' U L",
+   "U R U R' U' R U R2 U' R2 U' R2 U2 R"
+  ],
+  "setup": "R U2' R' U' R U' R' U R U R' U'",
+  "cls": "1b9hx94"
+ },
+ {
+  "id": "WV 21",
+  "group": "Winter Variation",
+  "algs": [
+   "U R U' R2 U2 R U R' U R",
+   "U2 R U' R D R' U' R D' R2",
+   "U R U' R' U R U R' U R U2 R'"
+  ],
+  "setup": "R' U' R U' R' U2' R2' U R' U'",
+  "cls": "1rdxpju"
+ },
+ {
+  "id": "WV 22",
+  "group": "Winter Variation",
+  "algs": [
+   "U R U R D R' U2 R D' R2",
+   "U R2 D R' U R D' R' U2 R'",
+   "U R U' R' F R' F' r U R U' r'",
+   "U2 R U2 R' U R' U' R U' R' U2 R"
+  ],
+  "setup": "R2' D R' U2' R D' R' U' R' U'",
+  "cls": "1dxanma"
+ },
+ {
+  "id": "WV 23",
+  "group": "Winter Variation",
+  "algs": [
+   "R2 U R' U R' U' R U R U2 R2",
+   "U2 R U2 R D' R U2 R' D R U2 R",
+   "U F' L U2 L2 U' L2 U' L' U F",
+   "U2 R' D' R U' R' D R2 U' R2 U' R U' R' U2 R"
+  ],
+  "setup": "R2' U2' R' U' R' U R U' R U' R2'",
+  "cls": "1n2axte"
+ },
+ {
+  "id": "WV 24",
+  "group": "Winter Variation",
+  "algs": [
+   "U2 R U' R' U R U' R' U R U2 R'",
+   "U R U' R' U' F' r U R' U' r' F R",
+   "U R U R' U' R U R' U' R U R' U' R U' R'"
+  ],
+  "setup": "R U2' R' U' R U R' U' R U R' U2'",
+  "cls": "1hnadte"
+ },
+ {
+  "id": "WV 25",
+  "group": "Winter Variation",
+  "algs": [
+   "U2 R U2 R2 U2 R U R' U R",
+   "U2 R U2 R' U R U R' U R U2 R'",
+   "U2 R U' R' U R U' R D R' U' R D' R2",
+   "U R U' R' U' R' U2 R2 U R2 U R2 U2 R'"
+  ],
+  "setup": "R' U' R U' R' U2' R2' U2' R' U2'",
+  "cls": "vcyjtm"
+ },
+ {
+  "id": "WV 26",
+  "group": "Winter Variation",
+  "algs": [
+   "U R U' R2 U' R U' R' U2 R",
+   "U R U R' U F2 L' U L U' L' U' L F2",
+   "U R' D' R U' R' D R2 U' r' l' U R U' R' L",
+   "U R U' R' U R U2 R' U' R U' R'"
+  ],
+  "setup": "R' U2' R U R' U R2' U R' U'",
+  "cls": "1pdgquy"
+ },
+ {
+  "id": "WV 27",
+  "group": "Winter Variation",
+  "algs": [
+   "U R U R' U' R U R' U' R U' R'",
+   "U R U' R' F R U R' U' R U R' U' R U R' U' F'",
+   "U R U' R' U' R U R' U R U' R' U R U2 R'",
+   "U R U' R' U R' U' R U' R' U R U' R' U2 R"
+  ],
+  "setup": "R U R' U R U' R' U R U' R' U'",
+  "cls": "ij9vj8"
+ }
+]

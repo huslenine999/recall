@@ -1,0 +1,686 @@
+[
+ {
+  "id": "OLL 1",
+  "group": "Dot Case",
+  "algs": [
+   "R U2 R2 F R F' U2 R' F R F'",
+   "y R U' R2 D' r U' r' D R2 U R'",
+   "f R U R' U' R f' U' r' U' R U M'",
+   "L' U2 L2 F' L' F U2 L F' L' F"
+  ],
+  "setup": "F R' F' R U2' F R' F' R2' U2' R'",
+  "cls": "vmqaa8"
+ },
+ {
+  "id": "OLL 2",
+  "group": "Dot Case",
+  "algs": [
+   "y' R U' R2 D' r U r' D R2 U R'",
+   "F R U R' U' S R U R' U' f'",
+   "y r U r' U2 R U2 R' U2 r U' r'",
+   "F R U R' U' F' f R U R' U' f'"
+  ],
+  "setup": "f U R U' R' f' F U R U' R' F'",
+  "cls": "sii820"
+ },
+ {
+  "id": "OLL 3",
+  "group": "Dot Case",
+  "algs": [
+   "y' f R U R' U' f' U' F R U R' U' F'",
+   "y R' F2 R2 U2 R' F R U2 R2 F2 R",
+   "r' R2 U R' U r U2 r' U M'",
+   "M R U R' U r U2 r' U M'"
+  ],
+  "setup": "F U R U' R' F' U f U R U' R' f' y",
+  "cls": "10q9vma"
+ },
+ {
+  "id": "OLL 4",
+  "group": "Dot Case",
+  "algs": [
+   "y' R' F2 R2 U2 R' F' R U2 R2 F2 R",
+   "y' f R U R' U' f' U F R U R' U' F'",
+   "R' F R F' U' S R' U' R U R S'",
+   "y F U R U' R' F' U' F R U R' U' F'"
+  ],
+  "setup": "F U R U' R' F' U' f U R U' R' f' y",
+  "cls": "sodnpm"
+ },
+ {
+  "id": "OLL 5",
+  "group": "Square Shapes",
+  "algs": [
+   "r' U2 R U R' U r",
+   "y2 l' U2 L U L' U l",
+   "y2 R' F2 r U r' F R",
+   "y2 R' F2 L F L' F R"
+  ],
+  "setup": "r' U' R U' R' U2' r",
+  "cls": "1iosllu"
+ },
+ {
+  "id": "OLL 6",
+  "group": "Square Shapes",
+  "algs": [
+   "r U2 R' U' R U' r'",
+   "F U' R2 D R' U' R D' R2 U F'",
+   "y2 l U2 L' U' L U' l'",
+   "L F2 l' U' l F' L'"
+  ],
+  "setup": "r U R' U R U2' r'",
+  "cls": "183ete"
+ },
+ {
+  "id": "OLL 7",
+  "group": "Lightning Shapes",
+  "algs": [
+   "r U R' U R U2 r'",
+   "S' R U R' U R U2 R' U S",
+   "L' U2 L U2 L F' L' F",
+   "y2 f R U R' U' f' y2 F R' F' r U R U' r'"
+  ],
+  "setup": "r U2' R' U' R U' r'",
+  "cls": "174so8q"
+ },
+ {
+  "id": "OLL 8",
+  "group": "Lightning Shapes",
+  "algs": [
+   "y2 r' U' R U' R' U2 r",
+   "l' U' L U' L' U2 l",
+   "R U2 R' U2 R' F R F'",
+   "R' F' r U' r' F2 R"
+  ],
+  "setup": "r' U2' R U R' U r y2'",
+  "cls": "161vrl6"
+ },
+ {
+  "id": "OLL 9",
+  "group": "Fish Shapes",
+  "algs": [
+   "y R U R' U' R' F R2 U R' U' F'",
+   "R U2 R' U' S' R U' R' S",
+   "y' L' U' L U' L F' L' F L' U2 L",
+   "y2 F' U' F r U' r' U r U r'"
+  ],
+  "setup": "F U R U' R2' F' R U R U' R' y'",
+  "cls": "pen7r6"
+ },
+ {
+  "id": "OLL 10",
+  "group": "Fish Shapes",
+  "algs": [
+   "R U R' U R' F R F' R U2 R'",
+   "y F U F' R' F R U' R' F' R",
+   "y M' R' U2 R U R' U R U M",
+   "y2 L' U' L U L F' L2 U' L U F"
+  ],
+  "setup": "R U2' R' F R' F' R U' R U' R'",
+  "cls": "t06sia"
+ },
+ {
+  "id": "OLL 11",
+  "group": "Lightning Shapes",
+  "algs": [
+   "r' R2 U R' U R U2 R' U M'",
+   "y2 r U R' U R' F R F' R U2 r'",
+   "M R U R' U R U2 R' U M'",
+   "S R U R' U R U2 R' U2 S'"
+  ],
+  "setup": "M U' R U2' R' U' R U' R2' r",
+  "cls": "1l835qy"
+ },
+ {
+  "id": "OLL 12",
+  "group": "Lightning Shapes",
+  "algs": [
+   "y' M' R' U' R U' R' U2 R U' M",
+   "F R U R' U' F' U F R U R' U' F'",
+   "y' S R' U' R U' R' U2 R U2 S'",
+   "y M L' U' L U' L' U2 L U' M'"
+  ],
+  "setup": "F U R U' R' F' U' F U R U' R' F'",
+  "cls": "trv63u"
+ },
+ {
+  "id": "OLL 13",
+  "group": "Knight Move Shapes",
+  "algs": [
+   "F U R U2 R' U' R U R' F'",
+   "F U R U' R2 F' R U R U' R'",
+   "r U' r' U' r U r' F' U F",
+   "y2 f R U R2 U' R' U R U' f'"
+  ],
+  "setup": "F' U' F r U' r' U r U r'",
+  "cls": "14xaqmu"
+ },
+ {
+  "id": "OLL 14",
+  "group": "Knight Move Shapes",
+  "algs": [
+   "R' F R U R' F' R F U' F'",
+   "r U R' U' r' F R2 U R' U' F'",
+   "l' U l U l' U' l F U' F'",
+   "S R U R' U' R' F R2 U R' U' f'"
+  ],
+  "setup": "F U F' R' F R U' R' F' R",
+  "cls": "vvfm3y"
+ },
+ {
+  "id": "OLL 15",
+  "group": "Knight Move Shapes",
+  "algs": [
+   "r' U' r R' U' R U r' U r",
+   "y2 l' U' l L' U' L U l' U l",
+   "r' U' M' U' R U r' U r",
+   "y2 R' F' R L' U' L U R' F R"
+  ],
+  "setup": "r' U' r U' R' U R r' U r",
+  "cls": "lqslvm"
+ },
+ {
+  "id": "OLL 16",
+  "group": "Knight Move Shapes",
+  "algs": [
+   "r U r' R U R' U' r U' r'",
+   "r U M U R' U' r U' r'",
+   "y2 R' F R U R' U' F' R U' R' U2 R",
+   "y2 l U l' L U L' U' l U' l'"
+  ],
+  "setup": "r U r' U R U' R' r U' r'",
+  "cls": "1dcpr5y"
+ },
+ {
+  "id": "OLL 17",
+  "group": "Dot Case",
+  "algs": [
+   "R U R' U R' F R F' U2 R' F R F'",
+   "y2 F R' F' R U S' R U' R' S",
+   "y2 F R' F' R2 r' U R U' R' U' M'",
+   "y' F' r U r' U' S r' F r S'"
+  ],
+  "setup": "F R' F' R U2' F R' F' R U' R U' R'",
+  "cls": "1sam61c"
+ },
+ {
+  "id": "OLL 18",
+  "group": "Dot Case",
+  "algs": [
+   "y R U2 R2 F R F' U2 M' U R U' r'",
+   "r U R' U R U2 r2 U' R U' R' U2 r",
+   "y F S' R U' R' S R U2 R' U' F'",
+   "R D r' U' r D' R' U' R2 F R F' R"
+  ],
+  "setup": "r' U2' R U R' U r2' U2' R' U' R U' r'",
+  "cls": "rcm18k"
+ },
+ {
+  "id": "OLL 19",
+  "group": "Dot Case",
+  "algs": [
+   "y S' R U R' S U' R' F R F'",
+   "M U R U R' U' M' R' F R F'",
+   "R' U2 F R U R' U' F2 U2 F R",
+   "r' R U R U R' U' r R2 F R F'"
+  ],
+  "setup": "F R' F' R M U R U' R' U' M'",
+  "cls": "1qiq3gk"
+ },
+ {
+  "id": "OLL 20",
+  "group": "Dot Case",
+  "algs": [
+   "r U R' U' M2 U R U' R' U' M'",
+   "M' U2 M U2 M' U M U2 M' U2 M",
+   "S' R U R' S U' M' U R U' r'",
+   "S R' U' R U R U R U' R' S'"
+  ],
+  "setup": "r U R' U' M2' U R U' R' U' M'",
+  "cls": "12zil54"
+ },
+ {
+  "id": "OLL 21",
+  "group": "OCLL",
+  "algs": [
+   "R U R' U R U' R' U R U2 R'",
+   "y R U2 R' U' R U R' U' R U' R'",
+   "y F R U R' U' R U R' U' R U R' U' F'",
+   "R' U' R U' R' U R U' R' U2 R"
+  ],
+  "setup": "R U R' U R U' R' U R U2' R' y'",
+  "cls": "1g7rkjk"
+ },
+ {
+  "id": "OLL 22",
+  "group": "OCLL",
+  "algs": [
+   "R U2 R2 U' R2 U' R2 U2 R",
+   "R' U2 R2 U R2 U R2 U2 R'",
+   "f R U R' U' S' R U R' U' F'",
+   "f R U R' U' f' F R U R' U' F'"
+  ],
+  "setup": "R' U2' R2' U R2' U R2' U2' R'",
+  "cls": "14vl7xk"
+ },
+ {
+  "id": "OLL 23",
+  "group": "OCLL",
+  "algs": [
+   "R2 D R' U2 R D' R' U2 R'",
+   "y2 R2 D' R U2 R' D R U2 R",
+   "R U R' U R U2 R2 U' R U' R' U2 R",
+   "y R U R' U' R U' R' U2 R U' R' U2 R U R'"
+  ],
+  "setup": "R U2' R D R' U2' R D' R2'",
+  "cls": "1mv83r8"
+ },
+ {
+  "id": "OLL 24",
+  "group": "OCLL",
+  "algs": [
+   "r U R' U' r' F R F'",
+   "y2 R' F' r U R U' r' F",
+   "y R U R D R' U' R D' R2",
+   "y' x' R U R' D R U' R' D' x"
+  ],
+  "setup": "F R' F' r U R U' r'",
+  "cls": "17b1n90"
+ },
+ {
+  "id": "OLL 25",
+  "group": "OCLL",
+  "algs": [
+   "R U2 R D R' U2 R D' R2",
+   "y F' r U R' U' r' F R",
+   "F R' F' r U R U' r'",
+   "x R' U R D' R' U' R D x'"
+  ],
+  "setup": "R' F' r U R U' r' F y'",
+  "cls": "12gwmeo"
+ },
+ {
+  "id": "OLL 26",
+  "group": "OCLL",
+  "algs": [
+   "y R U2 R' U' R U' R'",
+   "R' U' R U' R' U2 R",
+   "y2 L' U' L U' L' U2 L",
+   "y2 L' U R U' L U R'"
+  ],
+  "setup": "R U R' U R U2' R' y'",
+  "cls": "1yoct2y"
+ },
+ {
+  "id": "OLL 27",
+  "group": "OCLL",
+  "algs": [
+   "R U R' U R U2 R'",
+   "y' R' U2 R U R' U R",
+   "y L' U2 L U L' U L",
+   "y2 L U L' U L U2 L'"
+  ],
+  "setup": "R U2' R' U' R U' R'",
+  "cls": "jaqpoi"
+ },
+ {
+  "id": "OLL 28",
+  "group": "All Corners Oriented",
+  "algs": [
+   "r U R' U' M U R U' R'",
+   "r U R' U' r' R U R U' R'",
+   "R' F R S R' F' R S'",
+   "y2 M' U M U2 M' U M"
+  ],
+  "setup": "R U R' U' M' U R U' r'",
+  "cls": "6a8kzc"
+ },
+ {
+  "id": "OLL 29",
+  "group": "Awkward Shapes",
+  "algs": [
+   "r2 D' r U r' D r2 U' r' U' r",
+   "y R U R' U' R U' R' F' U' F R U R'",
+   "y S' R U R' U' R' F R F' U S",
+   "M U R U R' U' R' F R F' M'"
+  ],
+  "setup": "M F R' F' R U R U' R' U' M'",
+  "cls": "xbs5cc"
+ },
+ {
+  "id": "OLL 30",
+  "group": "Awkward Shapes",
+  "algs": [
+   "y2 F U R U2 R' U' R U2 R' U' F'",
+   "y' r' D' r U' r' D r2 U' r' U r U r'",
+   "y2 F R' F R2 U' R' U' R U R' F2",
+   "y S' R' U' R f R' U R U' F'"
+  ],
+  "setup": "F U R U2' R' U R U2' R' U' F' y2'",
+  "cls": "1n3ds84"
+ },
+ {
+  "id": "OLL 31",
+  "group": "P Shapes",
+  "algs": [
+   "R' U' F U R U' R' F' R",
+   "y S R U R' U' f' U' F",
+   "y2 S' L' U' L U L F' L' f",
+   "y' F R' F' R U R U R' U' R U' R'"
+  ],
+  "setup": "R' F R U R' U' F' U R",
+  "cls": "1mbwp1g"
+ },
+ {
+  "id": "OLL 32",
+  "group": "P Shapes",
+  "algs": [
+   "S R U R' U' R' F R f'",
+   "y2 L U F' U' L' U L F L'",
+   "R U B' U' R' U R B R'",
+   "y' R' F R F' U' r U' r' U r U r'"
+  ],
+  "setup": "f R' F' R U R U' R' S'",
+  "cls": "1mgfvrg"
+ },
+ {
+  "id": "OLL 33",
+  "group": "T Shapes",
+  "algs": [
+   "R U R' U' R' F R F'",
+   "y2 L' U' L U L F' L' F",
+   "y2 r' F' r U r U' r' F",
+   "R U R' F' U' F R U' R'"
+  ],
+  "setup": "F R' F' R U R U' R'",
+  "cls": "qzyr60"
+ },
+ {
+  "id": "OLL 34",
+  "group": "C Shapes",
+  "algs": [
+   "y f R f' U' r' U' R U M'",
+   "y2 R U R2 U' R' F R U R U' F'",
+   "F R U R' U' R' F' r U R U' r'",
+   "y2 R U R' U' B' R' F R F' B"
+  ],
+  "setup": "F U R' U' R' F' R U R2' U' R' y2'",
+  "cls": "fbon5s"
+ },
+ {
+  "id": "OLL 35",
+  "group": "Fish Shapes",
+  "algs": [
+   "R U2 R2 F R F' R U2 R'",
+   "f R U R' U' f' R U R' U R U2 R'",
+   "R U2 R' d' R' F R U' R' F' R",
+   "y L' U2 L2 F' L' F L' U2 L"
+  ],
+  "setup": "R U2' R' F R' F' R2' U2' R'",
+  "cls": "1wecesw"
+ },
+ {
+  "id": "OLL 36",
+  "group": "W Shapes",
+  "algs": [
+   "y R U R2 F' U' F U R2 U2 R'",
+   "y2 L' U' L U' L' U L U L F' L' F",
+   "y2 R U R' F' R U R' U' R' F R U' R' F R F'",
+   "R U R' U' F' U2 F U R U R'"
+  ],
+  "setup": "F' L F L' U' L' U' L U L' U L y2'",
+  "cls": "dktmzs"
+ },
+ {
+  "id": "OLL 37",
+  "group": "Fish Shapes",
+  "algs": [
+   "F R' F' R U R U' R'",
+   "F R U' R' U' R U R' F'",
+   "y F' r U r' U' r' F r",
+   "R F R2 F' R U R2 U' R2"
+  ],
+  "setup": "F R U' R' U R U R' F'",
+  "cls": "y2tnfk"
+ },
+ {
+  "id": "OLL 38",
+  "group": "W Shapes",
+  "algs": [
+   "R U R' U R U' R' U' R' F R F'",
+   "y F R U' R' S U' R U R' f'",
+   "r U R' U' r' F R U R U' R' F'",
+   "y2 L U L' U L U' L' U' L' B L B'"
+  ],
+  "setup": "F R' F' R U R U R' U' R U' R'",
+  "cls": "yy1254"
+ },
+ {
+  "id": "OLL 39",
+  "group": "Lightning Shapes",
+  "algs": [
+   "y' f' r U r' U' r' F r S",
+   "y' R U R' F' U' F U R U2 R'",
+   "y L F' L' U' L U F U' L'",
+   "y' f' L F L' U' L' U L S"
+  ],
+  "setup": "L U F' U' L' U L F L' y'",
+  "cls": "zdax90"
+ },
+ {
+  "id": "OLL 40",
+  "group": "Lightning Shapes",
+  "algs": [
+   "y R' F R U R' U' F' U R",
+   "y' f R' F' R U R U' R' S'",
+   "R r D r' U r D' r' U' R'",
+   "y' L' U' L F U F' U' L' U2 L"
+  ],
+  "setup": "R' U' F U R U' R' F' R y'",
+  "cls": "13ae2xo"
+ },
+ {
+  "id": "OLL 41",
+  "group": "Awkward Shapes",
+  "algs": [
+   "y2 R U R' U R U2 R' F R U R' U' F'",
+   "y2 F U R2 D R' U' R D' R2 F'",
+   "y' S U' R' F' U' F U R S'",
+   "M U' F' L' U' L U F M'"
+  ],
+  "setup": "F U R U' R' F' R U2' R' U' R U' R' y2'",
+  "cls": "eho9zg"
+ },
+ {
+  "id": "OLL 42",
+  "group": "Awkward Shapes",
+  "algs": [
+   "R' U' R U' R' U2 R F R U R' U' F'",
+   "y F S' R U R' U' F' U S",
+   "y R' F R F' R' F R F' R U R' U' R U R'",
+   "y R' U' F2 u' R U R' D R2 B"
+  ],
+  "setup": "F U R U' R' F' R' U2' R U R' U R",
+  "cls": "hrju6c"
+ },
+ {
+  "id": "OLL 43",
+  "group": "P Shapes",
+  "algs": [
+   "y R' U' F' U F R",
+   "y2 F' U' L' U L F",
+   "f' L' U' L U f",
+   "B' U' R' U R B"
+  ],
+  "setup": "f' U' L' U L f",
+  "cls": "v84p6k"
+ },
+ {
+  "id": "OLL 44",
+  "group": "P Shapes",
+  "algs": [
+   "f R U R' U' f'",
+   "y2 F U R U' R' F'",
+   "y R U B U' B' R'",
+   "y' L U F U' F' L'"
+  ],
+  "setup": "f U R U' R' f'",
+  "cls": "wlozv8"
+ },
+ {
+  "id": "OLL 45",
+  "group": "T Shapes",
+  "algs": [
+   "F R U R' U' F'",
+   "y R' F' U' F U R",
+   "y2 f U R U' R' f'",
+   "y2 F' L' U' L U F"
+  ],
+  "setup": "F U R U' R' F'",
+  "cls": "1wyor4"
+ },
+ {
+  "id": "OLL 46",
+  "group": "C Shapes",
+  "algs": [
+   "R' U' R' F R F' U R",
+   "R' F' U' F R U' R' U2 R",
+   "y F R U R' U' F' U' R U R' U R U2 R'",
+   "l' U2 L2 F' L' F U L' U l"
+  ],
+  "setup": "R' U' F R' F' R U R",
+  "cls": "1j1fwyw"
+ },
+ {
+  "id": "OLL 47",
+  "group": "L Shapes",
+  "algs": [
+   "F' L' U' L U L' U' L U F",
+   "y' F R' F' R U2 R U' R' U R U2 R'",
+   "R' U' R' F R F' R' F R F' U R",
+   "y' R' F' U' F U F' U' F U R"
+  ],
+  "setup": "F' U' L' U L U' L' U L F",
+  "cls": "ujnam8"
+ },
+ {
+  "id": "OLL 48",
+  "group": "L Shapes",
+  "algs": [
+   "F R U R' U' R U R' U' F'",
+   "y2 f U R U' R' U R U' R' f'",
+   "F l F l' U' l F l' U' F'",
+   "R U2 R' U' R U R' U2 R' F R F'"
+  ],
+  "setup": "F U R U' R' U R U' R' F'",
+  "cls": "hcn5fk"
+ },
+ {
+  "id": "OLL 49",
+  "group": "L Shapes",
+  "algs": [
+   "y2 r U' r2 U r2 U r2 U' r",
+   "l U' l2 U l2 U l2 U' l",
+   "R B' R2 F R2 B R2 F' R",
+   "y2 R' F R' F' R2 U2 B' R B R'"
+  ],
+  "setup": "r' U r2' U' r2' U' r2' U r' y2'",
+  "cls": "1fme3xk"
+ },
+ {
+  "id": "OLL 50",
+  "group": "L Shapes",
+  "algs": [
+   "r' U r2 U' r2 U' r2 U r'",
+   "y2 R' F R2 B' R2 F' R2 B R'",
+   "y' R U2 R' U' R U' R' F R U R' U' F'",
+   "y2 l' U l2 U' l2 U' l2 U l'"
+  ],
+  "setup": "r U' r2' U r2' U r2' U' r",
+  "cls": "c6zf9s"
+ },
+ {
+  "id": "OLL 51",
+  "group": "Line Shapes",
+  "algs": [
+   "y2 F U R U' R' U R U' R' F'",
+   "f R U R' U' R U R' U' f'",
+   "y' R' U' R' F R F' R U' R' U2 R",
+   "y r' F' U' F U F' U' F U r"
+  ],
+  "setup": "f U R U' R' U R U' R' f'",
+  "cls": "37isak"
+ },
+ {
+  "id": "OLL 52",
+  "group": "Line Shapes",
+  "algs": [
+   "y2 R' F' U' F U' R U R' U R",
+   "R U R' U R U' B U' B' R'",
+   "R U R' U R d' R U' R' F'",
+   "R U R' U R U' y R U' R' F'"
+  ],
+  "setup": "F R U R' d R' U' R U' R'",
+  "cls": "i8ckqk"
+ },
+ {
+  "id": "OLL 53",
+  "group": "L Shapes",
+  "algs": [
+   "r' U' R U' R' U R U' R' U2 r",
+   "y2 l' U' L U' L' U L U' L' U2 l",
+   "y r' U2 R U R' U' R U R' U r",
+   "y' l' U2 L U L' U' L U L' U l"
+  ],
+  "setup": "r' U2' R U R' U' R U R' U r",
+  "cls": "aksv8w"
+ },
+ {
+  "id": "OLL 54",
+  "group": "L Shapes",
+  "algs": [
+   "r U R' U R U' R' U R U2 r'",
+   "y' r U2 R' U' R U R' U' R U' r'",
+   "y' r U r' R U R' U' R U R' U' r U' r'",
+   "y2 l U L' U L U' L' U L U2 l'"
+  ],
+  "setup": "r U2' R' U' R U R' U' R U' r'",
+  "cls": "76wb3s"
+ },
+ {
+  "id": "OLL 55",
+  "group": "Line Shapes",
+  "algs": [
+   "y R' F U R U' R2 F' R2 U R' U' R",
+   "y R' F R U R U' R2 F' R2 U' R' U R U R'",
+   "R U2 R2 U' R U' R' U2 F R F'",
+   "r U2 R2 F R F' U2 r' F R F'"
+  ],
+  "setup": "F R' F' U2' R U R' U R2' U2' R'",
+  "cls": "nehh04"
+ },
+ {
+  "id": "OLL 56",
+  "group": "Line Shapes",
+  "algs": [
+   "r U r' U R U' R' U R U' R' r U' r'",
+   "r U r' U R U' R' M' U R U2 r'",
+   "F R U R' U' R F' r U R' U' r'",
+   "r' U' r U' R' U R U' R' U R r' U r"
+  ],
+  "setup": "r U r' R U R' U' R U R' U' r U' r'",
+  "cls": "qu2ez0"
+ },
+ {
+  "id": "OLL 57",
+  "group": "All Corners Oriented",
+  "algs": [
+   "R U R' U' M' U R U' r'",
+   "y R U' R' S' R U R' S",
+   "y R U R' S' R U' R' S",
+   "R U R' U' R' r U R U' r'"
+  ],
+  "setup": "r U R' U' M U R U' R'",
+  "cls": "1qs1llo"
+ }
+]

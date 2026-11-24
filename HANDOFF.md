@@ -292,3 +292,45 @@ New tab **2x2** with nine sets: PBL (9), CLL (40), EG-1 (40), EG-2 (40), LEG-1 (
 - Checks: every alg reads and solves its own setup (`tools/verify_best2x2.js`, in `npm test`). For **PBL, CLL and EG-2** every alg of a case also starts from the same position (up to the hold and a turn of either layer), and a user alg is accepted only if it does too (`Cube2.fits`, hashes in `cls`). For **EG-1, LEG-1, TCLL+, TCLL-, TEG2+ and LS** the sheet shows one picture per case but lists algs for different first-layer positions, so the algs of one case do start from different positions; there only the notation is checked (no `cls`), and any readable alg is accepted.
 - Left out: PBL Diag column B row 34 (`... F2/D R2`, starts from a different position than its column) and CLL T column B row 58 (`(U) R' F' R' U F U F'`, same reason); a stray alg typed into the label column of LS-6 (A181, "Spaceship 5").
 - Page is ~735 KB; sets of over 150 cases (LS) draw 90 at a time.
+
+## 2026-11-24: 3x3 (SpeedCubeDB export) and trigger marks everywhere
+
+New tab **3x3** with eight sets: F2L (41 cases), Advanced F2L (54), OLL (57), PLL (21), COLL (40), WV (27), VLS (189) and ZBLL (472); 4,271 algs. Source: the user's selection from SpeedCubeDB, kept as
+`data/src/speedcubedb_3x3_selected_algs.csv` (columns: set, subset_page, case, group, setup, standard_alg, orientation_or_slot, alg_rank, algorithm). Credit is in the footer.
+- Engine `src/cube3.js` (54 stickers; U D R L F B, wide `r l u d f b` and `Rw`-style, M E S, x y z, `(...)3`, `R3`). Colours: U yellow, D white, F green, B blue, R red, L orange.
+- **Rotations inside algs.** An alg that starts "y' x L2 ..." names other layers after the turn, so `flat(alg)` rewrites it without whole-cube turns. `start(alg)` = the position the alg solves (the cube held as at the start of the alg;
+  when an alg shifts a slice or wide layer without turning it back, the end hold is the solved cube turned to match the centres, `heldLike`). `scramble(alg)` = the moves that make that position from a solved cube
+  (with a turn of the whole cube first only in that rare case). No whole-cube turns appear in scrambles.
+- **Position classes (`keyOf`, `classOf(set, state)`).** The CSV's `setup` makes the case's picture; `cls` is its class and every alg must start from the same class. What counts as the same case depends on the set:
+  OLL = orientation of the last layer up to a top-layer turn; COLL = the four corners exactly (edges only oriented) up to top-layer turns before and after the alg; PLL and ZBLL = the whole last layer up to those turns;
+  F2L = first two layers exactly except last-layer pieces (those are hidden), up to which slot it is; WV and VLS = the same, but last-layer pieces still show whether they are turned the right way.
+  Last-layer pieces are found by colour (a piece with yellow on it), so no case list is needed. Different cases always get different classes (checked).
+- **Advanced F2L has no `cls`.** Only about 1 in 4 of its algs starts from the same arrangement as the case's setup (the sheet lists algs for neighbouring arrangements of the pair under one name, like the 2x2 LS sets),
+  so there only the notation and an intact cross (`crossSolved`) are checked, and its picture is drawn from the alg shown.
+- Every alg in the other seven sets starts from its case's class. Data: `node tools/make_cube3.js` -> `data/cube3_*.json` (id, group, algs, setup, cls); `data/src/cube3_report.txt` lists anything left out (nothing at present).
+  `node tools/verify_cube3.js` (in `npm test`): classes, distinct cases, cross, and scramble + alg = solved for all 4,271 algs.
+- Groups on Cases: F2L, Advanced F2L, OLL, PLL, COLL use the sheet's groups; ZBLL uses the subset page (L, T, U, S, Pi, AS, H), VLS its seven edge subsets, WV one group.
+  F2L algs are listed main orientation first, then the other three slots; Train picks one of a case's algs at random, so every slot comes up.
+- Diagrams: `Diagram.cube3Diagram(view, {kind})` with `Cube3.view(set, state)` (grey = not part of the case). `top` = top layer from above with its ring of side stickers (OLL, PLL, COLL, ZBLL; OLL shows yellow or grey only, COLL hides where edges are);
+  `iso` = U, F and R faces from the front right (F2L, Advanced F2L, WV, VLS). PLL has no arrows: the ring colours show the permutation.
+- App: `c3(...)` helper and eight `GEN` entries in `app.js`, `DATA_C3*` in `build.js`, a `3x3` entry in `PUZZLES`. The tab row got tighter spacing under 380px so six tabs fit at 320px.
+
+**Trigger marks now work on every puzzle that has them in its vocabulary** (before, `algText` skipped everything built on a simulator). Lists are `TRIGS` (Megaminx), `TRIGS_CUBE` (2x2 and 3x3: sune, antisune, sexy, reverse sexy, half sune,
+sledge, hedgeslammer and their left-hand versions), `TRIGS_SK` (Skewb: sledgehammer R' L R L' and hedgeslammer L R' L' R, also Sarah's S and H) and `TRIGS_PX` (Pyraminx: sexy, reverse sexy). Parentheses in sheet algs are dropped when marks are on
+(the marks replace them); an alg with a repeat count like `(R U)2` is shown as written. Searching for a trigger name works on all of them. Square-1 still marks each turn between slashes.
+
+## 2026-11-24 (later): one colour scheme, 3x3 picture size
+- `CUBE_SCHEME` in `src/diagram.js` is the colour scheme for 2x2, Skewb and Pyraminx (white bottom, yellow top, green front, blue back, red right, orange left). `CUBE2_COLORS`, `SKEWB_COLORS` and `PYRA_COLORS` are built from it, so changing a colour there changes every puzzle. Megaminx and Square-1 keep their own settings.
+- 3x3 pictures in the case grid are 124 px high (`.tile .mat svg.cube3` in `index.template.html`), about the height of the 2x2 and Skewb pictures. The train screen and the answer card keep the larger size.
+
+## 2026-11-24 (later still): PLL cut to 2 algs, pictures follow the setup's last turn
+- (Superseded by the next entry: the PLL cut was undone, all 84 PLL algs are back in the data.)
+- `Cube3.view` (`asHeld`) now draws a setup that ends with a turn of the whole cube (y, y') the way the sheet does: positions as they end up, colours read from the centres. Before, that turn was undone, so Ja came out a quarter turn off (the bar was in front instead of on the right). 378 of the 779 last-layer pictures (OLL, PLL, COLL, VLS, ZBLL) changed because of this. Classes and verification are unchanged: they never looked at it.
+
+## 2026-11-24 (evening): "Show extra algs" switch, 3x3 colours
+- All 4 algs per PLL case are back in `data/cube3_pll.json` (4271 3x3 algs). The case cards of 3x3 PLL show the top 2 unless the switch "Show extra algs" (cases screen, next to Sort) is on; the choice is `settings.extraAlgs`. `TOP_ONLY` / `TOP_N` in `app.js` say which sets are capped (only `c3pll`). Your own star alg is always among the shown ones, a list you edited yourself is shown whole, and Train's answer panel always shows every alg.
+- 3x3 has its own colours, `CUBE3_SCHEME` in `src/diagram.js`: white #F4F5F7, yellow #FDE910, red #DD1E2A, orange #FF7A1A, blue #0E7AE5, green #1EC93B. 2x2, Skewb and Pyraminx keep `CUBE_SCHEME`.
+
+## 2026-11-24 (evening, later): top 2 algs on every 2x2 and 3x3 set, one colour scheme
+- "Show extra algs" now covers every 2x2 and 3x3 set, not only 3x3 PLL: `topOnly(p)` in `app.js` (puzzle `c2` or `c3`). Cards show the top 2 algs per case while it is off; one global setting, `settings.extraAlgs`. The switch only appears on sets where some case has more than 2 algs (`hasExtra`). Skewb, Pyraminx, Megaminx and Square-1 are not capped.
+- `CUBE_SCHEME` (`src/diagram.js`) is again the one scheme for 2x2, 3x3, Skewb and Pyraminx, now with the colours the 3x3 got: white #F4F5F7, yellow #FDE910, red #DD1E2A, orange #FF7A1A, blue #0E7AE5, green #1EC93B. (`CUBE3_SCHEME` is gone.)

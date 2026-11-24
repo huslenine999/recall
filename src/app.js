@@ -1,5 +1,5 @@
 (function () {
-  const M = Megaminx, S = Square1, D = Diagram, X = Scramble, SK = Skewb, PX = Pyraminx, C2 = Cube2;
+  const M = Megaminx, S = Square1, D = Diagram, X = Scramble, SK = Skewb, PX = Pyraminx, C2 = Cube2, C3 = Cube3;
   const $ = (s, el) => (el || document).querySelector(s);
   const $$ = (s, el) => Array.from((el || document).querySelectorAll(s));
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -20,11 +20,22 @@
   const skStart = cfg => a => SK.run(SK.invert(a, cfg), null, cfg);
   // 2x2: an alg is accepted when it starts from the same position as one of the case's sheet algs, whatever turn the layers have (sets with no stored position only get their notation checked)
   const c2 = (set, label, name, rows) => ({ puzzle: 'c2', set, label, name: '2x2 ' + name, rows, eng: C2, start: a => C2.run(C2.invert(a)), scr: a => C2.invert(a), draw: (st, l) => D.cube2Diagram(st, { label: l }), verify: (st, c) => !c.cls || C2.fits(st, c.cls) });
+  // 3x3: a case is the position its setup makes, and an alg is accepted when it starts from that position (what counts as the same position depends on the set, see keyOf in cube3.js).
+  // Advanced F2L has no stored position: the sheet lists algs for one case that start from different arrangements of the pair, so there the notation and an intact cross are what is checked.
+  // The picture comes from the case's setup, so it does not change with the alg that is shown; Advanced F2L is drawn from the alg itself.
+  const c3 = (set, label, ck, rows, kind) => {
+    let setups = null; const setupOf = id => { if (!setups) { setups = {}; rows().forEach(r => { setups[r.id] = r.setup; }); } return setups[id]; };
+    return { puzzle: 'c3', set, label, name: '3x3 ' + label, rows, eng: C3, start: a => C3.start(a), scr: a => C3.scramble(a),
+      draw: (st, l) => D.cube3Diagram(C3.view(ck, ck !== 'Advanced F2L' && setupOf(l) ? C3.run(setupOf(l)) : st), { label: l, kind }),
+      verify: (st, c) => (c.cls ? C3.classOf(ck, st) === c.cls : C3.crossSolved(C3.norm(st))) };
+  };
   const GEN = {
     skns: { puzzle: 'sk', set: 'ns', label: 'NS', name: 'Skewb NS', rows: () => DATA_SKNS, eng: SK, start: skStart(SK.NS), scr: a => SK.scramble(a, SK.NS), draw: (st, l) => D.skewbDiagram(st, { label: l }) },
     sksa: { puzzle: 'sk', set: 'sa', label: 'Sarah\'s Advanced', name: 'Skewb Sarah\'s Advanced', rows: () => DATA_SKSA, eng: SK, start: skStart(SK.SA), scr: a => SK.scramble(a, SK.SA), draw: (st, l) => D.skewbDiagram(st, { label: l }) },
     c2pbl: c2('pbl', 'PBL', 'PBL', () => DATA_C2PBL), c2cll: c2('cll', 'CLL', 'CLL', () => DATA_C2CLL), c2eg1: c2('eg1', 'EG-1', 'EG-1', () => DATA_C2EG1), c2eg2: c2('eg2', 'EG-2', 'EG-2', () => DATA_C2EG2),
     c2leg1: c2('leg1', 'LEG-1', 'LEG-1', () => DATA_C2LEG1), c2tcllp: c2('tcllp', 'TCLL+', 'TCLL+', () => DATA_C2TCLLP), c2tcllm: c2('tcllm', 'TCLL-', 'TCLL-', () => DATA_C2TCLLM), c2ls: c2('ls', 'LS', 'LS', () => DATA_C2LS), c2teg2p: c2('teg2p', 'TEG2+', 'TEG2+', () => DATA_C2TEG2P),
+    c3f2l: c3('f2l', 'F2L', 'F2L', () => DATA_C3F2L, 'iso'), c3af2l: c3('af2l', 'Adv. F2L', 'Advanced F2L', () => DATA_C3AF2L, 'iso'), c3oll: c3('oll', 'OLL', 'OLL', () => DATA_C3OLL, 'top'), c3pll: c3('pll', 'PLL', 'PLL', () => DATA_C3PLL, 'top'),
+    c3coll: c3('coll', 'COLL', 'COLL', () => DATA_C3COLL, 'top'), c3wv: c3('wv', 'WV', 'WV', () => DATA_C3WV, 'iso'), c3vls: c3('vls', 'VLS', 'VLS', () => DATA_C3VLS, 'iso'), c3zbll: c3('zbll', 'ZBLL', 'ZBLL', () => DATA_C3ZBLL, 'top'),
     pyl4e: { puzzle: 'px', set: 'l4e', label: 'L4E', name: 'Pyraminx L4E', rows: () => DATA_PYL4E, eng: PX, start: a => PX.run(PX.invert(a)), scr: a => PX.invert(a), draw: (st, l) => D.pyraminxDiagram(st, { label: l }) }
   };
   const KEYS = ['mm', 'oll', 'sq', 'csp', 'pbl', 'obl', ...Object.keys(GEN)]; // data keys: Megaminx PLL and OLL, Square-1 EP, CSP, PBL and OBL, and the simulator sets
@@ -80,7 +91,7 @@
   // ---- persistent data: one key per puzzle {sel:{id:0|1}, st:{id:{status,times,att,fails,last}}} ----
   const db = {}; KEYS.forEach(k => { db[k] = store.get('at.' + k + '.v1', { sel: {}, st: {} }); });
   const save = p => store.set('at.' + p + '.v1', db[p]);
-  const settings = Object.assign({ showDiagram: { mm: true, oll: true, sq: true, csp: true, pbl: true, obl: true }, showCase: true, mmArrows: false, triggers: 'boxes', trigNames: true, theme: 'system' }, store.get('at.settings.v1', {}));
+  const settings = Object.assign({ showDiagram: { mm: true, oll: true, sq: true, csp: true, pbl: true, obl: true }, showCase: true, extraAlgs: false, mmArrows: false, triggers: 'boxes', trigNames: true, theme: 'system' }, store.get('at.settings.v1', {}));
   const saveSettings = () => store.set('at.settings.v1', settings);
   // A chosen palette (settings.palette = its name) sets the color tokens inline, which beats the stylesheet's light/dark blocks.
   const PAL_VARS = ['--well', '--glow2', '--glow3', '--glow-a', '--hold', '--hold-ink', '--bg', '--text', '--mute', '--pri-bg', '--pri-fg', '--focus', '--bad', '--ok', '--warn', '--panel', '--raise', '--line', '--scrim'];
@@ -160,7 +171,8 @@
     { id: 'sq', name: 'Square-1', icon: ICON('<circle cx="12" cy="12" r="9.5"/><path d="M8.3 8.3l7.4 0 0 7.4-7.4 0z" stroke-width="1.5" transform="rotate(15 12 12)"/>') },
     { id: 'sk', name: 'Skewb', icon: ICON('<path d="M12 2.5l8.5 4.9v9.2L12 21.5l-8.5-4.9V7.4z"/><path d="M12 8.2l4.3 2.4v2.9L12 15.9l-4.3-2.4v-2.9z" stroke-width="1.5"/>') },
     { id: 'px', name: 'Pyraminx', icon: ICON('<path d="M12 3l9 16.5H3z"/><path d="M7.5 11.2h9M10 15.4l2-3.7 2 3.7" stroke-width="1.5"/>') },
-    { id: 'c2', name: '2x2', icon: ICON('<rect x="3.5" y="3.5" width="17" height="17" rx="2.5"/><path d="M12 3.5v17M3.5 12h17" stroke-width="1.6"/>') }
+    { id: 'c2', name: '2x2', icon: ICON('<rect x="3.5" y="3.5" width="17" height="17" rx="2.5"/><path d="M12 3.5v17M3.5 12h17" stroke-width="1.6"/>') },
+    { id: 'c3', name: '3x3', icon: ICON('<rect x="3.5" y="3.5" width="17" height="17" rx="2.5"/><path d="M9.2 3.5v17M14.8 3.5v17M3.5 9.2h17M3.5 14.8h17" stroke-width="1.4"/>') }
   ].filter(z => SETS[z.id]);
   const PUZZLE_NAME = {}; PUZZLES.forEach(z => { PUZZLE_NAME[z.id] = z.name; });
   const DK_NAME = { mm: 'Megaminx PLL', oll: 'Megaminx OLL', sq: 'Square-1 EP', csp: 'Square-1 CSP', pbl: 'Square-1 PBL', obl: 'Square-1 OBL' };
@@ -272,23 +284,32 @@
 
   const STAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.7 6.6 19.7l1.2-6-4.5-4.2 6.1-.7z"/></svg>';
   // ---- trigger marks: the alg split into chunks you can learn as one motion ----
-  const TRIGS = [ // Megaminx; U? matches U2 or U2'
+  // One list per kind of puzzle; U? matches U2 or U2'. Longest match first, other moves are left plain.
+  const mkTrigs = list => list.map(([name, t]) => ({ name, t: t.split(' ') })).sort((a, b) => b.t.length - a.t.length);
+  const CORE_TRIGS = [
     ['sune', "R U R' U R U? R'"], ['antisune', "R U? R' U' R U' R'"],
     ['sexy', "R U R' U'"], ["reverse sexy", "U R U' R'"], ['half sune', "R U R' U"], ['sledge', "R' F R F'"], ['hedgeslammer', "F R' F' R"]
-  ].map(([name, t]) => ({ name, t: t.split(' ') })).sort((a, b) => b.t.length - a.t.length);
+  ];
+  const TRIGS = mkTrigs(CORE_TRIGS); // Megaminx
+  const TRIGS_CUBE = mkTrigs([...CORE_TRIGS, // 2x2 and 3x3: the same, plus the left-hand versions
+    ['left sune', "L' U' L U' L' U? L"], ['left antisune', "L' U? L U L' U L"], ['left sexy', "L' U' L U"], ['left reverse sexy', "U' L' U L"], ['left sledge', "L F' L' F"], ['left hedgeslammer', "F' L F L'"]]);
+  const TRIGS_SK = mkTrigs([['sledgehammer', "R' L R L'"], ['hedgeslammer', "L R' L' R"], ['sledgehammer', "F' L F L'"], ['hedgeslammer', "L F' L' F"], ['sledgehammer', 'S'], ['hedgeslammer', 'H']]); // Skewb (S and H are Sarah's macros)
+  const TRIGS_PX = mkTrigs([['sexy', "R U R' U'"], ['reverse sexy', "U R U' R'"]]); // Pyraminx
+  const trigsFor = p => (p === 'mm' || p === 'oll' ? TRIGS : GEN[p] ? { c2: TRIGS_CUBE, c3: TRIGS_CUBE, sk: TRIGS_SK, px: TRIGS_PX }[GEN[p].puzzle] || [] : []);
   const tokEq = (pat, tok) => (pat === 'U?' ? /^U2'?$/.test(tok) : pat === tok);
   function chunks(p, a) { // [{t:'R U R\' U\'', name}] ; name is '' for an unnamed chunk, null for plain moves
     if (p === 'sq' || p === 'csp' || p === 'pbl' || p === 'obl') return a.split('/').map(x => x.trim()).filter(Boolean).map(t => ({ t, name: '', slash: true }));
-    const toks = a.split(/\s+/).filter(Boolean), out = [];
+    const list = trigsFor(p), toks = (GEN[p] ? a.replace(/[()]/g, ' ') : a).split(/\s+/).filter(Boolean), out = [];
+    const cmp = toks.map(t => t.replace(/2'$/, '2').replace(/[‘’´ʹ`]/g, "'"));
     for (let i = 0; i < toks.length;) {
-      const m = TRIGS.find(g => g.t.every((q, k) => toks[i + k] !== undefined && tokEq(q, toks[i + k])));
+      const m = list.find(g => g.t.every((q, k) => cmp[i + k] !== undefined && tokEq(q, cmp[i + k])));
       if (m) { out.push({ t: toks.slice(i, i + m.t.length).join(' '), name: m.name }); i += m.t.length; } else { out.push({ t: toks[i], name: null }); i++; }
     }
     return out;
   }
   function algText(p, a) {
     const mode = settings.triggers;
-    if (mode === 'off' || !mode || GEN[p]) return esc(a);
+    if (mode === 'off' || !mode || (GEN[p] && (!trigsFor(p).length || /\)\s*\d/.test(a)))) return esc(a); // an alg with a repeat count like (R U)2 is shown as written
     const parts = chunks(p, a), names = settings.trigNames !== false;
     return parts.map((c, i) => {
       if (c.slash) return `<span class="trg ${mode}">${esc(c.t)}</span>${i < parts.length - 1 ? '<span class="sl">/</span>' : ''}`;
@@ -297,9 +318,14 @@
       return `<span class="trg ${mode}">${mode === 'brackets' ? '[' : ''}${esc(c.t)}${mode === 'brackets' ? ']' : ''}${nm}</span> `;
     }).join('');
   }
-  function algsHtml(p, c) { // your alg first; the star only appears when there is a choice to make
+  // 2x2 and 3x3: the case cards show the top 2 algs unless "Show extra algs" is on (a list you edited yourself is always shown whole).
+  const TOP_N = 2, topOnly = p => !!GEN[p] && (GEN[p].puzzle === 'c2' || GEN[p].puzzle === 'c3');
+  const hasExtra = p => topOnly(p) && cases[p].some(c => sheet[p][c.id].length > TOP_N); // the switch only shows where some case has more
+  const capAlgs = (p, c) => topOnly(p) && !settings.extraAlgs && !(db[p].alg && db[p].alg[c.id]);
+  function algsHtml(p, c, card) { // your alg first; the star only appears when there is a choice to make
     const mine = prefAlg(p, c), multi = c.algs.filter(x => x.ok).length > 1;
-    const rows = c.algs.map((x, i) => ({ x, i })); if (mine) rows.sort((a, b) => (b.x === mine) - (a.x === mine));
+    let rows = c.algs.map((x, i) => ({ x, i })); if (mine) rows.sort((a, b) => (b.x === mine) - (a.x === mine));
+    if (card && capAlgs(p, c)) rows = rows.slice(0, TOP_N);
     return `<div class="algs">${rows.map(({ x, i }) => `<div class="algrow ${x === mine ? 'mine' : mine ? 'other' : ''}">${multi && x.ok ? `<button type="button" class="starb" data-pref="${esc(c.id)}" data-i="${i}" aria-pressed="${x === mine}" title="${x === mine ? 'Your alg. Tap to clear it' : 'Use this alg'}" aria-label="${x === mine ? 'This is your alg. Tap to clear it' : 'Use this alg'}">${STAR}</button>` : ''}<div class="alg ${x.ok ? '' : 'bad'}">${x.ok ? '' : '<span class="tag-check">check</span>'}${algText(p, x.a)}</div></div>`).join('')}</div>`;
   }
   function togglePref(p, id, i) {
@@ -559,7 +585,7 @@
         <button type="button" class="status s-${s.status}" data-chip="${esc(c.id)}" title="Change status" aria-label="${esc(c.id)} status: ${s.status}. Change status">${statusGlyph(s.status)}<span>${s.status}</span></button>
       </div>
       ${c.ok ? matFor(p, c) : `<div class="warn">${esc(c.why || 'No alg on this case passes the check.')}</div>`}
-      ${algsHtml(p, c)}
+      ${algsHtml(p, c, true)}
       ${c.note ? `<p class="note">${esc(c.note)}</p>` : ''}
       <div class="tile-f"><div class="st">${stats}</div><button type="button" class="btn quiet" data-edit="${esc(c.id)}">Edit</button></div>
     </article>`;
@@ -581,7 +607,7 @@
     else if (p === 'csp') list = list.filter(c => (ui.cspSec === 'all' || c.group === ui.cspSec) && (ui.cspPar === 'both' || c.parity === ui.cspPar));
     else list = list.filter(c => (ui.sqParity === 'all' || (ui.sqParity === 'yes') === c.parity) && (ui.sqCol === 'both' || (ui.sqCol === 'flip') === c.flip));
     const norm = t => String(t).toLowerCase().replace(/[\u2018\u2019]/g, "'").replace(/\s+/g, ' ').trim(), q = norm(ui.q);
-    if (q) { const tight = q.replace(/ /g, ''); list = list.filter(c => { const name = norm(c.id + ' ' + (c.group || '') + ' ' + stat(p, c.id).status); return name.includes(q) || c.algs.some(x => { const a = norm(x.a + ((p === 'mm' || p === 'oll') && /[a-z]{4}/.test(q) ? ' ' + chunks(p, x.a).map(k => k.name || '').join(' ') : '')); return a.includes(q) || a.replace(/ /g, '').includes(tight); }); }); }
+    if (q) { const tight = q.replace(/ /g, ''); list = list.filter(c => { const name = norm(c.id + ' ' + (c.group || '') + ' ' + stat(p, c.id).status); return name.includes(q) || c.algs.some(x => { const a = norm(x.a + (trigsFor(p).length && /[a-z]{4}/.test(q) ? ' ' + chunks(p, x.a).map(k => k.name || '').join(' ') : '')); return a.includes(q) || a.replace(/ /g, '').includes(tight); }); }); }
     const val = c => { const t = stat(p, c.id).times; return t.length ? mean(t) : -1; };
     if (ui.sort === 'mean') list = list.slice().sort((a, b) => val(b) - val(a));
     else if (ui.sort === 'fails') list = list.slice().sort((a, b) => stat(p, b.id).fails - stat(p, a.id).fails);
@@ -624,6 +650,7 @@
       <div class="tools"><span class="count" role="status">${countText(p)}${shownText(p, list)}</span><input type="search" class="txt search" id="q" value="${esc(ui.q)}" placeholder="Search name or alg" aria-label="Search cases by name or alg" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search">${pblSel}
         <details class="menu"><summary class="btn">Select cases <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1.5l5 5 5-5"/></svg></summary>
           <div class="menu-pop"><button id="selAll">Select all shown</button><button id="selNone">Deselect all shown</button><button id="selLearning">Only the ones I am learning</button><button id="selNotLearned">Only the ones not learned yet</button></div></details>
+        ${hasExtra(p) ? `<label class="extra"><input type="checkbox" class="switch" id="extraAlgs" ${settings.extraAlgs ? 'checked' : ''}>Show extra algs</label>` : ''}
         <select id="sort" aria-label="Sort">${[['name', 'Sheet order'], ['mean', 'Slowest first'], ['fails', 'Most forgotten']].map(([v, l]) => `<option value="${v}" ${v === ui.sort ? 'selected' : ''}>${l}</option>`).join('')}</select>
       </div></div><div id="tilesWrap">${tilesHtml(p, list)}</div>${ui.edit && byId[p][ui.edit] ? editorHtml(p, byId[p][ui.edit]) : ''}`;
   }
@@ -723,6 +750,7 @@
       on('#edcancel', 'click', close); on('#edx', 'click', close); on('#edscrim', 'click', close);
     }
     on('#sort', 'change', e => { ui.sort = e.target.value; render(); });
+    on('#extraAlgs', 'change', e => { settings.extraAlgs = e.target.checked; saveSettings(); const w = $('#tilesWrap'); if (w) w.innerHTML = tilesHtml(p, filterCases(p)); });
     const setSel = fn => { $$('details.menu[open]').forEach(d => { d.open = false; }); ui.shown.forEach(c => { if (c.ok) db[p].sel[c.id] = fn(c) ? 1 : 0; }); save(p); run.queue = []; run.cur = null; render(); };
     on('#selAll', 'click', () => setSel(() => true));
     on('#selNone', 'click', () => setSel(() => false));
@@ -774,7 +802,7 @@
     return `<div class="settings">
       <section class="group"><h2>Training</h2>
         <label class="line"><span>Show the diagram in the answer<small>${name} only. The answer opens when you tap I forgot it. Cases always show their diagram.</small></span><input type="checkbox" class="switch" id="showDiag" ${settings.showDiagram[p] ? 'checked' : ''}></label>
-        <div class="line" style="display:block;cursor:default"><span>Trigger marks<small>Groups moves you can learn as one motion, like sune or sledge. Megaminx marks the common ones; Square-1 marks each turn between slashes.</small></span><div class="seg" role="group" aria-label="Trigger marks">${[['boxes', 'Boxes'], ['brackets', 'Brackets'], ['off', 'Off']].map(([v, l]) => `<button type="button" class="btn" data-trg="${v}" aria-pressed="${settings.triggers === v}">${l}</button>`).join('')}</div></div>
+        <div class="line" style="display:block;cursor:default"><span>Trigger marks<small>Groups moves you can learn as one motion, like sune or sledge. Megaminx, 2x2, 3x3, Skewb and Pyraminx mark the common ones (sune, sexy, sledge...); Square-1 marks each turn between slashes.</small></span><div class="seg" role="group" aria-label="Trigger marks">${[['boxes', 'Boxes'], ['brackets', 'Brackets'], ['off', 'Off']].map(([v, l]) => `<button type="button" class="btn" data-trg="${v}" aria-pressed="${settings.triggers === v}">${l}</button>`).join('')}</div></div>
         <label class="line"><span>Show trigger names<small>The name under each marked group, such as sune.</small></span><input type="checkbox" class="switch" id="trigNames" ${settings.trigNames !== false ? 'checked' : ''}></label>
         ${p === 'mm' ? `<label class="line"><span>Show arrows on Megaminx cases<small>Arrows mark where each piece goes. Off by default: the sticker colours already show the case.</small></span><input type="checkbox" class="switch" id="mmArrows" ${settings.mmArrows ? 'checked' : ''}></label>` : ''}
         <label class="line"><span>Show the case picture while solving<small>The case you are about to solve, without its algorithm. Turn off to solve from the scramble alone.</small></span><input type="checkbox" class="switch" id="showCase" ${settings.showCase ? 'checked' : ''}></label>

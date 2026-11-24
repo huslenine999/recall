@@ -280,8 +280,12 @@
   const SK = root.Skewb || require('./skewb.js');
   const PY = root.Pyraminx || require('./pyraminx.js');
   const C2 = root.Cube2 || require('./cube2.js');
-  const SKEWB_COLORS = ['#f04a3c', '#f58a24', '#f4f4f1', '#f7cf3d', '#2fbf6b', '#4a86f5']; // red, orange, white, yellow, green, blue (the solved layer is white, its opposite yellow)
-  const PYRA_COLORS = ['#2fbf6b', '#f04a3c', '#4a86f5', '#f7cf3d']; // green, red, blue, yellow
+  const C3 = root.Cube3 || require('./cube3.js');
+  // One colour scheme for every puzzle with cube-like colours (2x2, 3x3, Skewb, Pyraminx): change a colour here and all of them follow.
+  // White is the layer you solve first (bottom), yellow is opposite it (top); green front, blue back, red right, orange left.
+  const CUBE_SCHEME = { white: '#F4F5F7', yellow: '#FDE910', red: '#DD1E2A', orange: '#FF7A1A', blue: '#0E7AE5', green: '#1EC93B' };
+  const SKEWB_COLORS = ['red', 'orange', 'white', 'yellow', 'green', 'blue'].map(k => CUBE_SCHEME[k]); // R L D U F B colour numbers of the Skewb
+  const PYRA_COLORS = ['green', 'red', 'blue', 'yellow'].map(k => CUBE_SCHEME[k]);
   const vsub = (a, b) => a.map((x, i) => x - b[i]);
   const vdot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
   const vcross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
@@ -341,7 +345,7 @@
 
 
   // 2x2: the top layer seen from above with its side stickers around it, and the bottom layer seen from below (front at the top, like turning the cube over)
-  const CUBE2_COLORS = ['#f04a3c', '#f58a24', '#f7cf3d', '#f4f4f1', '#2fbf6b', '#4a86f5']; // R L U D F B: red, orange, yellow, white, green, blue
+  const CUBE2_COLORS = ['red', 'orange', 'yellow', 'white', 'green', 'blue'].map(k => CUBE_SCHEME[k]); // R L U D F B
   function cube2Diagram(state, opts) {
     opts = opts || {};
     const GAP = 0.05, T = 0.3, pal = opts.colors || CUBE2_COLORS;
@@ -360,6 +364,35 @@
     return viewsSvg([view(true), view(false)], 46, 0.5, opts.label || '2x2 case', 'cube2', 2, 2.2);
   }
 
-  const api = { cube2Diagram, CUBE2_COLORS, skewbDiagram, pyraminxDiagram, SKEWB_COLORS, PYRA_COLORS, oblDiagram, megaminxDiagram, megaminxOllDiagram, square1Diagram, cspDiagram, pblDiagram, MM_DEFAULT_COLORS, SQ_COLORS, MM_CFG };
+  // 3x3. state: what Cube3.view gives (the 54 colours, -1 for a sticker that is not part of the case, drawn grey).
+  // kind 'top': the top layer from above with its ring of side stickers (last-layer sets); 'iso': the U, F and R faces as seen from the front right corner (first two layers, last slot).
+  const CUBE3_GREY = '#7d7d8a';
+  function cube3Diagram(state, opts) {
+    opts = opts || {};
+    const kind = opts.kind || 'top', pal = opts.colors || CUBE2_COLORS, fill = i => (state[i] < 0 ? CUBE3_GREY : pal[state[i]]), out = [];
+    if (kind === 'top') {
+      const GAP = 0.06, T = 0.34;
+      C3.stickers.forEach((st, i) => {
+        const [px, py, pz] = st.p, n = st.n; if (py !== 1) return;
+        let r;
+        if (n[1]) r = [px - .5, pz - .5, px + .5, pz + .5]; // the U sticker (front is at the bottom of the picture)
+        else if (n[2]) r = n[2] > 0 ? [px - .5, 1.5 + GAP, px + .5, 1.5 + GAP + T] : [px - .5, -1.5 - GAP - T, px + .5, -1.5 - GAP];
+        else { const e = n[0] > 0 ? [1.5 + GAP, 1.5 + GAP + T] : [-1.5 - GAP - T, -1.5 - GAP]; r = [e[0], pz - .5, e[1], pz + .5]; }
+        out.push({ poly: [[r[0], r[1]], [r[2], r[1]], [r[2], r[3]], [r[0], r[3]]], fill: fill(i) });
+      });
+      return viewsSvg([out], 34, 0, opts.label || '3x3 case', 'cube3', 1.6, 1.8);
+    }
+    const right = vunit([1, 0, -1]), up = vunit([-1, 2, -1]), viewer = [1, 1, 1];
+    C3.stickers.forEach((st, i) => {
+      const n = st.n; if (vdot(n, viewer) <= 0) return;
+      const ax = [0, 1, 2].filter(k => !n[k]), c = st.p.map((v, k) => v + 0.5 * n[k]);
+      const e = ax.map(k => { const u = [0, 0, 0]; u[k] = 1; return u; });
+      const pts = [[-1, -1], [1, -1], [1, 1], [-1, 1]].map(([a, b]) => c.map((v, k) => v + 0.47 * (a * e[0][k] + b * e[1][k])));
+      out.push({ poly: pts.map(q => [vdot(q, right), -vdot(q, up)]), fill: fill(i) });
+    });
+    return viewsSvg([out], 30, 0, opts.label || '3x3 case', 'cube3', 1.5, 1.8);
+  }
+
+  const api = { CUBE_SCHEME, cube3Diagram, cube2Diagram, CUBE2_COLORS, skewbDiagram, pyraminxDiagram, SKEWB_COLORS, PYRA_COLORS, oblDiagram, megaminxDiagram, megaminxOllDiagram, square1Diagram, cspDiagram, pblDiagram, MM_DEFAULT_COLORS, SQ_COLORS, MM_CFG };
   if (typeof module !== 'undefined') module.exports = api; else root.Diagram = api;
 })(typeof window !== 'undefined' ? window : globalThis);

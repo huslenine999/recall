@@ -27,12 +27,28 @@ async function desktop(browser) {
   check('two entries after forgot', await page.locator('.solves li').count() === 2);
 
   // every set: the sheet algs pass the simulator. Known open item: EP 'H / W' (no flip) has an illegal slice in the data, so EP is 145 of 146.
-  for (const [tab, set, n, ok = n] of [['mm', 'pll', 151], ['mm', 'oll', 257], ['sq', 'ep', 146, 145], ['sq', 'csp', 179], ['sq', 'pbl', 967], ['sq', 'obl', 185], ['sk', 'ns', 137], ['sk', 'sa', 137], ['px', 'l4e', 37], ['c2', 'pbl', 9], ['c2', 'cll', 40], ['c2', 'eg1', 40], ['c2', 'eg2', 40], ['c2', 'leg1', 40], ['c2', 'tcllp', 43], ['c2', 'tcllm', 43], ['c2', 'ls', 486], ['c2', 'teg2p', 43]]) {
+  for (const [tab, set, n, ok = n] of [['mm', 'pll', 151], ['mm', 'oll', 257], ['sq', 'ep', 146, 145], ['sq', 'csp', 179], ['sq', 'pbl', 967], ['sq', 'obl', 185], ['sk', 'ns', 137], ['sk', 'sa', 137], ['px', 'l4e', 37], ['c2', 'pbl', 9], ['c2', 'cll', 40], ['c2', 'eg1', 40], ['c2', 'eg2', 40], ['c2', 'leg1', 40], ['c2', 'tcllp', 43], ['c2', 'tcllm', 43], ['c2', 'ls', 486], ['c2', 'teg2p', 43], ['c3', 'f2l', 41], ['c3', 'af2l', 54], ['c3', 'oll', 57], ['c3', 'pll', 21], ['c3', 'coll', 40], ['c3', 'wv', 27], ['c3', 'vls', 189], ['c3', 'zbll', 472]]) {
     await page.click(`[data-p="${tab}"]`); await page.click(`[data-set="${set}"]`); await page.click('[data-s="cases"]');
     const count = await page.locator('.count').textContent();
     check(`${tab} ${set}: ${ok} of ${n} cases usable`, count.startsWith(`${ok} of ${n} `), count);
   }
-  check('address follows the set', page.url().endsWith('#c2/teg2p/cases'), page.url());
+  check('address follows the set', page.url().endsWith('#c3/zbll/cases'), page.url());
+
+  // 2x2 and 3x3 cards show the top 2 algs; "Show extra algs" shows them all and is remembered; the other puzzles have no such switch
+  await page.click('[data-set="pll"]');
+  check('3x3 PLL cards show 2 algs', await page.locator('.tile').first().locator('.alg').count() === 2);
+  await page.locator('#extraAlgs').check();
+  check('Show extra algs shows all 4', await page.locator('.tile').first().locator('.alg').count() === 4);
+  await page.reload(); await page.waitForTimeout(300);
+  check('Show extra algs is remembered', await page.locator('#extraAlgs').isChecked() && await page.locator('.tile').first().locator('.alg').count() === 4);
+  await page.locator('#extraAlgs').uncheck();
+  check('switching it off goes back to 2', await page.locator('.tile').first().locator('.alg').count() === 2);
+  await page.click('[data-set="oll"]');
+  check('the switch is on every 3x3 set (OLL)', await page.locator('#extraAlgs').count() === 1 && await page.locator('.tile').first().locator('.alg').count() === 2);
+  await page.click('[data-p="c2"]'); await page.click('[data-set="cll"]');
+  check('2x2 cards show 2 algs too', await page.locator('#extraAlgs').count() === 1 && await page.locator('.tile').first().locator('.alg').count() === 2);
+  await page.click('[data-p="sk"]'); await page.click('[data-set="ns"]');
+  check('Skewb has no such switch', await page.locator('#extraAlgs').count() === 0);
 
   // search
   await page.click('[data-p="mm"]'); await page.click('[data-set="pll"]');
@@ -80,7 +96,7 @@ async function smallPhone(browser) {
   console.log('small phone (320px)');
   const page = await (await browser.newContext({ ...devices['iPhone SE'] })).newPage();
   await page.goto(url + '#mm/pll/train'); await page.tap('#introOk');
-  for (const h of ['#mm/pll/train', '#mm/pll/cases', '#mm/oll/cases', '#sq/pbl/cases', '#sq/obl/cases', '#sq/csp/cases', '#sk/ns/train', '#sk/ns/cases', '#sk/sa/cases', '#px/l4e/train', '#px/l4e/cases', '#c2/cll/train', '#c2/cll/cases', '#c2/ls/cases', '#sq/ep/settings']) {
+  for (const h of ['#mm/pll/train', '#mm/pll/cases', '#mm/oll/cases', '#sq/pbl/cases', '#sq/obl/cases', '#sq/csp/cases', '#sk/ns/train', '#sk/ns/cases', '#sk/sa/cases', '#px/l4e/train', '#px/l4e/cases', '#c2/cll/train', '#c2/cll/cases', '#c2/ls/cases', '#c3/oll/train', '#c3/oll/cases', '#c3/f2l/cases', '#c3/zbll/cases', '#sq/ep/settings']) {
     await page.goto(url + h); await page.waitForTimeout(150);
     check(h + ' fits 320px with no sideways scroll', await page.evaluate(() => document.documentElement.scrollWidth <= 320), await page.evaluate(() => document.documentElement.scrollWidth));
   }
