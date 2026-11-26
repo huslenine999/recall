@@ -65,7 +65,9 @@
 /* ---------- base ---------- */
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.5 var(--ui);-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.5 var(--ui);-webkit-font-smoothing:antialiased;min-height:100dvh;display:flex;flex-direction:column}
+#main{flex:1 0 auto;width:100%}
+.foot{flex:none}
 /* atmosphere: three soft sticker-coloured lights and a little grain, fixed behind everything */
 body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:
   url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E"),
@@ -120,7 +122,10 @@ svg{display:block}
 main.shell{padding-block:24px 48px}
 .foot{margin-top:24px;border-top:1px solid var(--line);padding:22px 0 calc(var(--nav-h) + env(safe-area-inset-bottom) + 28px);font-size:13.5px;line-height:1.55;color:var(--mute)}
 .foot p+p,.foot details{margin-top:6px}
-.foot .who b{color:var(--text);font-weight:650;margin-right:10px}
+.foot .who{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px}
+.foot .who b{color:var(--text);font-weight:650}
+.foot .who .credits{margin-top:0}
+.foot .who .credits[open]{flex-basis:100%}
 .foot a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 .foot a:hover{color:var(--text)}
 .foot summary{cursor:pointer;width:max-content;max-width:100%}
@@ -149,6 +154,13 @@ select{appearance:none;border:0;border-radius:10px;background:var(--raise) url("
 .stage{container-type:inline-size;display:flex;flex-direction:column;gap:12px;min-width:0}
 .stage-bar{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .stage-bar .note{white-space:nowrap}
+.linkbtn{background:none;border:0;border-radius:8px;padding:6px 8px;margin:-6px -8px;font:inherit;color:var(--mute);text-decoration:underline;text-decoration-color:color-mix(in srgb,currentColor 40%,transparent);text-underline-offset:3px;cursor:pointer}
+.linkbtn:hover{color:var(--text);background:var(--raise)}
+.cmseg{align-self:center;margin-top:0}
+.cmseg button{padding:6px 12px;font-size:14px}
+.casecard .cap{text-align:center;margin:0}
+.casecard .cap b{color:var(--text)}
+.casecard.wait{min-height:120px;display:grid;place-items:center;text-align:center}
 .stage-bar select{min-width:0;flex:0 1 auto;text-overflow:ellipsis}
 .scramble{background:var(--well);border:1px solid var(--line);border-bottom:0;border-radius:20px 20px 0 0;padding:20px 26px 16px;cursor:copy;user-select:text;
   font:600 clamp(21px,5.2cqw,33px)/1.6 var(--mono);font-stretch:88%;letter-spacing:.01em;overflow-wrap:anywhere}
@@ -183,9 +195,12 @@ body[data-phase="running"] .top,body[data-phase="running"] .nav,body[data-phase=
 .actions{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 .actions .primary{grid-column:1/-1;min-height:54px;font-size:17px}
 .actions.pre{grid-template-columns:1fr}
+@media (hover:hover) and (pointer:fine){.actions.pre .btn{background:none;box-shadow:inset 0 0 0 1.5px var(--line);color:var(--mute)}.actions.pre .btn:hover{background:var(--raise);color:var(--text)}}
 .actions .btn{white-space:nowrap}
 .rail{display:flex;flex-direction:column;gap:16px;min-width:0}
 .btn.sm{min-height:36px;padding:6px 11px;font-size:14px;border-radius:8px}
+.train .pad:has(+.last){border-radius:0}
+.pad+.last{margin-top:-12px;border:1px solid var(--line);border-top:0;border-radius:0 0 20px 20px;background:var(--well);padding:10px 10px 10px 20px}
 .last{display:flex;align-items:center;justify-content:space-between;gap:8px 12px;flex-wrap:wrap;padding:8px 8px 8px 16px;border-radius:12px;background:var(--panel)}
 .last .lt{display:flex;align-items:baseline;gap:10px;min-width:0}
 .last .lt b{font-weight:650;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -251,10 +266,16 @@ body.boot .foot{animation:rise .7s var(--ease) .35s both}
 .session .stats>div{padding:12px 0 12px 16px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
 .session .stats>div:nth-child(3n+1){border-left:0;padding-left:0}
 .session .stats dd{font-size:21px}
-.session .stats dt{font-size:13px}
-.session .solves li:first-child{border-top:0;padding-top:0}
+.session .stats dt{font-size:13.5px;font-weight:600;color:color-mix(in srgb,var(--text) 70%,var(--mute))}
+.session.is-empty .stats dd{color:var(--mute)}
+.session .tip{font-size:13px;margin-top:-6px}
+.session .solves li:first-child{border-top:0}
+.session .solves li:first-child .srow{padding-top:0}
 .solves{display:flex;flex-direction:column}
-.solves li{display:grid;grid-template-columns:2.4ch 14px 1fr auto;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
+.solves li{border-top:1px solid var(--line)}
+.solves .srow{display:grid;grid-template-columns:2.4ch 14px 1fr auto;gap:10px;align-items:center;width:100%;padding:8px 6px 8px 0;background:none;border:0;border-radius:8px;font:inherit;color:inherit;text-align:left;cursor:pointer}
+.solves .srow:hover{background:var(--raise)}
+.solves li.on .nm{text-decoration:underline;text-underline-offset:3px}
 .solves .ix{font:500 12.5px/1 var(--mono);font-stretch:80%;color:var(--mute);text-align:right;font-variant-numeric:tabular-nums}
 .solves .nm{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .solves .tm{font:600 15px/1 var(--mono);font-stretch:80%;font-variant-numeric:tabular-nums}
@@ -283,7 +304,11 @@ body.boot .foot{animation:rise .7s var(--ease) .35s both}
 .prog-bar .p-Learned{background:var(--ok)}
 .prog-bar .p-Learning{background:var(--warn)}
 .prog-key{display:flex;flex-wrap:wrap;gap:4px 18px;font-size:14px;color:var(--mute)}
-.prog-key span{display:inline-flex;align-items:center;gap:6px}
+.prog-key span,.prog-key button{display:inline-flex;align-items:center;gap:6px}
+.prog-key button{background:none;border:1.5px solid transparent;border-radius:999px;padding:4px 10px;margin:-4px -6px;font:inherit;color:inherit;cursor:pointer}
+.prog-key button:hover{background:var(--raise)}
+.prog-key button[aria-pressed="true"]{background:var(--raise);border-color:currentColor}
+.prog-key{gap:4px 22px}
 .prog-key b{color:var(--text);font:500 14px/1 var(--mono);font-stretch:88%;font-variant-numeric:tabular-nums}
 .prog-key .s-Learned{color:var(--ok)}
 .prog-key .s-Learning{color:var(--warn)}
@@ -324,8 +349,8 @@ body.boot .foot{animation:rise .7s var(--ease) .35s both}
 .tile-h h3{font-size:20px;line-height:1.15;flex:1;min-width:0;overflow-wrap:anywhere}
 .pick{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
 .tick{flex:none;width:24px;height:24px;border-radius:7px;border:2px solid var(--mute);display:grid;place-items:center}
-.tile.is-on .tick{background:var(--set,var(--text));border-color:var(--set,var(--text))}
-.tile.is-on .tick::after{content:"";width:11px;height:6px;border-left:3px solid #1B1A2B;border-bottom:3px solid #1B1A2B;transform:rotate(-45deg) translate(1px,-1px)}
+.tile.is-on .tick{background:var(--text);border-color:var(--text)} /* one style for every group: the group colour stays on the top edge */
+.tile.is-on .tick::after{content:"";width:11px;height:6px;border-left:3px solid var(--panel);border-bottom:3px solid var(--panel);transform:rotate(-45deg) translate(1px,-1px)}
 .tile.is-bad .tick{opacity:.35}
 .status{display:inline-flex;align-items:center;gap:6px;border:0;background:none;padding:6px 4px;border-radius:8px;font-size:14px;font-weight:650;color:var(--mute)}
 .status:hover{background:var(--raise)}
@@ -334,10 +359,14 @@ body.boot .foot{animation:rise .7s var(--ease) .35s both}
 .sg{width:16px;height:16px;flex:none}
 .tile .algs{gap:4px}
 .tile .alg{font-size:15.5px;line-height:1.6}
-.tile-f{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:32px}
+.tile-f{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:32px}
 .tile-f .st{font-size:14.5px;color:var(--mute);display:flex;gap:14px;flex-wrap:wrap}
 .tile-f .st b{color:var(--text);font:600 14.5px/1 var(--mono);font-stretch:92%;font-variant-numeric:tabular-nums;margin-right:4px}
 .tile-f .btn{min-height:36px;padding:6px 10px}
+.tile-f .btn.edit{gap:6px;font-size:14px}
+.tile-f .btn.edit svg{width:15px;height:15px}
+.morealgs{align-self:flex-start;border:0;border-radius:999px;background:var(--raise);color:var(--text);font:600 13px/1 var(--ui);padding:7px 11px;cursor:pointer}
+.morealgs:hover{box-shadow:inset 0 0 0 1.5px var(--line)}
 .warn{font-size:14px;color:var(--bad);background:rgba(214,59,68,.1);border-radius:12px;padding:10px 12px}
 .tag-check{font:700 11px/1 var(--ui);color:var(--bad);border:1.5px solid var(--bad);border-radius:6px;padding:2px 5px;margin-right:6px}
 .none{padding:40px 0;text-align:center;display:grid;justify-items:center;gap:12px}
@@ -420,7 +449,9 @@ body[data-phase="running"] .intro{opacity:0;pointer-events:none}
   .train .digits{font-size:clamp(64px,16.5vw,110px)}
   .train .casecard{order:4}
   .train .actions{order:5}
-  .train .last{order:6}
+  .train .last{order:3}
+  .train .pad+.last{margin-top:-14px;border-radius:0 0 16px 16px}
+  .train .cmseg{order:4}
   .train .keys{order:7}
   .train:not(.revealed) .reveal{order:6}
   .train .session{order:9}
@@ -509,8 +540,7 @@ body[data-phase="running"] .intro{opacity:0;pointer-events:none}
 </header>
 <main id="main" class="shell"></main>
 <footer class="foot"><div class="shell">
-  <p class="who"><b>Recall &copy; 2026 Khuslen Gan-Ochir</b> <a href="mailto:huslenine@gmail.com">huslenine@gmail.com</a></p>
-  <p>The algorithms come from the cubing community; where from is listed below.</p>
+  <div class="who"><b>Recall &copy; 2026 Khuslen Gan-Ochir</b> <a href="mailto:huslenine@gmail.com">huslenine@gmail.com</a>
   <details class="credits"><summary>Algorithm sources</summary><ul>
     <li><b>Megaminx PLL</b> &ndash; the full PLL sheet by Raul Low Beattie, using James Macdiarmid&rsquo;s case system.</li>
     <li><b>Megaminx OLL</b> &ndash; the OLL algorithms from SpeedcubeQuest (speedcube.quest).</li>
@@ -520,7 +550,7 @@ body[data-phase="running"] .intro{opacity:0;pointer-events:none}
     <li><b>Skewb NS and Sarah&rsquo;s Advanced, Pyraminx L4E</b> &ndash; HCubist&rsquo;s sheets by Hitesh Kumar Bhuwalka (hcubist.com).</li>
     <li><b>2x2 PBL, CLL, EG-1, EG-2, LEG-1, TCLL+, TCLL-, LS and TEG2+</b> &ndash; the &ldquo;Best 2x2 Algs&rdquo; spreadsheet kept by its editors (best2x2algs.com). Chris Olson (cyotheking.com) made many of the first LEG-1 and TCLL algs; TEG2+ was created by Vilius Ribinskas.</li>
     <li><b>3x3 F2L, Advanced F2L, OLL, PLL, COLL, WV, VLS and ZBLL</b> &ndash; algorithms selected from SpeedCubeDB (speedcubedb.com), which collects them from many cubers and credits their authors on its pages.</li>
-  </ul></details>
+  </ul></details></div>
 </div></footer>
 <div id="toast" role="status" aria-live="polite"></div>
 <noscript><p style="padding:24px;font:16px/1.5 system-ui,sans-serif">Recall needs JavaScript: the scrambles, diagrams and timer are all worked out in your browser. Turn it on and reload.</p></noscript>

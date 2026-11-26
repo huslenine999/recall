@@ -92,6 +92,7 @@
   const db = {}; KEYS.forEach(k => { db[k] = store.get('at.' + k + '.v1', { sel: {}, st: {} }); });
   const save = p => store.set('at.' + p + '.v1', db[p]);
   const settings = Object.assign({ showDiagram: { mm: true, oll: true, sq: true, csp: true, pbl: true, obl: true }, showCase: true, extraAlgs: false, mmArrows: false, triggers: 'boxes', trigNames: true, theme: 'system' }, store.get('at.settings.v1', {}));
+  if (!['show', 'after', 'hide'].includes(settings.caseMode)) settings.caseMode = settings.showCase === false ? 'hide' : 'show'; // was a plain on/off switch
   const saveSettings = () => store.set('at.settings.v1', settings);
   // A chosen palette (settings.palette = its name) sets the color tokens inline, which beats the stylesheet's light/dark blocks.
   const PAL_VARS = ['--well', '--glow2', '--glow3', '--glow-a', '--hold', '--hold-ink', '--bg', '--text', '--mute', '--pri-bg', '--pri-fg', '--focus', '--bad', '--ok', '--warn', '--panel', '--raise', '--line', '--scrim'];
@@ -325,8 +326,10 @@
   function algsHtml(p, c, card) { // your alg first; the star only appears when there is a choice to make
     const mine = prefAlg(p, c), multi = c.algs.filter(x => x.ok).length > 1;
     let rows = c.algs.map((x, i) => ({ x, i })); if (mine) rows.sort((a, b) => (b.x === mine) - (a.x === mine));
-    if (card && capAlgs(p, c)) rows = rows.slice(0, TOP_N);
-    return `<div class="algs">${rows.map(({ x, i }) => `<div class="algrow ${x === mine ? 'mine' : mine ? 'other' : ''}">${multi && x.ok ? `<button type="button" class="starb" data-pref="${esc(c.id)}" data-i="${i}" aria-pressed="${x === mine}" title="${x === mine ? 'Your alg. Tap to clear it' : 'Use this alg'}" aria-label="${x === mine ? 'This is your alg. Tap to clear it' : 'Use this alg'}">${STAR}</button>` : ''}<div class="alg ${x.ok ? '' : 'bad'}">${x.ok ? '' : '<span class="tag-check">check</span>'}${algText(p, x.a)}</div></div>`).join('')}</div>`;
+    const capped = card && capAlgs(p, c) && rows.length > TOP_N, open = capped && ui.openAlgs && ui.openAlgs[p + ':' + c.id], nMore = c.algs.length - TOP_N;
+    if (capped && !open) rows = rows.slice(0, TOP_N);
+    const more = capped ? `<button type="button" class="morealgs" data-more="${esc(c.id)}" aria-expanded="${!!open}">${open ? 'Show fewer' : `+${nMore} more ${nMore === 1 ? 'alg' : 'algs'}`}</button>` : '';
+    return `<div class="algs">${rows.map(({ x, i }) => `<div class="algrow ${x === mine ? 'mine' : mine ? 'other' : ''}">${multi && x.ok ? `<button type="button" class="starb" data-pref="${esc(c.id)}" data-i="${i}" aria-pressed="${x === mine}" title="${x === mine ? 'Your alg. Tap to clear it' : 'Use this alg'}" aria-label="${x === mine ? 'This is your alg. Tap to clear it' : 'Use this alg'}">${STAR}</button>` : ''}<div class="alg ${x.ok ? '' : 'bad'}">${x.ok ? '' : '<span class="tag-check">check</span>'}${algText(p, x.a)}</div></div>`).join('')}${more}</div>`;
   }
   function togglePref(p, id, i) {
     const c = byId[p][id], x = c && c.algs[i]; if (!x || !x.ok) return false;
@@ -342,14 +345,13 @@
     if (v[n - 2] === Infinity) return 'DNF';
     return fmt(mean(v.slice(1, n - 1)));
   }
-  function sessionHtml(p) {
+  function sessionHtml(p) { // before the first solve the stats show as empty, so it is clear what gets measured
     const ss = sess[p], times = ss.filter(x => x.time != null).map(x => x.time);
-    if (!ss.length) return `<section class="panel session"><h2>This session</h2><p class="note">Your solves from this visit are listed here with their case.</p></section>`;
     const sb = times.length > 1 ? Math.min(...times) : null; // the session's fastest solve is marked in the list
-    const rows = ss.slice(-8).reverse().map((x, i) => `<li class="${x.time == null ? 'miss' : x.time === sb ? 'sbest' : ''}"><span class="ix">${ss.length - i}</span>${sticker((byId[p][x.id] || {}).group)}<span class="nm">${esc(x.id)}</span><span class="tm">${x.time == null ? 'Forgot' : fmt(x.time)}</span></li>`).join('');
-    return `<section class="panel session"><h2>This session</h2>
+    const rows = ss.slice(-8).reverse().map((x, i) => `<li class="${x.time == null ? 'miss' : x.time === sb ? 'sbest' : ''}${ui.peek === x.id ? ' on' : ''}"><button type="button" class="srow" data-peek="${esc(x.id)}" aria-pressed="${ui.peek === x.id}" title="Show the alg of ${esc(x.id)}"><span class="ix">${ss.length - i}</span>${sticker((byId[p][x.id] || {}).group)}<span class="nm">${esc(x.id)}</span><span class="tm">${x.time == null ? 'Forgot' : fmt(x.time)}</span></button></li>`).join('');
+    return `<section class="panel session ${ss.length ? '' : 'is-empty'}"><h2>This session</h2>
       <dl class="stats"><div><dd>${times.length}</dd><dt>Solved</dt></div><div><dd>${ss.length - times.length}</dd><dt>Forgot</dt></div><div><dd>${fmtN(times.length ? mean(times) : null)}</dd><dt>Mean</dt></div><div><dd>${fmtN(times.length ? Math.min(...times) : null)}</dd><dt>Best</dt></div><div><dd>${aoText(ss, 5)}</dd><dt>Ao5</dt></div><div><dd>${aoText(ss, 12)}</dd><dt>Ao12</dt></div></dl>
-      <ul class="solves">${rows}</ul></section>`;
+      ${ss.length ? `<ul class="solves">${rows}</ul><p class="note tip">${touchMode ? 'Tap' : 'Click'} a solve to see its alg.</p>` : '<p class="note">Your solves from this visit are listed here with their case.</p>'}</section>`;
   }
 
   function viewSoon() {
@@ -360,7 +362,7 @@
   function revealPanel(p, c, label) {
     const s = stat(p, c.id);
     return `<section class="panel reveal" aria-label="${label}">
-        <div class="reveal-h"><h2>${esc(c.id)}</h2><span class="gtag">${sticker(c.group)}${esc(c.group)}</span>${label === 'Last case' ? '<span class="note">Last case</span>' : ''}</div>
+        <div class="reveal-h"><h2>${esc(c.id)}</h2><span class="gtag">${sticker(c.group)}${esc(c.group)}</span>${label === 'Last case' || label === 'Earlier case' ? `<span class="note">${label === 'Last case' ? 'Last case' : 'Earlier this session'}</span>` : ''}</div>
         ${diagramFor(p, c)}
         ${algsHtml(p, c)}
         ${c.note ? `<p class="note">${esc(c.note)}</p>` : ''}
@@ -388,12 +390,17 @@
     const prog = run.mode === 'recap' ? `${run.total - run.queue.length} of ${run.total}` : `${nSel} ${nSel === 1 ? 'case' : 'cases'}`;
     const shown = run.revealed, ss = sess[p], lr = ss[ss.length - 1], pc = lr && byId[p][lr.id];
     // the case being solved: its picture only. The answer appears only when you ask for it.
-    const caseCard = settings.showCase && !shown && matFor(p, c) ? `<section class="panel casecard" aria-label="Case">${matFor(p, c)}</section>` : '';
-    const peek = !shown && ui.peek && pc ? revealPanel(p, pc, 'Last case') : '';
-    const rail = shown ? revealPanel(p, c, 'Case answer') : peek + caseCard;
+    // the case picture: the case you are about to solve (Show), the one you just solved (After solve), or none (Hide)
+    const cm = settings.caseMode, picCase = cm === 'show' ? c : cm === 'after' ? pc : null;
+    const picSeg = shown ? '' : `<div class="seg cmseg" role="group" aria-label="Case picture">${[['show', 'Show'], ['after', 'After solve'], ['hide', 'Hide']].map(([v, l]) => `<button type="button" data-cm="${v}" aria-pressed="${cm === v}">${l}</button>`).join('')}</div>`;
+    const caseCard = shown ? '' : picCase && matFor(p, picCase) ? `<section class="panel casecard" aria-label="${cm === 'after' ? 'Last case' : 'Case'}">${cm === 'after' ? `<p class="note cap">Last case: <b>${esc(picCase.id)}</b></p>` : ''}${matFor(p, picCase)}</section>`
+      : cm === 'after' ? `<section class="panel casecard wait"><p class="note">Each case's picture shows here after you solve it.</p></section>` : '';
+    const pk = !shown && ui.peek && byId[p][ui.peek]; // a case from this session whose alg you asked to see
+    const peek = pk ? revealPanel(p, pk, pk === pc ? 'Last case' : 'Earlier case') : '';
+    const rail = shown ? revealPanel(p, c, 'Case answer') : peek + picSeg + caseCard;
     const last = !shown && lr ? `<div class="last">
         <div class="lt"><b>${esc(lr.id)}</b><span class="lv ${lr.time == null ? 'miss' : lastBest() ? 'best' : ''}">${lr.time == null ? 'Forgot' : fmt(lr.time)}</span>${lr.time != null && lastBest() ? '<span class="pb">Best</span>' : ''}</div>
-        <div class="lb"><button class="btn sm" id="peek" ${pc ? '' : 'disabled'}>${ui.peek ? 'Hide alg' : 'Show alg'}</button><button class="btn sm" id="lsoon">Again soon</button><button class="btn sm" id="undo" title="Delete the last solve">Delete <kbd>${MOD}Z</kbd></button></div>
+        <div class="lb"><button class="btn sm" id="peek" ${pc ? '' : 'disabled'}>${pc && ui.peek === pc.id ? 'Hide alg' : 'Show alg'}</button><button class="btn sm" id="lsoon">Again soon</button><button class="btn sm" id="undo" title="Delete the last solve">Delete <kbd>${MOD}Z</kbd></button></div>
       </div>` : '';
     const actions = shown
       ? `<div class="actions">
@@ -402,16 +409,16 @@
         <button class="btn" id="undo" title="Take back the forgot mark and try this case again">Undo forgot <kbd>⌫</kbd></button>
       </div>`
       : `<div class="actions pre"><button class="btn" id="forgot">I forgot it: show answer <kbd>F</kbd></button></div>`;
-    const keys = `<div class="keys"><span><kbd>Space</kbd> Solve</span><span><kbd>F</kbd> Show answer</span><span><kbd>${MOD}Z</kbd> Delete last</span><span><kbd>${MOD}D</kbd> Reset session</span></div>`;
+    const keys = `<div class="keys"><span><kbd>Space</kbd> Solve</span><span><kbd>${MOD}Z</kbd> Delete last</span><span><kbd>${MOD}D</kbd> Reset session</span></div>`;
     return `${introHtml()}<div class="train ${shown ? 'revealed' : ''}">
       <div class="stage">
         <div class="stage-bar">
           <select id="mode" aria-label="Mode"><option value="random" ${run.mode === 'random' ? 'selected' : ''}>Weighted random</option><option value="recap" ${run.mode === 'recap' ? 'selected' : ''}>Recap, each case once</option></select>
-          <span class="note">${prog}</span>
+          <button type="button" class="note linkbtn" id="toCasesN" title="Choose which cases to train">${prog}</button>
         </div>
         <div class="scramble ${p === 'mm' || GEN[p] ? '' : 'sq'}" id="scr" role="button" tabindex="0" title="Copy the scramble">${scrambleHtml(run.scramble)}</div>
         <div id="timer" class="pad" role="timer" aria-live="off"><span id="digits" class="digits">0:00.00</span><span id="hint" class="hint"></span></div>
-        ${actions}${last}${keys}
+        ${last}${actions}${keys}
       </div>
       <div class="rail">${rail}${sessionHtml(p)}</div>
     </div>`;
@@ -425,8 +432,13 @@
     on('#introCases', 'click', () => { seen(); go(ui.puzzle, 'cases'); });
     on('#mode', 'change', e => { run.mode = e.target.value; run.queue = []; newRound(); render(); });
     on('#next', 'click', doNext); on('#forgot', 'click', doForgot); on('#undo', 'click', doUndo);
-    const rail = $('.rail'); if (rail) rail.addEventListener('click', e => { const st = e.target.closest('[data-pref]'); if (st && togglePref(dk(), st.dataset.pref, +st.dataset.i)) { const cur = run.cur; render(); if (cur && cur.id === st.dataset.pref) toast(db[dk()].pref[cur.id] ? 'Saved: scrambles for this case now use this alg' : 'Cleared: this case uses any of its algs again'); } });
-    on('#peek', 'click', () => { ui.peek = !ui.peek; render(); });
+    const rail = $('.rail'); if (rail) rail.addEventListener('click', e => {
+      const sr = e.target.closest('[data-peek]'); // a solve in the session list: show (or hide) that case's alg
+      if (sr) { ui.peek = ui.peek === sr.dataset.peek ? false : sr.dataset.peek; render(); const r = ui.peek && $('.reveal'); if (r) r.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); return; }
+      const st = e.target.closest('[data-pref]'); if (st && togglePref(dk(), st.dataset.pref, +st.dataset.i)) { const cur = run.cur; render(); if (cur && cur.id === st.dataset.pref) toast(db[dk()].pref[cur.id] ? 'Saved: scrambles for this case now use this alg' : 'Cleared: this case uses any of its algs again'); } });
+    on('#peek', 'click', () => { const l = sess[dk()].slice(-1)[0]; ui.peek = l && ui.peek !== l.id ? l.id : false; render(); });
+    on('#toCasesN', 'click', () => go(ui.puzzle, 'cases'));
+    $$('[data-cm]').forEach(b => b.addEventListener('click', () => { settings.caseMode = b.dataset.cm; saveSettings(); render(); }));
     on('#lsoon', 'click', () => { const l = sess[dk()].slice(-1)[0]; if (l) { run.soon.push({ id: l.id, left: 3 + Math.floor(Math.random() * 3) }); toast('Queued: ' + l.id + ' returns within 3 to 5 solves'); } });
     on('#soon', 'click', () => { run.soon.push({ id: run.cur.id, left: 3 + Math.floor(Math.random() * 3) }); toast('Queued: this case returns within 3 to 5 solves'); });
     const copy = () => { if (!navigator.clipboard) { toast('Copying is not available in this browser'); return; } navigator.clipboard.writeText(run.scramble).then(() => toast('Scramble copied'), () => toast('Copying is not available in this browser')); };
@@ -587,14 +599,14 @@
       ${c.ok ? matFor(p, c) : `<div class="warn">${esc(c.why || 'No alg on this case passes the check.')}</div>`}
       ${algsHtml(p, c, true)}
       ${c.note ? `<p class="note">${esc(c.note)}</p>` : ''}
-      <div class="tile-f"><div class="st">${stats}</div><button type="button" class="btn quiet" data-edit="${esc(c.id)}">Edit</button></div>
+      <div class="tile-f"><div class="st">${stats}</div><button type="button" class="btn edit" data-edit="${esc(c.id)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>Edit</button></div>
     </article>`;
   }
   function progHtml(p) { // how much of the whole set is learned, learning and new
     const n = { Learned: 0, Learning: 0, New: 0 }; cases[p].forEach(c => { n[stat(p, c.id).status]++; });
     const seg = k => `<i class="p-${k}" style="flex-grow:${n[k]}"></i>`;
     return `<div class="prog" id="prog"><div class="prog-bar" aria-hidden="true">${seg('Learned')}${seg('Learning')}${seg('New')}</div>
-      <div class="prog-key">${['Learned', 'Learning', 'New'].map(k => `<span class="s-${k}">${statusGlyph(k)}<span><b>${n[k]}</b> ${k.toLowerCase()}</span></span>`).join('')}</div></div>`;
+      <div class="prog-key" role="group" aria-label="Show only">${['Learned', 'Learning', 'New'].map(k => `<button type="button" class="s-${k}" data-stf="${k}" aria-pressed="${ui.stF === k}" title="${ui.stF === k ? 'Show every case again' : 'Show only the ' + k.toLowerCase() + ' cases'}">${statusGlyph(k)}<span><b>${n[k]}</b> ${k.toLowerCase()}</span></button>`).join('')}</div></div>`;
   }
   const countText = p => `${cases[p].filter(c => c.ok && selected(p, c)).length} of ${cases[p].length} selected for training`;
   function filterCases(p) { // the cases the chips, the selects and the search box leave, in the chosen order
@@ -606,6 +618,7 @@
     else if (p === 'pbl') list = list.filter(c => (ui.pblSec === 'all' || c.group === ui.pblSec) && (ui.pblTop === 'any' || c.top === ui.pblTop) && (ui.pblBot === 'any' || c.bot === ui.pblBot));
     else if (p === 'csp') list = list.filter(c => (ui.cspSec === 'all' || c.group === ui.cspSec) && (ui.cspPar === 'both' || c.parity === ui.cspPar));
     else list = list.filter(c => (ui.sqParity === 'all' || (ui.sqParity === 'yes') === c.parity) && (ui.sqCol === 'both' || (ui.sqCol === 'flip') === c.flip));
+    if (ui.stF) list = list.filter(c => stat(p, c.id).status === ui.stF); // the learned / learning / new legend works as a filter
     const norm = t => String(t).toLowerCase().replace(/[\u2018\u2019]/g, "'").replace(/\s+/g, ' ').trim(), q = norm(ui.q);
     if (q) { const tight = q.replace(/ /g, ''); list = list.filter(c => { const name = norm(c.id + ' ' + (c.group || '') + ' ' + stat(p, c.id).status); return name.includes(q) || c.algs.some(x => { const a = norm(x.a + (trigsFor(p).length && /[a-z]{4}/.test(q) ? ' ' + chunks(p, x.a).map(k => k.name || '').join(' ') : '')); return a.includes(q) || a.replace(/ /g, '').includes(tight); }); }); }
     const val = c => { const t = stat(p, c.id).times; return t.length ? mean(t) : -1; };
@@ -616,7 +629,7 @@
   function tilesHtml(p, list) {
     const vis = p === 'pbl' || (GEN[p] && cases[p].length > 150) ? list.slice(0, ui.limit) : list; // 967 PBL diagrams at once would be slow to draw
     const more = list.length > vis.length ? `<div class="more"><p class="note">Showing ${vis.length} of ${list.length}</p><button class="btn" id="more">Show ${Math.min(90, list.length - vis.length)} more</button></div>` : '';
-    if (!list.length) return `<div class="none muted"><p>No cases match${ui.q.trim() ? ` \u201C${esc(ui.q.trim())}\u201D` : ' these filters'}.</p>${ui.q.trim() ? '<button class="btn" id="qClear">Clear search</button>' : ''}</div>`;
+    if (!list.length) return `<div class="none muted"><p>No cases match${ui.q.trim() ? ` \u201C${esc(ui.q.trim())}\u201D` : ' these filters'}.</p>${ui.q.trim() ? '<button class="btn" id="qClear">Clear search</button>' : ''}${ui.stF ? ' <button class="btn" id="stfClear">Show every case</button>' : ''}</div>`;
     return `<div class="tiles ${p}">${vis.map(c => tileHtml(p, c)).join('')}</div>${more}`;
   }
   const shownText = (p, list) => (list.length === cases[p].length ? '' : ` \u00B7 ${list.length} shown`);
@@ -750,6 +763,7 @@
       on('#edcancel', 'click', close); on('#edx', 'click', close); on('#edscrim', 'click', close);
     }
     on('#sort', 'change', e => { ui.sort = e.target.value; render(); });
+    const ctop = $('.cases-top'); if (ctop) ctop.addEventListener('click', e => { const b = e.target.closest('[data-stf]'); if (!b) return; ui.stF = ui.stF === b.dataset.stf ? null : b.dataset.stf; ui.limit = 90; render(); });
     on('#extraAlgs', 'change', e => { settings.extraAlgs = e.target.checked; saveSettings(); const w = $('#tilesWrap'); if (w) w.innerHTML = tilesHtml(p, filterCases(p)); });
     const setSel = fn => { $$('details.menu[open]').forEach(d => { d.open = false; }); ui.shown.forEach(c => { if (c.ok) db[p].sel[c.id] = fn(c) ? 1 : 0; }); save(p); run.queue = []; run.cur = null; render(); };
     on('#selAll', 'click', () => setSel(() => true));
@@ -761,9 +775,12 @@
     if (grid) {
       grid.addEventListener('click', e => {
         if (e.target.closest('#more')) { ui.limit += 90; grid.innerHTML = tilesHtml(p, ui.shown); return; }
+        if (e.target.closest('#stfClear')) { ui.stF = null; render(); return; }
         if (e.target.closest('#qClear')) { const q = $('#q'); if (q) { q.value = ''; q.focus(); } setQuery(''); return; }
         const st = e.target.closest('[data-pref]');
         if (st) { if (togglePref(p, st.dataset.pref, +st.dataset.i)) st.closest('.tile').outerHTML = tileHtml(p, byId[p][st.dataset.pref]); return; }
+        const mo = e.target.closest('[data-more]'); // one card's extra algs
+        if (mo) { const o = ui.openAlgs || (ui.openAlgs = {}), k = p + ':' + mo.dataset.more; o[k] = !o[k]; mo.closest('.tile').outerHTML = tileHtml(p, byId[p][mo.dataset.more]); return; }
         const ed = e.target.closest('[data-edit]');
         if (ed) { ui.edit = ed.dataset.edit; render(); const t = $('#edtxt'); if (t) t.focus(); return; }
         const ch = e.target.closest('[data-chip]');
@@ -805,7 +822,7 @@
         <div class="line" style="display:block;cursor:default"><span>Trigger marks<small>Groups moves you can learn as one motion, like sune or sledge. Megaminx, 2x2, 3x3, Skewb and Pyraminx mark the common ones (sune, sexy, sledge...); Square-1 marks each turn between slashes.</small></span><div class="seg" role="group" aria-label="Trigger marks">${[['boxes', 'Boxes'], ['brackets', 'Brackets'], ['off', 'Off']].map(([v, l]) => `<button type="button" class="btn" data-trg="${v}" aria-pressed="${settings.triggers === v}">${l}</button>`).join('')}</div></div>
         <label class="line"><span>Show trigger names<small>The name under each marked group, such as sune.</small></span><input type="checkbox" class="switch" id="trigNames" ${settings.trigNames !== false ? 'checked' : ''}></label>
         ${p === 'mm' ? `<label class="line"><span>Show arrows on Megaminx cases<small>Arrows mark where each piece goes. Off by default: the sticker colours already show the case.</small></span><input type="checkbox" class="switch" id="mmArrows" ${settings.mmArrows ? 'checked' : ''}></label>` : ''}
-        <label class="line"><span>Show the case picture while solving<small>The case you are about to solve, without its algorithm. Turn off to solve from the scramble alone.</small></span><input type="checkbox" class="switch" id="showCase" ${settings.showCase ? 'checked' : ''}></label>
+        <div class="line" style="display:block;cursor:default"><span>Case picture while training<small>Show: the case you are about to solve, without its algorithm. After solve: the case you just solved, to check it. Hide: solve from the scramble alone. You can also switch this on the Train screen.</small></span><div class="seg" role="group" aria-label="Case picture">${[['show', 'Show'], ['after', 'After solve'], ['hide', 'Hide']].map(([v, l]) => `<button type="button" class="btn" data-cm="${v}" aria-pressed="${settings.caseMode === v}">${l}</button>`).join('')}</div></div>
         <div class="line" style="cursor:default"><span>New here?<small>A three-step walkthrough of the Train screen.</small></span><button class="btn" id="showIntro">How Recall works</button></div>
       </section>
       <section class="group kbd-group"><h2>Keyboard shortcuts</h2>
@@ -844,7 +861,7 @@
     $$('[data-trg]').forEach(b => b.addEventListener('click', () => { settings.triggers = b.dataset.trg; saveSettings(); render(); }));
     on('#trigNames', 'change', e => { settings.trigNames = e.target.checked; saveSettings(); });
     on('#mmArrows', 'change', e => { settings.mmArrows = e.target.checked; saveSettings(); });
-    on('#showCase', 'change', e => { settings.showCase = e.target.checked; saveSettings(); });
+    $$('[data-cm]').forEach(b => b.addEventListener('click', () => { settings.caseMode = b.dataset.cm; saveSettings(); render(); }));
     on('#showIntro', 'click', () => { settings.seenIntro = false; saveSettings(); go(ui.puzzle, 'train'); });
     $$('[data-pal]').forEach(b => b.addEventListener('click', () => { settings.palette = b.dataset.pal; saveSettings(); applyTheme(); const y = scrollY; render(); scrollTo(0, y); }));
     $$('.seg [data-theme]').forEach(b => b.addEventListener('click', () => { settings.theme = b.dataset.theme; saveSettings(); applyTheme(); render(); }));

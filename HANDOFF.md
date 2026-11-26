@@ -337,3 +337,11 @@ sledge, hedgeslammer and their left-hand versions), `TRIGS_SK` (Skewb: sledgeham
 
 ## 2026-11-26: one size for the train picture
 - The case picture beside the scramble (`.casecard .mat svg` in `index.template.html`) is capped at 220 px high on desktop and 170 px on phones, for every puzzle. Megaminx, 3x3 and Square-1 were up to 340 px; 2x2, Skewb and Pyraminx were already about that size. The answer panel (`.reveal .mat`), the case grid and the editor preview keep their own sizes.
+
+## 2026-11-26: Train and Cases polish (from a design review)
+- Train: the last-solve strip (case, time, Show alg / Again soon / Delete) is joined to the bottom of the timer card (`.pad:has(+.last)`); "I forgot it" sits below it as a lighter outline button when using a mouse. The F hint is no longer repeated in the shortcut row. "N cases" in the bar is a link to Cases.
+- Case picture has three modes, `settings.caseMode`: show (the case to solve), after (the case you just solved, captioned "Last case"), hide. Switchable on Train (segmented control above the picture) and in Settings. The old `showCase: false` becomes `hide`.
+- This session: shows the stats grid (0 / –) before the first solve; labels are brighter; each solve row is a button that opens that case's alg (`ui.peek` is now a case id, not true/false).
+- Cases: card footers sit at the bottom of the card; the selection checkbox is one neutral style (group colour only on the top edge); Edit is a visible button with a pencil; the learned / learning / new legend filters the cards (`ui.stF`, with "Show every case" when nothing matches); capped 2x2/3x3 cards have a "+N more algs" pill that opens just that card (`ui.openAlgs`).
+- Footer: one line (name, email, sources) and pinned to the bottom of short pages (body is a flex column, `#main` grows).
+- Left out on purpose: moving set pills out of the top bar, a separate scramble header band, changing the Alt/Option shortcuts, and the accent colour.

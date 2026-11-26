@@ -47,6 +47,14 @@ async function desktop(browser) {
   check('the switch is on every 3x3 set (OLL)', await page.locator('#extraAlgs').count() === 1 && await page.locator('.tile').first().locator('.alg').count() === 2);
   await page.click('[data-p="c2"]'); await page.click('[data-set="cll"]');
   check('2x2 cards show 2 algs too', await page.locator('#extraAlgs').count() === 1 && await page.locator('.tile').first().locator('.alg').count() === 2);
+  // the learned / learning / new legend filters the cards; a card's extra algs open on their own
+  await page.click('[data-p="c3"]'); await page.click('[data-set="oll"]');
+  await page.locator('[data-stf="Learned"]').click();
+  check('legend filter: no learned cases yet', await page.locator('.tile').count() === 0 && await page.locator('#stfClear').count() === 1);
+  await page.click('#stfClear');
+  check('Show every case clears the filter', await page.locator('.tile').count() === 57);
+  await page.locator('.tile').first().locator('.morealgs').click();
+  check('+2 more algs opens one card', await page.locator('.tile').first().locator('.alg').count() === 4 && await page.locator('.tile').nth(1).locator('.alg').count() === 2);
   await page.click('[data-p="sk"]'); await page.click('[data-set="ns"]');
   check('Skewb has no such switch', await page.locator('#extraAlgs').count() === 0);
 

@@ -65,7 +65,9 @@
 /* ---------- base ---------- */
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.5 var(--ui);-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.5 var(--ui);-webkit-font-smoothing:antialiased;min-height:100dvh;display:flex;flex-direction:column}
+#main{flex:1 0 auto;width:100%}
+.foot{flex:none}
 /* atmosphere: three soft sticker-coloured lights and a little grain, fixed behind everything */
 body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:
   url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E"),
@@ -120,7 +122,10 @@ svg{display:block}
 main.shell{padding-block:24px 48px}
 .foot{margin-top:24px;border-top:1px solid var(--line);padding:22px 0 calc(var(--nav-h) + env(safe-area-inset-bottom) + 28px);font-size:13.5px;line-height:1.55;color:var(--mute)}
 .foot p+p,.foot details{margin-top:6px}
-.foot .who b{color:var(--text);font-weight:650;margin-right:10px}
+.foot .who{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px}
+.foot .who b{color:var(--text);font-weight:650}
+.foot .who .credits{margin-top:0}
+.foot .who .credits[open]{flex-basis:100%}
 .foot a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 .foot a:hover{color:var(--text)}
 .foot summary{cursor:pointer;width:max-content;max-width:100%}
@@ -149,6 +154,13 @@ select{appearance:none;border:0;border-radius:10px;background:var(--raise) url("
 .stage{container-type:inline-size;display:flex;flex-direction:column;gap:12px;min-width:0}
 .stage-bar{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .stage-bar .note{white-space:nowrap}
+.linkbtn{background:none;border:0;border-radius:8px;padding:6px 8px;margin:-6px -8px;font:inherit;color:var(--mute);text-decoration:underline;text-decoration-color:color-mix(in srgb,currentColor 40%,transparent);text-underline-offset:3px;cursor:pointer}
+.linkbtn:hover{color:var(--text);background:var(--raise)}
+.cmseg{align-self:center;margin-top:0}
+.cmseg button{padding:6px 12px;font-size:14px}
+.casecard .cap{text-align:center;margin:0}
+.casecard .cap b{color:var(--text)}
+.casecard.wait{min-height:120px;display:grid;place-items:center;text-align:center}
 .stage-bar select{min-width:0;flex:0 1 auto;text-overflow:ellipsis}
 .scramble{background:var(--well);border:1px solid var(--line);border-bottom:0;border-radius:20px 20px 0 0;padding:20px 26px 16px;cursor:copy;user-select:text;
   font:600 clamp(21px,5.2cqw,33px)/1.6 var(--mono);font-stretch:88%;letter-spacing:.01em;overflow-wrap:anywhere}
@@ -183,9 +195,12 @@ body[data-phase="running"] .top,body[data-phase="running"] .nav,body[data-phase=
 .actions{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 .actions .primary{grid-column:1/-1;min-height:54px;font-size:17px}
 .actions.pre{grid-template-columns:1fr}
+@media (hover:hover) and (pointer:fine){.actions.pre .btn{background:none;box-shadow:inset 0 0 0 1.5px var(--line);color:var(--mute)}.actions.pre .btn:hover{background:var(--raise);color:var(--text)}}
 .actions .btn{white-space:nowrap}
 .rail{display:flex;flex-direction:column;gap:16px;min-width:0}
 .btn.sm{min-height:36px;padding:6px 11px;font-size:14px;border-radius:8px}
+.train .pad:has(+.last){border-radius:0}
+.pad+.last{margin-top:-12px;border:1px solid var(--line);border-top:0;border-radius:0 0 20px 20px;background:var(--well);padding:10px 10px 10px 20px}
 .last{display:flex;align-items:center;justify-content:space-between;gap:8px 12px;flex-wrap:wrap;padding:8px 8px 8px 16px;border-radius:12px;background:var(--panel)}
 .last .lt{display:flex;align-items:baseline;gap:10px;min-width:0}
 .last .lt b{font-weight:650;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -251,10 +266,16 @@ body.boot .foot{animation:rise .7s var(--ease) .35s both}
 .session .stats>div{padding:12px 0 12px 16px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
 .session .stats>div:nth-child(3n+1){border-left:0;padding-left:0}
 .session .stats dd{font-size:21px}
-.session .stats dt{font-size:13px}
-.session .solves li:first-child{border-top:0;padding-top:0}
+.session .stats dt{font-size:13.5px;font-weight:600;color:color-mix(in srgb,var(--text) 70%,var(--mute))}
+.session.is-empty .stats dd{color:var(--mute)}
+.session .tip{font-size:13px;margin-top:-6px}
+.session .solves li:first-child{border-top:0}
+.session .solves li:first-child .srow{padding-top:0}
 .solves{display:flex;flex-direction:column}
-.solves li{display:grid;grid-template-columns:2.4ch 14px 1fr auto;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
+.solves li{border-top:1px solid var(--line)}
+.solves .srow{display:grid;grid-template-columns:2.4ch 14px 1fr auto;gap:10px;align-items:center;width:100%;padding:8px 6px 8px 0;background:none;border:0;border-radius:8px;font:inherit;color:inherit;text-align:left;cursor:pointer}
+.solves .srow:hover{background:var(--raise)}
+.solves li.on .nm{text-decoration:underline;text-underline-offset:3px}
 .solves .ix{font:500 12.5px/1 var(--mono);font-stretch:80%;color:var(--mute);text-align:right;font-variant-numeric:tabular-nums}
 .solves .nm{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .solves .tm{font:600 15px/1 var(--mono);font-stretch:80%;font-variant-numeric:tabular-nums}
@@ -283,7 +304,11 @@ body.boot .foot{animation:rise .7s var(--ease) .35s both}
 .prog-bar .p-Learned{background:var(--ok)}
 .prog-bar .p-Learning{background:var(--warn)}
 .prog-key{display:flex;flex-wrap:wrap;gap:4px 18px;font-size:14px;color:var(--mute)}
-.prog-key span{display:inline-flex;align-items:center;gap:6px}
+.prog-key span,.prog-key button{display:inline-flex;align-items:center;gap:6px}
+.prog-key button{background:none;border:1.5px solid transparent;border-radius:999px;padding:4px 10px;margin:-4px -6px;font:inherit;color:inherit;cursor:pointer}
+.prog-key button:hover{background:var(--raise)}
+.prog-key button[aria-pressed="true"]{background:var(--raise);border-color:currentColor}
+.prog-key{gap:4px 22px}
 .prog-key b{color:var(--text);font:500 14px/1 var(--mono);font-stretch:88%;font-variant-numeric:tabular-nums}
 .prog-key .s-Learned{color:var(--ok)}
 .prog-key .s-Learning{color:var(--warn)}
@@ -324,8 +349,8 @@ body.boot .foot{animation:rise .7s var(--ease) .35s both}
 .tile-h h3{font-size:20px;line-height:1.15;flex:1;min-width:0;overflow-wrap:anywhere}
 .pick{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
 .tick{flex:none;width:24px;height:24px;border-radius:7px;border:2px solid var(--mute);display:grid;place-items:center}
-.tile.is-on .tick{background:var(--set,var(--text));border-color:var(--set,var(--text))}
-.tile.is-on .tick::after{content:"";width:11px;height:6px;border-left:3px solid #1B1A2B;border-bottom:3px solid #1B1A2B;transform:rotate(-45deg) translate(1px,-1px)}
+.tile.is-on .tick{background:var(--text);border-color:var(--text)} /* one style for every group: the group colour stays on the top edge */
+.tile.is-on .tick::after{content:"";width:11px;height:6px;border-left:3px solid var(--panel);border-bottom:3px solid var(--panel);transform:rotate(-45deg) translate(1px,-1px)}
 .tile.is-bad .tick{opacity:.35}
 .status{display:inline-flex;align-items:center;gap:6px;border:0;background:none;padding:6px 4px;border-radius:8px;font-size:14px;font-weight:650;color:var(--mute)}
 .status:hover{background:var(--raise)}
@@ -334,10 +359,14 @@ body.boot .foot{animation:rise .7s var(--ease) .35s both}
 .sg{width:16px;height:16px;flex:none}
 .tile .algs{gap:4px}
 .tile .alg{font-size:15.5px;line-height:1.6}
-.tile-f{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:32px}
+.tile-f{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:32px}
 .tile-f .st{font-size:14.5px;color:var(--mute);display:flex;gap:14px;flex-wrap:wrap}
 .tile-f .st b{color:var(--text);font:600 14.5px/1 var(--mono);font-stretch:92%;font-variant-numeric:tabular-nums;margin-right:4px}
 .tile-f .btn{min-height:36px;padding:6px 10px}
+.tile-f .btn.edit{gap:6px;font-size:14px}
+.tile-f .btn.edit svg{width:15px;height:15px}
+.morealgs{align-self:flex-start;border:0;border-radius:999px;background:var(--raise);color:var(--text);font:600 13px/1 var(--ui);padding:7px 11px;cursor:pointer}
+.morealgs:hover{box-shadow:inset 0 0 0 1.5px var(--line)}
 .warn{font-size:14px;color:var(--bad);background:rgba(214,59,68,.1);border-radius:12px;padding:10px 12px}
 .tag-check{font:700 11px/1 var(--ui);color:var(--bad);border:1.5px solid var(--bad);border-radius:6px;padding:2px 5px;margin-right:6px}
 .none{padding:40px 0;text-align:center;display:grid;justify-items:center;gap:12px}
@@ -420,7 +449,9 @@ body[data-phase="running"] .intro{opacity:0;pointer-events:none}
   .train .digits{font-size:clamp(64px,16.5vw,110px)}
   .train .casecard{order:4}
   .train .actions{order:5}
-  .train .last{order:6}
+  .train .last{order:3}
+  .train .pad+.last{margin-top:-14px;border-radius:0 0 16px 16px}
+  .train .cmseg{order:4}
   .train .keys{order:7}
   .train:not(.revealed) .reveal{order:6}
   .train .session{order:9}
@@ -509,8 +540,7 @@ body[data-phase="running"] .intro{opacity:0;pointer-events:none}
 </header>
 <main id="main" class="shell"></main>
 <footer class="foot"><div class="shell">
-  <p class="who"><b>Recall &copy; 2026 Khuslen Gan-Ochir</b> <a href="mailto:huslenine@gmail.com">huslenine@gmail.com</a></p>
-  <p>The algorithms come from the cubing community; where from is listed below.</p>
+  <div class="who"><b>Recall &copy; 2026 Khuslen Gan-Ochir</b> <a href="mailto:huslenine@gmail.com">huslenine@gmail.com</a>
   <details class="credits"><summary>Algorithm sources</summary><ul>
     <li><b>Megaminx PLL</b> &ndash; the full PLL sheet by Raul Low Beattie, using James Macdiarmid&rsquo;s case system.</li>
     <li><b>Megaminx OLL</b> &ndash; the OLL algorithms from SpeedcubeQuest (speedcube.quest).</li>
@@ -520,7 +550,7 @@ body[data-phase="running"] .intro{opacity:0;pointer-events:none}
     <li><b>Skewb NS and Sarah&rsquo;s Advanced, Pyraminx L4E</b> &ndash; HCubist&rsquo;s sheets by Hitesh Kumar Bhuwalka (hcubist.com).</li>
     <li><b>2x2 PBL, CLL, EG-1, EG-2, LEG-1, TCLL+, TCLL-, LS and TEG2+</b> &ndash; the &ldquo;Best 2x2 Algs&rdquo; spreadsheet kept by its editors (best2x2algs.com). Chris Olson (cyotheking.com) made many of the first LEG-1 and TCLL algs; TEG2+ was created by Vilius Ribinskas.</li>
     <li><b>3x3 F2L, Advanced F2L, OLL, PLL, COLL, WV, VLS and ZBLL</b> &ndash; algorithms selected from SpeedCubeDB (speedcubedb.com), which collects them from many cubers and credits their authors on its pages.</li>
-  </ul></details>
+  </ul></details></div>
 </div></footer>
 <div id="toast" role="status" aria-live="polite"></div>
 <noscript><p style="padding:24px;font:16px/1.5 system-ui,sans-serif">Recall needs JavaScript: the scrambles, diagrams and timer are all worked out in your browser. Turn it on and reload.</p></noscript>
@@ -1937,6 +1967,7 @@ const PALETTES = [
   const db = {}; KEYS.forEach(k => { db[k] = store.get('at.' + k + '.v1', { sel: {}, st: {} }); });
   const save = p => store.set('at.' + p + '.v1', db[p]);
   const settings = Object.assign({ showDiagram: { mm: true, oll: true, sq: true, csp: true, pbl: true, obl: true }, showCase: true, extraAlgs: false, mmArrows: false, triggers: 'boxes', trigNames: true, theme: 'system' }, store.get('at.settings.v1', {}));
+  if (!['show', 'after', 'hide'].includes(settings.caseMode)) settings.caseMode = settings.showCase === false ? 'hide' : 'show'; // was a plain on/off switch
   const saveSettings = () => store.set('at.settings.v1', settings);
   // A chosen palette (settings.palette = its name) sets the color tokens inline, which beats the stylesheet's light/dark blocks.
   const PAL_VARS = ['--well', '--glow2', '--glow3', '--glow-a', '--hold', '--hold-ink', '--bg', '--text', '--mute', '--pri-bg', '--pri-fg', '--focus', '--bad', '--ok', '--warn', '--panel', '--raise', '--line', '--scrim'];
@@ -2170,8 +2201,10 @@ const PALETTES = [
   function algsHtml(p, c, card) { // your alg first; the star only appears when there is a choice to make
     const mine = prefAlg(p, c), multi = c.algs.filter(x => x.ok).length > 1;
     let rows = c.algs.map((x, i) => ({ x, i })); if (mine) rows.sort((a, b) => (b.x === mine) - (a.x === mine));
-    if (card && capAlgs(p, c)) rows = rows.slice(0, TOP_N);
-    return `<div class="algs">${rows.map(({ x, i }) => `<div class="algrow ${x === mine ? 'mine' : mine ? 'other' : ''}">${multi && x.ok ? `<button type="button" class="starb" data-pref="${esc(c.id)}" data-i="${i}" aria-pressed="${x === mine}" title="${x === mine ? 'Your alg. Tap to clear it' : 'Use this alg'}" aria-label="${x === mine ? 'This is your alg. Tap to clear it' : 'Use this alg'}">${STAR}</button>` : ''}<div class="alg ${x.ok ? '' : 'bad'}">${x.ok ? '' : '<span class="tag-check">check</span>'}${algText(p, x.a)}</div></div>`).join('')}</div>`;
+    const capped = card && capAlgs(p, c) && rows.length > TOP_N, open = capped && ui.openAlgs && ui.openAlgs[p + ':' + c.id], nMore = c.algs.length - TOP_N;
+    if (capped && !open) rows = rows.slice(0, TOP_N);
+    const more = capped ? `<button type="button" class="morealgs" data-more="${esc(c.id)}" aria-expanded="${!!open}">${open ? 'Show fewer' : `+${nMore} more ${nMore === 1 ? 'alg' : 'algs'}`}</button>` : '';
+    return `<div class="algs">${rows.map(({ x, i }) => `<div class="algrow ${x === mine ? 'mine' : mine ? 'other' : ''}">${multi && x.ok ? `<button type="button" class="starb" data-pref="${esc(c.id)}" data-i="${i}" aria-pressed="${x === mine}" title="${x === mine ? 'Your alg. Tap to clear it' : 'Use this alg'}" aria-label="${x === mine ? 'This is your alg. Tap to clear it' : 'Use this alg'}">${STAR}</button>` : ''}<div class="alg ${x.ok ? '' : 'bad'}">${x.ok ? '' : '<span class="tag-check">check</span>'}${algText(p, x.a)}</div></div>`).join('')}${more}</div>`;
   }
   function togglePref(p, id, i) {
     const c = byId[p][id], x = c && c.algs[i]; if (!x || !x.ok) return false;
@@ -2187,14 +2220,13 @@ const PALETTES = [
     if (v[n - 2] === Infinity) return 'DNF';
     return fmt(mean(v.slice(1, n - 1)));
   }
-  function sessionHtml(p) {
+  function sessionHtml(p) { // before the first solve the stats show as empty, so it is clear what gets measured
     const ss = sess[p], times = ss.filter(x => x.time != null).map(x => x.time);
-    if (!ss.length) return `<section class="panel session"><h2>This session</h2><p class="note">Your solves from this visit are listed here with their case.</p></section>`;
     const sb = times.length > 1 ? Math.min(...times) : null; // the session's fastest solve is marked in the list
-    const rows = ss.slice(-8).reverse().map((x, i) => `<li class="${x.time == null ? 'miss' : x.time === sb ? 'sbest' : ''}"><span class="ix">${ss.length - i}</span>${sticker((byId[p][x.id] || {}).group)}<span class="nm">${esc(x.id)}</span><span class="tm">${x.time == null ? 'Forgot' : fmt(x.time)}</span></li>`).join('');
-    return `<section class="panel session"><h2>This session</h2>
+    const rows = ss.slice(-8).reverse().map((x, i) => `<li class="${x.time == null ? 'miss' : x.time === sb ? 'sbest' : ''}${ui.peek === x.id ? ' on' : ''}"><button type="button" class="srow" data-peek="${esc(x.id)}" aria-pressed="${ui.peek === x.id}" title="Show the alg of ${esc(x.id)}"><span class="ix">${ss.length - i}</span>${sticker((byId[p][x.id] || {}).group)}<span class="nm">${esc(x.id)}</span><span class="tm">${x.time == null ? 'Forgot' : fmt(x.time)}</span></button></li>`).join('');
+    return `<section class="panel session ${ss.length ? '' : 'is-empty'}"><h2>This session</h2>
       <dl class="stats"><div><dd>${times.length}</dd><dt>Solved</dt></div><div><dd>${ss.length - times.length}</dd><dt>Forgot</dt></div><div><dd>${fmtN(times.length ? mean(times) : null)}</dd><dt>Mean</dt></div><div><dd>${fmtN(times.length ? Math.min(...times) : null)}</dd><dt>Best</dt></div><div><dd>${aoText(ss, 5)}</dd><dt>Ao5</dt></div><div><dd>${aoText(ss, 12)}</dd><dt>Ao12</dt></div></dl>
-      <ul class="solves">${rows}</ul></section>`;
+      ${ss.length ? `<ul class="solves">${rows}</ul><p class="note tip">${touchMode ? 'Tap' : 'Click'} a solve to see its alg.</p>` : '<p class="note">Your solves from this visit are listed here with their case.</p>'}</section>`;
   }
 
   function viewSoon() {
@@ -2205,7 +2237,7 @@ const PALETTES = [
   function revealPanel(p, c, label) {
     const s = stat(p, c.id);
     return `<section class="panel reveal" aria-label="${label}">
-        <div class="reveal-h"><h2>${esc(c.id)}</h2><span class="gtag">${sticker(c.group)}${esc(c.group)}</span>${label === 'Last case' ? '<span class="note">Last case</span>' : ''}</div>
+        <div class="reveal-h"><h2>${esc(c.id)}</h2><span class="gtag">${sticker(c.group)}${esc(c.group)}</span>${label === 'Last case' || label === 'Earlier case' ? `<span class="note">${label === 'Last case' ? 'Last case' : 'Earlier this session'}</span>` : ''}</div>
         ${diagramFor(p, c)}
         ${algsHtml(p, c)}
         ${c.note ? `<p class="note">${esc(c.note)}</p>` : ''}
@@ -2233,12 +2265,17 @@ const PALETTES = [
     const prog = run.mode === 'recap' ? `${run.total - run.queue.length} of ${run.total}` : `${nSel} ${nSel === 1 ? 'case' : 'cases'}`;
     const shown = run.revealed, ss = sess[p], lr = ss[ss.length - 1], pc = lr && byId[p][lr.id];
     // the case being solved: its picture only. The answer appears only when you ask for it.
-    const caseCard = settings.showCase && !shown && matFor(p, c) ? `<section class="panel casecard" aria-label="Case">${matFor(p, c)}</section>` : '';
-    const peek = !shown && ui.peek && pc ? revealPanel(p, pc, 'Last case') : '';
-    const rail = shown ? revealPanel(p, c, 'Case answer') : peek + caseCard;
+    // the case picture: the case you are about to solve (Show), the one you just solved (After solve), or none (Hide)
+    const cm = settings.caseMode, picCase = cm === 'show' ? c : cm === 'after' ? pc : null;
+    const picSeg = shown ? '' : `<div class="seg cmseg" role="group" aria-label="Case picture">${[['show', 'Show'], ['after', 'After solve'], ['hide', 'Hide']].map(([v, l]) => `<button type="button" data-cm="${v}" aria-pressed="${cm === v}">${l}</button>`).join('')}</div>`;
+    const caseCard = shown ? '' : picCase && matFor(p, picCase) ? `<section class="panel casecard" aria-label="${cm === 'after' ? 'Last case' : 'Case'}">${cm === 'after' ? `<p class="note cap">Last case: <b>${esc(picCase.id)}</b></p>` : ''}${matFor(p, picCase)}</section>`
+      : cm === 'after' ? `<section class="panel casecard wait"><p class="note">Each case's picture shows here after you solve it.</p></section>` : '';
+    const pk = !shown && ui.peek && byId[p][ui.peek]; // a case from this session whose alg you asked to see
+    const peek = pk ? revealPanel(p, pk, pk === pc ? 'Last case' : 'Earlier case') : '';
+    const rail = shown ? revealPanel(p, c, 'Case answer') : peek + picSeg + caseCard;
     const last = !shown && lr ? `<div class="last">
         <div class="lt"><b>${esc(lr.id)}</b><span class="lv ${lr.time == null ? 'miss' : lastBest() ? 'best' : ''}">${lr.time == null ? 'Forgot' : fmt(lr.time)}</span>${lr.time != null && lastBest() ? '<span class="pb">Best</span>' : ''}</div>
-        <div class="lb"><button class="btn sm" id="peek" ${pc ? '' : 'disabled'}>${ui.peek ? 'Hide alg' : 'Show alg'}</button><button class="btn sm" id="lsoon">Again soon</button><button class="btn sm" id="undo" title="Delete the last solve">Delete <kbd>${MOD}Z</kbd></button></div>
+        <div class="lb"><button class="btn sm" id="peek" ${pc ? '' : 'disabled'}>${pc && ui.peek === pc.id ? 'Hide alg' : 'Show alg'}</button><button class="btn sm" id="lsoon">Again soon</button><button class="btn sm" id="undo" title="Delete the last solve">Delete <kbd>${MOD}Z</kbd></button></div>
       </div>` : '';
     const actions = shown
       ? `<div class="actions">
@@ -2247,16 +2284,16 @@ const PALETTES = [
         <button class="btn" id="undo" title="Take back the forgot mark and try this case again">Undo forgot <kbd>⌫</kbd></button>
       </div>`
       : `<div class="actions pre"><button class="btn" id="forgot">I forgot it: show answer <kbd>F</kbd></button></div>`;
-    const keys = `<div class="keys"><span><kbd>Space</kbd> Solve</span><span><kbd>F</kbd> Show answer</span><span><kbd>${MOD}Z</kbd> Delete last</span><span><kbd>${MOD}D</kbd> Reset session</span></div>`;
+    const keys = `<div class="keys"><span><kbd>Space</kbd> Solve</span><span><kbd>${MOD}Z</kbd> Delete last</span><span><kbd>${MOD}D</kbd> Reset session</span></div>`;
     return `${introHtml()}<div class="train ${shown ? 'revealed' : ''}">
       <div class="stage">
         <div class="stage-bar">
           <select id="mode" aria-label="Mode"><option value="random" ${run.mode === 'random' ? 'selected' : ''}>Weighted random</option><option value="recap" ${run.mode === 'recap' ? 'selected' : ''}>Recap, each case once</option></select>
-          <span class="note">${prog}</span>
+          <button type="button" class="note linkbtn" id="toCasesN" title="Choose which cases to train">${prog}</button>
         </div>
         <div class="scramble ${p === 'mm' || GEN[p] ? '' : 'sq'}" id="scr" role="button" tabindex="0" title="Copy the scramble">${scrambleHtml(run.scramble)}</div>
         <div id="timer" class="pad" role="timer" aria-live="off"><span id="digits" class="digits">0:00.00</span><span id="hint" class="hint"></span></div>
-        ${actions}${last}${keys}
+        ${last}${actions}${keys}
       </div>
       <div class="rail">${rail}${sessionHtml(p)}</div>
     </div>`;
@@ -2270,8 +2307,13 @@ const PALETTES = [
     on('#introCases', 'click', () => { seen(); go(ui.puzzle, 'cases'); });
     on('#mode', 'change', e => { run.mode = e.target.value; run.queue = []; newRound(); render(); });
     on('#next', 'click', doNext); on('#forgot', 'click', doForgot); on('#undo', 'click', doUndo);
-    const rail = $('.rail'); if (rail) rail.addEventListener('click', e => { const st = e.target.closest('[data-pref]'); if (st && togglePref(dk(), st.dataset.pref, +st.dataset.i)) { const cur = run.cur; render(); if (cur && cur.id === st.dataset.pref) toast(db[dk()].pref[cur.id] ? 'Saved: scrambles for this case now use this alg' : 'Cleared: this case uses any of its algs again'); } });
-    on('#peek', 'click', () => { ui.peek = !ui.peek; render(); });
+    const rail = $('.rail'); if (rail) rail.addEventListener('click', e => {
+      const sr = e.target.closest('[data-peek]'); // a solve in the session list: show (or hide) that case's alg
+      if (sr) { ui.peek = ui.peek === sr.dataset.peek ? false : sr.dataset.peek; render(); const r = ui.peek && $('.reveal'); if (r) r.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); return; }
+      const st = e.target.closest('[data-pref]'); if (st && togglePref(dk(), st.dataset.pref, +st.dataset.i)) { const cur = run.cur; render(); if (cur && cur.id === st.dataset.pref) toast(db[dk()].pref[cur.id] ? 'Saved: scrambles for this case now use this alg' : 'Cleared: this case uses any of its algs again'); } });
+    on('#peek', 'click', () => { const l = sess[dk()].slice(-1)[0]; ui.peek = l && ui.peek !== l.id ? l.id : false; render(); });
+    on('#toCasesN', 'click', () => go(ui.puzzle, 'cases'));
+    $$('[data-cm]').forEach(b => b.addEventListener('click', () => { settings.caseMode = b.dataset.cm; saveSettings(); render(); }));
     on('#lsoon', 'click', () => { const l = sess[dk()].slice(-1)[0]; if (l) { run.soon.push({ id: l.id, left: 3 + Math.floor(Math.random() * 3) }); toast('Queued: ' + l.id + ' returns within 3 to 5 solves'); } });
     on('#soon', 'click', () => { run.soon.push({ id: run.cur.id, left: 3 + Math.floor(Math.random() * 3) }); toast('Queued: this case returns within 3 to 5 solves'); });
     const copy = () => { if (!navigator.clipboard) { toast('Copying is not available in this browser'); return; } navigator.clipboard.writeText(run.scramble).then(() => toast('Scramble copied'), () => toast('Copying is not available in this browser')); };
@@ -2432,14 +2474,14 @@ const PALETTES = [
       ${c.ok ? matFor(p, c) : `<div class="warn">${esc(c.why || 'No alg on this case passes the check.')}</div>`}
       ${algsHtml(p, c, true)}
       ${c.note ? `<p class="note">${esc(c.note)}</p>` : ''}
-      <div class="tile-f"><div class="st">${stats}</div><button type="button" class="btn quiet" data-edit="${esc(c.id)}">Edit</button></div>
+      <div class="tile-f"><div class="st">${stats}</div><button type="button" class="btn edit" data-edit="${esc(c.id)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>Edit</button></div>
     </article>`;
   }
   function progHtml(p) { // how much of the whole set is learned, learning and new
     const n = { Learned: 0, Learning: 0, New: 0 }; cases[p].forEach(c => { n[stat(p, c.id).status]++; });
     const seg = k => `<i class="p-${k}" style="flex-grow:${n[k]}"></i>`;
     return `<div class="prog" id="prog"><div class="prog-bar" aria-hidden="true">${seg('Learned')}${seg('Learning')}${seg('New')}</div>
-      <div class="prog-key">${['Learned', 'Learning', 'New'].map(k => `<span class="s-${k}">${statusGlyph(k)}<span><b>${n[k]}</b> ${k.toLowerCase()}</span></span>`).join('')}</div></div>`;
+      <div class="prog-key" role="group" aria-label="Show only">${['Learned', 'Learning', 'New'].map(k => `<button type="button" class="s-${k}" data-stf="${k}" aria-pressed="${ui.stF === k}" title="${ui.stF === k ? 'Show every case again' : 'Show only the ' + k.toLowerCase() + ' cases'}">${statusGlyph(k)}<span><b>${n[k]}</b> ${k.toLowerCase()}</span></button>`).join('')}</div></div>`;
   }
   const countText = p => `${cases[p].filter(c => c.ok && selected(p, c)).length} of ${cases[p].length} selected for training`;
   function filterCases(p) { // the cases the chips, the selects and the search box leave, in the chosen order
@@ -2451,6 +2493,7 @@ const PALETTES = [
     else if (p === 'pbl') list = list.filter(c => (ui.pblSec === 'all' || c.group === ui.pblSec) && (ui.pblTop === 'any' || c.top === ui.pblTop) && (ui.pblBot === 'any' || c.bot === ui.pblBot));
     else if (p === 'csp') list = list.filter(c => (ui.cspSec === 'all' || c.group === ui.cspSec) && (ui.cspPar === 'both' || c.parity === ui.cspPar));
     else list = list.filter(c => (ui.sqParity === 'all' || (ui.sqParity === 'yes') === c.parity) && (ui.sqCol === 'both' || (ui.sqCol === 'flip') === c.flip));
+    if (ui.stF) list = list.filter(c => stat(p, c.id).status === ui.stF); // the learned / learning / new legend works as a filter
     const norm = t => String(t).toLowerCase().replace(/[\u2018\u2019]/g, "'").replace(/\s+/g, ' ').trim(), q = norm(ui.q);
     if (q) { const tight = q.replace(/ /g, ''); list = list.filter(c => { const name = norm(c.id + ' ' + (c.group || '') + ' ' + stat(p, c.id).status); return name.includes(q) || c.algs.some(x => { const a = norm(x.a + (trigsFor(p).length && /[a-z]{4}/.test(q) ? ' ' + chunks(p, x.a).map(k => k.name || '').join(' ') : '')); return a.includes(q) || a.replace(/ /g, '').includes(tight); }); }); }
     const val = c => { const t = stat(p, c.id).times; return t.length ? mean(t) : -1; };
@@ -2461,7 +2504,7 @@ const PALETTES = [
   function tilesHtml(p, list) {
     const vis = p === 'pbl' || (GEN[p] && cases[p].length > 150) ? list.slice(0, ui.limit) : list; // 967 PBL diagrams at once would be slow to draw
     const more = list.length > vis.length ? `<div class="more"><p class="note">Showing ${vis.length} of ${list.length}</p><button class="btn" id="more">Show ${Math.min(90, list.length - vis.length)} more</button></div>` : '';
-    if (!list.length) return `<div class="none muted"><p>No cases match${ui.q.trim() ? ` \u201C${esc(ui.q.trim())}\u201D` : ' these filters'}.</p>${ui.q.trim() ? '<button class="btn" id="qClear">Clear search</button>' : ''}</div>`;
+    if (!list.length) return `<div class="none muted"><p>No cases match${ui.q.trim() ? ` \u201C${esc(ui.q.trim())}\u201D` : ' these filters'}.</p>${ui.q.trim() ? '<button class="btn" id="qClear">Clear search</button>' : ''}${ui.stF ? ' <button class="btn" id="stfClear">Show every case</button>' : ''}</div>`;
     return `<div class="tiles ${p}">${vis.map(c => tileHtml(p, c)).join('')}</div>${more}`;
   }
   const shownText = (p, list) => (list.length === cases[p].length ? '' : ` \u00B7 ${list.length} shown`);
@@ -2595,6 +2638,7 @@ const PALETTES = [
       on('#edcancel', 'click', close); on('#edx', 'click', close); on('#edscrim', 'click', close);
     }
     on('#sort', 'change', e => { ui.sort = e.target.value; render(); });
+    const ctop = $('.cases-top'); if (ctop) ctop.addEventListener('click', e => { const b = e.target.closest('[data-stf]'); if (!b) return; ui.stF = ui.stF === b.dataset.stf ? null : b.dataset.stf; ui.limit = 90; render(); });
     on('#extraAlgs', 'change', e => { settings.extraAlgs = e.target.checked; saveSettings(); const w = $('#tilesWrap'); if (w) w.innerHTML = tilesHtml(p, filterCases(p)); });
     const setSel = fn => { $$('details.menu[open]').forEach(d => { d.open = false; }); ui.shown.forEach(c => { if (c.ok) db[p].sel[c.id] = fn(c) ? 1 : 0; }); save(p); run.queue = []; run.cur = null; render(); };
     on('#selAll', 'click', () => setSel(() => true));
@@ -2606,9 +2650,12 @@ const PALETTES = [
     if (grid) {
       grid.addEventListener('click', e => {
         if (e.target.closest('#more')) { ui.limit += 90; grid.innerHTML = tilesHtml(p, ui.shown); return; }
+        if (e.target.closest('#stfClear')) { ui.stF = null; render(); return; }
         if (e.target.closest('#qClear')) { const q = $('#q'); if (q) { q.value = ''; q.focus(); } setQuery(''); return; }
         const st = e.target.closest('[data-pref]');
         if (st) { if (togglePref(p, st.dataset.pref, +st.dataset.i)) st.closest('.tile').outerHTML = tileHtml(p, byId[p][st.dataset.pref]); return; }
+        const mo = e.target.closest('[data-more]'); // one card's extra algs
+        if (mo) { const o = ui.openAlgs || (ui.openAlgs = {}), k = p + ':' + mo.dataset.more; o[k] = !o[k]; mo.closest('.tile').outerHTML = tileHtml(p, byId[p][mo.dataset.more]); return; }
         const ed = e.target.closest('[data-edit]');
         if (ed) { ui.edit = ed.dataset.edit; render(); const t = $('#edtxt'); if (t) t.focus(); return; }
         const ch = e.target.closest('[data-chip]');
@@ -2650,7 +2697,7 @@ const PALETTES = [
         <div class="line" style="display:block;cursor:default"><span>Trigger marks<small>Groups moves you can learn as one motion, like sune or sledge. Megaminx, 2x2, 3x3, Skewb and Pyraminx mark the common ones (sune, sexy, sledge...); Square-1 marks each turn between slashes.</small></span><div class="seg" role="group" aria-label="Trigger marks">${[['boxes', 'Boxes'], ['brackets', 'Brackets'], ['off', 'Off']].map(([v, l]) => `<button type="button" class="btn" data-trg="${v}" aria-pressed="${settings.triggers === v}">${l}</button>`).join('')}</div></div>
         <label class="line"><span>Show trigger names<small>The name under each marked group, such as sune.</small></span><input type="checkbox" class="switch" id="trigNames" ${settings.trigNames !== false ? 'checked' : ''}></label>
         ${p === 'mm' ? `<label class="line"><span>Show arrows on Megaminx cases<small>Arrows mark where each piece goes. Off by default: the sticker colours already show the case.</small></span><input type="checkbox" class="switch" id="mmArrows" ${settings.mmArrows ? 'checked' : ''}></label>` : ''}
-        <label class="line"><span>Show the case picture while solving<small>The case you are about to solve, without its algorithm. Turn off to solve from the scramble alone.</small></span><input type="checkbox" class="switch" id="showCase" ${settings.showCase ? 'checked' : ''}></label>
+        <div class="line" style="display:block;cursor:default"><span>Case picture while training<small>Show: the case you are about to solve, without its algorithm. After solve: the case you just solved, to check it. Hide: solve from the scramble alone. You can also switch this on the Train screen.</small></span><div class="seg" role="group" aria-label="Case picture">${[['show', 'Show'], ['after', 'After solve'], ['hide', 'Hide']].map(([v, l]) => `<button type="button" class="btn" data-cm="${v}" aria-pressed="${settings.caseMode === v}">${l}</button>`).join('')}</div></div>
         <div class="line" style="cursor:default"><span>New here?<small>A three-step walkthrough of the Train screen.</small></span><button class="btn" id="showIntro">How Recall works</button></div>
       </section>
       <section class="group kbd-group"><h2>Keyboard shortcuts</h2>
@@ -2689,7 +2736,7 @@ const PALETTES = [
     $$('[data-trg]').forEach(b => b.addEventListener('click', () => { settings.triggers = b.dataset.trg; saveSettings(); render(); }));
     on('#trigNames', 'change', e => { settings.trigNames = e.target.checked; saveSettings(); });
     on('#mmArrows', 'change', e => { settings.mmArrows = e.target.checked; saveSettings(); });
-    on('#showCase', 'change', e => { settings.showCase = e.target.checked; saveSettings(); });
+    $$('[data-cm]').forEach(b => b.addEventListener('click', () => { settings.caseMode = b.dataset.cm; saveSettings(); render(); }));
     on('#showIntro', 'click', () => { settings.seenIntro = false; saveSettings(); go(ui.puzzle, 'train'); });
     $$('[data-pal]').forEach(b => b.addEventListener('click', () => { settings.palette = b.dataset.pal; saveSettings(); applyTheme(); const y = scrollY; render(); scrollTo(0, y); }));
     $$('.seg [data-theme]').forEach(b => b.addEventListener('click', () => { settings.theme = b.dataset.theme; saveSettings(); applyTheme(); render(); }));
