@@ -83,6 +83,10 @@ async function desktop(browser) {
 
   await page.goto(url + '#sq/csp/settings'); await page.reload();
   check('a link opens the right place', await page.locator('.settings').count() === 1 && await page.getAttribute('[data-set="csp"]', 'aria-selected') === 'true');
+  check('Settings is one page: address #settings, no puzzle or set tabs', page.url().endsWith('#settings') && !(await page.locator('#puzzles').isVisible()) && !(await page.locator('#sets').isVisible()));
+  check('Settings shows every puzzle\'s options', await page.locator('input[data-col]').count() === 12 && await page.locator('input[data-sq]').count() === 6 && await page.locator('#mmArrows').count() === 1);
+  await page.click('[data-s="cases"]');
+  check('leaving Settings goes back to the puzzle and set you were on', page.url().endsWith('#sq/csp/cases'), page.url());
   check('no script errors', errors.length === 0, errors.join(' | '));
 }
 

@@ -119,6 +119,7 @@
   ['csp', 'pbl', 'obl'].forEach(q => { if (settings.showDiagram[q] === undefined) settings.showDiagram[q] = settings.showDiagram.sq !== false; });
   if (settings.showDiagram.oll === undefined) settings.showDiagram.oll = settings.showDiagram.mm !== false;
   KEYS.forEach(q => { if (settings.showDiagram[q] === undefined) settings.showDiagram[q] = true; });
+  if (typeof settings.answerDiagram !== 'boolean') settings.answerDiagram = !Object.values(settings.showDiagram).some(v => v === false); // was one switch per set; now one for all
   applyTheme();
   let colors = store.get('at.colors', D.MM_DEFAULT_COLORS.slice());
   if (!Array.isArray(colors) || colors.length !== 12) colors = D.MM_DEFAULT_COLORS.slice();
@@ -183,9 +184,10 @@
   PUZZLES.forEach(z => { if (!SETS[z.id].some(x => x.id === ui.set[z.id])) ui.set[z.id] = SETS[z.id][0].id; });
   // The address bar follows what is on screen (#sq/pbl/cases), so Back, reload and shared links land where you were.
   const SCREENS = ['train', 'cases', 'settings'];
-  const routeHash = () => '#' + ui.puzzle + '/' + ui.set[ui.puzzle] + '/' + ui.screen;
+  const routeHash = () => (ui.screen === 'settings' ? '#settings' : '#' + ui.puzzle + '/' + ui.set[ui.puzzle] + '/' + ui.screen); // Settings is one page for every puzzle
   function readRoute() { // returns true when the puzzle or set changed
     const [pz, set, scr] = location.hash.replace(/^#\/?/, '').split('/');
+    if (pz === 'settings') { ui.screen = 'settings'; return false; }
     if (!SETS[pz]) return false;
     const was = ui.puzzle + ui.set[ui.puzzle];
     ui.puzzle = pz;
@@ -204,6 +206,7 @@
   }
   const curSet = () => SETS[ui.puzzle].find(x => x.id === ui.set[ui.puzzle]);
   const ready = () => curSet().ready;
+  const SETS_ORDER = () => PUZZLES.flatMap(z => SETS[z.id].filter(x => x.ready).map(x => GEN_BY[z.id + '/' + x.id] || (z.id === 'sq' ? (['csp', 'pbl', 'obl'].includes(x.id) ? x.id : 'sq') : z.id === 'mm' ? (x.id === 'oll' ? 'oll' : 'mm') : x.id)).filter(q => KEYS.includes(q)));
   const dk = () => GEN_BY[ui.puzzle + '/' + ui.set[ui.puzzle]] || (ui.puzzle === 'sq' ? (ui.set.sq === 'csp' || ui.set.sq === 'pbl' || ui.set.sq === 'obl' ? ui.set.sq : 'sq') : ui.set.mm === 'oll' ? 'oll' : 'mm'); // key of the data behind what is on screen
   const run = { mode: 'random', cur: null, last: null, queue: [], soon: [], phase: 'idle', t0: 0, time: null, scramble: '', revealed: false, lastRec: false };
   // phase: idle (scramble shown, ready) | hold | armed | running | stopped
@@ -260,7 +263,8 @@
     $('#sets').innerHTML = SETS[ui.puzzle].map(x => `<button class="set" role="tab" data-set="${x.id}" aria-selected="${ui.set[ui.puzzle] === x.id}">${x.label}${x.ready ? '' : '<i>soon</i>'}</button>`).join('');
     { const box = $('#sets'), on = $('.set[aria-selected="true"]', box); if (box && on && box.scrollWidth > box.clientWidth) box.scrollLeft = on.offsetLeft - (box.clientWidth - on.offsetWidth) / 2; } // a long row of sets scrolls to the chosen one
     $$('.sub').forEach(b => b.setAttribute('aria-selected', b.dataset.s === ui.screen));
-    const main = $('#main'), key = ui.puzzle + ui.set[ui.puzzle] + ui.screen, y = window.scrollY;
+    document.body.dataset.screen = ui.screen; // Settings hides the puzzle and set tabs: it is the same for every puzzle
+    const main = $('#main'), key = ui.screen === 'settings' ? 'settings' : ui.puzzle + ui.set[ui.puzzle] + ui.screen, y = window.scrollY;
     const soon = !ready() && ui.screen !== 'settings';
     main.innerHTML = soon ? viewSoon() : ui.screen === 'train' ? viewTrain() : ui.screen === 'cases' ? viewCases() : viewSettings();
     if (soon) { /* nothing to wire */ } else if (ui.screen === 'train') wireTrain(); else if (ui.screen === 'cases') wireCases(); else wireSettings();
@@ -269,7 +273,7 @@
     main.dataset.key = key;
     if (!soon) updateTimer();
     writeRoute();
-    document.title = (ready() ? DK_NAME[dk()] : PUZZLE_NAME[ui.puzzle] + ' ' + curSet().label) + (ui.screen === 'train' ? '' : ' ' + ui.screen) + ' · Recall';
+    document.title = ui.screen === 'settings' ? 'Settings · Recall' : (ready() ? DK_NAME[dk()] : PUZZLE_NAME[ui.puzzle] + ' ' + curSet().label) + (ui.screen === 'train' ? '' : ' ' + ui.screen) + ' · Recall';
   }
 
   // diagrams are cached: the Cases screen draws every case
@@ -281,7 +285,7 @@
     return dcache.get(key);
   }
   const matFor = (p, c) => { const s = diagSvg(p, c); return s ? `<div class="mat">${s}</div>` : ''; };
-  const diagramFor = (p, c) => (settings.showDiagram[p] ? matFor(p, c) : '');
+  const diagramFor = (p, c) => (settings.answerDiagram ? matFor(p, c) : '');
 
   const STAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.7 6.6 19.7l1.2-6-4.5-4.2 6.1-.7z"/></svg>';
   // ---- trigger marks: the alg split into chunks you can learn as one motion ----
@@ -812,16 +816,16 @@
       : 'Saving Recall for offline use. Reload once while online and it will open with no connection.';
   };
   function viewSettings() {
-    const p = dk(), name = DK_NAME[p];
+    const resetOpts = SETS_ORDER().map(q => `<option value="${q}">${esc(DK_NAME[q])}</option>`).join('');
     const palBtn = x => x ? `<button class="pal" data-pal="${x[0]}" aria-pressed="${settings.palette === x[0]}" style="--b:${x[1]};--m:${x[2]};--s:${x[3]};--t:${x[4]}"><b>${x[0]}</b><i></i></button>` : `<button class="pal pal-def" data-pal="" aria-pressed="${!settings.palette || !PALETTES.some(y => y[0] === settings.palette)}"><b>Default</b><i></i></button>`;
     const sqSw = [['face', 'Top (U)'], ['faceD', 'Bottom (D)']].map(([k, l]) => `<label>${l}<input type="color" data-sq="${k}" value="${sqColors[k]}"></label>`).join('') + sqColors.sides.map((v, i) => `<label>Side ${i + 1}<input type="color" data-sq="${i}" value="${v}"></label>`).join('');
     const swatch = M.FACES.map((f, i) => `<label>${f}<input type="color" data-col="${i}" value="${colors[i]}"></label>`).join('');
-    return `<div class="settings">
+    return `<div class="settings"><h1 class="page-h">Settings</h1><p class="note page-sub">These apply to every puzzle.</p>
       <section class="group"><h2>Training</h2>
-        <label class="line"><span>Show the diagram in the answer<small>${name} only. The answer opens when you tap I forgot it. Cases always show their diagram.</small></span><input type="checkbox" class="switch" id="showDiag" ${settings.showDiagram[p] ? 'checked' : ''}></label>
+        <label class="line"><span>Show the diagram in the answer<small>The answer opens when you tap I forgot it. Cases always show their diagram.</small></span><input type="checkbox" class="switch" id="showDiag" ${settings.answerDiagram ? 'checked' : ''}></label>
         <div class="line" style="display:block;cursor:default"><span>Trigger marks<small>Groups moves you can learn as one motion, like sune or sledge. Megaminx, 2x2, 3x3, Skewb and Pyraminx mark the common ones (sune, sexy, sledge...); Square-1 marks each turn between slashes.</small></span><div class="seg" role="group" aria-label="Trigger marks">${[['boxes', 'Boxes'], ['brackets', 'Brackets'], ['off', 'Off']].map(([v, l]) => `<button type="button" class="btn" data-trg="${v}" aria-pressed="${settings.triggers === v}">${l}</button>`).join('')}</div></div>
         <label class="line"><span>Show trigger names<small>The name under each marked group, such as sune.</small></span><input type="checkbox" class="switch" id="trigNames" ${settings.trigNames !== false ? 'checked' : ''}></label>
-        ${p === 'mm' ? `<label class="line"><span>Show arrows on Megaminx cases<small>Arrows mark where each piece goes. Off by default: the sticker colours already show the case.</small></span><input type="checkbox" class="switch" id="mmArrows" ${settings.mmArrows ? 'checked' : ''}></label>` : ''}
+        <label class="line"><span>Show arrows on Megaminx cases<small>Arrows mark where each piece goes. Off by default: the sticker colours already show the case.</small></span><input type="checkbox" class="switch" id="mmArrows" ${settings.mmArrows ? 'checked' : ''}></label>
         <div class="line" style="display:block;cursor:default"><span>Case picture while training<small>Show: the case you are about to solve, without its algorithm. Last case: the case you just solved, to check it. Hide: solve from the scramble alone. You can also switch this on the Train screen.</small></span><div class="seg" role="group" aria-label="Case picture">${[['show', 'Show'], ['after', 'Last case'], ['hide', 'Hide']].map(([v, l]) => `<button type="button" class="btn" data-cm="${v}" aria-pressed="${settings.caseMode === v}">${l}</button>`).join('')}</div></div>
         <div class="line" style="cursor:default"><span>New here?<small>A three-step walkthrough of the Train screen.</small></span><button class="btn" id="showIntro">How Recall works</button></div>
       </section>
@@ -838,8 +842,8 @@
       <section class="group look"><h2>Appearance</h2>
         ${settings.palette && PALETTES.some(x => x[0] === settings.palette) ? '' : `<div class="line"><span>Theme</span><div class="seg" role="group" aria-label="Theme">${[['system', 'System'], ['light', 'Light'], ['dark', 'Dark']].map(([v, l]) => `<button data-theme="${v}" aria-pressed="${settings.theme === v}">${l}</button>`).join('')}</div></div>`}
         <div class="line" style="display:block;cursor:default"><span>Color palette<small>Pick a look for the whole site. Default uses the System, Light or Dark theme.</small></span><div class="pals">${palBtn(null)}${PALETTES.map(palBtn).join('')}</div></div>
-        ${SQ_KEYS.includes(p) ? `<div class="line" style="display:block;cursor:default"><span>Square-1 colors<small>Used by the EP, PBL and OBL diagrams. Sides 1 to 4 go clockwise seen from above, starting on the right. ${p === 'csp' ? 'CSP cases are about shape only, so they are drawn without colors.' : 'Match them to your puzzle.'}</small></span><div class="swatches">${sqSw}</div><button class="btn" id="resetSqCol">Reset colors</button></div>` : ''}
-        ${p === 'mm' ? `<div class="line" style="display:block;cursor:default"><span>Megaminx face colors<small>Used by the case diagrams. Match them to your puzzle.</small></span><div class="swatches">${swatch}</div><button class="btn" id="resetCol">Reset colors</button></div>` : ''}
+        <div class="line" style="display:block;cursor:default"><span>Square-1 colors<small>Used by the EP, PBL and OBL diagrams. Sides 1 to 4 go clockwise seen from above, starting on the right. Match them to your puzzle. CSP cases are about shape only, so they are drawn without colors.</small></span><div class="swatches">${sqSw}</div><button class="btn" id="resetSqCol">Reset colors</button></div>
+        <div class="line" style="display:block;cursor:default"><span>Megaminx face colors<small>Used by the case diagrams. Match them to your puzzle.</small></span><div class="swatches">${swatch}</div><button class="btn" id="resetCol">Reset colors</button></div>
       </section>
       <section class="group"><h2>Offline</h2>
         <p class="note" id="offlineMsg">${offlineText()}</p>
@@ -848,16 +852,17 @@
       ${syncSection()}
       <section class="group"><h2>Progress</h2>
         <p class="note" style="margin-bottom:10px">Export saves your progress as a file; Import loads one.</p>
-        <div class="row-btns"><button class="btn" id="export">Export</button><label class="btn">Import<input type="file" id="import" accept="application/json" hidden></label><button class="btn danger" id="reset">Reset ${name} stats</button></div>
+        <div class="row-btns"><button class="btn" id="export">Export</button><label class="btn">Import<input type="file" id="import" accept="application/json" hidden></label></div>
+        <div class="line reset-line"><span>Reset stats<small>Deletes the times, statuses and selections of one set. Your own algs are kept.</small></span><div class="row-btns"><select id="resetWhich" aria-label="Set to reset"><option value="">Choose a set…</option>${resetOpts}<option value="*">Every set</option></select><button class="btn danger" id="reset" disabled>Reset</button></div></div>
         <p class="note" id="msg" role="status"></p>
       </section>
     </div>`;
   }
   function wireSettings() {
     const on = (id, ev, fn) => { const e = $(id); if (e) e.addEventListener(ev, fn); };
-    const p = dk(), msg = t => { $('#msg').textContent = t; };
+    const msg = t => { $('#msg').textContent = t; };
     wireSync();
-    on('#showDiag', 'change', e => { settings.showDiagram[p] = e.target.checked; saveSettings(); });
+    on('#showDiag', 'change', e => { settings.answerDiagram = e.target.checked; saveSettings(); });
     $$('[data-trg]').forEach(b => b.addEventListener('click', () => { settings.triggers = b.dataset.trg; saveSettings(); render(); }));
     on('#trigNames', 'change', e => { settings.trigNames = e.target.checked; saveSettings(); });
     on('#mmArrows', 'change', e => { settings.mmArrows = e.target.checked; saveSettings(); });
@@ -887,7 +892,14 @@
         run.cur = null; dcache.clear(); render(); $('#msg').textContent = 'Imported ' + f.name + '.';
       }).catch(err => msg('Import failed: ' + err.message));
     });
-    on('#reset', 'click', () => { if (confirm('Delete all ' + name + ' stats and selections? Your own algs are kept.')) { db[p] = { sel: {}, st: {}, alg: db[p].alg }; save(p); run.cur = null; msg(name + ' stats and selections were reset.'); } });
+    on('#resetWhich', 'change', e => { $('#reset').disabled = !e.target.value; });
+    on('#reset', 'click', () => {
+      const w = $('#resetWhich').value; if (!w) return;
+      const list = w === '*' ? KEYS : [w], name = w === '*' ? 'every set' : DK_NAME[w];
+      if (!confirm('Delete the stats and selections of ' + name + '? Your own algs are kept.')) return;
+      list.forEach(q => { db[q] = { sel: {}, st: {}, alg: db[q].alg }; save(q); }); run.cur = null; run.queue = [];
+      msg((w === '*' ? 'Every set' : name) + ': stats and selections were reset.');
+    });
   }
 
   // ---- navigation ----

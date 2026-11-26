@@ -345,3 +345,9 @@ sledge, hedgeslammer and their left-hand versions), `TRIGS_SK` (Skewb: sledgeham
 - Cases: card footers sit at the bottom of the card; the selection checkbox is one neutral style (group colour only on the top edge); Edit is a visible button with a pencil; the learned / learning / new legend filters the cards (`ui.stF`, with "Show every case" when nothing matches); capped 2x2/3x3 cards have a "+N more algs" pill that opens just that card (`ui.openAlgs`).
 - Footer: one line (name, email, sources) and pinned to the bottom of short pages (body is a flex column, `#main` grows).
 - Left out on purpose: moving set pills out of the top bar, a separate scramble header band, changing the Alt/Option shortcuts, and the accent colour.
+
+## 2026-11-26: Settings is one page for the whole app
+- Address `#settings` (old `#mm/pll/settings`-style links still open it). `body[data-screen="settings"]` hides the puzzle and set tabs; leaving Settings returns to the puzzle and set you were on.
+- Every option shows regardless of the puzzle you came from: Megaminx arrows, Megaminx face colours and Square-1 colours are always listed.
+- "Show the diagram in the answer" is one switch, `settings.answerDiagram` (taken from the old per-set `settings.showDiagram`: off if any set had it off). `showDiagram` is no longer read.
+- Reset stats: pick one set (in tab order, `SETS_ORDER()`) or "Every set", then Reset. Own algs are kept.

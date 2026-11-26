@@ -388,6 +388,13 @@ body.boot .foot{animation:rise .7s var(--ease) .35s both}
 
 /* ---------- settings ---------- */
 .settings{max-width:640px;display:flex;flex-direction:column;gap:32px;padding-top:8px}
+body[data-screen="settings"] #puzzles,body[data-screen="settings"] #sets{display:none}
+.settings .page-h{font-size:28px;font-weight:800;letter-spacing:-.02em;margin:0}
+.settings .page-sub{margin:-26px 0 0}
+.reset-line .row-btns{flex-wrap:wrap;gap:8px}
+.reset-line .row-btns{min-width:0;max-width:100%}
+.reset-line select{min-width:0;max-width:100%;width:100%}
+@media (min-width:561px){.reset-line select{width:auto}}
 /* wide screens: the settings you change while training on the left, the look of the app (palettes, sticker colours) on the right */
 @media (min-width:1100px){.settings{max-width:none;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:40px 64px;align-items:start}.settings>.group{grid-column:1}.settings>.look{grid-column:2;grid-row:1 / span 6}}
 .group{display:flex;flex-direction:column;gap:6px}
@@ -475,6 +482,8 @@ body[data-phase="running"] .intro{opacity:0;pointer-events:none}
   :root{--nav-h:68px}
   .top-in{padding-block:10px;gap:8px}
   .brand{display:none}
+  body[data-screen="settings"] .top-in{min-height:0;padding-block:0}
+  body[data-screen="settings"] .top{border-bottom:0}
   .puzzles,.sets{width:100%}
   main.shell{padding-top:14px}
   .tab{flex:1;justify-content:center;padding-inline:8px}
