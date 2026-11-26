@@ -197,6 +197,8 @@ body[data-phase="running"] .top,body[data-phase="running"] .nav,body[data-phase=
 .keys{display:flex;flex-wrap:wrap;gap:6px 20px;font-size:13.5px;color:var(--mute);padding:2px 4px}
 .panel.casecard{display:flex;flex-direction:column;background:none;padding:0 8px}
 .casecard .mat{max-width:400px;align-self:center;width:100%}
+/* the case picture next to the scramble: one height cap for every puzzle (2x2, Skewb and Pyraminx pictures are naturally about this size; Megaminx, 3x3 and Square-1 were up to 340 px) */
+.casecard .mat svg,.casecard .mat svg.sq{max-height:220px}
 .klist li{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;border-top:1px solid var(--line);font-size:15px}
 .klist kbd{font-size:12px;padding:4px 7px}
 @media (hover:none),(pointer:coarse){.keys,.kbd-group{display:none}}
@@ -459,7 +461,7 @@ body[data-phase="running"] .intro{opacity:0;pointer-events:none}
   .scramble{padding:14px 18px 12px;border-radius:16px 16px 0 0}
   .pad{border-radius:0 0 16px 16px}
   .casecard h2{display:none}
-  .casecard .mat svg{max-height:200px}
+  .casecard .mat svg,.casecard .mat svg.sq{max-height:170px}
   .actions .btn{padding:10px 6px;font-size:15px}
   .actions .primary{font-size:18px}
   .tools .count{flex:1 0 100%}

@@ -334,3 +334,6 @@ sledge, hedgeslammer and their left-hand versions), `TRIGS_SK` (Skewb: sledgeham
 ## 2026-11-24 (evening, later): top 2 algs on every 2x2 and 3x3 set, one colour scheme
 - "Show extra algs" now covers every 2x2 and 3x3 set, not only 3x3 PLL: `topOnly(p)` in `app.js` (puzzle `c2` or `c3`). Cards show the top 2 algs per case while it is off; one global setting, `settings.extraAlgs`. The switch only appears on sets where some case has more than 2 algs (`hasExtra`). Skewb, Pyraminx, Megaminx and Square-1 are not capped.
 - `CUBE_SCHEME` (`src/diagram.js`) is again the one scheme for 2x2, 3x3, Skewb and Pyraminx, now with the colours the 3x3 got: white #F4F5F7, yellow #FDE910, red #DD1E2A, orange #FF7A1A, blue #0E7AE5, green #1EC93B. (`CUBE3_SCHEME` is gone.)
+
+## 2026-11-26: one size for the train picture
+- The case picture beside the scramble (`.casecard .mat svg` in `index.template.html`) is capped at 220 px high on desktop and 170 px on phones, for every puzzle. Megaminx, 3x3 and Square-1 were up to 340 px; 2x2, Skewb and Pyraminx were already about that size. The answer panel (`.reveal .mat`), the case grid and the editor preview keep their own sizes.
