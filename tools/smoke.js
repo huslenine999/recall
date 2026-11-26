@@ -53,6 +53,14 @@ async function desktop(browser) {
   check('legend filter: no learned cases yet', await page.locator('.tile').count() === 0 && await page.locator('#stfClear').count() === 1);
   await page.click('#stfClear');
   check('Show every case clears the filter', await page.locator('.tile').count() === 57);
+  await page.locator('.tile').first().locator('input[data-sel]').uncheck({ force: true }).catch(() => page.locator('.tile').first().click());
+  await page.locator('[data-stf="Sel"]').click();
+  check('Selected filter shows only selected cases', await page.locator('.tile').count() === 56 && (await page.locator('[data-stf="Sel"] b').textContent()) === '56');
+  await page.locator('[data-stf="Sel"]').click();
+  await page.selectOption('#sort', 'sel');
+  check('Selected first puts the unselected case last', !(await page.locator('.tile').last().locator('input[data-sel]').isChecked()));
+  await page.selectOption('#sort', 'name');
+  await page.locator('.tile').first().locator('input[data-sel]').check({ force: true }).catch(() => page.locator('.tile').first().click());
   await page.locator('.tile').first().locator('.morealgs').click();
   check('+2 more algs opens one card', await page.locator('.tile').first().locator('.alg').count() === 4 && await page.locator('.tile').nth(1).locator('.alg').count() === 2);
   await page.click('[data-p="sk"]'); await page.click('[data-set="ns"]');

@@ -351,3 +351,7 @@ sledge, hedgeslammer and their left-hand versions), `TRIGS_SK` (Skewb: sledgeham
 - Every option shows regardless of the puzzle you came from: Megaminx arrows, Megaminx face colours and Square-1 colours are always listed.
 - "Show the diagram in the answer" is one switch, `settings.answerDiagram` (taken from the old per-set `settings.showDiagram`: off if any set had it off). `showDiagram` is no longer read.
 - Reset stats: pick one set (in tab order, `SETS_ORDER()`) or "Every set", then Reset. Own algs are kept.
+
+## 2026-11-26: Cases – show the selected cases
+- "N selected" sits at the right of the learned / learning / new legend and filters the grid to the cases selected for training (`ui.stF === 'Sel'`). Its count updates as you tick cards.
+- Sort has "Selected first" (`ui.sort === 'sel'`): selected cases first, sheet order inside each half.

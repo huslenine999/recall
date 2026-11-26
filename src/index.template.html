@@ -309,6 +309,9 @@ body.boot .foot{animation:rise .7s var(--ease) .35s both}
 .prog-key button:hover{background:var(--raise)}
 .prog-key button[aria-pressed="true"]{background:var(--raise);border-color:currentColor}
 .prog-key{gap:4px 22px}
+.prog-key .s-Sel{margin-left:auto}
+.sel-glyph{width:14px;height:14px;border-radius:4px;background:var(--text);position:relative;flex:none}
+.sel-glyph::after{content:"";position:absolute;left:3px;top:3px;width:7px;height:4px;border-left:2px solid var(--panel);border-bottom:2px solid var(--panel);transform:rotate(-45deg)}
 .prog-key b{color:var(--text);font:500 14px/1 var(--mono);font-stretch:88%;font-variant-numeric:tabular-nums}
 .prog-key .s-Learned{color:var(--ok)}
 .prog-key .s-Learning{color:var(--warn)}

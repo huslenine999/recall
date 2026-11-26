@@ -608,9 +608,10 @@
   }
   function progHtml(p) { // how much of the whole set is learned, learning and new
     const n = { Learned: 0, Learning: 0, New: 0 }; cases[p].forEach(c => { n[stat(p, c.id).status]++; });
+    const nSel = cases[p].filter(c => c.ok && selected(p, c)).length;
     const seg = k => `<i class="p-${k}" style="flex-grow:${n[k]}"></i>`;
     return `<div class="prog" id="prog"><div class="prog-bar" aria-hidden="true">${seg('Learned')}${seg('Learning')}${seg('New')}</div>
-      <div class="prog-key" role="group" aria-label="Show only">${['Learned', 'Learning', 'New'].map(k => `<button type="button" class="s-${k}" data-stf="${k}" aria-pressed="${ui.stF === k}" title="${ui.stF === k ? 'Show every case again' : 'Show only the ' + k.toLowerCase() + ' cases'}">${statusGlyph(k)}<span><b>${n[k]}</b> ${k.toLowerCase()}</span></button>`).join('')}</div></div>`;
+      <div class="prog-key" role="group" aria-label="Show only">${['Learned', 'Learning', 'New'].map(k => `<button type="button" class="s-${k}" data-stf="${k}" aria-pressed="${ui.stF === k}" title="${ui.stF === k ? 'Show every case again' : 'Show only the ' + k.toLowerCase() + ' cases'}">${statusGlyph(k)}<span><b>${n[k]}</b> ${k.toLowerCase()}</span></button>`).join('')}<button type="button" class="s-Sel" data-stf="Sel" aria-pressed="${ui.stF === 'Sel'}" title="${ui.stF === 'Sel' ? 'Show every case again' : 'Show only the cases selected for training'}"><i class="sel-glyph" aria-hidden="true"></i><span><b>${nSel}</b> selected</span></button></div></div>`;
   }
   const countText = p => `${cases[p].filter(c => c.ok && selected(p, c)).length} of ${cases[p].length} selected for training`;
   function filterCases(p) { // the cases the chips, the selects and the search box leave, in the chosen order
@@ -622,11 +623,13 @@
     else if (p === 'pbl') list = list.filter(c => (ui.pblSec === 'all' || c.group === ui.pblSec) && (ui.pblTop === 'any' || c.top === ui.pblTop) && (ui.pblBot === 'any' || c.bot === ui.pblBot));
     else if (p === 'csp') list = list.filter(c => (ui.cspSec === 'all' || c.group === ui.cspSec) && (ui.cspPar === 'both' || c.parity === ui.cspPar));
     else list = list.filter(c => (ui.sqParity === 'all' || (ui.sqParity === 'yes') === c.parity) && (ui.sqCol === 'both' || (ui.sqCol === 'flip') === c.flip));
-    if (ui.stF) list = list.filter(c => stat(p, c.id).status === ui.stF); // the learned / learning / new legend works as a filter
+    if (ui.stF === 'Sel') list = list.filter(c => c.ok && selected(p, c)); // only the cases selected for training
+    else if (ui.stF) list = list.filter(c => stat(p, c.id).status === ui.stF); // the learned / learning / new legend works as a filter
     const norm = t => String(t).toLowerCase().replace(/[\u2018\u2019]/g, "'").replace(/\s+/g, ' ').trim(), q = norm(ui.q);
     if (q) { const tight = q.replace(/ /g, ''); list = list.filter(c => { const name = norm(c.id + ' ' + (c.group || '') + ' ' + stat(p, c.id).status); return name.includes(q) || c.algs.some(x => { const a = norm(x.a + (trigsFor(p).length && /[a-z]{4}/.test(q) ? ' ' + chunks(p, x.a).map(k => k.name || '').join(' ') : '')); return a.includes(q) || a.replace(/ /g, '').includes(tight); }); }); }
     const val = c => { const t = stat(p, c.id).times; return t.length ? mean(t) : -1; };
-    if (ui.sort === 'mean') list = list.slice().sort((a, b) => val(b) - val(a));
+    if (ui.sort === 'sel') list = list.slice().sort((a, b) => (selected(p, b) && b.ok) - (selected(p, a) && a.ok)); // stable: sheet order inside each half
+    else if (ui.sort === 'mean') list = list.slice().sort((a, b) => val(b) - val(a));
     else if (ui.sort === 'fails') list = list.slice().sort((a, b) => stat(p, b.id).fails - stat(p, a.id).fails);
     return (ui.shown = list);
   }
@@ -668,7 +671,7 @@
         <details class="menu"><summary class="btn">Select cases <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1.5l5 5 5-5"/></svg></summary>
           <div class="menu-pop"><button id="selAll">Select all shown</button><button id="selNone">Deselect all shown</button><button id="selLearning">Only the ones I am learning</button><button id="selNotLearned">Only the ones not learned yet</button></div></details>
         ${hasExtra(p) ? `<label class="extra"><input type="checkbox" class="switch" id="extraAlgs" ${settings.extraAlgs ? 'checked' : ''}>Show extra algs</label>` : ''}
-        <select id="sort" aria-label="Sort">${[['name', 'Sheet order'], ['mean', 'Slowest first'], ['fails', 'Most forgotten']].map(([v, l]) => `<option value="${v}" ${v === ui.sort ? 'selected' : ''}>${l}</option>`).join('')}</select>
+        <select id="sort" aria-label="Sort">${[['name', 'Sheet order'], ['sel', 'Selected first'], ['mean', 'Slowest first'], ['fails', 'Most forgotten']].map(([v, l]) => `<option value="${v}" ${v === ui.sort ? 'selected' : ''}>${l}</option>`).join('')}</select>
       </div></div><div id="tilesWrap">${tilesHtml(p, list)}</div>${ui.edit && byId[p][ui.edit] ? editorHtml(p, byId[p][ui.edit]) : ''}`;
   }
   // ---- alg editor: reverse the alg, show the state it starts from ----
@@ -801,6 +804,7 @@
         db[p].sel[box.dataset.sel] = box.checked ? 1 : 0; run.queue = []; run.cur = null; save(p);
         box.closest('.tile').classList.toggle('is-on', box.checked); box.closest('.tile').classList.toggle('pop', box.checked);
         const cn = $('.count'); if (cn) cn.textContent = countText(p) + shownText(p, ui.shown);
+        const pg = $('#prog'); if (pg) pg.outerHTML = progHtml(p);
       });
     }
   }
