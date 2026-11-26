@@ -91,6 +91,14 @@ async function desktop(browser) {
 
   await page.goto(url + '#sq/csp/settings'); await page.reload();
   check('a link opens the right place', await page.locator('.settings').count() === 1 && await page.getAttribute('[data-set="csp"]', 'aria-selected') === 'true');
+  // theme picker: filter, pick, favorite; the choice is kept
+  await page.click('[data-thf="light"]');
+  check('theme filter: Light shows the 18 light themes', await page.locator('#ths .th:not([hidden])').count() === 18);
+  await page.click('[data-thf="all"]'); await page.click('[data-th="lapis"]'); await page.click('[data-fav="lapis"]');
+  await page.reload(); await page.waitForTimeout(300);
+  check('picked theme and favorite are kept', await page.getAttribute('[data-th="lapis"]', 'aria-pressed') === 'true' && await page.getAttribute('[data-fav="lapis"]', 'aria-pressed') === 'true');
+  check('the theme is applied', (await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--bg-base').trim())) === '#0E1B4D');
+  await page.click('[data-th="auto"]');
   check('Settings is one page: address #settings, no puzzle or set tabs', page.url().endsWith('#settings') && !(await page.locator('#puzzles').isVisible()) && !(await page.locator('#sets').isVisible()));
   check('Settings shows every puzzle\'s options', await page.locator('input[data-col]').count() === 12 && await page.locator('input[data-sq]').count() === 6 && await page.locator('#mmArrows').count() === 1);
   await page.click('[data-s="cases"]');

@@ -20,9 +20,10 @@ const data = [
   embed('DATA_PYL4E', pick('data/pyraminx_l4e.json', ['id', 'group', 'algs', 'cls'])),
   ...[['C2PBL', 'pbl'], ['C2CLL', 'cll'], ['C2EG1', 'eg1'], ['C2EG2', 'eg2'], ['C2LEG1', 'leg1'], ['C2TCLLP', 'tcllp'], ['C2TCLLM', 'tcllm'], ['C2LS', 'ls'], ['C2TEG2P', 'teg2p']].map(([n, f]) => embed('DATA_' + n, pick('data/cube2_' + f + '.json', ['id', 'group', 'algs', 'cls']))),
   ...[['C3F2L', 'f2l'], ['C3AF2L', 'af2l'], ['C3OLL', 'oll'], ['C3PLL', 'pll'], ['C3COLL', 'coll'], ['C3WV', 'wv'], ['C3VLS', 'vls'], ['C3ZBLL', 'zbll']].map(([n, f]) => embed('DATA_' + n, pick('data/cube3_' + f + '.json', ['id', 'group', 'algs', 'cls', 'setup']))),
+  embed('DATA_THEMES', JSON.parse(read('data/themes.json'))),
   embed('DATA_PBL', pick('data/square1_pbl.json', ['id', 'top', 'bot', 'slices', 'alg', 'ct', 'cb']))
 ].join('\n');
-const engines = ['src/palettes.js', 'src/megaminx.js', 'src/square1.js', 'src/skewb.js', 'src/pyraminx.js', 'src/cube2.js', 'src/cube3.js', 'src/diagram.js', 'src/scramble.js'].map(read).join('\n');
+const engines = ['src/megaminx.js', 'src/square1.js', 'src/skewb.js', 'src/pyraminx.js', 'src/cube2.js', 'src/cube3.js', 'src/diagram.js', 'src/scramble.js'].map(read).join('\n');
 // replacer functions: avoid '$' patterns in code being interpreted
 html = html.replace('/*__FONTS__*/', () => fonts).replace('/*__DATA__*/', () => wrap(data)).replace('/*__ENGINES__*/', () => wrap(engines)).replace('/*__APP__*/', () => wrap(read('src/app.js')));
 fs.mkdirSync('dist', { recursive: true });

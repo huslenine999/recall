@@ -6,7 +6,8 @@
   const S = root.Square1 || require('./square1.js');
   const f1 = n => Math.round(n * 10) / 10;
   let uid = 0;
-  const INK = '#101012';
+  // puzzle plastic and outlines come from the theme (--puzzle-*, dark in every theme so the stickers stay crisp); style=, because SVG colour attributes do not take CSS variables
+  const INK = 'var(--puzzle-outline,#101012)', BODY = 'var(--puzzle-body,#101012)';
 
   // ---------- drawing helpers ----------
   const lerp = (A, B, t) => [A[0] + (B[0] - A[0]) * t, A[1] + (B[1] - A[1]) * t];
@@ -26,7 +27,7 @@
     }
     return d + 'Z';
   }
-  const shape = (P, fill, r, sw) => `<path d="${rpath(P, r)}" fill="${fill}" stroke="${INK}" stroke-width="${sw}" stroke-linejoin="round"/>`;
+  const shape = (P, fill, r, sw) => `<path d="${rpath(P, r)}" style="fill:${fill};stroke:${INK}" stroke-width="${sw}" stroke-linejoin="round"/>`;
 
   // sticker on the segment A->B, pushed outward by T along n; the outer corners are pulled in by s0 (at A) and s1 (at B)
   function tile(A, B, n, T, s0, s1) {
@@ -49,7 +50,7 @@
   function arrow(a, b, swap, id, ink, trim, outline) {
     const d = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1, s = trim / d;
     const a2 = lerp(a, b, s), b2 = lerp(a, b, 1 - s), p = arrowPath(a2, b2, swap ? 0 : 0.2);
-    const under = outline ? `<path d="${p}" fill="none" stroke="${INK}" stroke-width="5" stroke-linecap="round"/>` : '';
+    const under = outline ? `<path d="${p}" fill="none" style="stroke:${INK}" stroke-width="5" stroke-linecap="round"/>` : '';
     return under + `<path d="${p}" fill="none" stroke="${ink}" stroke-width="2.1" stroke-linecap="round" marker-end="url(#${id})" ${swap ? `marker-start="url(#${id})"` : ''}/>`;
   }
   function viewBoxOf(polys, m) {
@@ -114,7 +115,7 @@
     const piece = (i, j) => (j === 0 ? M.llCorners[mod5(i - 1)] : j === 1 ? M.llEdges[i] : M.llCorners[i]);
     mmGeom.tiles.forEach(t => { g += shape(t.poly, colors[rel[M.slotOf(piece(t.i, t.j), M.ring[t.i])]], 3, 2.4); });
     // the U face: a black body with the pieces on it
-    g += shape([0, 1, 2, 3, 4].map(vert), INK, 3, 2.6);
+    g += shape([0, 1, 2, 3, 4].map(vert), BODY, 3, 2.6);
     const edgeCen = [], cornerCen = [];
     for (let i = 0; i < 5; i++) { const P = mmEdgeP(i); edgeCen[i] = centroid(P); g += shape(P, uCol, 6, 2.4); }
     for (let k = 0; k < 5; k++) { const P = mmCornerP(k); cornerCen[k] = centroid(P); g += shape(P, uCol, 6, 2.4); }
@@ -146,7 +147,7 @@
     const piece = (i, j) => (j === 0 ? M.llCorners[mod5(i - 1)] : j === 1 ? M.llEdges[i] : M.llCorners[i]);
     let g = '';
     mmGeom.tiles.forEach(t => { g += shape(t.poly, col(piece(t.i, t.j), M.ring[t.i]), 3, 2.4); });
-    g += shape([0, 1, 2, 3, 4].map(vert), INK, 3, 2.6);
+    g += shape([0, 1, 2, 3, 4].map(vert), BODY, 3, 2.6);
     for (let i = 0; i < 5; i++) g += shape(mmEdgeP(i), col(M.llEdges[i], 0), 6, 2.4);
     for (let k = 0; k < 5; k++) g += shape(mmCornerP(k), col(M.llCorners[k], 0), 6, 2.4);
     g += shape(mmCenter, OLL_ON, 9, 2.4);
@@ -168,8 +169,8 @@
 
   const SQ_A = 84 * Math.SQRT1_2, SQ_T = 9;   // apothem of the square, thickness of the sticker strip
   // sharp-cornered polygon
-  const sharp = (P, fill, sw) => `<polygon points="${P.map(p => f1(p[0]) + ',' + f1(p[1])).join(' ')}" fill="${fill}" stroke="${INK}" stroke-width="${sw}" stroke-linejoin="miter" stroke-miterlimit="4"/>`;
-  const markerO = (id, ink) => `<marker id="${id}" viewBox="0 0 10 10" refX="7.5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8.5" markerHeight="8.5" orient="auto-start-reverse"><path d="M0,0.5 L10,5 L0,9.5 z" fill="${ink}" stroke="${INK}" stroke-width="1.3" stroke-linejoin="round"/></marker>`;
+  const sharp = (P, fill, sw) => `<polygon points="${P.map(p => f1(p[0]) + ',' + f1(p[1])).join(' ')}" style="fill:${fill};stroke:${INK}" stroke-width="${sw}" stroke-linejoin="miter" stroke-miterlimit="4"/>`;
+  const markerO = (id, ink) => `<marker id="${id}" viewBox="0 0 10 10" refX="7.5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8.5" markerHeight="8.5" orient="auto-start-reverse"><path d="M0,0.5 L10,5 L0,9.5 z" fill="${ink}" style="stroke:${INK}" stroke-width="1.3" stroke-linejoin="round"/></marker>`;
 
   // One layer. Pieces sit on boundary points at radius SH_RE; a corner's tip reaches SH_RC. For a square layer this is the
   // familiar square; other layers (CSP shapes) come out with kites and wedges. opt.neutral = {fill, sticker} draws a
@@ -366,7 +367,7 @@
 
   // 3x3. state: what Cube3.view gives (the 54 colours, -1 for a sticker that is not part of the case, drawn grey).
   // kind 'top': the top layer from above with its ring of side stickers (last-layer sets); 'iso': the U, F and R faces as seen from the front right corner (first two layers, last slot).
-  const CUBE3_GREY = '#7d7d8a';
+  const CUBE3_GREY = 'var(--puzzle-ignored,#7d7d8a)';
   function cube3Diagram(state, opts) {
     opts = opts || {};
     const kind = opts.kind || 'top', pal = opts.colors || CUBE2_COLORS, fill = i => (state[i] < 0 ? CUBE3_GREY : pal[state[i]]), out = [];

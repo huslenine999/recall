@@ -94,27 +94,28 @@
   const settings = Object.assign({ showDiagram: { mm: true, oll: true, sq: true, csp: true, pbl: true, obl: true }, showCase: true, extraAlgs: false, mmArrows: false, triggers: 'boxes', trigNames: true, theme: 'system' }, store.get('at.settings.v1', {}));
   if (!['show', 'after', 'hide'].includes(settings.caseMode)) settings.caseMode = settings.showCase === false ? 'hide' : 'show'; // was a plain on/off switch
   const saveSettings = () => store.set('at.settings.v1', settings);
-  // A chosen palette (settings.palette = its name) sets the color tokens inline, which beats the stylesheet's light/dark blocks.
-  const PAL_VARS = ['--well', '--glow2', '--glow3', '--glow-a', '--hold', '--hold-ink', '--bg', '--text', '--mute', '--pri-bg', '--pri-fg', '--focus', '--bad', '--ok', '--warn', '--panel', '--raise', '--line', '--scrim'];
-  const palLum = h => { const c = [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16) / 255).map(v => v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4)); return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]; };
-  const palContrast = (x, y) => { const a = palLum(x), b = palLum(y); return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05); };
-  const metaOrig = $$('meta[name="theme-color"]').map(m => m.content);
-  const applyTheme = () => {
-    const r = document.documentElement, pal = PALETTES.find(x => x[0] === settings.palette);
-    PAL_VARS.forEach(k => r.style.removeProperty(k)); r.style.colorScheme = '';
-    if (pal) {
-      const [, bg, main, sub0, text, err] = pal, dark = palLum(bg) < 0.4;
-      // faint muted colors are fine on a sample card but unreadable as UI text: pull them toward the text color until they reach 4.5:1
-      const blend = (x, y, t) => '#' + [1, 3, 5].map(i => Math.round(parseInt(x.slice(i, i + 2), 16) * (1 - t) + parseInt(y.slice(i, i + 2), 16) * t).toString(16).padStart(2, '0')).join('');
-      let sub = sub0; for (let t = 0.1; palContrast(sub, bg) < 4.5 && t <= 1; t += 0.1) sub = blend(sub0, text, t);
-      const onMain = [bg, '#000000', '#ffffff'].find(c => palContrast(c, main) >= 4.5) || (palContrast('#000000', main) > palContrast('#ffffff', main) ? '#000000' : '#ffffff');
-      const mix = n => `color-mix(in srgb, ${bg} ${n}%, ${text})`;
-      const v = { '--bg': bg, '--text': text, '--mute': sub, '--pri-bg': main, '--pri-fg': onMain, '--focus': main, '--bad': err, '--ok': dark ? '#5FD99A' : '#0F7A45', '--warn': dark ? '#FFC93C' : '#946400', '--well': dark ? `color-mix(in srgb, ${bg} 78%, #000)` : mix(96), '--glow2': sub0, '--glow3': err, '--glow-a': dark ? '10%' : '7%', '--panel': mix(92), '--raise': mix(84), '--line': mix(76), '--scrim': dark ? 'rgba(0,0,0,.65)' : 'rgba(10,10,12,.5)' };
-      Object.keys(v).forEach(k => r.style.setProperty(k, v[k]));
-      r.style.colorScheme = dark ? 'dark' : 'light'; r.setAttribute('data-theme', dark ? 'dark' : 'light');
-    } else if (settings.theme === 'light' || settings.theme === 'dark') r.setAttribute('data-theme', settings.theme); else r.removeAttribute('data-theme');
-    $$('meta[name="theme-color"]').forEach((m, i) => { m.content = pal ? pal[1] : metaOrig[i]; });
+  // ---- themes: DATA_THEMES comes from data/themes.json, built and contrast-checked by tools/make_themes.js ----
+  // settings.themeId is 'auto' (Recall Dark or Recall Light, following the device) or a theme's id. A theme sets the new tokens
+  // (--bg-base, --accent, --timer-ready, --puzzle-outline ...) and the older names the stylesheet still uses (LEGACY).
+  const THEMES = DATA_THEMES, THEME_BY = Object.fromEntries(THEMES.map(t => [t.id, t]));
+  const LEGACY = { '--bg': '--bg-base', '--panel': '--bg-surface', '--raise': '--bg-elevated', '--line': '--border-subtle', '--text': '--text-primary', '--mute': '--text-muted', '--pri-bg': '--accent', '--pri-fg': '--accent-fg', '--focus': '--focus-ring', '--best': '--timer-best', '--well': '--bg-inset', '--hold': '--timer-holding', '--hold-ink': '--timer-holding-fg', '--go': '--timer-ready', '--go-ink': '--timer-ready-fg', '--bad': '--danger', '--ok': '--status-learned', '--warn': '--status-learning' };
+  // the palettes before November 2026, by name: each goes to the closest new theme
+  const OLD_PAL = { 'Stackmat Night': 'stackmat', 'Graphite Mint': 'graphite', 'Dusk Violet': 'mauve-velvet', Ember: 'ember', 'Deep Sea': 'abyss', Matcha: 'matcha', 'Rose Quartz Dark': 'dusky-rose', 'Terminal Amber': 'amber-vinyl', Phosphor: 'crt', 'Nord Frost': 'polar-frost', 'Gruvbox Night': 'amber-vinyl', 'Midnight Coral': 'midnight-coral', 'Ink and Gold': 'lapis', 'Cyber Lilac': 'synthwave', 'Arctic Night': 'polar-frost', 'Sunset Strip': 'sunset-strip', 'Forest Floor': 'sage-forest', Oxblood: 'bordeaux', 'Slate Peach': 'slate-peach', 'Void Cyan': 'abyss', 'Plum Wine': 'plum', 'Moss Stone': 'sage-forest', 'Copper Wire': 'copper-patina', 'Blue Hour': 'city-lights', 'Tangerine Soda': 'ember', 'Lavender Haze': 'mauve-velvet', 'Paper Ink': 'paper-ink', Sakura: 'sakura-mochi', 'Sea Salt': 'sea-salt', Butter: 'butter', 'Lilac Milk': 'lilac-paper', 'Sky Paper': 'sky-paper', 'Mint Cream': 'matcha-latte', 'Terracotta Light': 'washi-kincha', Fog: 'fog', 'Peach Fizz': 'marigold', 'Matcha Latte': 'matcha-latte', 'Blush Navy': 'blush-navy', 'Cloud Mono': 'paper-ink', 'Lemon Ice': 'butter', Bubblegum: 'sakura-mochi', 'Ocean Sunset': 'midnight-coral', Cocoa: 'espresso', 'Teal Deal': 'teal-rust', 'Burgundy Cream': 'bordeaux', 'Olive Grove': 'olive-saffron', 'Indigo Bloom': 'indigo-dye', 'Steel Blue': 'city-lights' };
+  if (!settings.themeId) settings.themeId = settings.palette && OLD_PAL[settings.palette] ? OLD_PAL[settings.palette] : settings.theme === 'light' ? 'recall-light' : settings.theme === 'dark' ? 'recall-dark' : 'auto';
+  if (settings.themeId !== 'auto' && !THEME_BY[settings.themeId]) settings.themeId = 'auto';
+  if (!Array.isArray(settings.favThemes)) settings.favThemes = [];
+  const sysLight = () => !!(window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches);
+  const resolveTheme = id => THEME_BY[id && id !== 'auto' && THEME_BY[id] ? id : sysLight() ? 'recall-light' : 'recall-dark'];
+  const themeVars = t => { const v = Object.assign({}, t.tokens); Object.keys(LEGACY).forEach(k => { v[k] = t.tokens[LEGACY[k]]; }); return v; };
+  const applyTheme = previewId => { // with an id: a preview (hovering a theme), nothing is saved
+    const r = document.documentElement, t = resolveTheme(previewId || settings.themeId), v = themeVars(t);
+    Object.keys(v).forEach(k => r.style.setProperty(k, v[k]));
+    r.style.colorScheme = t.mode; r.setAttribute('data-theme', t.mode);
+    $$('meta[name="theme-color"]').forEach(m => { m.content = t.tokens['--bg-base']; });
+    // the script at the top of the page reads this, so a reload paints the theme straight away
+    if (!previewId) store.set('at.theme.v2', settings.themeId === 'auto' ? { auto: true, dark: themeVars(THEME_BY['recall-dark']), light: themeVars(THEME_BY['recall-light']) } : { mode: t.mode, vars: v });
   };
+  if (window.matchMedia) { const mq = matchMedia('(prefers-color-scheme: light)'); if (mq.addEventListener) mq.addEventListener('change', () => { if (settings.themeId === 'auto') applyTheme(); }); }
   if (!settings.showDiagram || typeof settings.showDiagram !== 'object') settings.showDiagram = { mm: true, sq: true, csp: true };
   ['csp', 'pbl', 'obl'].forEach(q => { if (settings.showDiagram[q] === undefined) settings.showDiagram[q] = settings.showDiagram.sq !== false; });
   if (settings.showDiagram.oll === undefined) settings.showDiagram.oll = settings.showDiagram.mm !== false;
@@ -182,6 +183,7 @@
   const ui = { puzzle: 'mm', screen: 'train', mmSet: 'all', ollSet: 'all', sqParity: 'all', sqCol: 'both', cspSec: 'all', cspPar: 'both', pblSec: 'all', pblTop: 'any', pblBot: 'any', oblSec: 'all', limit: 90, sort: 'name', edit: null, chipScroll: 0, q: '' };
   ui.set = Object.assign({ mm: 'pll', sq: 'ep' }, store.get('at.sets.v1', {}));
   PUZZLES.forEach(z => { if (!SETS[z.id].some(x => x.id === ui.set[z.id])) ui.set[z.id] = SETS[z.id][0].id; });
+  { const lp = store.get('at.puzzle.v1', null); if (SETS[lp]) ui.puzzle = lp; } // the puzzle you were on, for pages without one in the address (Settings)
   // The address bar follows what is on screen (#sq/pbl/cases), so Back, reload and shared links land where you were.
   const SCREENS = ['train', 'cases', 'settings'];
   const routeHash = () => (ui.screen === 'settings' ? '#settings' : '#' + ui.puzzle + '/' + ui.set[ui.puzzle] + '/' + ui.screen); // Settings is one page for every puzzle
@@ -198,6 +200,7 @@
   readRoute();
   let routed = false;
   function writeRoute() {
+    store.set('at.puzzle.v1', ui.puzzle); store.set('at.sets.v1', ui.set); // so Settings (no puzzle in its address) can send you back after a reload
     const h = routeHash(), had = (history.state && history.state.edit) || null, want = ui.edit || null;
     if (location.hash === h && had === want) { routed = true; return; }
     const push = routed && (location.hash !== h || (want && !had)); // opening a screen or the editor adds a Back step; closing does not
@@ -821,7 +824,10 @@
   };
   function viewSettings() {
     const resetOpts = SETS_ORDER().map(q => `<option value="${q}">${esc(DK_NAME[q])}</option>`).join('');
-    const palBtn = x => x ? `<button class="pal" data-pal="${x[0]}" aria-pressed="${settings.palette === x[0]}" style="--b:${x[1]};--m:${x[2]};--s:${x[3]};--t:${x[4]}"><b>${x[0]}</b><i></i></button>` : `<button class="pal pal-def" data-pal="" aria-pressed="${!settings.palette || !PALETTES.some(y => y[0] === settings.palette)}"><b>Default</b><i></i></button>`;
+    const thCard = t => { // a theme as a small card in its own colours: name, then page / card / accent / text swatches
+      const sw = t ? t.swatch : ['#100F14', '#F1F0F4', '#FFD60A', '#F6F4EF'], id = t ? t.id : 'auto', name = t ? t.name : 'Auto', tip = t ? t.note : 'Recall Dark or Recall Light, following your device';
+      return `<div class="th${t ? '' : ' th-auto'}" data-tid="${id}" data-g="${t ? t.group : 'auto'}" data-n="${esc((name + ' ' + tip).toLowerCase())}" style="--b:${sw[0]};--s:${sw[1]};--a:${sw[2]};--t:${sw[3]}"><button type="button" class="th-pick" data-th="${id}" aria-pressed="${settings.themeId === id}" title="${esc(tip)}"><b>${esc(name)}</b><span class="th-sw" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>${t ? `<button type="button" class="th-fav" data-fav="${id}" aria-pressed="${settings.favThemes.includes(id)}" aria-label="Favorite: ${esc(name)}">★</button>` : ''}</div>`;
+    };
     const sqSw = [['face', 'Top (U)'], ['faceD', 'Bottom (D)']].map(([k, l]) => `<label>${l}<input type="color" data-sq="${k}" value="${sqColors[k]}"></label>`).join('') + sqColors.sides.map((v, i) => `<label>Side ${i + 1}<input type="color" data-sq="${i}" value="${v}"></label>`).join('');
     const swatch = M.FACES.map((f, i) => `<label>${f}<input type="color" data-col="${i}" value="${colors[i]}"></label>`).join('');
     return `<div class="settings"><h1 class="page-h">Settings</h1><p class="note page-sub">These apply to every puzzle.</p>
@@ -844,8 +850,9 @@
         </ul>
       </section>
       <section class="group look"><h2>Appearance</h2>
-        ${settings.palette && PALETTES.some(x => x[0] === settings.palette) ? '' : `<div class="line"><span>Theme</span><div class="seg" role="group" aria-label="Theme">${[['system', 'System'], ['light', 'Light'], ['dark', 'Dark']].map(([v, l]) => `<button data-theme="${v}" aria-pressed="${settings.theme === v}">${l}</button>`).join('')}</div></div>`}
-        <div class="line" style="display:block;cursor:default"><span>Color palette<small>Pick a look for the whole site. Default uses the System, Light or Dark theme.</small></span><div class="pals">${palBtn(null)}${PALETTES.map(palBtn).join('')}</div></div>
+        <div class="line" style="display:block;cursor:default"><span>Theme<small>${THEMES.length} themes, each checked for readable contrast. ${touchMode ? 'Tap a theme to use it' : 'Hover a theme to preview it, click to keep it'}; star the ones you like.</small></span>
+          <div class="th-bar"><input type="search" class="txt search" id="thQ" placeholder="Search themes" aria-label="Search themes" autocomplete="off"><div class="seg" role="group" aria-label="Show">${[['all', 'All'], ['dark', 'Dark'], ['light', 'Light'], ['special', 'Special'], ['fav', 'Favorites']].map(([v, l]) => `<button type="button" data-thf="${v}" aria-pressed="${(ui.thF || 'all') === v}">${l}</button>`).join('')}</div></div>
+          <div class="ths" id="ths">${thCard(null)}${THEMES.map(thCard).join('')}</div><p class="note" id="thNone" hidden>No theme matches.</p></div>
         <div class="line" style="display:block;cursor:default"><span>Square-1 colors<small>Used by the EP, PBL and OBL diagrams. Sides 1 to 4 go clockwise seen from above, starting on the right. Match them to your puzzle. CSP cases are about shape only, so they are drawn without colors.</small></span><div class="swatches">${sqSw}</div><button class="btn" id="resetSqCol">Reset colors</button></div>
         <div class="line" style="display:block;cursor:default"><span>Megaminx face colors<small>Used by the case diagrams. Match them to your puzzle.</small></span><div class="swatches">${swatch}</div><button class="btn" id="resetCol">Reset colors</button></div>
       </section>
@@ -872,8 +879,29 @@
     on('#mmArrows', 'change', e => { settings.mmArrows = e.target.checked; saveSettings(); });
     $$('[data-cm]').forEach(b => b.addEventListener('click', () => { settings.caseMode = b.dataset.cm; saveSettings(); render(); }));
     on('#showIntro', 'click', () => { settings.seenIntro = false; saveSettings(); go(ui.puzzle, 'train'); });
-    $$('[data-pal]').forEach(b => b.addEventListener('click', () => { settings.palette = b.dataset.pal; saveSettings(); applyTheme(); const y = scrollY; render(); scrollTo(0, y); }));
-    $$('.seg [data-theme]').forEach(b => b.addEventListener('click', () => { settings.theme = b.dataset.theme; saveSettings(); applyTheme(); render(); }));
+    // theme picker: search and filter in place, preview on hover (mouse only), click to keep, stars for favorites
+    const thFilter = () => {
+      const q = ($('#thQ') ? $('#thQ').value : '').trim().toLowerCase(), f = ui.thF || 'all'; let n = 0;
+      $$('#ths .th').forEach(el => { const ok = (!q || el.dataset.n.includes(q)) && (f === 'all' || (f === 'fav' ? settings.favThemes.includes(el.dataset.tid) : el.dataset.g === f)); el.hidden = !ok; if (ok) n++; });
+      const none = $('#thNone'); if (none) { none.hidden = n > 0; none.textContent = f === 'fav' && !q ? 'No favorites yet: star a theme to keep it here.' : 'No theme matches.'; }
+    };
+    on('#thQ', 'input', thFilter);
+    $$('[data-thf]').forEach(b => b.addEventListener('click', () => { ui.thF = b.dataset.thf; $$('[data-thf]').forEach(x => x.setAttribute('aria-pressed', String(x === b))); thFilter(); }));
+    const ths = $('#ths');
+    if (ths) {
+      if (window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        ths.addEventListener('pointerover', e => { const c = e.target.closest('[data-th]'); if (c) applyTheme(c.dataset.th); });
+        ths.addEventListener('pointerleave', () => applyTheme());
+      }
+      ths.addEventListener('click', e => {
+        const f = e.target.closest('[data-fav]');
+        if (f) { const id = f.dataset.fav, i = settings.favThemes.indexOf(id); if (i < 0) settings.favThemes.push(id); else settings.favThemes.splice(i, 1); f.setAttribute('aria-pressed', String(i < 0)); saveSettings(); if (ui.thF === 'fav') thFilter(); return; }
+        const c = e.target.closest('[data-th]'); if (!c) return;
+        settings.themeId = c.dataset.th; saveSettings(); applyTheme();
+        $$('#ths [data-th]').forEach(x => x.setAttribute('aria-pressed', String(x === c)));
+      });
+    }
+    thFilter();
     on('#install', 'click', () => { if (installEv) { installEv.prompt(); installEv = null; } });
     on('#resetSqCol', 'click', () => { sqColors = sqDefault(); store.set('at.sqcolors', sqColors); render(); });
     $$('input[data-sq]').forEach(i => i.addEventListener('change', e => { const k = e.target.dataset.sq; if (k === 'face' || k === 'faceD') sqColors[k] = e.target.value; else sqColors.sides[+k] = e.target.value; store.set('at.sqcolors', sqColors); }));

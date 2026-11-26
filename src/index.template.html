@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>/* paint the saved theme before anything shows (app.js keeps at.theme.v2 up to date) */try{var T=JSON.parse(localStorage.getItem('at.theme.v2'));if(T){var L=T.auto&&window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches,V=T.auto?(L?T.light:T.dark):T.vars,M=T.auto?(L?'light':'dark'):T.mode,R=document.documentElement;for(var k in V)R.style.setProperty(k,V[k]);R.setAttribute('data-theme',M);R.style.colorScheme=M;}}catch(e){}</script>
 <meta name="theme-color" content="#F1F0F4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#100F14" media="(prefers-color-scheme: dark)">
 <title>Recall: Algorithm Trainer</title>
@@ -239,9 +240,10 @@ body.boot .foot{animation:rise .7s var(--ease) .35s both}
 .reveal .mat{max-width:420px}
 .algs{display:flex;flex-direction:column;gap:8px}
 .trg{display:inline-block;white-space:nowrap;margin:1px 2px;vertical-align:top;text-align:center}
-.trg.boxes{background:color-mix(in srgb,var(--set,#8E8BB0) 22%,transparent);border-radius:6px;padding:0 6px}
+[style*="--set"]{--trigger-bg:color-mix(in srgb,var(--set) 22%,transparent)} /* cards of a coloured group tint their trigger boxes with it */
+.trg.boxes{background:var(--trigger-bg,color-mix(in srgb,#8E8BB0 22%,transparent));border-radius:6px;padding:0 6px}
 .trg.brackets{padding:0 2px}
-.trg .tn{display:block;font:600 10px/1.1 var(--ui);font-style:normal;color:var(--mute);letter-spacing:0;padding-bottom:2px}
+.trg .tn{display:block;font:600 10px/1.1 var(--ui);font-style:normal;color:var(--trigger-text,var(--mute));letter-spacing:0;padding-bottom:2px}
 .seg{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
 .seg .btn[aria-pressed="true"]{background:var(--pri-bg);color:var(--pri-fg)}
 .algrow{display:flex;align-items:flex-start;gap:4px}
@@ -417,12 +419,21 @@ body[data-screen="settings"] #puzzles,body[data-screen="settings"] #sets{display
 .swatches input[type=color]::-webkit-color-swatch-wrapper{padding:0}
 .swatches input[type=color]::-webkit-color-swatch{border:0;border-radius:12px;box-shadow:inset 0 0 0 1.5px rgba(0,0,0,.28)}
 .swatches input[type=color]::-moz-color-swatch{border:0;border-radius:12px}
-.pals{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:10px}
-.pal{display:flex;flex-direction:column;gap:10px;align-items:flex-start;text-align:left;min-height:72px;padding:12px;border-radius:14px;border:1px solid color-mix(in srgb,var(--t) 20%,var(--b));background:var(--b);color:var(--t);box-shadow:0 0 0 0 var(--text)}
-.pal b{font-size:14px;font-weight:700}
-.pal i{display:block;width:100%;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--m) 0 34%,var(--t) 34% 67%,var(--s) 67%)}
-.pal-def{--b:var(--panel);--t:var(--text);--m:var(--pri-bg);--s:var(--mute)}
-.pal[aria-pressed="true"]{box-shadow:0 0 0 3px var(--bg),0 0 0 5px var(--text)}
+.th-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.th-bar .txt{flex:1 1 200px;min-width:0}
+.ths{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:10px}
+.th{position:relative}
+.th[hidden]{display:none}
+.th-pick{width:100%;min-height:66px;display:flex;flex-direction:column;justify-content:space-between;gap:8px;align-items:flex-start;text-align:left;padding:10px 12px;border-radius:12px;border:1px solid color-mix(in srgb,var(--t) 22%,var(--b));background:var(--b);color:var(--t);font:inherit;cursor:pointer}
+.th-pick b{font-size:13.5px;font-weight:700;line-height:1.2;padding-right:24px}
+.th-sw{display:flex;gap:5px}
+.th-sw i{width:15px;height:15px;border-radius:50%;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--t) 35%,transparent)}
+.th-sw i:nth-child(1){background:var(--b)}.th-sw i:nth-child(2){background:var(--s)}.th-sw i:nth-child(3){background:var(--a)}.th-sw i:nth-child(4){background:var(--t)}
+.th-pick[aria-pressed="true"]{box-shadow:0 0 0 3px var(--bg),0 0 0 5px var(--text)}
+.th-auto .th-pick{background:linear-gradient(135deg,#100F14 0 55%,#F1F0F4 55%)}
+.th-fav{position:absolute;top:5px;right:5px;width:30px;height:30px;display:grid;place-items:center;border:0;border-radius:8px;background:none;color:color-mix(in srgb,var(--t) 40%,transparent);font-size:16px;line-height:1;cursor:pointer}
+.th-fav:hover{background:color-mix(in srgb,var(--t) 14%,transparent)}
+.th-fav[aria-pressed="true"]{color:var(--a)}
 .txt{font:600 17px/1 var(--mono);letter-spacing:.06em;background:var(--bg);border:2px solid var(--line);border-radius:12px;padding:10px 12px;width:13ch;color:inherit;text-transform:uppercase}
 .txt:focus{outline:none;border-color:var(--focus)}
 .txt.search{flex:1 1 200px;max-width:300px;min-height:44px;width:auto;font:500 15px/1.2 var(--ui);letter-spacing:0;text-transform:none}

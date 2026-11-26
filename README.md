@@ -31,7 +31,8 @@ It needs Playwright once: `npm i -D playwright && npx playwright install chromiu
 | `src/megaminx.js`, `src/square1.js` | Puzzle simulators and case analysis |
 | `src/diagram.js` | SVG case diagrams, drawn from simulator state |
 | `src/scramble.js` | Builds the setup scramble for an alg |
-| `src/palettes.js`, `src/sw.js` | Colour palettes; service worker for offline use |
+| `data/src/themes.js` → `tools/make_themes.js` → `data/themes.json` | The 55 themes: hand-picked anchors, turned into the full token set and contrast-checked (report: `data/src/theme_report.txt`) |
+| `src/sw.js` | Service worker for offline use |
 | `data/*.json` | The alg sheets, one file per set |
 | `api/sync.js` | Optional sync function (Vercel + Upstash Redis) |
 | `build.js` | Inlines fonts, data and scripts into `dist/index.html` |
@@ -61,3 +62,5 @@ without it the Sync section says it is not set up and everything else works.
 Algorithms come from the cubing community: Raul Low Beattie's Megaminx PLL sheet (James Macdiarmid's case system),
 SpeedcubeQuest's Megaminx OLL, Daniel's Public PBL Doc, the Squanmate cube shape + parity sheet and SpeedCubeDB's 3x3 algs (the full list is in the page footer).
 Fonts: Bricolage Grotesque and Martian Mono (licences in `src/fonts/`).
+
+Several themes are adapted, with new names, from open-source editor palettes (MIT): Catppuccin (Mauve Velvet, Lilac Paper), Rosé Pine (Dusky Rose, Morning Pine), Tokyo Night (City Lights), Dracula (Nightshade), Nord (Polar Frost, Snowfield), Gruvbox (Amber Vinyl, Parchment), Everforest (Sage Forest), Solarized (Teal & Rust, Sunlit Cream), Horizon (Afterglow), Oxocarbon (Steel Azure), Kanagawa (Sumi Ink), Ayu (Marigold) and Flexoki's paper tones (Inkwell).

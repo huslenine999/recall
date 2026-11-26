@@ -10,12 +10,17 @@ const step = (name, fn) => {
 };
 const node = (...args) => { const r = spawnSync(process.execPath, args, { cwd: root, encoding: 'utf8' }); const out = (r.stdout + r.stderr).trim(); if (r.status !== 0) throw new Error(out || 'exit ' + r.status); return out.split('\n').pop(); };
 
+step('themes: every theme passes its contrast checks', () => { // rebuilds data/themes.json; the report is data/src/theme_report.txt
+  delete require.cache[require.resolve('./make_themes.js')]; const r = require('./make_themes.js');
+  if (r.failed) throw new Error(r.failed + ' themes fail, see data/src/theme_report.txt');
+  return r.count + ' themes';
+});
 step('build', () => node('build.js'));
 step('built page is complete', () => {
   const html = fs.readFileSync(path.join(root, 'dist/index.html'), 'utf8');
   const left = html.match(/\/\*__[A-Z]+__\*\//g); if (left) throw new Error('placeholders not filled: ' + left.join(', '));
   const scripts = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m => m[1]);
-  if (scripts.length !== 3) throw new Error('expected 3 inline scripts, found ' + scripts.length);
+  if (scripts.length !== 4) throw new Error('expected 4 inline scripts (theme, data, engines, app), found ' + scripts.length);
   scripts.forEach((code, i) => { try { new vm.Script(code); } catch (e) { throw new Error(`inline script ${i + 1} does not parse: ${e.message}`); } });
   const sw = fs.readFileSync(path.join(root, 'dist/sw.js'), 'utf8'); if (sw.includes('__BUILD__')) throw new Error('sw.js has no build id');
   JSON.parse(fs.readFileSync(path.join(root, 'dist/manifest.webmanifest'), 'utf8'));
